@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/MspFichaFamiliar2.iml" filepath="$PROJECT_DIR$/MspFichaFamiliar2.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/persistencia/persistencia.iml" filepath="$PROJECT_DIR$/persistencia/persistencia.iml" />
     </modules>
   </component>
 </project>
