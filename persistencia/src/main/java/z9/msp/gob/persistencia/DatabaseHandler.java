@@ -45,40 +45,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         List<String> spinnerContent = new ArrayList<String>();
         Cursor cursor = db.rawQuery(selectQuery, null);
-
         return  cursor;
-    }
-    public String[] getAllNacionalidad() {
-        String selectQuery = "SELECT descripcion FROM cocina";
-        SQLiteDatabase db = this.getWritableDatabase();
-        List<String> spinnerContent = new ArrayList<String>();
-        Cursor cursor = db.rawQuery(selectQuery, null);
-        while(cursor.moveToNext()){
-          //  do{
-                String descripcion = cursor.getString(0);
-                spinnerContent.add(descripcion);
-         //   }while(cursor.moveToNext());
-        }
-
-
-        String[] allSpinner = new String[spinnerContent.size()];
-        allSpinner = spinnerContent.toArray(allSpinner);
-        return  allSpinner;
-    }
- public List<Nacionalidad> getALLNacionalidad() {
-
-        List<Nacionalidad> contactList = new ArrayList<Nacionalidad>();
-        String selectQuery = "SELECT id_nac,cod_nac, descripcion FROM nacionalidad";
-        SQLiteDatabase db = this.getWritableDatabase();
-        Cursor cursor = db.rawQuery(selectQuery, null);
-            while (cursor.moveToNext()){
-                Nacionalidad nac=new Nacionalidad();
-                nac.id_nac=cursor.getInt(0);
-                nac.cod_nac=cursor.getInt(1);
-                nac.descripcion=cursor.getString(2);
-                contactList.add(nac);
-            }
-
-        return contactList;
     }
 }
