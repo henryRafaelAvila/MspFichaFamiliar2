@@ -47,4 +47,12 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery(selectQuery, null);
         return  cursor;
     }
+
+    public Cursor getOcupacion() {
+        String selectQuery = "SELECT * FROM cocina";
+        SQLiteDatabase db = this.getWritableDatabase();
+        List<String> spinnerContent = new ArrayList<String>();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+        return  cursor;
+    }
 }
