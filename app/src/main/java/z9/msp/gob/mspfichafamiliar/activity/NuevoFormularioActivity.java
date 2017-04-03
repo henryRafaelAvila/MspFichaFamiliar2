@@ -33,31 +33,6 @@ public class NuevoFormularioActivity extends AppCompatActivity {
          */
         spinnerNacionalida = (Spinner)findViewById(R.id.spinnerNacionalidad);
 
-
-        /*
-        Creando Adaptador para GenreSpinner
-         */
-      /*  String[] spinnerLists = db.getAllNacionalidad();
-        ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<String>(NuevoFormularioActivity.this,android.R.layout.simple_spinner_item, spinnerLists);
-        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerNacionalida.setAdapter(spinnerAdapter);
-        spinnerNacionalida.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                return;
-            }
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-
-        spinnerNacionalida.setAdapter(adapterNacionalidad);
-
-    }
-});
-    */
-         /*
-        Creando Adaptador para GenreSpinner
-         */
         adapterNacionalidad = new SimpleCursorAdapter(this,
                 android.R.layout.simple_spinner_item,//Layout simple
                 db.getAllCocina(),//Todos los registros
