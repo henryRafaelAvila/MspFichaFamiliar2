@@ -1,4 +1,18 @@
 <resources>
     <string name="app_name">Msp Ficha Familiar</string>
-    <string name="action_settings">Settings</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_list_form">ListFormActivity</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Configuración</string>
+    <string name="author_email">havilaj@est.ups.edu.ec,ncuevac@est.ups.edu.ec</string>
+    <!--menu de exportacion de datos-->
+    <string name="exportar">Sincronizar</string>
+    <string name="compartir">Compartir</string>
+    <string name="dir_ip">Dirección IP</string>
+    <string name="start">Inicio</string>
 </resources>
