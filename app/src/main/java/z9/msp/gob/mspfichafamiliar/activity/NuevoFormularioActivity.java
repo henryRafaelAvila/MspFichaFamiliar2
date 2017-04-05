@@ -16,7 +16,9 @@ public class NuevoFormularioActivity extends AppCompatActivity {
         Adaptadores para los Spinners
          */
     SimpleCursorAdapter adapterNacionalidad;
+    SimpleCursorAdapter adapterOcupacion;
     Spinner spinnerNacionalida;
+    Spinner spinnerOcupacion;
     DatabaseHandler db;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,5 +50,24 @@ public class NuevoFormularioActivity extends AppCompatActivity {
         Seteando Adaptador de GenreSpinner
          */
         spinnerNacionalida.setAdapter(adapterNacionalidad);
+
+
+        spinnerOcupacion = (Spinner)findViewById(R.id.spinnerOcupacion);
+
+        adapterOcupacion = new SimpleCursorAdapter(this,
+                android.R.layout.simple_spinner_item,//Layout simple
+                db.getAllOcupacion(),//Todos los registros
+                new String[]{"descripcion"},//Mostrar solo el nombre
+                new int[]{android.R.id.text1},//View para el nombre
+                SimpleCursorAdapter.FLAG_REGISTER_CONTENT_OBSERVER);//Observer para el refresco
+
+
+
+        /*
+        descripcion
+        descripcion
+        Seteando Adaptador de GenreSpinner
+         */
+        spinnerOcupacion.setAdapter(adapterOcupacion);
     }
 }
