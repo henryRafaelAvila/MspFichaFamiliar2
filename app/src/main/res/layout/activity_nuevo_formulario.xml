@@ -92,12 +92,13 @@
             </GridLayout>
 
             <!-- View permite crear la linea de division de las secciones -->
+
             <View
                 android:id="@+id/view"
                 android:layout_width="wrap_content"
                 android:layout_height="1dp"
                 android:background="@android:color/background_dark" />
-
+            <!-- Space dar espacio entre los componentes -->
             <Space
                 android:layout_width="wrap_content"
                 android:layout_height="10dp"
