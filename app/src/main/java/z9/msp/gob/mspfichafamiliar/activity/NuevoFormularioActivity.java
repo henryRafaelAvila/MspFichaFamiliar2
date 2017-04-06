@@ -16,9 +16,9 @@ public class NuevoFormularioActivity extends AppCompatActivity {
         Adaptadores para los Spinners
          */
     SimpleCursorAdapter adapterNacionalidad;
-    SimpleCursorAdapter adapterOcupacion;
+    SimpleCursorAdapter adapterRecibeAgua;
     Spinner spinnerNacionalida;
-    Spinner spinnerOcupacion;
+    Spinner recibe_agua;
     DatabaseHandler db;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +34,7 @@ public class NuevoFormularioActivity extends AppCompatActivity {
         Obteniendo las instancias de los Spinners
          */
         spinnerNacionalida = (Spinner)findViewById(R.id.spinnerNacionalidad);
+        recibe_agua=(Spinner)findViewById(R.id.recibe_agua);
 
         adapterNacionalidad = new SimpleCursorAdapter(this,
                 android.R.layout.simple_spinner_item,//Layout simple
@@ -43,31 +44,18 @@ public class NuevoFormularioActivity extends AppCompatActivity {
                 SimpleCursorAdapter.FLAG_REGISTER_CONTENT_OBSERVER);//Observer para el refresco
 
 
-
+        adapterRecibeAgua = new SimpleCursorAdapter(this,
+                android.R.layout.simple_spinner_item,//Layout simple
+                db.getAllRecibeAgua(),//Todos los registros
+                new String[]{"descripcion"},//Mostrar solo el nombre
+                new int[]{android.R.id.text1},//View para el nombre
+                SimpleCursorAdapter.FLAG_REGISTER_CONTENT_OBSERVER);//Observer para el refresco
         /*
         descripcion
         descripcion
         Seteando Adaptador de GenreSpinner
          */
         spinnerNacionalida.setAdapter(adapterNacionalidad);
-
-
-        spinnerOcupacion = (Spinner)findViewById(R.id.spinnerOcupacion);
-
-        adapterOcupacion = new SimpleCursorAdapter(this,
-                android.R.layout.simple_spinner_item,//Layout simple
-                db.getAllOcupacion(),//Todos los registros
-                new String[]{"descripcion"},//Mostrar solo el nombre
-                new int[]{android.R.id.text1},//View para el nombre
-                SimpleCursorAdapter.FLAG_REGISTER_CONTENT_OBSERVER);//Observer para el refresco
-
-
-
-        /*
-        descripcion
-        descripcion
-        Seteando Adaptador de GenreSpinner
-         */
-        spinnerOcupacion.setAdapter(adapterOcupacion);
+        recibe_agua.setAdapter(adapterRecibeAgua);
     }
 }

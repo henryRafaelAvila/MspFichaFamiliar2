@@ -1,0 +1,410 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_nuevo_formulario"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="z9.msp.gob.mspfichafamiliar.activity.PersonaDetailFragment"
+    android:weightSum="1">
+
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinnerTipoResidente"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_weight="0.39"
+        android:spinnerMode="dialog" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/editTextApellidos"
+        android:layout_weight="0.05"
+        android:hint="@string/apellidos"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:hint="@string/nombre"
+        android:ems="10"
+        android:id="@+id/editTextnombres"
+        android:layout_weight="0.05" />
+
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinnerTieneDocumentacion"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:spinnerMode="dialog" />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:hint="@string/cedula"
+        android:ems="10"
+        android:id="@+id/editTextCedula"
+        android:layout_weight="0.05" />
+
+    <TextView
+        android:text="@string/sexo"
+        android:layout_width="match_parent"
+        android:id="@+id/sexo"
+        android:layout_height="24dp"
+        android:elevation="11dp" />
+
+    <RadioGroup
+        android:layout_width="354dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/opciones_sexo"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:text="@string/hombre"
+            android:layout_width="94dp"
+            android:layout_height="20dp"
+            android:id="@+id/radioSexoHombre" />
+
+        <RadioButton
+            android:text="@string/mujer"
+            android:layout_width="86dp"
+            android:layout_height="20dp"
+            android:id="@+id/radioSexoMujer" />
+
+    </RadioGroup>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:ems="10"
+        android:id="@+id/editTextEdad"
+        android:hint="@string/edad" />
+
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinnerNacionalidad"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_weight="0.39"
+        android:spinnerMode="dialog" />
+
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinnerEtnia"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_weight="0.39"
+        android:spinnerMode="dialog" />
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinnerSeguroPublico"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_weight="0.39"
+        android:spinnerMode="dialog" />
+    <Switch
+        android:text="@string/seguroPrivado"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/switchSeguroPrivado"
+        android:layout_weight="0.39" />
+
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinnerParentescoJefeHogar"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_weight="0.39"
+        android:spinnerMode="dialog" />
+
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinnerEstadoCivil"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_weight="0.39"
+        android:spinnerMode="dialog" />
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:ems="10"
+        android:id="@+id/editTextOrdenNucleoFamiliar"
+        android:hint="@string/ordenNucleoFamiliar" />
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinnerParentescoJefeNucleoFamiliar"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_weight="0.39"
+        android:spinnerMode="dialog" />
+    <Switch
+        android:text="@string/asisteCDIP"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/switchAsisteCDIP"
+        android:layout_weight="0.39" />
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinnerTipoDeCDIP"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_weight="0.39"
+        android:spinnerMode="dialog" />
+    <Switch
+        android:text="@string/leerEscriber"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/switchLeerScribe"
+        android:layout_weight="0.39" />
+
+    <Switch
+        android:text="@string/matriEstEnsReg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/switchMatriculadoEstEnsReg"
+        android:layout_weight="0.39" />
+
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinnerRazonNoMatrAnioLec"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_weight="0.39"
+        android:spinnerMode="dialog" />
+    <!--EL ESTABLECIMIENTO DONDE SE MATRUCILO ES-->
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinnerTipoEstab"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_weight="0.39"
+        android:spinnerMode="dialog" />
+    <Switch
+        android:text="@string/AsistNormalmente"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/switchAsistNormalmente"
+        android:layout_weight="0.39" />
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinnerNivelInstruccion"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_weight="0.39"
+        android:spinnerMode="dialog" />
+    <!--TODO IMPLEMETAR NIVEL Y ANIO APROBADO-->
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinnerActSemPasada"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_weight="0.39"
+        android:spinnerMode="dialog" />
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinnerRazonNoTrab"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_weight="0.39"
+        android:spinnerMode="dialog" />
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinnerCatOcupacion"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_weight="0.39"
+        android:spinnerMode="dialog" />
+    <Switch
+        android:text="@string/VacunacionCompl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/switchVacunacionCompl"
+        android:layout_weight="0.39" />
+
+    <Switch
+        android:text="@string/ControlOdont"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/switchControlOdont"
+        android:layout_weight="0.39" />
+
+    <EditText
+    android:layout_width="347dp"
+    android:layout_height="wrap_content"
+    android:inputType="numberDecimal"
+    android:ems="10"
+    android:id="@+id/editTextPeso"
+    android:hint="@string/Peso" />
+    <EditText
+        android:layout_width="347dp"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        android:ems="10"
+        android:id="@+id/editTextTalla"
+        android:hint="@string/talla" />
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinnerEstNutricional"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_weight="0.39"
+        android:spinnerMode="dialog" />
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinnerEstNutrIMC"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_weight="0.39"
+        android:spinnerMode="dialog" />
+    <Switch
+        android:text="@string/RecibLechMat"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/switchRecibLechMat"
+        android:layout_weight="0.39" />
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinnerConsumoFrutVer"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_weight="0.39"
+        android:spinnerMode="dialog" />
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinnerConsumoBebidAzu"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_weight="0.39"
+        android:spinnerMode="dialog" />
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinnerConsumoCominaRap"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_weight="0.39"
+        android:spinnerMode="dialog" />
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinnerConsumoSnacks"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_weight="0.39"
+        android:spinnerMode="dialog" />
+    <Switch
+        android:text="@string/AddSal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/switchAddSal"
+        android:layout_weight="0.39" />
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinnerTipoSal"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_weight="0.39"
+        android:spinnerMode="dialog" />
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinnerRiesgoNutri"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_weight="0.39"
+        android:spinnerMode="dialog" />
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinnerRealizaActiFis"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_weight="0.39"
+        android:spinnerMode="dialog" />
+    <!--TODO: AGREGAR ITEM PARA INSERTAR TIEMPO DE ACTIVIDAD FISICA-->
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinnerNivelActiFis"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_weight="0.39"
+        android:spinnerMode="dialog" />
+    <Switch
+        android:text="@string/discapacidad_perma"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/switchDiscapacidadPerma"
+        android:layout_weight="0.39" />
+
+    <Switch
+        android:text="@string/carnetConadis"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/switchCarnetConadis"
+        android:layout_weight="0.39" />
+
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinnerGradoDiscapacidad"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_weight="0.39"
+        android:spinnerMode="dialog" />
+
+    <Switch
+        android:text="@string/tieneHijos"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/switchTieneHijos"
+        android:layout_weight="0.39" />
+
+    <include
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        layout="@layout/activity_persona_detail_mujer"
+        android:layout_weight="0.39" />
+
+
+</LinearLayout>
+    <!--
+    <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/persona_detail"
+        style="?android:attr/textAppearanceLarge"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="16dp"
+        android:textIsSelectable="true"
+        tools:context="z9.msp.gob.mspfichafamiliar.activity.PersonaDetailFragment" />-->
