@@ -23,6 +23,15 @@ public class FormularioRepositorio {
         for(int i=1;i<12;i++) {
             saveLead(new Formulario("Formulario "+i, "Zona 9", "Parr. Chillogallo", R.drawable.home));
         }
+        //saveLead(new Formulario("Carlos Lopez", "Asistente", "Hospital Blue", R.drawable.lead_photo_2));
+//        saveLead(new Formulario("Sara Bonz", "Directora de Marketing", "Electrical Parts ltd"));
+//        saveLead(new Formulario("Liliana Clarence", "Diseñadora de Producto", "Creativa App"));
+//        saveLead(new Formulario("Benito Peralta", "Supervisor de Ventas", "Neumáticos Press"));
+//        saveLead(new Formulario("Juan Jaramillo", "CEO", "Banco Nacional"));
+//        saveLead(new Formulario("Christian Steps", "CTO", "Cooperativa Verde"));
+//        saveLead(new Formulario("Alexa Giraldo", "Lead Programmer", "Frutisofy"));
+//        saveLead(new Formulario("Linda Murillo", "Directora de Marketing", "Seguros Boliver"));
+//        saveLead(new Formulario("Lizeth Astrada", "CEO", "Concesionario Motolox"));
     }
 
     private void saveLead(Formulario lead) {
