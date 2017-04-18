@@ -7,6 +7,10 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,7 +26,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     // Database Version
     private static final int DATABASE_VERSION = 1;
     private static final String DATABASE_NAME = "ficha_familiar_msp";
-
+    private Context context;
 
     public DatabaseHandler(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -40,6 +44,9 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
     }
+
+
+
     public Cursor getAllCocina() {
         String selectQuery = "SELECT * FROM cocina";
         SQLiteDatabase db = this.getWritableDatabase();
@@ -48,18 +55,12 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return  cursor;
     }
 
-    public Cursor getOcupacion() {
-        String selectQuery = "SELECT * FROM cocina";
+    public Cursor getAllOcupacion() {
+        String selectQuery = "SELECT * FROM sec2_condicion_ocupacion";
         SQLiteDatabase db = this.getWritableDatabase();
         List<String> spinnerContent = new ArrayList<String>();
         Cursor cursor = db.rawQuery(selectQuery, null);
         return  cursor;
     }
-    public Cursor getAllTransporte() {
-        String selectQuery = "SELECT * FROM cocina";
-        SQLiteDatabase db = this.getWritableDatabase();
-        List<String> spinnerContent = new ArrayList<String>();
-        Cursor cursor = db.rawQuery(selectQuery, null);
-        return  cursor;
-    }
+
 }

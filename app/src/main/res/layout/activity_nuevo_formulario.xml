@@ -13,6 +13,8 @@
     android:weightSum="1"
     android:baselineAligned="false">
 
+
+
     <ScrollView
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
@@ -23,82 +25,141 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
+            <TextView
+                android:id="@+id/txtbl1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/background_dark"
+                android:text="Bloque 1: DATOS DE IDENTIFICACION  DE LA UNIDAD OPERATIVA RESPONSABLE"
+                android:textColor="@android:color/white"
+                android:textSize="13dp"
+                android:gravity="center_horizontal"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"/>
+
             <GridLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:alignmentMode="alignBounds"
                 android:columnCount="2"
-                android:rowCount="1">
+                android:rowCount="3">
                 <TextView
                     android:id="@+id/textView4"
                     android:layout_width="126dp"
                     android:layout_column="0"
                     android:layout_row="0"
                     android:layout_height="wrap_content"
-                    android:text="Fecha de Registro:"
+                    android:text="Fecha de Visita:"
+                    android:textColor="@android:color/black"
                     android:paddingRight="5dp" />
 
                 <EditText
-                    android:id="@+id/fecha"
+                    android:id="@+id/etxtfecha"
                     android:layout_column="1"
                     android:layout_row="0"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:inputType= "date" />
+                <TextView
+                    android:layout_width="126dp"
+                    android:layout_column="0"
+                    android:layout_row="1"
+                    android:layout_height="wrap_content"
+                    android:text="Responsable del llenado:"
+                    android:textColor="@android:color/black"
+                    android:paddingRight="5dp" />
+                <EditText
+                    android:id="@+id/etxtResponsable"
+                    android:layout_column="1"
+                    android:layout_row="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
 
-                    android:inputType="date" />
-            </GridLayout>
-            <GridLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:alignmentMode="alignBounds"
-                android:columnCount="4"
-                android:rowCount="1">
+
                 <TextView
                     android:id="@+id/textView5"
-                    android:layout_width="wrap_content"
+                    android:layout_width="126dp"
                     android:layout_column="0"
-                    android:layout_row="0"
+                    android:layout_row="2"
                     android:layout_height="wrap_content"
-                    android:text="Hora de inicio:"
-                     />
-
-                <TextView
-                    android:id="@+id/textView6"
-                    android:layout_width="wrap_content"
-                    android:layout_column="2"
-                    android:layout_row="0"
-                    android:layout_height="wrap_content"
-                    android:text="Hora de fin:"
+                    android:text="Intitucion del sistema:"
+                    android:textColor="@android:color/black"
                     android:paddingRight="5dp" />
 
-
-
-                <EditText
-                    android:id="@+id/edtxthora_inicio"
+                <TextView
+                    android:id="@+id/txtinst"
+                    android:layout_width="126dp"
                     android:layout_column="1"
-                    android:layout_row="0"
-                    android:layout_width="92dp"
+                    android:layout_row="2"
                     android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:inputType="time" />
-                <EditText
-                    android:id="@+id/edtxthora_fin"
-                    android:layout_column="3"
-                    android:layout_row="0"
-                    android:layout_width="92dp"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:inputType="time" />
+                    android:text="PU"
+                    android:gravity="center_horizontal"
+                    android:paddingRight="5dp" />
             </GridLayout>
 
-            <!-- View permite crear la linea de division de las secciones -->
-
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="10dp"
+                android:background="@drawable/red_bg" />
             <View
-                android:id="@+id/view"
+
                 android:layout_width="wrap_content"
                 android:layout_height="1dp"
                 android:background="@android:color/background_dark" />
-            <!-- Space dar espacio entre los componentes -->
+            <TextView
+                android:id="@+id/txtunidad"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Nombre de la Unidad Operativa"
+                android:textColor="@android:color/black"
+                android:background="@android:color/darker_gray"
+                android:gravity="center_horizontal"
+                android:paddingRight="5dp" />
+            <View
+
+                android:layout_width="wrap_content"
+                android:layout_height="1dp"
+                android:background="@android:color/background_dark" />
+            <Spinner
+                android:id="@+id/spinnerUnidad"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:paddingTop="8dp"
+                />
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="10dp"
+                android:background="@drawable/red_bg" />
+
+            <View
+
+                android:layout_width="wrap_content"
+                android:layout_height="1dp"
+                android:background="@android:color/background_dark" />
+            <TextView
+                android:id="@+id/txtCroquis"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Croquis de Ubicaciòn de la Vivienda"
+                android:background="@android:color/darker_gray"
+                android:textColor="@android:color/black"
+                android:gravity="center_horizontal"
+                android:paddingRight="5dp" />
+            <View
+
+                android:layout_width="wrap_content"
+                android:layout_height="1dp"
+                android:background="@android:color/background_dark" />
+
+            <EditText
+                android:id="@+id/etxtCroquis"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <!-- Bloque 2-->
+
             <Space
                 android:layout_width="wrap_content"
                 android:layout_height="10dp"
@@ -109,35 +170,2171 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@android:color/background_dark"
-                android:text="SECCION I IDENTIFICACION Y UBICACION GEOGRAFICA DE LA VIVIENDA"
+                android:text="Bloque 2: IDENTIFICACION DE LA VIVIENDA/EL HOGAR/UNIDAD DE SALUD"
                 android:textColor="@android:color/white"
-                android:textSize="11.5dp"
+                android:textSize="10dp"
                 android:gravity="center_horizontal"
                 android:paddingTop="8dp"
                 android:paddingBottom="8dp"/>
 
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="1dp"
+                android:background="@android:color/background_dark"/>
+            <TextView
+                android:id="@+id/txtGeografia"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="a. Identificacion Geografica de la Unidad de Salud"
+                android:textColor="@android:color/black"
+                android:background="@android:color/darker_gray"
+                android:gravity="center_horizontal"
+                android:paddingRight="5dp" />
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="1dp"
+                android:background="@android:color/background_dark"/>
+
+            <TextView
+                android:id="@+id/txtZona"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="1. Zona"
+                android:gravity="center_horizontal"
+                android:textColor="@android:color/black"
+                android:paddingRight="5dp" />
+
+            <EditText android:id="@+id/etxtZona"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:editable="false"/>
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="10dp"
+                android:background="@drawable/red_bg"
+                />
+            <TextView
+                android:id="@+id/txtDistrito"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="2. Distrito"
+                android:gravity="center_horizontal"
+                android:textColor="@android:color/black"
+                android:paddingRight="5dp" />
+
+            <EditText android:id="@+id/etxtDistrito"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:editable="false"/>
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="10dp"
+                android:background="@drawable/red_bg" />
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="1dp"
+                android:background="@android:color/background_dark"/>
+            <TextView
+                android:id="@+id/txtGeografiaVivienda"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="b. Identificacion Geografica de la Vivienda"
+                android:background="@android:color/darker_gray"
+                android:textColor="@android:color/black"
+                android:gravity="center_horizontal"
+                android:paddingRight="5dp" />
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="1dp"
+                android:background="@android:color/background_dark"/>
+            <TextView
+                android:id="@+id/txtProvincia"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="3. Provincia"
+                android:gravity="center_horizontal"
+                android:textColor="@android:color/black"
+                android:paddingRight="5dp" />
+
+            <EditText android:id="@+id/etxtProvincia"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:editable="false"/>
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="10dp"
+                android:background="@drawable/red_bg" />
+            <TextView
+                android:id="@+id/txtCanton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="4. Canton"
+                android:gravity="center_horizontal"
+                android:textColor="@android:color/black"
+                android:paddingRight="5dp" />
+
+            <EditText android:id="@+id/etxtCanton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:editable="false"/>
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="10dp"
+                android:background="@drawable/red_bg" />
+            <TextView
+                android:id="@+id/txtParroquia"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="5. Parroquia"
+                android:gravity="center_horizontal"
+                android:textColor="@android:color/black"
+                android:paddingRight="5dp" />
+
+            <EditText android:id="@+id/etxParroquia"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:editable="false"/>
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="10dp"
+                android:background="@drawable/red_bg" />
+            <TextView
+                android:id="@+id/txtLocalidad"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="6. Localidad, Comunidad Recinto/Barrio"
+                android:gravity="center_horizontal"
+                android:textColor="@android:color/black"
+                android:paddingRight="5dp" />
+
+            <EditText android:id="@+id/etxLocalidad"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="10dp"
+                android:background="@drawable/red_bg" />
+            <TextView
+                android:id="@+id/txtManzana"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="7. Manzana"
+                android:gravity="center_horizontal"
+                android:textColor="@android:color/black"
+                android:paddingRight="5dp" />
+
+            <EditText android:id="@+id/etxManzana"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number" />
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="10dp"
+                android:background="@drawable/red_bg" />
+            <TextView
+                android:id="@+id/txtEdificio"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="8. Edificio"
+                android:gravity="center_horizontal"
+                android:textColor="@android:color/black"
+                android:paddingRight="5dp" />
+
+            <EditText android:id="@+id/etxEdificio"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="10dp"
+                android:background="@drawable/red_bg" />
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="1dp"
+                android:background="@android:color/background_dark"/>
+
+            <TextView
+                android:id="@+id/txtDireccion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="c. Direccion de la Vivienda"
+                android:textColor="@android:color/black"
+                android:background="@android:color/darker_gray"
+                android:gravity="center_horizontal"
+                android:paddingRight="5dp" />
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="1dp"
+                android:background="@android:color/background_dark"/>
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="10dp"
+                android:background="@drawable/red_bg" />
+            <TextView
+                android:id="@+id/txtCalle1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="9. Calle 1:"
+                android:textColor="@android:color/black"
+                android:paddingRight="5dp" />
+
+            <EditText android:id="@+id/etxtCalle1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="10dp"
+                android:background="@drawable/red_bg" />
+            <TextView
+                android:id="@+id/txtCalle2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="10. Calle 2:"
+                android:textColor="@android:color/black"
+                android:paddingRight="5dp" />
+
+            <EditText android:id="@+id/etxtCalle2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="10dp"
+                android:background="@drawable/red_bg" />
+            <TextView
+                android:id="@+id/txtfono"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="11. Telefono:"
+                android:textColor="@android:color/black"
+                android:paddingRight="5dp" />
+
+            <EditText android:id="@+id/etxtFono"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="phone" />
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="10dp"
+                android:background="@drawable/red_bg" />
+            <TextView
+                android:id="@+id/txtCelular"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="12. Celular:"
+                android:textColor="@android:color/black"
+                android:paddingRight="5dp" />
+
+            <EditText android:id="@+id/etxtCelular"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="phone" />
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="10dp"
+                android:background="@drawable/red_bg" />
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="1dp"
+                android:background="@android:color/background_dark"/>
+
+            <TextView
+                android:id="@+id/txtOcupacion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="d. Condicion de Ocupacion"
+                android:textColor="@android:color/black"
+                android:background="@android:color/darker_gray"
+                android:gravity="center_horizontal"
+                android:paddingRight="5dp" />
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="1dp"
+                android:background="@android:color/background_dark"/>
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="10dp"
+                android:background="@drawable/red_bg" />
+
             <Spinner
                 android:id="@+id/spinnerOcupacion"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
                 android:paddingTop="8dp"
 
                 />
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="10dp"
+                android:background="@drawable/red_bg" />
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="1dp"
+                android:background="@android:color/background_dark"/>
+
+            <TextView
+                android:id="@+id/txtTiempoVive"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="e. Tiempo que Vive en esta casa"
+                android:background="@android:color/darker_gray"
+                android:textColor="@android:color/black"
+                android:gravity="center_horizontal"
+                android:paddingRight="5dp" />
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="1dp"
+                android:background="@android:color/background_dark"/>
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="10dp"
+                android:background="@drawable/red_bg" />
+            <TextView
+                android:id="@+id/txtMeses"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="16. Meses:"
+                android:gravity="center_horizontal"
+                android:textColor="@android:color/black"
+                android:paddingRight="5dp" />
+
+            <EditText android:id="@+id/etxtMeses"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number" />
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="10dp"
+                android:background="@drawable/red_bg" />
+            <TextView
+                android:id="@+id/txtAnios"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="17. Anios"
+                android:gravity="center_horizontal"
+                android:textColor="@android:color/black"
+                android:paddingRight="5dp" />
+
+            <EditText android:id="@+id/etxtAnios"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number" />
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="10dp"
+                android:background="@drawable/red_bg" />
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="1dp"
+                android:background="@android:color/background_dark"/>
+
+            <TextView
+                android:id="@+id/txtReferencia"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="f. Datos de Referencia"
+                android:textColor="@android:color/black"
+                android:background="@android:color/darker_gray"
+                android:gravity="center_horizontal"
+                android:paddingRight="5dp" />
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="1dp"
+                android:background="@android:color/background_dark"/>
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="10dp"
+                android:background="@drawable/red_bg" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="f. Datos de Referencia"
+                android:textColor="@android:color/black"
+                android:paddingRight="5dp" />
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="10dp"
+                android:background="@drawable/red_bg" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Entrevistado"
+                android:paddingRight="5dp" />
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="10dp"
+                android:background="@drawable/red_bg" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Telefono Fijo"
+                android:gravity="center_horizontal"
+                android:textColor="@android:color/black"
+                android:paddingRight="5dp" />
+
+            <EditText android:id="@+id/etxtFonoFijo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="phone" />
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="10dp"
+                android:background="@drawable/red_bg" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Celular"
+                android:gravity="center_horizontal"
+                android:textColor="@android:color/black"
+                android:paddingRight="5dp" />
+
+            <EditText android:id="@+id/etxtCelularEntrevistado"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="phone" />
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="10dp"
+                android:background="@drawable/red_bg" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Persona de Referencia"
+                android:paddingRight="5dp" />
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="10dp"
+                android:background="@drawable/red_bg" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Telefono Fijo"
+                android:gravity="center_horizontal"
+                android:textColor="@android:color/black"
+                android:paddingRight="5dp" />
+
+            <EditText android:id="@+id/etxtFonoFijoReferencia"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="phone" />
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="10dp"
+                android:background="@drawable/red_bg" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Celular"
+                android:gravity="center_horizontal"
+                android:textColor="@android:color/black"
+                android:paddingRight="5dp" />
+
+            <EditText android:id="@+id/etxtCelularReferencia"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="phone" />
+
+            <!-- Bloque 3-->
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="10dp"
+                android:background="@drawable/red_bg" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/background_dark"
+                android:text="Bloque 3: DATOS DE LA VIVIENDA"
+                android:textColor="@android:color/white"
+                android:textSize="10dp"
+                android:gravity="center_horizontal"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"/>
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="1dp"
+                android:background="@android:color/background_dark"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="1. Tipo de la Vivienda"
+                android:textColor="@android:color/black"
+                android:background="@android:color/darker_gray"
+                android:gravity="center_horizontal"
+                android:paddingRight="5dp" />
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="1dp"
+                android:background="@android:color/background_dark"/>
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="10dp"
+                android:background="@drawable/red_bg" />
+            <Spinner
+                android:id="@+id/spinnerTipoVivienda"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                />
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="10dp"
+                android:background="@drawable/red_bg" />
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="1dp"
+                android:background="@android:color/background_dark"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="2. Via de acceso principal a la vivienda"
+                android:textColor="@android:color/black"
+                android:background="@android:color/darker_gray"
+                android:gravity="center_horizontal"
+                android:paddingRight="5dp" />
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="1dp"
+                android:background="@android:color/background_dark"/>
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="10dp"
+                android:background="@drawable/red_bg" />
+            <Spinner
+                android:id="@+id/spinnerAccesoVivienda"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                />
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="10dp"
+                android:background="@drawable/red_bg" />
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="1dp"
+                android:background="@android:color/background_dark"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="3. Tipo y tiempo de desplazamiento desde la unidad operativa al domicilio"
+                android:textColor="@android:color/black"
+                android:background="@android:color/darker_gray"
+                android:gravity="center_horizontal"
+                android:paddingRight="5dp" />
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="1dp"
+                android:background="@android:color/background_dark"/>
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="10dp"
+                android:background="@drawable/red_bg" />
+            <Spinner
+                android:id="@+id/spinnerTipoTransporte"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                />
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="10dp"
+                android:background="@drawable/red_bg" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Tiempo en minutos"
+                android:gravity="center_horizontal"
+                android:textColor="@android:color/black"
+                android:paddingRight="5dp" />
+
+            <EditText android:id="@+id/etxtTiempo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number" />
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="10dp"
+                android:background="@drawable/red_bg" />
+
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="1dp"
+                android:background="@android:color/background_dark"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="4. Condiciones de la vivienda"
+                android:textColor="@android:color/black"
+                android:background="@android:color/darker_gray"
+                android:gravity="center_horizontal"
+                android:paddingRight="5dp" />
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="1dp"
+                android:background="@android:color/background_dark"/>
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="1dp"
+                android:background="@android:color/background_dark"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="a. Material predominante en el techo"
+                android:textColor="@android:color/black"
+                android:background="@android:color/white"
+                android:gravity="center_horizontal"
+                android:paddingRight="5dp" />
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="1dp"
+                android:background="@android:color/background_dark"/>
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="10dp"
+                android:background="@drawable/red_bg" />
+            <Spinner
+                android:id="@+id/spinnerMaterialTecho"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                />
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="10dp"
+                android:background="@drawable/red_bg" />
 
             <View
                 android:layout_width="wrap_content"
                 android:layout_height="1dp"
                 android:background="@android:color/background_dark"/>
 
-            <Spinner
-                android:id="@+id/spinnerNacionalidad"
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="b. Material predominante del piso de la vivienda"
+                android:textColor="@android:color/black"
+                android:background="@android:color/white"
+                android:gravity="center_horizontal"
+                android:paddingRight="5dp" />
+            <View
                 android:layout_width="wrap_content"
+                android:layout_height="1dp"
+                android:background="@android:color/background_dark"/>
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="10dp"
+                android:background="@drawable/red_bg" />
+            <Spinner
+                android:id="@+id/spinnerMaterialPiso"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
                 />
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="10dp"
+                android:background="@drawable/red_bg" />
+
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="1dp"
+                android:background="@android:color/background_dark"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="c. Material predominante de las paredes exteriores de la vivienda"
+                android:textColor="@android:color/black"
+                android:background="@android:color/white"
+                android:gravity="center_horizontal"
+                android:paddingRight="5dp" />
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="1dp"
+                android:background="@android:color/background_dark"/>
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="10dp"
+                android:background="@drawable/red_bg" />
+            <Spinner
+                android:id="@+id/spinnerMaterialParedes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                />
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="10dp"
+                android:background="@drawable/red_bg" />
+
+
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="1dp"
+                android:background="@android:color/background_dark"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="d. Estado del techo de la vivienda"
+                android:textColor="@android:color/black"
+                android:background="@android:color/white"
+                android:gravity="center_horizontal"
+                android:paddingRight="5dp" />
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="1dp"
+                android:background="@android:color/background_dark"/>
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="10dp"
+                android:background="@drawable/red_bg" />
+            <Spinner
+                android:id="@+id/spinnerEstadoTecho"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                />
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="10dp"
+                android:background="@drawable/red_bg" />
+
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="1dp"
+                android:background="@android:color/background_dark"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="e. Estado del piso de la vivienda"
+                android:textColor="@android:color/black"
+                android:background="@android:color/white"
+                android:gravity="center_horizontal"
+                android:paddingRight="5dp" />
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="1dp"
+                android:background="@android:color/background_dark"/>
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="10dp"
+                android:background="@drawable/red_bg" />
+            <Spinner
+                android:id="@+id/spinnerEstadoPiso"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                />
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="10dp"
+                android:background="@drawable/red_bg" />
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="1dp"
+                android:background="@android:color/background_dark"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="f. Cual es el principal combustible o energia que utiliza este hogar para cocinar"
+                android:textColor="@android:color/black"
+                android:background="@android:color/white"
+                android:gravity="center_horizontal"
+                android:paddingRight="5dp" />
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="1dp"
+                android:background="@android:color/background_dark"/>
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="10dp"
+                android:background="@drawable/red_bg" />
+            <Spinner
+                android:id="@+id/spinnerNacionalidad"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                />
+                />
+            <!-- Bloque 4-->
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="10dp"
+                android:background="@drawable/red_bg" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/background_dark"
+                android:text="Bloque 4: DATOS DEL HOGAR"
+                android:textColor="@android:color/white"
+                android:textSize="10dp"
+                android:gravity="center_horizontal"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"/>
+
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="1dp"
+                android:background="@android:color/background_dark"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="1. De cuantos cuartos dispone este hogar sin incluir cuartos de cocina, baño, garajes o dedicados para negocio"
+                android:textColor="@android:color/black"
+                android:background="@android:color/darker_gray"
+                android:gravity="center_horizontal"
+                android:paddingRight="5dp" />
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="1dp"
+                android:background="@android:color/background_dark"/>
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="10dp"
+                android:background="@drawable/red_bg" />
+            <EditText android:id="@+id/etxtNCuartos"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"/>
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="10dp"
+                android:background="@drawable/red_bg" />
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="1dp"
+                android:background="@android:color/background_dark"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="2. De estos cuartos ¿ Cuantos utiliza este hogar en forma exclusiva para dormir?"
+                android:textColor="@android:color/black"
+                android:background="@android:color/darker_gray"
+                android:gravity="center_horizontal"
+                android:paddingRight="5dp" />
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="1dp"
+                android:background="@android:color/background_dark"/>
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="10dp"
+                android:background="@drawable/red_bg" />
+            <EditText android:id="@+id/etxtNCuartosDormir"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"/>
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="10dp"
+                android:background="@drawable/red_bg" />
+
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="1dp"
+                android:background="@android:color/background_dark"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="3. De donde proviene prncipalmente el agua que recibe este hogar"
+                android:textColor="@android:color/black"
+                android:background="@android:color/darker_gray"
+                android:gravity="center_horizontal"
+                android:paddingRight="5dp" />
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="1dp"
+                android:background="@android:color/background_dark"/>
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="10dp"
+                android:background="@drawable/red_bg" />
+            <Spinner
+                android:id="@+id/spinnerAgua"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                />
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="10dp"
+                android:background="@drawable/red_bg" />
+
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="1dp"
+                android:background="@android:color/background_dark"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="4. El agua que recibe este hogar es:"
+                android:textColor="@android:color/black"
+                android:background="@android:color/darker_gray"
+                android:gravity="center_horizontal"
+                android:paddingRight="5dp" />
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="1dp"
+                android:background="@android:color/background_dark"/>
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="10dp"
+                android:background="@drawable/red_bg" />
+            <Spinner
+                android:id="@+id/spinnerAguaRecibe"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                />
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="10dp"
+                android:background="@drawable/red_bg" />
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="1dp"
+                android:background="@android:color/background_dark"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="5. Principalmente, ¿el tratamiento que le dan al agua que obtiene de (Pr. 4) antes de beberla es:"
+                android:textColor="@android:color/black"
+                android:background="@android:color/darker_gray"
+                android:gravity="center_horizontal"
+                android:paddingRight="5dp" />
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="1dp"
+                android:background="@android:color/background_dark"/>
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="10dp"
+                android:background="@drawable/red_bg" />
+            <Spinner
+                android:id="@+id/spinnerAguaBeber"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                />
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="10dp"
+                android:background="@drawable/red_bg" />
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="1dp"
+                android:background="@android:color/background_dark"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="6. El tipo de eliminacion de aguas servidas con que cuenta el hogar es:"
+                android:textColor="@android:color/black"
+                android:background="@android:color/darker_gray"
+                android:gravity="center_horizontal"
+                android:paddingRight="5dp" />
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="1dp"
+                android:background="@android:color/background_dark"/>
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="10dp"
+                android:background="@drawable/red_bg" />
+            <Spinner
+                android:id="@+id/spinnerAguaservidas"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                />
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="10dp"
+                android:background="@drawable/red_bg" />
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="1dp"
+                android:background="@android:color/background_dark"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="7. El servicio higienico con que cuenta el hogar esta ubicado:"
+                android:textColor="@android:color/black"
+                android:background="@android:color/darker_gray"
+                android:gravity="center_horizontal"
+                android:paddingRight="5dp" />
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="1dp"
+                android:background="@android:color/background_dark"/>
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="10dp"
+                android:background="@drawable/red_bg" />
+            <Spinner
+                android:id="@+id/spinnerRetrete"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                />
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="10dp"
+                android:background="@drawable/red_bg" />
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="1dp"
+                android:background="@android:color/background_dark"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="8. Como eliminana en este hogar la mayor parte de la basura de la vivienda "
+                android:textColor="@android:color/black"
+                android:background="@android:color/darker_gray"
+                android:gravity="center_horizontal"
+                android:paddingRight="5dp" />
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="1dp"
+                android:background="@android:color/background_dark"/>
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="10dp"
+                android:background="@drawable/red_bg" />
+            <Spinner
+                android:id="@+id/spinnerBasura"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                />
+            <!-- Bloque 5-->
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="10dp"
+                android:background="@drawable/red_bg" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/background_dark"
+                android:text="Bloque 5: DIAGNOSTICO DE LA FAMILIA EVALUACION DE LOS FACTORES DE VULNERABILIDAD DE LA FAMILIA"
+                android:textColor="@android:color/white"
+                android:textSize="10dp"
+                android:gravity="center_horizontal"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"/>
+
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="1dp"
+                android:background="@android:color/background_dark"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Riesgos Medioambientales"
+                android:textColor="@android:color/black"
+                android:background="@android:color/white"
+                android:paddingRight="5dp" />
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="1dp"
+                android:background="@android:color/background_dark"/>
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="1dp"
+                android:background="@android:color/background_dark"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="1. Contaminacion"
+                android:textColor="@android:color/black"
+                android:background="@android:color/darker_gray"
+                android:paddingRight="5dp" />
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="1dp"
+                android:background="@android:color/background_dark"/>
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="1dp"
+                android:background="@android:color/background_dark"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Contaminacion del Suelo"
+                android:textColor="@android:color/black"
+                android:background="@android:color/white"
+                android:paddingRight="5dp" />
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="10dp"
+                android:background="@drawable/red_bg" />
+
+            <EditText android:id="@+id/etxtContaminacionSuelo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="10dp"
+                android:background="@drawable/red_bg" />
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="1dp"
+                android:background="@android:color/background_dark"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Contaminacion del Aire"
+                android:textColor="@android:color/black"
+                android:background="@android:color/white"
+                android:paddingRight="5dp" />
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="10dp"
+                android:background="@drawable/red_bg" />
+            <EditText android:id="@+id/etxtContaminacionAire"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="10dp"
+                android:background="@drawable/red_bg" />
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="1dp"
+                android:background="@android:color/background_dark"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Contaminacion del Agua"
+                android:textColor="@android:color/black"
+                android:background="@android:color/white"
+                android:paddingRight="5dp" />
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="10dp"
+                android:background="@drawable/red_bg" />
+            <EditText android:id="@+id/etxtContaminacionAgua"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="10dp"
+                android:background="@drawable/red_bg" />
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="1dp"
+                android:background="@android:color/background_dark"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="2. Animales"
+                android:textColor="@android:color/black"
+                android:background="@android:color/darker_gray"
+                android:paddingRight="5dp" />
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="1dp"
+                android:background="@android:color/background_dark"/>
+
+            <GridLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:alignmentMode="alignBounds"
+                android:columnCount="3"
+                android:rowCount="3">
+                <TextView
+                    android:layout_width="126dp"
+                    android:layout_column="0"
+                    android:layout_row="0"
+                    android:layout_height="wrap_content"
+                    android:text="Intradomiciliarios que representan riesgo sanitario"
+                    android:textColor="@android:color/black"
+                    android:paddingRight="5dp" />
+
+                <RadioGroup
+                    android:id="@+id/radioAnimales"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignEnd="@+id/button2"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_column="1"
+                    android:layout_row="0"
+
+                    >
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Si"
+                        android:id="@+id/radioSi"
+                        android:layout_marginTop="61dp"
+                        android:layout_alignParentTop="true"
+                        android:layout_centerHorizontal="true"
+                        android:checked="true"
+                        android:layout_column="1"
+                        android:layout_row="0"/>
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="No"
+                        android:id="@+id/radioNo"
+                        android:layout_marginTop="61dp"
+                        android:layout_alignParentTop="false"
+                        android:layout_centerHorizontal="true"
+                        android:checked="true"
+                        android:layout_column="2"
+                        android:layout_row="0"/>
+
+                </RadioGroup>
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="10dp"
+                    android:background="@drawable/red_bg" />
+
+                <TextView
+                    android:layout_width="126dp"
+                    android:layout_column="0"
+                    android:layout_row="1"
+                    android:layout_height="wrap_content"
+                    android:text="Presencia de vectores transmisores de enfermedad (zancudos, moscas, ect.)"
+                    android:textColor="@android:color/black"
+                    android:paddingRight="5dp" />
+
+                <RadioGroup
+                    android:id="@+id/radioVectores"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignEnd="@+id/button2"
+                    android:layout_gravity="center_horizontal"
+                    >
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Si"
+                        android:id="@+id/radioSiVectores"
+                        android:layout_marginTop="61dp"
+                        android:layout_alignParentTop="true"
+                        android:layout_centerHorizontal="true"
+                        android:checked="true"
+                        android:layout_column="1"
+                        android:layout_row="1"/>
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="No"
+                        android:id="@+id/radioNoVectores"
+                        android:layout_marginTop="61dp"
+                        android:layout_alignParentTop="false"
+                        android:layout_centerHorizontal="true"
+                        android:checked="true"
+                        android:layout_column="2"
+                        android:layout_row="1"/>
+
+                </RadioGroup>
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="10dp"
+                    android:background="@drawable/red_bg" />
+
+                <TextView
+                    android:layout_width="126dp"
+                    android:layout_column="0"
+                    android:layout_row="2"
+                    android:layout_height="wrap_content"
+                    android:text="Convivencia inadecuada con animales si observa que los animales andan por todos lados en la vivienda sin tener un lugar propio"
+                    android:textColor="@android:color/black"
+                    android:paddingRight="5dp" />
+
+                <RadioGroup
+                    android:id="@+id/radioAnimalesSueltos"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignEnd="@+id/button2"
+                    android:layout_gravity="center_horizontal"
+                    >
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Si"
+                        android:id="@+id/radioSiAnimalesSueltos"
+                        android:layout_marginTop="61dp"
+                        android:layout_alignParentTop="true"
+                        android:layout_centerHorizontal="true"
+                        android:checked="true"
+                        android:layout_column="1"
+                        android:layout_row="2"/>
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="No"
+                        android:id="@+id/radioNoAnimalesSueltos"
+                        android:layout_marginTop="61dp"
+                        android:layout_alignParentTop="false"
+                        android:layout_centerHorizontal="true"
+                        android:checked="true"
+                        android:layout_column="2"
+                        android:layout_row="2"/>
+
+                </RadioGroup>
+            </GridLayout>
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="10dp"
+                android:background="@drawable/red_bg" />
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="1dp"
+                android:background="@android:color/background_dark"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Riesgos Sociodemograficos"
+                android:textColor="@android:color/black"
+                android:background="@android:color/white"
+                android:paddingRight="5dp" />
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="1dp"
+                android:background="@android:color/background_dark"/>
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="10dp"
+                android:background="@drawable/red_bg" />
+
+
+
+            <GridLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:alignmentMode="alignBounds"
+                android:columnCount="3"
+                android:rowCount="9">
+                <TextView
+                    android:layout_width="126dp"
+                    android:layout_column="0"
+                    android:layout_row="0"
+                    android:layout_height="wrap_content"
+                    android:text="Violencia Intrafamiliar"
+                    android:textColor="@android:color/black"
+                    android:paddingRight="5dp" />
+
+                <RadioGroup
+                    android:id="@+id/radioViolenciaIntra"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignEnd="@+id/button2"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_column="1"
+                    android:layout_row="0"
+
+                    >
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Si"
+                        android:id="@+id/radioSiViloenciaIntra"
+                        android:layout_marginTop="61dp"
+                        android:layout_alignParentTop="true"
+                        android:layout_centerHorizontal="true"
+                        android:checked="true"
+                        android:layout_column="1"
+                        android:layout_row="0"/>
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="No"
+                        android:id="@+id/radioNoViolenciaIntra"
+                        android:layout_marginTop="61dp"
+                        android:layout_alignParentTop="false"
+                        android:layout_centerHorizontal="true"
+                        android:checked="true"
+                        android:layout_column="2"
+                        android:layout_row="0"/>
+
+                </RadioGroup>
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="10dp"
+                    android:background="@drawable/red_bg" />
+
+                <TextView
+                    android:layout_width="126dp"
+                    android:layout_column="0"
+                    android:layout_row="1"
+                    android:layout_height="wrap_content"
+                    android:text="Desestructuracion Familiar"
+                    android:textColor="@android:color/black"
+                    android:paddingRight="5dp" />
+
+                <RadioGroup
+                    android:id="@+id/radioDesestructuracionFamiliar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignEnd="@+id/button2"
+                    android:layout_gravity="center_horizontal"
+                    >
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Si"
+                        android:id="@+id/radioSiDesestructuracionFamiliar"
+                        android:layout_marginTop="61dp"
+                        android:layout_alignParentTop="true"
+                        android:layout_centerHorizontal="true"
+                        android:checked="true"
+                        android:layout_column="1"
+                        android:layout_row="1"/>
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="No"
+                        android:id="@+id/radioNoDesestructuracionFamiliar"
+                        android:layout_marginTop="61dp"
+                        android:layout_alignParentTop="false"
+                        android:layout_centerHorizontal="true"
+                        android:checked="true"
+                        android:layout_column="2"
+                        android:layout_row="1"/>
+
+                </RadioGroup>
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="10dp"
+                    android:background="@drawable/red_bg" />
+
+                <TextView
+                    android:layout_width="126dp"
+                    android:layout_column="0"
+                    android:layout_row="2"
+                    android:layout_height="wrap_content"
+                    android:text=" Problemas graves en la familia"
+                    android:textColor="@android:color/black"
+                    android:paddingRight="5dp" />
+
+                <RadioGroup
+                    android:id="@+id/radioProblemasFAmilia"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignEnd="@+id/button2"
+                    android:layout_gravity="center_horizontal"
+                    >
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Si"
+                        android:id="@+id/radioSiProblemasFAmilia"
+                        android:layout_marginTop="61dp"
+                        android:layout_alignParentTop="true"
+                        android:layout_centerHorizontal="true"
+                        android:checked="true"
+                        android:layout_column="1"
+                        android:layout_row="2"/>
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="No"
+                        android:id="@+id/radioNoProblemasFAmilia"
+                        android:layout_marginTop="61dp"
+                        android:layout_alignParentTop="false"
+                        android:layout_centerHorizontal="true"
+                        android:checked="true"
+                        android:layout_column="2"
+                        android:layout_row="2"/>
+
+                </RadioGroup>
+
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="10dp"
+                    android:background="@drawable/red_bg" />
+
+                <TextView
+                    android:layout_width="126dp"
+                    android:layout_column="0"
+                    android:layout_row="3"
+                    android:layout_height="wrap_content"
+                    android:text=" Problemas psico-sociales en la familia pero no piden ayuda"
+                    android:textColor="@android:color/black"
+                    android:paddingRight="5dp" />
+
+                <RadioGroup
+                    android:id="@+id/radioProblemasSocia"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignEnd="@+id/button2"
+                    android:layout_gravity="center_horizontal"
+                    >
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Si"
+                        android:id="@+id/radioSiProblemasSocia"
+                        android:layout_marginTop="61dp"
+                        android:layout_alignParentTop="true"
+                        android:layout_centerHorizontal="true"
+                        android:checked="true"
+                        android:layout_column="1"
+                        android:layout_row="3"/>
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="No"
+                        android:id="@+id/radioNoProblemasSocia"
+                        android:layout_marginTop="61dp"
+                        android:layout_alignParentTop="false"
+                        android:layout_centerHorizontal="true"
+                        android:checked="true"
+                        android:layout_column="2"
+                        android:layout_row="3"/>
+
+                </RadioGroup>
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="10dp"
+                    android:background="@drawable/red_bg" />
+
+                <TextView
+                    android:layout_width="126dp"
+                    android:layout_column="0"
+                    android:layout_row="4"
+                    android:layout_height="wrap_content"
+                    android:text=" Familia con riesgo de auto-atencion o aislamiento"
+                    android:textColor="@android:color/black"
+                    android:paddingRight="5dp" />
+
+                <RadioGroup
+                    android:id="@+id/radioAsilamiento"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignEnd="@+id/button2"
+                    android:layout_gravity="center_horizontal"
+                    >
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Si"
+                        android:id="@+id/radioSiAislamiento"
+                        android:layout_marginTop="61dp"
+                        android:layout_alignParentTop="true"
+                        android:layout_centerHorizontal="true"
+                        android:checked="true"
+                        android:layout_column="1"
+                        android:layout_row="4"/>
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="No"
+                        android:id="@+id/radioNoAislamiento"
+                        android:layout_marginTop="61dp"
+                        android:layout_alignParentTop="false"
+                        android:layout_centerHorizontal="true"
+                        android:checked="true"
+                        android:layout_column="2"
+                        android:layout_row="4"/>
+
+                </RadioGroup>
+
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="10dp"
+                    android:background="@drawable/red_bg" />
+
+                <TextView
+                    android:layout_width="126dp"
+                    android:layout_column="0"
+                    android:layout_row="5"
+                    android:layout_height="wrap_content"
+                    android:text=" Numero de miembros de la familia sin escolarizacion"
+                    android:textColor="@android:color/black"
+                    android:paddingRight="5dp" />
+
+                <RadioGroup
+                    android:id="@+id/radioEscolararizacion"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignEnd="@+id/button2"
+                    android:layout_gravity="center_horizontal"
+                    >
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Si"
+                        android:id="@+id/radioSiEscolarizacion"
+                        android:layout_marginTop="61dp"
+                        android:layout_alignParentTop="true"
+                        android:layout_centerHorizontal="true"
+                        android:checked="true"
+                        android:layout_column="1"
+                        android:layout_row="5"/>
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="No"
+                        android:id="@+id/radioNoEscolarizacion"
+                        android:layout_marginTop="61dp"
+                        android:layout_alignParentTop="false"
+                        android:layout_centerHorizontal="true"
+                        android:checked="true"
+                        android:layout_column="2"
+                        android:layout_row="5"/>
+
+                </RadioGroup>
+
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="10dp"
+                    android:background="@drawable/red_bg" />
+
+                <TextView
+                    android:layout_width="126dp"
+                    android:layout_column="0"
+                    android:layout_row="6"
+                    android:layout_height="wrap_content"
+                    android:text=" Numero de niños en edad escolar no inceratados"
+                    android:textColor="@android:color/black"
+                    android:paddingRight="5dp" />
+
+                <RadioGroup
+                    android:id="@+id/radioNiniosnoescuela"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignEnd="@+id/button2"
+                    android:layout_gravity="center_horizontal"
+                    >
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Si"
+                        android:id="@+id/radioSiNiniosnoescuela"
+                        android:layout_marginTop="61dp"
+                        android:layout_alignParentTop="true"
+                        android:layout_centerHorizontal="true"
+                        android:checked="true"
+                        android:layout_column="1"
+                        android:layout_row="6"/>
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="No"
+                        android:id="@+id/radioNoNiniosnoescuela"
+                        android:layout_marginTop="61dp"
+                        android:layout_alignParentTop="false"
+                        android:layout_centerHorizontal="true"
+                        android:checked="true"
+                        android:layout_column="2"
+                        android:layout_row="6"/>
+
+                </RadioGroup>
+
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="10dp"
+                    android:background="@drawable/red_bg" />
+
+                <TextView
+                    android:layout_width="126dp"
+                    android:layout_column="0"
+                    android:layout_row="7"
+                    android:layout_height="wrap_content"
+                    android:text="Numero de miembros con alcoholismo"
+                    android:textColor="@android:color/black"
+                    android:paddingRight="5dp" />
+
+                <RadioGroup
+                    android:id="@+id/radioAlcoholismo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignEnd="@+id/button2"
+                    android:layout_gravity="center_horizontal"
+                    >
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Si"
+                        android:id="@+id/radioSiAlcoholismo"
+                        android:layout_marginTop="61dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:checked="true"
+                    android:layout_column="1"
+                    android:layout_row="7"/>
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="No"
+                        android:id="@+id/radioNoAlcoholismo"
+                        android:layout_marginTop="61dp"
+                        android:layout_alignParentTop="false"
+                        android:layout_centerHorizontal="true"
+                        android:checked="true"
+                        android:layout_column="2"
+                        android:layout_row="7"/>
+
+                </RadioGroup>
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="10dp"
+                    android:background="@drawable/red_bg" />
+
+                <TextView
+                    android:layout_width="126dp"
+                    android:layout_column="0"
+                    android:layout_row="8"
+                    android:layout_height="wrap_content"
+                    android:text="Numero de miembros con drogodependencia"
+                    android:textColor="@android:color/black"
+                    android:paddingRight="5dp" />
+
+                <RadioGroup
+                    android:id="@+id/radioDrogas"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignEnd="@+id/button2"
+                    android:layout_gravity="center_horizontal"
+                    >
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Si"
+                        android:id="@+id/radioSiDrogas"
+                        android:layout_marginTop="61dp"
+                        android:layout_alignParentTop="true"
+                        android:layout_centerHorizontal="true"
+                        android:checked="true"
+                        android:layout_column="1"
+                        android:layout_row="8"/>
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="No"
+                        android:id="@+id/radioNoDrogas"
+                        android:layout_marginTop="61dp"
+                        android:layout_alignParentTop="false"
+                        android:layout_centerHorizontal="true"
+                        android:checked="true"
+                        android:layout_column="2"
+                        android:layout_row="8"/>
+
+                </RadioGroup>
+            </GridLayout>
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="10dp"
+                android:background="@drawable/red_bg" />
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="1dp"
+                android:background="@android:color/background_dark"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Riesgos Sanitarios"
+                android:textColor="@android:color/black"
+                android:background="@android:color/white"
+                android:paddingRight="5dp" />
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="1dp"
+                android:background="@android:color/background_dark"/>
+
+            <GridLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:alignmentMode="alignBounds"
+                android:columnCount="3"
+                android:rowCount="7">
+                <TextView
+                    android:layout_width="126dp"
+                    android:layout_column="0"
+                    android:layout_row="0"
+                    android:layout_height="wrap_content"
+                    android:text="Cocina esta dentro del dormitorio"
+                    android:textColor="@android:color/black"
+                    android:paddingRight="5dp" />
+
+                <RadioGroup
+                    android:id="@+id/radioCocinaDormitorio"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignEnd="@+id/button2"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_column="1"
+                    android:layout_row="0"
+
+                    >
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Si"
+                        android:id="@+id/radioSiCocinaDormitorio"
+                        android:layout_marginTop="61dp"
+                        android:layout_alignParentTop="true"
+                        android:layout_centerHorizontal="true"
+                        android:checked="true"
+                        android:layout_column="1"
+                        android:layout_row="0"/>
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="No"
+                        android:id="@+id/radioNoCocinaDormitorio"
+                        android:layout_marginTop="61dp"
+                        android:layout_alignParentTop="false"
+                        android:layout_centerHorizontal="true"
+                        android:checked="true"
+                        android:layout_column="2"
+                        android:layout_row="0"/>
+
+                </RadioGroup>
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="10dp"
+                    android:background="@drawable/red_bg" />
+
+                <TextView
+                    android:layout_width="126dp"
+                    android:layout_column="0"
+                    android:layout_row="1"
+                    android:layout_height="wrap_content"
+                    android:text="No hay sedazo en las ventanas"
+                    android:textColor="@android:color/black"
+                    android:paddingRight="5dp" />
+
+                <RadioGroup
+                    android:id="@+id/radioSedazo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignEnd="@+id/button2"
+                    android:layout_gravity="center_horizontal"
+                    >
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Si"
+                        android:id="@+id/radioSiSedazo"
+                        android:layout_marginTop="61dp"
+                        android:layout_alignParentTop="true"
+                        android:layout_centerHorizontal="true"
+                        android:checked="true"
+                        android:layout_column="1"
+                        android:layout_row="1"/>
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="No"
+                        android:id="@+id/radioNoSedazo"
+                        android:layout_marginTop="61dp"
+                        android:layout_alignParentTop="false"
+                        android:layout_centerHorizontal="true"
+                        android:checked="true"
+                        android:layout_column="2"
+                        android:layout_row="1"/>
+
+                </RadioGroup>
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="10dp"
+                    android:background="@drawable/red_bg" />
+
+                <TextView
+                    android:layout_width="126dp"
+                    android:layout_column="0"
+                    android:layout_row="2"
+                    android:layout_height="wrap_content"
+                    android:text="No usan mosquiteros (area endemica de malaria)"
+                    android:textColor="@android:color/black"
+                    android:paddingRight="5dp" />
+
+                <RadioGroup
+                    android:id="@+id/radioMosquiteros"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignEnd="@+id/button2"
+                    android:layout_gravity="center_horizontal"
+                    >
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Si"
+                        android:id="@+id/radioSiMosquiteros"
+                        android:layout_marginTop="61dp"
+                        android:layout_alignParentTop="true"
+                        android:layout_centerHorizontal="true"
+                        android:checked="true"
+                        android:layout_column="1"
+                        android:layout_row="2"/>
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="No"
+                        android:id="@+id/radioNoMosquiteros"
+                        android:layout_marginTop="61dp"
+                        android:layout_alignParentTop="false"
+                        android:layout_centerHorizontal="true"
+                        android:checked="true"
+                        android:layout_column="2"
+                        android:layout_row="2"/>
+
+                </RadioGroup>
+
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="10dp"
+                    android:background="@drawable/red_bg" />
+
+                <TextView
+                    android:layout_width="126dp"
+                    android:layout_column="0"
+                    android:layout_row="2"
+                    android:layout_height="wrap_content"
+                    android:text="Uso de plaguisidas"
+                    android:textColor="@android:color/black"
+                    android:paddingRight="5dp" />
+
+                <RadioGroup
+                    android:id="@+id/radioPlaguisida"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignEnd="@+id/button2"
+                    android:layout_gravity="center_horizontal"
+                    >
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Si"
+                        android:id="@+id/radioSiPlaguisida"
+                        android:layout_marginTop="61dp"
+                        android:layout_alignParentTop="true"
+                        android:layout_centerHorizontal="true"
+                        android:checked="true"
+                        android:layout_column="1"
+                        android:layout_row="2"/>
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="No"
+                        android:id="@+id/radioNoPlaguisida"
+                        android:layout_marginTop="61dp"
+                        android:layout_alignParentTop="false"
+                        android:layout_centerHorizontal="true"
+                        android:checked="true"
+                        android:layout_column="2"
+                        android:layout_row="2"/>
+
+                </RadioGroup>
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="10dp"
+                    android:background="@drawable/red_bg" />
+
+                <TextView
+                    android:layout_width="126dp"
+                    android:layout_column="0"
+                    android:layout_row="3"
+                    android:layout_height="wrap_content"
+                    android:text="Reconocen signos de peligro en AEPI"
+                    android:textColor="@android:color/black"
+                    android:paddingRight="5dp" />
+
+                <RadioGroup
+                    android:id="@+id/radioAEPI"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignEnd="@+id/button2"
+                    android:layout_gravity="center_horizontal"
+                    >
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Si"
+                        android:id="@+id/radioSiAEPI"
+                        android:layout_marginTop="61dp"
+                        android:layout_alignParentTop="true"
+                        android:layout_centerHorizontal="true"
+                        android:checked="true"
+                        android:layout_column="1"
+                        android:layout_row="3"/>
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="No"
+                        android:id="@+id/radioNoAEPI"
+                        android:layout_marginTop="61dp"
+                        android:layout_alignParentTop="false"
+                        android:layout_centerHorizontal="true"
+                        android:checked="true"
+                        android:layout_column="2"
+                        android:layout_row="3"/>
+
+                </RadioGroup>
+
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="10dp"
+                    android:background="@drawable/red_bg" />
+
+                <TextView
+                    android:layout_width="126dp"
+                    android:layout_column="0"
+                    android:layout_row="4"
+                    android:layout_height="wrap_content"
+                    android:text="Personas de tercera edad y niños en estado de abandono"
+                    android:textColor="@android:color/black"
+                    android:paddingRight="5dp" />
+
+                <RadioGroup
+                    android:id="@+id/radioAbandono"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignEnd="@+id/button2"
+                    android:layout_gravity="center_horizontal"
+                    >
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Si"
+                        android:id="@+id/radioSiAbandono"
+                        android:layout_marginTop="61dp"
+                        android:layout_alignParentTop="true"
+                        android:layout_centerHorizontal="true"
+                        android:checked="true"
+                        android:layout_column="1"
+                        android:layout_row="4"/>
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="No"
+                        android:id="@+id/radioNoAbandono"
+                        android:layout_marginTop="61dp"
+                        android:layout_alignParentTop="false"
+                        android:layout_centerHorizontal="true"
+                        android:checked="true"
+                        android:layout_column="2"
+                        android:layout_row="4"/>
+
+                </RadioGroup>
+
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="10dp"
+                    android:background="@drawable/red_bg" />
+
+                <TextView
+                    android:layout_width="126dp"
+                    android:layout_column="0"
+                    android:layout_row="5"
+                    android:layout_height="wrap_content"
+                    android:text="Familia que rechaza acudir a unidades de salud"
+                    android:textColor="@android:color/black"
+                    android:paddingRight="5dp" />
+
+                <RadioGroup
+                    android:id="@+id/radioIrUnidad"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignEnd="@+id/button2"
+                    android:layout_gravity="center_horizontal"
+                    >
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Si"
+                        android:id="@+id/radioSiIrUnidad"
+                        android:layout_marginTop="61dp"
+                        android:layout_alignParentTop="true"
+                        android:layout_centerHorizontal="true"
+                        android:checked="true"
+                        android:layout_column="1"
+                        android:layout_row="5"/>
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="No"
+                        android:id="@+id/radioNoIrUnidad"
+                        android:layout_marginTop="61dp"
+                        android:layout_alignParentTop="false"
+                        android:layout_centerHorizontal="true"
+                        android:checked="true"
+                        android:layout_column="2"
+                        android:layout_row="5"/>
+
+                </RadioGroup>
+            </GridLayout>
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="10dp"
+                android:background="@drawable/red_bg" />
+
+
+
+
+
+
+
+
+
+
 
 
         </LinearLayout>
