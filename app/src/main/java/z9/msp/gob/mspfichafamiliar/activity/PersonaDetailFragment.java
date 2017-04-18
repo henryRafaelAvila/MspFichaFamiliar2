@@ -1,7 +1,12 @@
 package z9.msp.gob.mspfichafamiliar.activity;
 
 import android.app.Activity;
+import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.database.Cursor;
+import java.util.Calendar;
+
+import android.icu.util.Output;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
@@ -11,6 +16,8 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
@@ -23,6 +30,7 @@ import android.widget.TextView;
 import z9.msp.gob.mspfichafamiliar.R;
 import z9.msp.gob.mspfichafamiliar.activity.dummy.DummyContent;
 import z9.msp.gob.persistencia.DatabaseHandler;
+import z9.msp.gob.persistencia.entity.Personas;
 
 
 /**
@@ -38,100 +46,40 @@ public class PersonaDetailFragment extends Fragment {
      */
     DatabaseHandler db;
 
-    SimpleCursorAdapter adapterTipoResidente;
-    Spinner spinnerTipoResidente;
-
-    EditText editTextApellidos;
-    EditText editTextnombres;
-    EditText editTextCedula;
     EditText editTextEdad;
-    EditText editTextOrdenNucleoFamiliar;
-    EditText editTextPeso;
-    EditText editTextTalla;
-
-    Switch switchSeguroPrivado;
-    Switch switchAsisteCDIP;
-    Switch switchLeerScribe;
-    Switch switchMatriculadoEstEnsReg;
-    Switch switchAsistNormalmente;
-    Switch switchVacunacionCompl;
-    Switch switchControlOdont;
-    Switch switchRecibLechMat;
-    Switch switchAddSal;
-    Switch switchDiscapacidadPerma;
-    Switch switchCarnetConadis;
-    Switch switchTieneHijos;
     
 //TODO: FALTA ITEM PAR RECIBIR EL SEXO
-    SimpleCursorAdapter adapterTieneDocumentacion;
     SimpleCursorAdapter adapterNacionalidad;
     SimpleCursorAdapter adapterEtnia;    
     SimpleCursorAdapter adapterSeguroPublico;
     SimpleCursorAdapter adapterParentescoJefeHogar;
-    SimpleCursorAdapter adapterEstadoCivil;  
-    SimpleCursorAdapter adapterParentescoJefeNucleoFamiliar;
-    SimpleCursorAdapter adapterTipoDeCDIP;
-    SimpleCursorAdapter adapterRazonNoMatrAnioLec;
-    SimpleCursorAdapter adapterTipoEstab;
+    SimpleCursorAdapter adapterEstadoCivil;
     SimpleCursorAdapter adapterNivelInstruccion;
-    SimpleCursorAdapter adapterActSemPasada;
-    SimpleCursorAdapter adapterRazonNoTrab;
-    SimpleCursorAdapter adapterCatOcupacion;
-    SimpleCursorAdapter adapterEstNutricional;
-    SimpleCursorAdapter adapterEstNutrIMC;
-    SimpleCursorAdapter adapterConsumoFrutVer;
-    SimpleCursorAdapter adapterConsumoBebidAzu;
-    SimpleCursorAdapter adapterConsumoCominaRap;
-    SimpleCursorAdapter adapterConsumoSnacks;
-    SimpleCursorAdapter adapterTipoSal;
-    SimpleCursorAdapter adapterRiesgoNutri;
-    SimpleCursorAdapter adapterRealizaActiFis;
-    SimpleCursorAdapter adapterNivelActiFis;
-    SimpleCursorAdapter adapterGradoDiscapacidad;
 
 
-    Spinner spinnerTieneDocumentacion;
     Spinner spinnerNacionalidad;    
     Spinner spinnerEtnia;      
     Spinner spinnerSeguroPublico;
     Spinner spinnerParentescoJefeHogar;
     Spinner spinnerEstadoCivil;
-    Spinner spinnerParentescoJefeNucleoFamiliar;
-    Spinner spinnerTipoDeCDIP;
-    Spinner spinnerRazonNoMatrAnioLec;
-    Spinner spinnerTipoEstab;
     Spinner spinnerNivelInstruccion;
-    Spinner spinnerActSemPasada;
-    Spinner spinnerRazonNoTrab;
-    Spinner spinnerCatOcupacion;
-    Spinner spinnerEstNutricional;
-    Spinner spinnerEstNutrIMC;
-    Spinner spinnerConsumoFrutVer;
-    Spinner spinnerConsumoBebidAzu;
-    Spinner spinnerConsumoCominaRap;
-    Spinner spinnerConsumoSnacks;
-    Spinner spinnerTipoSal;
-    Spinner spinnerRiesgoNutri;
-    Spinner spinnerRealizaActiFis;
-    Spinner spinnerNivelActiFis;
-    Spinner spinnerGradoDiscapacidad;
-
-
-
-    SimpleCursorAdapter adapterEmbarazoEnRiesgo;
-    Spinner spinnerEmbarazoEnRiesgo;
 
     LinearLayout linerLayoutDetailMujer;
-
-//
     RadioGroup radioGroupsexo;
+    /*FECHA DE NACIMIENTO*/
+    private DatePicker datePicker;
+    private Calendar calendar;
+    private TextView tv_fechaNac;
+    private Button selectFechaNacimiento;
+    DatePickerDialog datePickerDialog;
+
 
     public static final String ARG_ITEM_ID = "item_id";
 
     /**
      * The dummy content this fragment is presenting.
      */
-    private DummyContent.DummyItem mItem;
+    private Personas mItem;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -153,7 +101,11 @@ public class PersonaDetailFragment extends Fragment {
             Activity activity = this.getActivity();
             CollapsingToolbarLayout appBarLayout = (CollapsingToolbarLayout) activity.findViewById(R.id.toolbar_layout);
             if (appBarLayout != null) {
-                appBarLayout.setTitle(mItem.content);
+                if(mItem!=null&&mItem.getNombres()!=null) {
+                    appBarLayout.setTitle(mItem.getNombres());
+                }else{
+                    appBarLayout.setTitle("Nueva Persona");
+                }
             }
         }
     }
@@ -162,42 +114,55 @@ public class PersonaDetailFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.persona_detail, container, false);
-
-        // Show the dummy content as text in a TextView.
-        spinnerTipoResidente = (Spinner)rootView.findViewById(R.id.spinnerTipoResidente);
-        spinnerTieneDocumentacion= (Spinner)rootView.findViewById(R.id.spinnerTieneDocumentacion);
-        spinnerGradoDiscapacidad= (Spinner)rootView.findViewById(R.id.spinnerGradoDiscapacidad);
-        spinnerEmbarazoEnRiesgo= (Spinner)rootView.findViewById(R.id.spinnerEmbarazoEnRiesgo);
-        spinnerNacionalidad= (Spinner)rootView.findViewById(R.id.spinnerNacionalidad);
-        spinnerEtnia= (Spinner)rootView.findViewById(R.id.spinnerEtnia);
-        spinnerSeguroPublico= (Spinner)rootView.findViewById(R.id.spinnerSeguroPublico);
-        spinnerParentescoJefeHogar= (Spinner)rootView.findViewById(R.id.spinnerParentescoJefeHogar);
-        spinnerEstadoCivil= (Spinner)rootView.findViewById(R.id.spinnerEstadoCivil);
-        spinnerParentescoJefeNucleoFamiliar= (Spinner)rootView.findViewById(R.id.spinnerParentescoJefeNucleoFamiliar);
-        spinnerTipoDeCDIP= (Spinner)rootView.findViewById(R.id.spinnerTipoDeCDIP);
-        spinnerRazonNoMatrAnioLec= (Spinner)rootView.findViewById(R.id.spinnerRazonNoMatrAnioLec);
-        spinnerTipoEstab= (Spinner)rootView.findViewById(R.id.spinnerTipoEstab);
-        spinnerNivelInstruccion= (Spinner)rootView.findViewById(R.id.spinnerNivelInstruccion);
-        spinnerActSemPasada= (Spinner)rootView.findViewById(R.id.spinnerActSemPasada);
-        spinnerRazonNoTrab= (Spinner)rootView.findViewById(R.id.spinnerRazonNoTrab);
-        spinnerCatOcupacion= (Spinner)rootView.findViewById(R.id.spinnerCatOcupacion);
-        spinnerEstNutricional= (Spinner)rootView.findViewById(R.id.spinnerEstNutricional);
-        spinnerEstNutrIMC= (Spinner)rootView.findViewById(R.id.spinnerEstNutrIMC);
-        spinnerConsumoFrutVer= (Spinner)rootView.findViewById(R.id.spinnerConsumoFrutVer);
-        spinnerConsumoBebidAzu= (Spinner)rootView.findViewById(R.id.spinnerConsumoBebidAzu);
-        spinnerConsumoCominaRap= (Spinner)rootView.findViewById(R.id.spinnerConsumoCominaRap);
-        spinnerConsumoSnacks= (Spinner)rootView.findViewById(R.id.spinnerConsumoSnacks);
-        spinnerTipoSal= (Spinner)rootView.findViewById(R.id.spinnerTipoSal);
-        spinnerRiesgoNutri= (Spinner)rootView.findViewById(R.id.spinnerRiesgoNutri);
-        spinnerRealizaActiFis= (Spinner)rootView.findViewById(R.id.spinnerRealizaActiFis);
-        spinnerNivelActiFis= (Spinner)rootView.findViewById(R.id.spinnerNivelActiFis);
+        //mostrarFechas(rootView);
+        inicializarSpinner(rootView);
 
         //activar u ocultar campos
         editTextEdad=(EditText) rootView.findViewById(R.id.editTextEdad);
-        editTextEdad.addTextChangedListener(redoWatcher);
+        //editTextEdad.addTextChangedListener(redoWatcher);
+        //fechaNac
+        tv_fechaNac=(TextView) rootView.findViewById(R.id.tv_fechaNac);
+        selectFechaNacimiento=(Button) rootView.findViewById(R.id.selectFechaNacimiento);
+        selectFechaNacimiento.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                final Calendar c = Calendar.getInstance();
+                final int mYear,mMonth,mDay;
+                if(tv_fechaNac.getText().equals("")){
+                    mYear = c.get(Calendar.YEAR); // current year
+                    mMonth = c.get(Calendar.MONTH); // current month
+                    mDay = c.get(Calendar.DAY_OF_MONTH); // current day
+                }else{
+                    String date[]=tv_fechaNac.getText().toString().split("/");
+                    mYear = Integer.parseInt(date[2]);
+                    mMonth = Integer.parseInt(date[1])-1;
+                    mDay = Integer.parseInt(date[0]);
+                }
+
+                // date picker dialog
+                datePickerDialog = new DatePickerDialog(getContext(),
+                        new DatePickerDialog.OnDateSetListener() {
+
+                            @Override
+                            public void onDateSet(DatePicker view, int year,
+                                                  int monthOfYear, int dayOfMonth) {
+                                // set day of month , month and year value in the edit text
+                                tv_fechaNac.setText(dayOfMonth + "/"
+                                        + (monthOfYear + 1) + "/" + year);
+                                String text=(c.get(Calendar.YEAR)-year)+ " años "+Math.abs(c.get(Calendar.MONTH)-(monthOfYear-1))+" meses";
+                                editTextEdad.setText(text);
+
+                            }
+                        }, mYear, mMonth, mDay);
+                datePickerDialog.show();
+
+            }
+
+        });
         //radioBurron
         radioGroupsexo=(RadioGroup) rootView.findViewById(R.id.opciones_sexo);
-        linerLayoutDetailMujer=(LinearLayout) rootView.findViewById(R.id.activity_detail_mujer);
+
 
         radioGroupsexo.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener()
         {
@@ -205,54 +170,46 @@ public class PersonaDetailFragment extends Fragment {
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 // checkedId is the RadioButton selected
                 View radioButton = radioGroupsexo.findViewById(checkedId);
-                switch (radioButton.getId()) {
-                    case R.id.radioSexoHombre: // first button hombre
-
-                        linerLayoutDetailMujer.setVisibility(View.INVISIBLE);
-                        break;
-                    case R.id.radioSexoMujer: // secondbutton mujer
-
-                        linerLayoutDetailMujer.setVisibility(View.VISIBLE);
-                        break;
-                }
+                //radioButton.getId()// id selected
             }
         });
 
         if (mItem != null) {
-            //((TextView) rootView.findViewById(R.id.persona_detail)).setText(mItem.details);
-            //llenada de combos
-            pupulatedSpinner(adapterTipoResidente,db.getAllGeneric("recibe_agua"),spinnerTipoResidente);
-            pupulatedSpinner(adapterTieneDocumentacion,db.getAllGeneric("recibe_agua"),spinnerTieneDocumentacion);
-            pupulatedSpinner(adapterGradoDiscapacidad,db.getAllGeneric("recibe_agua"),spinnerGradoDiscapacidad);
-            pupulatedSpinner(adapterEmbarazoEnRiesgo,db.getAllGeneric("recibe_agua"),spinnerEmbarazoEnRiesgo);
-            pupulatedSpinner(adapterNacionalidad,db.getAllGeneric("recibe_agua"),spinnerNacionalidad);
-            pupulatedSpinner(adapterEtnia,db.getAllGeneric("recibe_agua"),spinnerEtnia);
-            pupulatedSpinner(adapterSeguroPublico,db.getAllGeneric("recibe_agua"),spinnerSeguroPublico);
-            pupulatedSpinner(adapterParentescoJefeHogar,db.getAllGeneric("recibe_agua"),spinnerParentescoJefeHogar);
-            pupulatedSpinner(adapterEstadoCivil,db.getAllGeneric("recibe_agua"),spinnerEstadoCivil);
-            pupulatedSpinner(adapterParentescoJefeNucleoFamiliar,db.getAllGeneric("recibe_agua"),spinnerParentescoJefeNucleoFamiliar);
-            pupulatedSpinner(adapterTipoDeCDIP,db.getAllGeneric("recibe_agua"),spinnerTipoDeCDIP);
-            pupulatedSpinner(adapterRazonNoMatrAnioLec,db.getAllGeneric("recibe_agua"),spinnerRazonNoMatrAnioLec);
-            pupulatedSpinner(adapterTipoEstab,db.getAllGeneric("recibe_agua"),spinnerTipoEstab);
-            pupulatedSpinner(adapterNivelInstruccion,db.getAllGeneric("recibe_agua"),spinnerNivelInstruccion);
-            pupulatedSpinner(adapterActSemPasada,db.getAllGeneric("recibe_agua"),spinnerActSemPasada);
-            pupulatedSpinner(adapterRazonNoTrab,db.getAllGeneric("recibe_agua"),spinnerRazonNoTrab);
-            pupulatedSpinner(adapterCatOcupacion,db.getAllGeneric("recibe_agua"),spinnerCatOcupacion);
-            pupulatedSpinner(adapterEstNutricional,db.getAllGeneric("recibe_agua"),spinnerEstNutricional);
-            pupulatedSpinner(adapterEstNutrIMC,db.getAllGeneric("recibe_agua"),spinnerEstNutrIMC);
-            pupulatedSpinner(adapterConsumoFrutVer,db.getAllGeneric("recibe_agua"),spinnerConsumoFrutVer);
-            pupulatedSpinner(adapterConsumoBebidAzu,db.getAllGeneric("recibe_agua"),spinnerConsumoBebidAzu);
-            pupulatedSpinner(adapterConsumoCominaRap,db.getAllGeneric("recibe_agua"),spinnerConsumoCominaRap);
-            pupulatedSpinner(adapterConsumoSnacks,db.getAllGeneric("recibe_agua"),spinnerConsumoSnacks);
-            pupulatedSpinner(adapterTipoSal,db.getAllGeneric("recibe_agua"),spinnerTipoSal);
-            pupulatedSpinner(adapterRiesgoNutri,db.getAllGeneric("recibe_agua"),spinnerRiesgoNutri);
-            pupulatedSpinner(adapterRealizaActiFis,db.getAllGeneric("recibe_agua"),spinnerRealizaActiFis);
-            pupulatedSpinner(adapterNivelActiFis,db.getAllGeneric("recibe_agua"),spinnerNivelActiFis);
-
-
+            populatedSpinner(mItem);
+        }else{
+            populatedSpinner();
         }
 
         return rootView;
+    }
+    private void inicializarSpinner(View rootView){
+        // Show the dummy content as text in a TextView.
+        spinnerNacionalidad= (Spinner)rootView.findViewById(R.id.spinnerNacionalidad);
+        spinnerEtnia= (Spinner)rootView.findViewById(R.id.spinnerEtnia);
+        spinnerSeguroPublico= (Spinner)rootView.findViewById(R.id.spinnerSeguroPublico);
+        spinnerParentescoJefeHogar= (Spinner)rootView.findViewById(R.id.spinnerParentescoJefeHogar);
+        spinnerEstadoCivil= (Spinner)rootView.findViewById(R.id.spinnerEstadoCivil);
+        spinnerNivelInstruccion= (Spinner)rootView.findViewById(R.id.spinnerNivelInstruccion);
+    }
+    private void populatedSpinner(Personas mItem) {
+        //((TextView) rootView.findViewById(R.id.persona_detail)).setText(mItem.details);
+        //llenada de combos
+        pupulatedSpinner(adapterNacionalidad,db.getAllGeneric("recibe_agua"),spinnerNacionalidad);
+        pupulatedSpinner(adapterEtnia,db.getAllGeneric("recibe_agua"),spinnerEtnia);
+        pupulatedSpinner(adapterSeguroPublico,db.getAllGeneric("recibe_agua"),spinnerSeguroPublico);
+        pupulatedSpinner(adapterParentescoJefeHogar,db.getAllGeneric("recibe_agua"),spinnerParentescoJefeHogar);
+        pupulatedSpinner(adapterEstadoCivil,db.getAllGeneric("recibe_agua"),spinnerEstadoCivil);
+        pupulatedSpinner(adapterNivelInstruccion,db.getAllGeneric("recibe_agua"),spinnerNivelInstruccion);
+    }
+    private void populatedSpinner() {
+        //((TextView) rootView.findViewById(R.id.persona_detail)).setText(mItem.details);
+        //llenada de combos
+        pupulatedSpinner(adapterNacionalidad,db.getAllGeneric("recibe_agua"),spinnerNacionalidad);
+        pupulatedSpinner(adapterEtnia,db.getAllGeneric("recibe_agua"),spinnerEtnia);
+        pupulatedSpinner(adapterSeguroPublico,db.getAllGeneric("recibe_agua"),spinnerSeguroPublico);
+        pupulatedSpinner(adapterParentescoJefeHogar,db.getAllGeneric("recibe_agua"),spinnerParentescoJefeHogar);
+        pupulatedSpinner(adapterEstadoCivil,db.getAllGeneric("recibe_agua"),spinnerEstadoCivil);
+        pupulatedSpinner(adapterNivelInstruccion,db.getAllGeneric("recibe_agua"),spinnerNivelInstruccion);
     }
     private void pupulatedSpinner(SimpleCursorAdapter adapter, Cursor cursor,Spinner spinner){
         adapter = new SimpleCursorAdapter(getContext(),
@@ -263,33 +220,32 @@ public class PersonaDetailFragment extends Fragment {
                 SimpleCursorAdapter.FLAG_REGISTER_CONTENT_OBSERVER);//Observer para el refresco
         spinner.setAdapter(adapter);
     }
-
-
     // listener
-    private TextWatcher redoWatcher = new TextWatcher() {
+//    private TextWatcher redoWatcher = new TextWatcher() {
+//
+//
+//        public void beforeTextChanged(CharSequence s, int start, int count,
+//                                      int after) {
+//        }
+//
+//        @Override
+//        public void onTextChanged(CharSequence s, int start, int before,
+//                                  int count) {
+//        }
+//
+//        @Override
+//        public void afterTextChanged(Editable s) {
+//            if(!s.toString().equals("")) {
+//                int edad = Integer.parseInt(s.toString());
+//                if (edad > 11) {
+//                    spinnerEstadoCivil.setVisibility(View.INVISIBLE);
+//                }else{
+//                    spinnerEstadoCivil.setVisibility(View.VISIBLE);
+//                }
+//            }
+//
+//        }
+//
+//    };
 
-
-        public void beforeTextChanged(CharSequence s, int start, int count,
-                                      int after) {
-        }
-
-        @Override
-        public void onTextChanged(CharSequence s, int start, int before,
-                                  int count) {
-        }
-
-        @Override
-        public void afterTextChanged(Editable s) {
-            if(!s.toString().equals("")) {
-                int edad = Integer.parseInt(s.toString());
-                if (edad > 11) {
-                    spinnerEstadoCivil.setVisibility(View.INVISIBLE);
-                }else{
-                    spinnerEstadoCivil.setVisibility(View.VISIBLE);
-                }
-            }
-
-        }
-
-    };
 }

@@ -12,11 +12,13 @@ import android.support.design.widget.Snackbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import z9.msp.gob.mspfichafamiliar.R;
 
 import z9.msp.gob.mspfichafamiliar.activity.dummy.DummyContent;
+import z9.msp.gob.persistencia.entity.Personas;
 
 import java.util.List;
 
@@ -35,6 +37,7 @@ public class PersonaListActivity extends AppCompatActivity {
      * device.
      */
     private boolean mTwoPane;
+    public static final String FORM_ID="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,20 +52,18 @@ public class PersonaListActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                //ACCION NUEVA PERSONA
+                Context context = view.getContext();
+                Intent intent = new Intent(context, PersonaDetailActivity.class);
+                intent.putExtra(PersonaDetailFragment.ARG_ITEM_ID, "-1");
+                context.startActivity(intent);
             }
         });
-
-        View recyclerView = findViewById(R.id.persona_list);
+       View recyclerView = findViewById(R.id.persona_list);
         assert recyclerView != null;
         setupRecyclerView((RecyclerView) recyclerView);
 
         if (findViewById(R.id.persona_detail_container) != null) {
-            // The detail container view will be present only in the
-            // large-screen layouts (res/values-w900dp).
-            // If this view is present, then the
-            // activity should be in two-pane mode.
             mTwoPane = true;
         }
     }
@@ -74,9 +75,9 @@ public class PersonaListActivity extends AppCompatActivity {
     public class SimpleItemRecyclerViewAdapter
             extends RecyclerView.Adapter<SimpleItemRecyclerViewAdapter.ViewHolder> {
 
-        private final List<DummyContent.DummyItem> mValues;
+        private final List<Personas> mValues;
 
-        public SimpleItemRecyclerViewAdapter(List<DummyContent.DummyItem> items) {
+        public SimpleItemRecyclerViewAdapter(List<Personas> items) {
             mValues = items;
         }
 
@@ -90,15 +91,17 @@ public class PersonaListActivity extends AppCompatActivity {
         @Override
         public void onBindViewHolder(final ViewHolder holder, int position) {
             holder.mItem = mValues.get(position);
-            holder.mIdView.setText(mValues.get(position).id);
-            holder.mContentView.setText(mValues.get(position).content);
+            holder.cedula.setText(mValues.get(position).getNumCedula());
+            holder.nombres.setText(mValues.get(position).getNombres());
+            holder.fechaNac.setText(mValues.get(position).getFechaNac());
+            holder.foto.setImageResource(mValues.get(position).getImage()); //setImageResource();
 
             holder.mView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     if (mTwoPane) {
                         Bundle arguments = new Bundle();
-                        arguments.putString(PersonaDetailFragment.ARG_ITEM_ID, holder.mItem.id);
+                        arguments.putString(PersonaDetailFragment.ARG_ITEM_ID, holder.mItem.getNumCedula());
                         PersonaDetailFragment fragment = new PersonaDetailFragment();
                         fragment.setArguments(arguments);
                         getSupportFragmentManager().beginTransaction()
@@ -107,7 +110,7 @@ public class PersonaListActivity extends AppCompatActivity {
                     } else {
                         Context context = v.getContext();
                         Intent intent = new Intent(context, PersonaDetailActivity.class);
-                        intent.putExtra(PersonaDetailFragment.ARG_ITEM_ID, holder.mItem.id);
+                        intent.putExtra(PersonaDetailFragment.ARG_ITEM_ID, holder.mItem.getNumCedula());
 
                         context.startActivity(intent);
                     }
@@ -122,20 +125,27 @@ public class PersonaListActivity extends AppCompatActivity {
 
         public class ViewHolder extends RecyclerView.ViewHolder {
             public final View mView;
-            public final TextView mIdView;
-            public final TextView mContentView;
-            public DummyContent.DummyItem mItem;
+            public Personas mItem;
+            // public final TextView mIdView;
+            public final TextView nombres;
+            public final TextView cedula;
+            public final TextView fechaNac;
+            public final ImageView  foto;
+
 
             public ViewHolder(View view) {
                 super(view);
                 mView = view;
-                mIdView = (TextView) view.findViewById(R.id.id);
-                mContentView = (TextView) view.findViewById(R.id.content);
+
+                nombres=(TextView) view.findViewById(R.id.tv_nombre);
+                cedula=(TextView) view.findViewById(R.id.tv_numCedula);
+                fechaNac=(TextView) view.findViewById(R.id.tv_fechaNac);
+                foto=(ImageView) view.findViewById(R.id.iv_foto);
             }
 
             @Override
             public String toString() {
-                return super.toString() + " '" + mContentView.getText() + "'";
+                return super.toString() + " '" + nombres.getText() + "'";
             }
         }
     }

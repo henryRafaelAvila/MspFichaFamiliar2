@@ -11,6 +11,6 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="z9.msp.gob.mspfichafamiliar.activity.ListFormActivity"
-    tools:showIn="@layout/activity_list_form">
+    tools:showIn="@layout/activity_main">
 
 </RelativeLayout>

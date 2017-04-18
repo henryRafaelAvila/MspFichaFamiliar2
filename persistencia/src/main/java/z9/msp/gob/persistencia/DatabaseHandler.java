@@ -55,7 +55,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery(selectQuery, null);
         return  cursor;
     }
-    public Cursor getAllTransporte() {
+    public Cursor getAllOcupacion() {
         String selectQuery = "SELECT * FROM cocina";
         SQLiteDatabase db = this.getWritableDatabase();
         List<String> spinnerContent = new ArrayList<String>();
