@@ -17,6 +17,7 @@ import java.util.List;
  * Created by henry on 3/26/2017.
  */
 
+// Naty crear base
 public class DBHandler extends SQLiteOpenHelper {
     // All Static variables
     // Database Version

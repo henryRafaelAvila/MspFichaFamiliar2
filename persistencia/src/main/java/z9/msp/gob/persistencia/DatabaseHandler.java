@@ -45,10 +45,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     }
 
-
-
-    public Cursor getAllCocina() {
-        String selectQuery = "SELECT * FROM cocina";
+    public Cursor getAllUnidad() {
+        String selectQuery = "SELECT * FROM unidad_operativa";
         SQLiteDatabase db = this.getWritableDatabase();
         List<String> spinnerContent = new ArrayList<String>();
         Cursor cursor = db.rawQuery(selectQuery, null);
@@ -56,11 +54,135 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
 
     public Cursor getAllOcupacion() {
-        String selectQuery = "SELECT * FROM sec2_condicion_ocupacion";
+        String selectQuery = "SELECT * FROM condicion_ocupacion";
         SQLiteDatabase db = this.getWritableDatabase();
         List<String> spinnerContent = new ArrayList<String>();
         Cursor cursor = db.rawQuery(selectQuery, null);
         return  cursor;
     }
+
+    public Cursor getAllTipoVivienda() {
+        String selectQuery = "SELECT * FROM tipo_vivienda";
+        SQLiteDatabase db = this.getWritableDatabase();
+        List<String> spinnerContent = new ArrayList<String>();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+        return  cursor;
+    }
+
+    public Cursor getAllAccesoVivienda() {
+        String selectQuery = "SELECT * FROM vias_acceso";
+        SQLiteDatabase db = this.getWritableDatabase();
+        List<String> spinnerContent = new ArrayList<String>();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+        return  cursor;
+    }
+
+    public Cursor getAllTipoTransporte() {
+        String selectQuery = "SELECT * FROM tipo_transp";
+        SQLiteDatabase db = this.getWritableDatabase();
+        List<String> spinnerContent = new ArrayList<String>();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+        return  cursor;
+    }
+
+    public Cursor getAllMaterialTecho() {
+        String selectQuery = "SELECT * FROM material_techo";
+        SQLiteDatabase db = this.getWritableDatabase();
+        List<String> spinnerContent = new ArrayList<String>();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+        return  cursor;
+    }
+
+    public Cursor getAllMaterialPiso() {
+        String selectQuery = "SELECT * FROM material_piso";
+        SQLiteDatabase db = this.getWritableDatabase();
+        List<String> spinnerContent = new ArrayList<String>();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+        return  cursor;
+    }
+
+    public Cursor getAllMaterialParedes() {
+        String selectQuery = "SELECT * FROM material_pared";
+        SQLiteDatabase db = this.getWritableDatabase();
+        List<String> spinnerContent = new ArrayList<String>();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+        return  cursor;
+    }
+
+    public Cursor getAllEstadoTecho() {
+        String selectQuery = "SELECT * FROM estado_techo";
+        SQLiteDatabase db = this.getWritableDatabase();
+        List<String> spinnerContent = new ArrayList<String>();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+        return  cursor;
+    }
+
+    public Cursor getAllEstadoPiso() {
+        String selectQuery = "SELECT * FROM estado_piso";
+        SQLiteDatabase db = this.getWritableDatabase();
+        List<String> spinnerContent = new ArrayList<String>();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+        return  cursor;
+    }
+
+    public Cursor getAllCocina() {
+        String selectQuery = "SELECT * FROM combustible_cocinar";
+        SQLiteDatabase db = this.getWritableDatabase();
+        List<String> spinnerContent = new ArrayList<String>();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+        return  cursor;
+    }
+
+    public Cursor getAllProvieneAgua() {
+        String selectQuery = "SELECT * FROM procedencia_agua";
+        SQLiteDatabase db = this.getWritableDatabase();
+        List<String> spinnerContent = new ArrayList<String>();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+        return  cursor;
+    }
+
+    public Cursor getAllRecibeAgua() {
+        String selectQuery = "SELECT * FROM recibe_agua";
+        SQLiteDatabase db = this.getWritableDatabase();
+        List<String> spinnerContent = new ArrayList<String>();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+        return  cursor;
+    }
+
+    public Cursor getAllTratamientoAgua() {
+        String selectQuery = "SELECT * FROM tratamiento_agua";
+        SQLiteDatabase db = this.getWritableDatabase();
+        List<String> spinnerContent = new ArrayList<String>();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+        return  cursor;
+    }
+
+    public Cursor getAllEliminaAguaServida() {
+        String selectQuery = "SELECT * FROM eliminar_agua_ser";
+        SQLiteDatabase db = this.getWritableDatabase();
+        List<String> spinnerContent = new ArrayList<String>();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+        return  cursor;
+    }
+
+    public Cursor getAllUbicacionRetrete() {
+        String selectQuery = "SELECT * FROM ubicacion_letrete";
+        SQLiteDatabase db = this.getWritableDatabase();
+        List<String> spinnerContent = new ArrayList<String>();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+        return  cursor;
+    }
+
+    public Cursor getAllBasura() {
+        String selectQuery = "SELECT * FROM eliminar_basura";
+        SQLiteDatabase db = this.getWritableDatabase();
+        List<String> spinnerContent = new ArrayList<String>();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+        return  cursor;
+    }
+
+
+
+
 
 }

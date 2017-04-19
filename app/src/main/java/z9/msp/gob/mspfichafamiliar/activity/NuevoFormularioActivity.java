@@ -7,18 +7,56 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.SimpleCursorAdapter;
 import android.widget.Spinner;
+import android.widget.TextView;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import z9.msp.gob.mspfichafamiliar.R;
 import z9.msp.gob.persistencia.DatabaseHandler;
 
 public class NuevoFormularioActivity extends AppCompatActivity {
+    Date fecha;
+    TextView fecha_completa;
     /*
         Adaptadores para los Spinners
          */
-    SimpleCursorAdapter adapterNacionalidad;
+    SimpleCursorAdapter adapterUnidaOperativa;
+    Spinner  spinnerUnidaOperativa;
+    SimpleCursorAdapter adapterTipoVivienda;
+    Spinner  spinnerTipoVivienda;
+    SimpleCursorAdapter adapterAccesoVivienda;
+    Spinner  spinnerAccesoVivienda;
+    SimpleCursorAdapter adapterTipoTransporte;
+    Spinner  spinnerTipoTransporte;
+    SimpleCursorAdapter adapterMaterialTecho;
+    Spinner  spinnerMaterialTecho;
+    SimpleCursorAdapter adapterMaterialPiso;
+    Spinner  spinnerMaterialPiso;
+    SimpleCursorAdapter adapterMaterialPared;
+    Spinner  spinnerMaterialPared;
+    SimpleCursorAdapter adapterEstadoTecho;
+    Spinner  spinnerEstadoTecho;
+    SimpleCursorAdapter adapterEstadoPiso;
+    Spinner  spinnerEstadoPiso;
+    SimpleCursorAdapter  adapterCombustibleCocina;
     SimpleCursorAdapter adapterOcupacion;
-    Spinner spinnerNacionalida;
+    Spinner  spinnerCombustibleCocina;
     Spinner spinnerOcupacion;
+    SimpleCursorAdapter adapterProvieneAgua;
+    Spinner  spinnerProvieneAgua;
+    SimpleCursorAdapter adapterRecibeAgua;
+    Spinner  spinnerRecibeAgua;
+    SimpleCursorAdapter adapterTratamientoAgua;
+    Spinner  spinnerTratamientoAgua;
+    SimpleCursorAdapter adapterElimiarAgua;
+    Spinner  spinnerEliminarAgua;
+    SimpleCursorAdapter adapterUbicacionRetrete;
+    Spinner  spinnerUbicacionRetrete;
+    SimpleCursorAdapter adapterBasura;
+    Spinner  spinnerBasura;
+
+
     DatabaseHandler db;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,44 +68,171 @@ public class NuevoFormularioActivity extends AppCompatActivity {
          */
         db = new DatabaseHandler(this);
 
+        fecha=new Date();
+        fecha_completa= (TextView) findViewById(R.id.etxtfecha);
+
+        SimpleDateFormat fecc=new SimpleDateFormat("dd/MM/yy");
+        String fechacComplString = fecc.format(fecha);
+        fecha_completa.setText(fechacComplString);
+
         /*
         Obteniendo las instancias de los Spinners
          */
-        spinnerNacionalida = (Spinner)findViewById(R.id.spinnerNacionalidad);
 
-        adapterNacionalidad = new SimpleCursorAdapter(this,
+        spinnerUnidaOperativa = (Spinner)findViewById(R.id.spinnerUnidad);
+        adapterUnidaOperativa= new SimpleCursorAdapter(this,
                 android.R.layout.simple_spinner_item,//Layout simple
-                db.getAllCocina(),//Todos los registros
-                new String[]{"descripcion"},//Mostrar solo el nombre
+                db.getAllUnidad(),//Todos los registros
+                new String[]{"nombre_oficial"},//Mostrar solo el nombre
                 new int[]{android.R.id.text1},//View para el nombre
                 SimpleCursorAdapter.FLAG_REGISTER_CONTENT_OBSERVER);//Observer para el refresco
+        spinnerUnidaOperativa.setAdapter(adapterUnidaOperativa);
 
+        spinnerTipoVivienda = (Spinner)findViewById(R.id.spinnerTipoVivienda);
+        adapterTipoVivienda= new SimpleCursorAdapter(this,
+                android.R.layout.simple_spinner_item,
+                db.getAllTipoVivienda(),
+                new String[]{"descripcion"},
+                new int[]{android.R.id.text1},
+                SimpleCursorAdapter.FLAG_REGISTER_CONTENT_OBSERVER);
+        spinnerTipoVivienda.setAdapter(adapterTipoVivienda);
 
+        spinnerAccesoVivienda = (Spinner)findViewById(R.id.spinnerAccesoVivienda);
+        adapterAccesoVivienda= new SimpleCursorAdapter(this,
+                android.R.layout.simple_spinner_item,
+                db.getAllAccesoVivienda(),
+                new String[]{"descripcion"},
+                new int[]{android.R.id.text1},
+                SimpleCursorAdapter.FLAG_REGISTER_CONTENT_OBSERVER);
+        spinnerAccesoVivienda.setAdapter(adapterAccesoVivienda);
 
-        /*
-        descripcion
-        descripcion
-        Seteando Adaptador de GenreSpinner
-         */
-        spinnerNacionalida.setAdapter(adapterNacionalidad);
+        spinnerTipoTransporte = (Spinner)findViewById(R.id.spinnerTipoTransporte);
+        adapterTipoTransporte= new SimpleCursorAdapter(this,
+                android.R.layout.simple_spinner_item,
+                db.getAllTipoTransporte(),
+                new String[]{"descripcion"},
+                new int[]{android.R.id.text1},
+                SimpleCursorAdapter.FLAG_REGISTER_CONTENT_OBSERVER);
+        spinnerTipoTransporte.setAdapter(adapterTipoTransporte);
+
+        spinnerMaterialTecho = (Spinner)findViewById(R.id.spinnerMaterialTecho);
+        adapterMaterialTecho= new SimpleCursorAdapter(this,
+                android.R.layout.simple_spinner_item,
+                db.getAllMaterialTecho(),
+                new String[]{"descripcion"},
+                new int[]{android.R.id.text1},
+                SimpleCursorAdapter.FLAG_REGISTER_CONTENT_OBSERVER);
+        spinnerMaterialTecho.setAdapter(adapterMaterialTecho);
+
+        spinnerMaterialPiso = (Spinner)findViewById(R.id.spinnerMaterialPiso);
+        adapterMaterialPiso= new SimpleCursorAdapter(this,
+                android.R.layout.simple_spinner_item,
+                db.getAllMaterialPiso(),
+                new String[]{"descripcion"},
+                new int[]{android.R.id.text1},
+                SimpleCursorAdapter.FLAG_REGISTER_CONTENT_OBSERVER);
+        spinnerMaterialPiso.setAdapter(adapterMaterialPiso);
+
+        spinnerMaterialPared = (Spinner)findViewById(R.id.spinnerMaterialParedes);
+        adapterMaterialPared= new SimpleCursorAdapter(this,
+                android.R.layout.simple_spinner_item,
+                db.getAllMaterialParedes(),
+                new String[]{"descripcion"},
+                new int[]{android.R.id.text1},
+                SimpleCursorAdapter.FLAG_REGISTER_CONTENT_OBSERVER);
+        spinnerMaterialPared.setAdapter(adapterMaterialPared);
+
+        spinnerEstadoTecho = (Spinner)findViewById(R.id.spinnerEstadoTecho);
+        adapterEstadoTecho= new SimpleCursorAdapter(this,
+                android.R.layout.simple_spinner_item,
+                db.getAllEstadoTecho(),
+                new String[]{"descripcion"},
+                new int[]{android.R.id.text1},
+                SimpleCursorAdapter.FLAG_REGISTER_CONTENT_OBSERVER);
+        spinnerEstadoTecho.setAdapter(adapterEstadoTecho);
+
+        spinnerEstadoPiso = (Spinner)findViewById(R.id.spinnerEstadoPiso);
+        adapterEstadoPiso= new SimpleCursorAdapter(this,
+                android.R.layout.simple_spinner_item,
+                db.getAllEstadoPiso(),
+                new String[]{"descripcion"},
+                new int[]{android.R.id.text1},
+                SimpleCursorAdapter.FLAG_REGISTER_CONTENT_OBSERVER);
+        spinnerEstadoPiso.setAdapter(adapterEstadoPiso);
+
+        spinnerCombustibleCocina = (Spinner)findViewById(R.id.spinnerCombustibleCocina);
+        adapterCombustibleCocina = new SimpleCursorAdapter(this,
+                android.R.layout.simple_spinner_item,
+                db.getAllCocina(),
+                new String[]{"descripcion"},
+                new int[]{android.R.id.text1},
+                SimpleCursorAdapter.FLAG_REGISTER_CONTENT_OBSERVER);
+        spinnerCombustibleCocina.setAdapter(adapterCombustibleCocina);
 
 
         spinnerOcupacion = (Spinner)findViewById(R.id.spinnerOcupacion);
-
         adapterOcupacion = new SimpleCursorAdapter(this,
-                android.R.layout.simple_spinner_item,//Layout simple
-                db.getAllOcupacion(),//Todos los registros
-                new String[]{"descripcion"},//Mostrar solo el nombre
-                new int[]{android.R.id.text1},//View para el nombre
-                SimpleCursorAdapter.FLAG_REGISTER_CONTENT_OBSERVER);//Observer para el refresco
-
-
-
-        /*
-        descripcion
-        descripcion
-        Seteando Adaptador de GenreSpinner
-         */
+                android.R.layout.simple_spinner_item,
+                db.getAllOcupacion(),
+                new String[]{"descripcion"},
+                new int[]{android.R.id.text1},
+                SimpleCursorAdapter.FLAG_REGISTER_CONTENT_OBSERVER);
         spinnerOcupacion.setAdapter(adapterOcupacion);
+
+        spinnerProvieneAgua = (Spinner)findViewById(R.id.spinnerAgua);
+        adapterProvieneAgua = new SimpleCursorAdapter(this,
+                android.R.layout.simple_spinner_item,
+                db.getAllProvieneAgua(),
+                new String[]{"descripcion"},
+                new int[]{android.R.id.text1},
+                SimpleCursorAdapter.FLAG_REGISTER_CONTENT_OBSERVER);
+        spinnerProvieneAgua.setAdapter(adapterProvieneAgua);
+
+        spinnerRecibeAgua = (Spinner)findViewById(R.id.spinnerAguaRecibe);
+        adapterRecibeAgua = new SimpleCursorAdapter(this,
+                android.R.layout.simple_spinner_item,
+                db.getAllRecibeAgua(),
+                new String[]{"descripcion"},
+                new int[]{android.R.id.text1},
+                SimpleCursorAdapter.FLAG_REGISTER_CONTENT_OBSERVER);
+        spinnerRecibeAgua.setAdapter(adapterRecibeAgua);
+
+        spinnerTratamientoAgua = (Spinner)findViewById(R.id.spinnerAguaBeber);
+        adapterTratamientoAgua = new SimpleCursorAdapter(this,
+                android.R.layout.simple_spinner_item,
+                db.getAllTratamientoAgua(),
+                new String[]{"descripcion"},
+                new int[]{android.R.id.text1},
+                SimpleCursorAdapter.FLAG_REGISTER_CONTENT_OBSERVER);
+        spinnerTratamientoAgua.setAdapter(adapterTratamientoAgua);
+
+        spinnerEliminarAgua = (Spinner)findViewById(R.id.spinnerAguaservidas);
+        adapterElimiarAgua= new SimpleCursorAdapter(this,
+                android.R.layout.simple_spinner_item,
+                db.getAllEliminaAguaServida(),
+                new String[]{"descripcion"},
+                new int[]{android.R.id.text1},
+                SimpleCursorAdapter.FLAG_REGISTER_CONTENT_OBSERVER);
+        spinnerEliminarAgua.setAdapter(adapterElimiarAgua);
+
+        spinnerUbicacionRetrete = (Spinner)findViewById(R.id.spinnerRetrete);
+        adapterUbicacionRetrete= new SimpleCursorAdapter(this,
+                android.R.layout.simple_spinner_item,
+                db.getAllUbicacionRetrete(),
+                new String[]{"descripcion"},
+                new int[]{android.R.id.text1},
+                SimpleCursorAdapter.FLAG_REGISTER_CONTENT_OBSERVER);
+        spinnerUbicacionRetrete.setAdapter(adapterUbicacionRetrete);
+
+        spinnerBasura = (Spinner)findViewById(R.id.spinnerBasura);
+        adapterBasura = new SimpleCursorAdapter(this,
+                android.R.layout.simple_spinner_item,
+                db.getAllBasura(),
+                new String[]{"descripcion"},
+                new int[]{android.R.id.text1},
+                SimpleCursorAdapter.FLAG_REGISTER_CONTENT_OBSERVER);
+        spinnerBasura.setAdapter(adapterBasura);
     }
+
+
 }
