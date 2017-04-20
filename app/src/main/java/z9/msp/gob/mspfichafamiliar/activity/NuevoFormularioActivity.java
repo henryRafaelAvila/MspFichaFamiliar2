@@ -1,10 +1,12 @@
 package z9.msp.gob.mspfichafamiliar.activity;
 
+import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.SimpleCursorAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -18,6 +20,8 @@ import z9.msp.gob.persistencia.DatabaseHandler;
 public class NuevoFormularioActivity extends AppCompatActivity {
     Date fecha;
     TextView fecha_completa;
+    EditText parroquia;
+    EditText distrito;
     /*
         Adaptadores para los Spinners
          */
@@ -55,6 +59,8 @@ public class NuevoFormularioActivity extends AppCompatActivity {
     Spinner  spinnerUbicacionRetrete;
     SimpleCursorAdapter adapterBasura;
     Spinner  spinnerBasura;
+    SimpleCursorAdapter adapterPrueba;
+    Spinner  spinnerPrueba;
 
 
     DatabaseHandler db;
@@ -87,6 +93,34 @@ public class NuevoFormularioActivity extends AppCompatActivity {
                 new int[]{android.R.id.text1},//View para el nombre
                 SimpleCursorAdapter.FLAG_REGISTER_CONTENT_OBSERVER);//Observer para el refresco
         spinnerUnidaOperativa.setAdapter(adapterUnidaOperativa);
+
+        spinnerUnidaOperativa.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                //Obteniendo el id del Spinner que recibió el evento
+                int idSpinner = parent.getId();
+                String parr;
+                switch(idSpinner) {
+
+                    case R.id.spinnerUnidad:
+                        //Obteniendo el id del género seleccionado
+                        Cursor c1 = (Cursor) parent.getItemAtPosition(position);
+                        parr = c1.getString(
+                                c1.getColumnIndex(db.getAllUnidad().getColumnName(1)));
+
+                        parroquia= (EditText) findViewById(R.id.etxParroquia);
+                        parroquia.setText(parr);
+
+                        break;
+                }
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 
         spinnerTipoVivienda = (Spinner)findViewById(R.id.spinnerTipoVivienda);
         adapterTipoVivienda= new SimpleCursorAdapter(this,
@@ -232,6 +266,20 @@ public class NuevoFormularioActivity extends AppCompatActivity {
                 new int[]{android.R.id.text1},
                 SimpleCursorAdapter.FLAG_REGISTER_CONTENT_OBSERVER);
         spinnerBasura.setAdapter(adapterBasura);
+
+        /*spinnerPrueba = (Spinner)findViewById(R.id.spinnerPrueba);
+        adapterPrueba = new SimpleCursorAdapter(this,
+                android.R.layout.simple_spinner_item,
+                db.getUnidadParroquia(),
+                new String[]{"id_distrito"},
+                new int[]{android.R.id.text1},
+                SimpleCursorAdapter.FLAG_REGISTER_CONTENT_OBSERVER);
+        spinnerPrueba.setAdapter(adapterPrueba);*/
+        /*int dis=db.getUnidadParroquia().getInt(3);
+        distrito= (EditText) findViewById(R.id.etxtDistrito);
+        distrito.setText(""+dis);*/
+
+
     }
 
 

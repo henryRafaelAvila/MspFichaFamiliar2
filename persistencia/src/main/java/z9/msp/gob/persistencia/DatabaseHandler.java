@@ -27,6 +27,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 1;
     private static final String DATABASE_NAME = "ficha_familiar_msp";
     private Context context;
+    SQLiteDatabase db = this.getWritableDatabase();
 
     public DatabaseHandler(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -47,7 +48,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     public Cursor getAllUnidad() {
         String selectQuery = "SELECT * FROM unidad_operativa";
-        SQLiteDatabase db = this.getWritableDatabase();
         List<String> spinnerContent = new ArrayList<String>();
         Cursor cursor = db.rawQuery(selectQuery, null);
         return  cursor;
@@ -55,7 +55,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     public Cursor getAllOcupacion() {
         String selectQuery = "SELECT * FROM condicion_ocupacion";
-        SQLiteDatabase db = this.getWritableDatabase();
         List<String> spinnerContent = new ArrayList<String>();
         Cursor cursor = db.rawQuery(selectQuery, null);
         return  cursor;
@@ -63,7 +62,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     public Cursor getAllTipoVivienda() {
         String selectQuery = "SELECT * FROM tipo_vivienda";
-        SQLiteDatabase db = this.getWritableDatabase();
         List<String> spinnerContent = new ArrayList<String>();
         Cursor cursor = db.rawQuery(selectQuery, null);
         return  cursor;
@@ -71,7 +69,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     public Cursor getAllAccesoVivienda() {
         String selectQuery = "SELECT * FROM vias_acceso";
-        SQLiteDatabase db = this.getWritableDatabase();
         List<String> spinnerContent = new ArrayList<String>();
         Cursor cursor = db.rawQuery(selectQuery, null);
         return  cursor;
@@ -79,7 +76,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     public Cursor getAllTipoTransporte() {
         String selectQuery = "SELECT * FROM tipo_transp";
-        SQLiteDatabase db = this.getWritableDatabase();
         List<String> spinnerContent = new ArrayList<String>();
         Cursor cursor = db.rawQuery(selectQuery, null);
         return  cursor;
@@ -87,7 +83,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     public Cursor getAllMaterialTecho() {
         String selectQuery = "SELECT * FROM material_techo";
-        SQLiteDatabase db = this.getWritableDatabase();
         List<String> spinnerContent = new ArrayList<String>();
         Cursor cursor = db.rawQuery(selectQuery, null);
         return  cursor;
@@ -95,7 +90,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     public Cursor getAllMaterialPiso() {
         String selectQuery = "SELECT * FROM material_piso";
-        SQLiteDatabase db = this.getWritableDatabase();
         List<String> spinnerContent = new ArrayList<String>();
         Cursor cursor = db.rawQuery(selectQuery, null);
         return  cursor;
@@ -103,7 +97,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     public Cursor getAllMaterialParedes() {
         String selectQuery = "SELECT * FROM material_pared";
-        SQLiteDatabase db = this.getWritableDatabase();
         List<String> spinnerContent = new ArrayList<String>();
         Cursor cursor = db.rawQuery(selectQuery, null);
         return  cursor;
@@ -111,7 +104,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     public Cursor getAllEstadoTecho() {
         String selectQuery = "SELECT * FROM estado_techo";
-        SQLiteDatabase db = this.getWritableDatabase();
         List<String> spinnerContent = new ArrayList<String>();
         Cursor cursor = db.rawQuery(selectQuery, null);
         return  cursor;
@@ -119,7 +111,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     public Cursor getAllEstadoPiso() {
         String selectQuery = "SELECT * FROM estado_piso";
-        SQLiteDatabase db = this.getWritableDatabase();
         List<String> spinnerContent = new ArrayList<String>();
         Cursor cursor = db.rawQuery(selectQuery, null);
         return  cursor;
@@ -127,7 +118,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     public Cursor getAllCocina() {
         String selectQuery = "SELECT * FROM combustible_cocinar";
-        SQLiteDatabase db = this.getWritableDatabase();
         List<String> spinnerContent = new ArrayList<String>();
         Cursor cursor = db.rawQuery(selectQuery, null);
         return  cursor;
@@ -135,7 +125,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     public Cursor getAllProvieneAgua() {
         String selectQuery = "SELECT * FROM procedencia_agua";
-        SQLiteDatabase db = this.getWritableDatabase();
         List<String> spinnerContent = new ArrayList<String>();
         Cursor cursor = db.rawQuery(selectQuery, null);
         return  cursor;
@@ -143,7 +132,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     public Cursor getAllRecibeAgua() {
         String selectQuery = "SELECT * FROM recibe_agua";
-        SQLiteDatabase db = this.getWritableDatabase();
         List<String> spinnerContent = new ArrayList<String>();
         Cursor cursor = db.rawQuery(selectQuery, null);
         return  cursor;
@@ -151,7 +139,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     public Cursor getAllTratamientoAgua() {
         String selectQuery = "SELECT * FROM tratamiento_agua";
-        SQLiteDatabase db = this.getWritableDatabase();
         List<String> spinnerContent = new ArrayList<String>();
         Cursor cursor = db.rawQuery(selectQuery, null);
         return  cursor;
@@ -159,7 +146,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     public Cursor getAllEliminaAguaServida() {
         String selectQuery = "SELECT * FROM eliminar_agua_ser";
-        SQLiteDatabase db = this.getWritableDatabase();
         List<String> spinnerContent = new ArrayList<String>();
         Cursor cursor = db.rawQuery(selectQuery, null);
         return  cursor;
@@ -167,7 +153,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     public Cursor getAllUbicacionRetrete() {
         String selectQuery = "SELECT * FROM ubicacion_letrete";
-        SQLiteDatabase db = this.getWritableDatabase();
         List<String> spinnerContent = new ArrayList<String>();
         Cursor cursor = db.rawQuery(selectQuery, null);
         return  cursor;
@@ -175,7 +160,13 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     public Cursor getAllBasura() {
         String selectQuery = "SELECT * FROM eliminar_basura";
-        SQLiteDatabase db = this.getWritableDatabase();
+        List<String> spinnerContent = new ArrayList<String>();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+        return  cursor;
+    }
+
+    public Cursor getUnidadParroquia() {
+        String selectQuery = "SELECT * FROM parroquia WHERE cod_parr=44";
         List<String> spinnerContent = new ArrayList<String>();
         Cursor cursor = db.rawQuery(selectQuery, null);
         return  cursor;
