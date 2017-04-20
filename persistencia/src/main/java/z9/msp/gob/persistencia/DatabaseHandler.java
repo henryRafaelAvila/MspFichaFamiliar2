@@ -181,7 +181,13 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return  cursor;
     }
 
-
+    public Cursor getAllGeneric(String tableName) {
+        String selectQuery = "SELECT * FROM "+tableName;
+        SQLiteDatabase db = this.getWritableDatabase();
+        List<String> spinnerContent = new ArrayList<String>();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+        return  cursor;
+    }
 
 
 

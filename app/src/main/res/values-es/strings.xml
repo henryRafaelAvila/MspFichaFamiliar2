@@ -1,2 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="nacionalidad">Nacionaldad</string>
+    <string name="apellidos">Ingrese los Apellidos</string>
+    <string name="nombre">Ingrese los Nombres</string>
+    <string name="cedula">Ingrese el número de Cédula</string>
+    <string name="mujer">Mujer</string>
+    <string name="hombre">Hombre</string>
+    <string name="sexo">Seleccione el sexo</string>
+    <string name="edad">Ingrese la Edad</string>
+    <string name="discapacidad_perma">¿Tiene Discapacidad Permanente?</string>
+    <string name="carnetConadis">¿Tiene Carnet CONADIS?</string>
+    <string name="tieneHijos">¿Tiene Hijos?</string>
+    <string name="estasEmbarazada">¿Esta embarazada actualmente?</string>
+    <string name="semanasGestacion">¿Núm. semanas de gestación?</string>
+    <string name="numHijosNacidosVivos">¿Núm de hijos nac. vivos?</string>
+    <string name="seguroPrivado">¿Tiene seguro privado?</string>
+    <string name="ordenNucleoFamiliar">Orden del núcleo familiar</string>
+    <string name="asisteCDIP">¿Asiste algún programa de desarrollo infantil privado/público?</string>
+    <string name="leerEscriber">¿Sabe leer y Escribir?</string>
+    <string name="matriEstEnsReg">¿Se matriculó en un establecimiento de enseñanza regular?</string>
+    <string name="AsistNormalmente">¿Asiste Normalmente?</string>
+    <string name="VacunacionCompl">¿Tiene esquema completo de vacunación?</string>
+    <string name="ControlOdont">¿Tiene Control Odontológico?</string>
+    <string name="Peso">Ingrese el peso de la persona</string>
+    <string name="talla">Ingrese la talla de la persona</string>
+    <string name="RecibLechMat">¿Recibio leche materna de ayer hasta hoy 6:00 am?</string>
+    <string name="AddSal">¿A los alimnentos preparados los adiciona sal?</string>
+    <string name="detSeguroPrivado">Detalle su seguro privado</string>
+</resources>

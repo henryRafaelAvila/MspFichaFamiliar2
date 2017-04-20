@@ -1,10 +1,13 @@
 package z9.msp.gob.mspfichafamiliar.activity;
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.SimpleCursorAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -58,6 +61,7 @@ public class NuevoFormularioActivity extends AppCompatActivity {
 
 
     DatabaseHandler db;
+   Button miembrosHogar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -232,6 +236,19 @@ public class NuevoFormularioActivity extends AppCompatActivity {
                 new int[]{android.R.id.text1},
                 SimpleCursorAdapter.FLAG_REGISTER_CONTENT_OBSERVER);
         spinnerBasura.setAdapter(adapterBasura);
+ miembrosHogar=(Button)findViewById(R.id.miembrosHogar);
+        miembrosHogar.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                Context context = view.getContext();
+                Intent intent = new Intent(context, PersonaListActivity.class);
+                intent.putExtra(PersonaListActivity.FORM_ID, "-1");
+                context.startActivity(intent);
+
+            }
+
+        });
     }
 
 
