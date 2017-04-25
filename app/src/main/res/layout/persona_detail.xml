@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_nuevo_formulario_detali"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="z9.msp.gob.mspfichafamiliar.activity.PersonaDetailFragment"
+    android:weightSum="1">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="1.- ¿Ingrese su número de cédula?"
+        android:textColor="@android:color/black"
+        android:background="@android:color/darker_gray"
+        android:gravity="left"
+        android:paddingRight="5dp" />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:hint="@string/cedula"
+        android:ems="10"
+        android:id="@+id/editTextCedula"
+        android:layout_weight="0.05" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="2.- ¿Ingrese los apelidos completos?"
+        android:textColor="@android:color/black"
+        android:background="@android:color/darker_gray"
+        android:gravity="left"
+        android:paddingRight="5dp" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/editTextApellidos"
+        android:layout_weight="0.05"
+        android:hint="@string/apellidos"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="3.- ¿Ingrese los nombres completos?"
+        android:textColor="@android:color/black"
+        android:background="@android:color/darker_gray"
+        android:gravity="left"
+        android:paddingRight="5dp" />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:hint="@string/nombre"
+        android:ems="10"
+        android:id="@+id/editTextnombres"
+        android:layout_weight="0.05" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="4.- ¿Que parentesco tiene con el jefe del hogar?"
+        android:textColor="@android:color/black"
+        android:background="@android:color/darker_gray"
+        android:layout_marginTop="10dp"
+        android:gravity="left"
+        android:paddingRight="5dp" />
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:id="@+id/spinnerParentescoJefeHogar"
+        android:layout_alignParentTop="true"
+        android:layout_weight="0.39"
+        android:layout_centerHorizontal="true"
+        android:spinnerMode="dialog" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="5.- ¿Ingrese la fecha de nacimiento?"
+        android:textColor="@android:color/black"
+        android:background="@android:color/darker_gray"
+        android:layout_marginTop="10dp"
+        android:gravity="left"
+        android:paddingRight="5dp" />
+
+    <include
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        layout="@layout/fecha_nac"
+        android:layout_weight="0.05" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:ems="10"
+        android:id="@+id/editTextEdad"
+        android:hint="@string/edad" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="6.- ¿Cuál es su sexo?"
+        android:textColor="@android:color/black"
+        android:background="@android:color/darker_gray"
+        android:layout_marginTop="10dp"
+        android:gravity="left"
+        android:paddingRight="5dp" />
+    <RadioGroup
+        android:layout_width="354dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/opciones_sexo"
+        android:orientation="horizontal">
+        <RadioButton
+            android:text="@string/hombre"
+            android:layout_width="94dp"
+            android:layout_height="20dp"
+            android:id="@+id/radioSexoHombre" />
+
+        <RadioButton
+            android:text="@string/mujer"
+            android:layout_width="86dp"
+            android:layout_height="20dp"
+            android:id="@+id/radioSexoMujer" />
+
+    </RadioGroup>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="7.- ¿Cuál es su estado civil?"
+        android:textColor="@android:color/black"
+        android:background="@android:color/darker_gray"
+        android:layout_marginTop="10dp"
+        android:gravity="left"
+        android:paddingRight="5dp" />
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinnerEstadoCivil"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_weight="0.39"
+        android:spinnerMode="dialog" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="8.- ¿En el lugar de trabajo, trabaja ó trabajo como?"
+        android:textColor="@android:color/black"
+        android:background="@android:color/darker_gray"
+        android:layout_marginTop="10dp"
+        android:gravity="left"
+        android:paddingRight="5dp" />
+
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinnerActSemPasada"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_weight="0.39"
+        android:spinnerMode="dialog" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="9.- ¿Cúal es su nivel instrucción?"
+        android:textColor="@android:color/black"
+        android:background="@android:color/darker_gray"
+        android:layout_marginTop="10dp"
+        android:gravity="left"
+        android:paddingRight="5dp" />
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinnerNivelInstruccion"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_weight="0.39"
+        android:spinnerMode="dialog" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="10.- ¿Como se autoidentifica?"
+        android:textColor="@android:color/black"
+        android:background="@android:color/darker_gray"
+        android:layout_marginTop="10dp"
+        android:gravity="left"
+        android:paddingRight="5dp" />
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinnerEtnia"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_weight="0.39"
+        android:spinnerMode="dialog" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="11.- ¿Indique su nacionalidad?"
+        android:textColor="@android:color/black"
+        android:background="@android:color/darker_gray"
+        android:layout_marginTop="10dp"
+        android:gravity="left"
+        android:paddingRight="5dp" />
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinnerNacionalidades"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_weight="0.39"
+        android:spinnerMode="dialog" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="12.- ¿A que pueblo pertenece?"
+        android:textColor="@android:color/black"
+        android:background="@android:color/darker_gray"
+        android:layout_marginTop="10dp"
+        android:gravity="left"
+        android:paddingRight="5dp" />
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinnerPueblos"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:spinnerMode="dialog" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="13.- ¿Su nacionalidad?"
+        android:textColor="@android:color/black"
+        android:background="@android:color/darker_gray"
+        android:layout_marginTop="10dp"
+        android:gravity="left"
+        android:paddingRight="5dp" />
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinnerNacionalidad"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_weight="0.39"
+        android:spinnerMode="dialog" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="14.- ¿Tiene seguro público?"
+        android:textColor="@android:color/black"
+        android:background="@android:color/darker_gray"
+        android:layout_marginTop="10dp"
+        android:gravity="left"
+        android:paddingRight="5dp" />
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinnerSeguroPublico"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_weight="0.39"
+        android:spinnerMode="dialog" />
+
+    <Switch
+        android:text="@string/seguroPrivado"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/switchSeguroPrivado"
+        android:layout_weight="0.39" />
+
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:id="@+id/editTextSeguroPrivado"
+        android:hint="@string/detSeguroPrivado"
+        android:inputType="text" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="15.- ¿Clasificación diagnostica?"
+        android:textColor="@android:color/black"
+        android:background="@android:color/darker_gray"
+        android:layout_marginTop="10dp"
+        android:gravity="left"
+        android:paddingRight="5dp" />
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinnerClasificacionDiagnost"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_weight="0.39"
+        android:spinnerMode="dialog" />
+
+</LinearLayout>
+    <!--
+    <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/persona_detail"
+        style="?android:attr/textAppearanceLarge"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="16dp"
+        android:textIsSelectable="true"
+        tools:context="z9.msp.gob.mspfichafamiliar.activity.PersonaDetailFragment" />-->
