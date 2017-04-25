@@ -23,6 +23,7 @@ import z9.msp.gob.persistencia.entity.Parroquia;
 import z9.msp.gob.persistencia.entity.ProcedenciaAgua;
 import z9.msp.gob.persistencia.entity.Provincia;
 import z9.msp.gob.persistencia.entity.Pueblo;
+import z9.msp.gob.persistencia.entity.RecibeAgua;
 import z9.msp.gob.persistencia.entity.SeguroPublico;
 import z9.msp.gob.persistencia.entity.TipoTransp;
 import z9.msp.gob.persistencia.entity.TipoVivienda;
@@ -43,7 +44,8 @@ public enum TABLES {
     UNIDAD_OPERATIVA("unidad_operativa",UnidadOperativa.class,"CREATE TABLE unidad_operativa (_id INTEGER PRIMARY KEY  AUTOINCREMENT  NOT NULL , id_parroquia INTEGER NOT NULL , cod_uni_oper VARCHAR NOT NULL , nombre_oficial VARCHAR NOT NULL , nombre_comun VARCHAR NOT NULL , direccion VARCHAR NOT NULL , telf VARCHAR NOT NULL )"),
     ELIMINAR_BASURA("eliminar_basura",EliminarBasura.class,"CREATE TABLE eliminar_basura (_id INTEGER PRIMARY KEY  NOT NULL  DEFAULT (null) ,cod_eli_bas INTEGER NOT NULL ,descripcion VARCHAR NOT NULL )"),
     UBICACION_LETRETE("ubicacion_letrete",UbicacionLetrete.class,"CREATE TABLE ubicacion_letrete (_id INTEGER PRIMARY KEY  NOT NULL  DEFAULT (null) ,cod_ubi_let INTEGER NOT NULL ,descripcion VARCHAR NOT NULL )"),
-    ELIMINAR_AGUA_SERVICIOS("eliminar_agua_ser",EliminarAguaSer.class,"CREATE TABLE eliminar_agua_ser (_id INTEGER PRIMARY KEY  NOT NULL , cod_agua_ser INTEGER NOT NULL , descripcion VARCHAR NOT NULL )"),
+    ELIMINAR_AGUA_SERVIDAS("eliminar_agua_ser",EliminarAguaSer.class,"CREATE TABLE eliminar_agua_ser (_id INTEGER PRIMARY KEY  NOT NULL , cod_agua_ser INTEGER NOT NULL , descripcion VARCHAR NOT NULL )"),
+    RECIBE_AGUA("recibe_agua",RecibeAgua.class,"CREATE TABLE recibe_agua (_id INTEGER PRIMARY KEY  NOT NULL  DEFAULT (null) ,cod_rec_agu INTEGER NOT NULL ,descripcion VARCHAR NOT NULL )"),
     TRATAMIENTO_AGUA("tratamiento_agua",TratamientoAgua.class,"CREATE TABLE tratamiento_agua (_id INTEGER PRIMARY KEY  NOT NULL  DEFAULT (null) ,cod_tra_agu INTEGER NOT NULL ,descripcion VARCHAR NOT NULL )"),
     PROCEDENCIA_AGUA("procedencia_agua",ProcedenciaAgua.class,"CREATE TABLE procedencia_agua (_id INTEGER PRIMARY KEY  NOT NULL  DEFAULT (null) ,cod_pro_agu INTEGER NOT NULL ,descripcion VARCHAR NOT NULL )"),
     COMBUSTIBLE_COCINA("combustible_cocinar",CombustibleCocinar.class,"CREATE TABLE combustible_cocinar (_id INTEGER PRIMARY KEY  NOT NULL  DEFAULT (null) ,cod_coc INTEGER NOT NULL ,descripcion VARCHAR NOT NULL )"),
@@ -55,7 +57,7 @@ public enum TABLES {
     TIPO_TRANSPORTE("tipo_transp",TipoTransp.class,"CREATE TABLE tipo_transp (_id INTEGER PRIMARY KEY  NOT NULL  DEFAULT (null) ,cod_tip_trans INTEGER NOT NULL ,descripcion VARCHAR NOT NULL )"),
     VIAS_ACCESO("vias_acceso",ViasAcceso.class,"CREATE TABLE vias_acceso (_id INTEGER PRIMARY KEY  NOT NULL  DEFAULT (null) ,cod_via_acc INTEGER NOT NULL ,descripcion VARCHAR NOT NULL )"),
     TIPO_VIVIENDA("tipo_vivienda",TipoVivienda.class,"CREATE TABLE tipo_vivienda (_id INTEGER PRIMARY KEY  NOT NULL  DEFAULT (null) ,cod_tip_viv INTEGER NOT NULL ,descripcion VARCHAR NOT NULL )"),
-    CONDICION_OCIPACION("condicion_ocupacion",CondicionOcupacion.class,"CREATE TABLE condicion_ocupacion (_id INTEGER PRIMARY KEY  NOT NULL  DEFAULT (null) ,cod_ocup INTEGER NOT NULL ,descripcion VARCHAR NOT NULL )"),
+    CONDICION_OCUPACION("condicion_ocupacion",CondicionOcupacion.class,"CREATE TABLE condicion_ocupacion (_id INTEGER PRIMARY KEY  NOT NULL  DEFAULT (null) ,cod_ocup INTEGER NOT NULL ,descripcion VARCHAR NOT NULL )"),
     NACIONALIDAD("nacionalidad",Nacionalidad.class,"CREATE TABLE nacionalidad (_id INTEGER PRIMARY KEY  NOT NULL , cod_nac VARCHAR NOT NULL , descripcion VARCHAR NOT NULL )"),
     NACIONALIDADES("nacionalidades",Nacionalidade.class,"CREATE TABLE nacionalidades (_id INTEGER PRIMARY KEY  NOT NULL , cod_nacs VARCHAR NOT NULL , descripcion VARCHAR NOT NULL )"),
     ETNIA("etnia",Etnia.class,"CREATE TABLE etnia (_id INTEGER PRIMARY KEY  NOT NULL , cod_etn VARCHAR NOT NULL , descripcion VARCHAR NOT NULL )"),

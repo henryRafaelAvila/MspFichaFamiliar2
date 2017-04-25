@@ -126,7 +126,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 try {
                     new GetCommentsTask().
                             execute(
-                                    new URL("http://192.168.0.103:8090/msp.ficha/api/Catalog/datos"));
+                                    new URL("http://192.168.0.101:8090/msp.ficha/api/Catalog/datos"));
                 } catch (MalformedURLException e) {
                     e.printStackTrace();
                 }
