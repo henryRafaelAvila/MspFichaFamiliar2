@@ -24,11 +24,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:orientation="vertical">
-            <Button
-                android:text="Miembros del Hogar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/miembrosHogar" />
+
             <TextView
                 android:id="@+id/txtbl1"
                 android:layout_width="match_parent"
@@ -210,6 +206,7 @@
             <EditText android:id="@+id/etxtZona"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:editable="false"/>
             <Space
                 android:layout_width="wrap_content"
@@ -228,6 +225,7 @@
             <EditText android:id="@+id/etxtDistrito"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:editable="false"/>
             <Space
                 android:layout_width="wrap_content"
@@ -262,6 +260,7 @@
             <EditText android:id="@+id/etxtProvincia"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:editable="false"/>
             <Space
                 android:layout_width="wrap_content"
@@ -279,6 +278,7 @@
             <EditText android:id="@+id/etxtCanton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:editable="false"/>
             <Space
                 android:layout_width="wrap_content"
@@ -296,6 +296,7 @@
             <EditText android:id="@+id/etxParroquia"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:editable="false"/>
             <Space
                 android:layout_width="wrap_content"
@@ -329,6 +330,7 @@
             <EditText android:id="@+id/etxManzana"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:maxLength="2"
                 android:inputType="number" />
 
             <Space
@@ -410,6 +412,7 @@
                 android:layout_height="wrap_content"
                 android:text="11. Telefono:"
                 android:textColor="@android:color/black"
+                android:maxLength="9"
                 android:paddingRight="5dp" />
 
             <EditText android:id="@+id/etxtFono"
@@ -431,6 +434,7 @@
             <EditText android:id="@+id/etxtCelular"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:maxLength="10"
                 android:inputType="phone" />
             <Space
                 android:layout_width="wrap_content"
@@ -465,6 +469,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
+
                 android:paddingTop="8dp"
 
                 />
@@ -506,6 +511,7 @@
             <EditText android:id="@+id/etxtMeses"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:maxLength="2"
                 android:inputType="number" />
             <Space
                 android:layout_width="wrap_content"
@@ -523,6 +529,7 @@
             <EditText android:id="@+id/etxtAnios"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:maxLength="2"
                 android:inputType="number" />
             <Space
                 android:layout_width="wrap_content"
@@ -580,6 +587,7 @@
             <EditText android:id="@+id/etxtFonoFijo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:maxLength="9"
                 android:inputType="phone" />
             <Space
                 android:layout_width="wrap_content"
@@ -596,6 +604,7 @@
             <EditText android:id="@+id/etxtCelularEntrevistado"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:maxLength="10"
                 android:inputType="phone" />
             <Space
                 android:layout_width="wrap_content"
@@ -621,6 +630,7 @@
             <EditText android:id="@+id/etxtFonoFijoReferencia"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:maxLength="9"
                 android:inputType="phone" />
             <Space
                 android:layout_width="wrap_content"
@@ -637,6 +647,7 @@
             <EditText android:id="@+id/etxtCelularReferencia"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:maxLength="10"
                 android:inputType="phone" />
 
             <!-- Bloque 3-->
@@ -1023,6 +1034,7 @@
             <EditText android:id="@+id/etxtNCuartos"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:maxLength="2"
                 android:inputType="number"/>
             <Space
                 android:layout_width="wrap_content"
@@ -1052,6 +1064,7 @@
             <EditText android:id="@+id/etxtNCuartosDormir"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:maxLength="2"
                 android:inputType="number"/>
             <Space
                 android:layout_width="wrap_content"
@@ -2325,9 +2338,15 @@
 
                 </RadioGroup>
             </GridLayout>
-
-            <!-- Ubica tu parte aqui porfavor y borraras este comentario-->
-
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="10dp"
+                android:background="@drawable/red_bg" />
+            <Button
+                android:text="Miembros del Hogar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/miembrosHogar"/>
 
 
         </LinearLayout>
