@@ -46,136 +46,16 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     }
 
-    public Cursor getAllUnidad() {
-        String selectQuery = "SELECT * FROM unidad_operativa";
-        List<String> spinnerContent = new ArrayList<String>();
-        Cursor cursor = db.rawQuery(selectQuery, null);
-        return  cursor;
-    }
 
-    public Cursor getAllOcupacion() {
-        String selectQuery = "SELECT * FROM condicion_ocupacion";
-        List<String> spinnerContent = new ArrayList<String>();
-        Cursor cursor = db.rawQuery(selectQuery, null);
-        return  cursor;
-    }
-
-    public Cursor getAllTipoVivienda() {
-        String selectQuery = "SELECT * FROM tipo_vivienda";
-        List<String> spinnerContent = new ArrayList<String>();
-        Cursor cursor = db.rawQuery(selectQuery, null);
-        return  cursor;
-    }
-
-    public Cursor getAllAccesoVivienda() {
-        String selectQuery = "SELECT * FROM vias_acceso";
-        List<String> spinnerContent = new ArrayList<String>();
-        Cursor cursor = db.rawQuery(selectQuery, null);
-        return  cursor;
-    }
-
-    public Cursor getAllTipoTransporte() {
-        String selectQuery = "SELECT * FROM tipo_transp";
-        List<String> spinnerContent = new ArrayList<String>();
-        Cursor cursor = db.rawQuery(selectQuery, null);
-        return  cursor;
-    }
-
-    public Cursor getAllMaterialTecho() {
-        String selectQuery = "SELECT * FROM material_techo";
-        List<String> spinnerContent = new ArrayList<String>();
-        Cursor cursor = db.rawQuery(selectQuery, null);
-        return  cursor;
-    }
-
-    public Cursor getAllMaterialPiso() {
-        String selectQuery = "SELECT * FROM material_piso";
-        List<String> spinnerContent = new ArrayList<String>();
-        Cursor cursor = db.rawQuery(selectQuery, null);
-        return  cursor;
-    }
-
-    public Cursor getAllMaterialParedes() {
-        String selectQuery = "SELECT * FROM material_pared";
-        List<String> spinnerContent = new ArrayList<String>();
-        Cursor cursor = db.rawQuery(selectQuery, null);
-        return  cursor;
-    }
-
-    public Cursor getAllEstadoTecho() {
-        String selectQuery = "SELECT * FROM estado_techo";
-        List<String> spinnerContent = new ArrayList<String>();
-        Cursor cursor = db.rawQuery(selectQuery, null);
-        return  cursor;
-    }
-
-    public Cursor getAllEstadoPiso() {
-        String selectQuery = "SELECT * FROM estado_piso";
-        List<String> spinnerContent = new ArrayList<String>();
-        Cursor cursor = db.rawQuery(selectQuery, null);
-        return  cursor;
-    }
-
-    public Cursor getAllCocina() {
-        String selectQuery = "SELECT * FROM combustible_cocinar";
-        List<String> spinnerContent = new ArrayList<String>();
-        Cursor cursor = db.rawQuery(selectQuery, null);
-        return  cursor;
-    }
-
-    public Cursor getAllProvieneAgua() {
-        String selectQuery = "SELECT * FROM procedencia_agua";
-        List<String> spinnerContent = new ArrayList<String>();
-        Cursor cursor = db.rawQuery(selectQuery, null);
-        return  cursor;
-    }
-
-    public Cursor getAllRecibeAgua() {
-        String selectQuery = "SELECT * FROM recibe_agua";
-        List<String> spinnerContent = new ArrayList<String>();
-        Cursor cursor = db.rawQuery(selectQuery, null);
-        return  cursor;
-    }
-
-    public Cursor getAllTratamientoAgua() {
-        String selectQuery = "SELECT * FROM tratamiento_agua";
-        List<String> spinnerContent = new ArrayList<String>();
-        Cursor cursor = db.rawQuery(selectQuery, null);
-        return  cursor;
-    }
-
-    public Cursor getAllEliminaAguaServida() {
-        String selectQuery = "SELECT * FROM eliminar_agua_ser";
-        List<String> spinnerContent = new ArrayList<String>();
-        Cursor cursor = db.rawQuery(selectQuery, null);
-        return  cursor;
-    }
-
-    public Cursor getAllUbicacionRetrete() {
-        String selectQuery = "SELECT * FROM ubicacion_letrete";
-        List<String> spinnerContent = new ArrayList<String>();
-        Cursor cursor = db.rawQuery(selectQuery, null);
-        return  cursor;
-    }
-
-    public Cursor getAllBasura() {
-        String selectQuery = "SELECT * FROM eliminar_basura";
-        List<String> spinnerContent = new ArrayList<String>();
-        Cursor cursor = db.rawQuery(selectQuery, null);
-        return  cursor;
-    }
-
-    public Cursor getUnidadParroquia() {
-        String selectQuery = "SELECT * FROM parroquia WHERE cod_parr=44";
-        List<String> spinnerContent = new ArrayList<String>();
-        Cursor cursor = db.rawQuery(selectQuery, null);
+     public Cursor getUnidadDatos(String tabla,String id) {
+        String selectQuery = "SELECT * FROM "+tabla+" WHERE _id=?";
+        Cursor cursor = db.rawQuery(selectQuery,  new String[] { id});
         return  cursor;
     }
 
     public Cursor getAllGeneric(String tableName) {
         String selectQuery = "SELECT * FROM "+tableName;
         SQLiteDatabase db = this.getWritableDatabase();
-        List<String> spinnerContent = new ArrayList<String>();
         Cursor cursor = db.rawQuery(selectQuery, null);
         return  cursor;
     }
