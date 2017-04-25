@@ -6,6 +6,7 @@ import android.app.Dialog;
 import android.database.Cursor;
 import java.util.Calendar;
 
+import android.database.sqlite.SQLiteCursor;
 import android.icu.util.Output;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.os.Bundle;
@@ -16,6 +17,7 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -31,6 +33,7 @@ import z9.msp.gob.mspfichafamiliar.R;
 import z9.msp.gob.mspfichafamiliar.activity.dummy.DummyContent;
 import z9.msp.gob.persistencia.DatabaseHandler;
 import z9.msp.gob.persistencia.entity.Personas;
+import z9.msp.gob.persistencia.enums.TABLES;
 
 
 /**
@@ -71,12 +74,11 @@ public class PersonaDetailFragment extends Fragment {
     Spinner spinnerNacionalidades;
     Spinner spinnerPueblos;
     Spinner spinnerClasificacionDiagnost;
-    LinearLayout linerLayoutDetailMujer;
     RadioGroup radioGroupsexo;
     /*FECHA DE NACIMIENTO*/
-    private DatePicker datePicker;
-    private Calendar calendar;
     private TextView tv_fechaNac;
+    private TextView tvNacionalidad;
+    private TextView tvPueblos;
     private Button selectFechaNacimiento;
     DatePickerDialog datePickerDialog;
 
@@ -120,15 +122,15 @@ public class PersonaDetailFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.persona_detail, container, false);
+        final View rootView = inflater.inflate(R.layout.persona_detail, container, false);
         //mostrarFechas(rootView);
         inicializarSpinner(rootView);
 
-        //activar u ocultar campos
         editTextEdad=(EditText) rootView.findViewById(R.id.editTextEdad);
-        //editTextEdad.addTextChangedListener(redoWatcher);
-        //fechaNac
+
         tv_fechaNac=(TextView) rootView.findViewById(R.id.tv_fechaNac);
+        tvNacionalidad=(TextView) rootView.findViewById(R.id.tvNacionalidad);
+        tvPueblos=(TextView) rootView.findViewById(R.id.tvPueblos);
         selectFechaNacimiento=(Button) rootView.findViewById(R.id.selectFechaNacimiento);
         selectFechaNacimiento.setOnClickListener(new View.OnClickListener() {
 
@@ -169,8 +171,6 @@ public class PersonaDetailFragment extends Fragment {
         });
         //radioBurron
         radioGroupsexo=(RadioGroup) rootView.findViewById(R.id.opciones_sexo);
-
-
         radioGroupsexo.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener()
         {
             @Override
@@ -186,7 +186,60 @@ public class PersonaDetailFragment extends Fragment {
         }else{
             populatedSpinner();
         }
+//DESPUES DE LLENAR LOS SPPINER PASO A ACTIVAR EVENTES DEPENDIENDO DEL TIPO DE ITEM SE MUESTRA U OCULTA PREGRUNTA
+        //EJPM : PREGUNTA COMO SE AUTOIDENTIFICA
+        spinnerEtnia.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                // your code here
 
+                Object item=parentView.getItemAtPosition(position);
+                String value = String.valueOf(((SQLiteCursor)item).getString(1));
+                if(value.equals("1")){//indigena true
+                    //show
+                    tvNacionalidad.setVisibility(View.VISIBLE);
+                    spinnerNacionalidades.setVisibility(View.VISIBLE);//show nacionaleses
+                }else{
+                    //hide
+                    tvNacionalidad.setVisibility(View.GONE);
+                    spinnerNacionalidades.setVisibility(View.GONE);
+                    tvPueblos.setVisibility(View.GONE);
+                    spinnerPueblos.setVisibility(View.GONE);
+                }
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+                // your code here
+            }
+
+        });
+        spinnerNacionalidades.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                // your code here
+
+                Object item=parentView.getItemAtPosition(position);
+                String value = String.valueOf(((SQLiteCursor)item).getString(1));
+                    if(value.equals("7")){//indigena true
+                        //show
+                        tvPueblos.setVisibility(View.VISIBLE);
+                        spinnerPueblos.setVisibility(View.VISIBLE);
+                    }else{
+                        //hide
+                        tvPueblos.setVisibility(View.GONE);
+                        spinnerPueblos.setVisibility(View.GONE);
+                    }
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+                // your code here
+            }
+
+        });
         return rootView;
     }
     private void inicializarSpinner(View rootView){
@@ -205,31 +258,32 @@ public class PersonaDetailFragment extends Fragment {
     private void populatedSpinner(Personas mItem) {
         //((TextView) rootView.findViewById(R.id.persona_detail)).setText(mItem.details);
         //llenada de combos
-        pupulatedSpinner(adapterNacionalidad,db.getAllGeneric("recibe_agua"),spinnerNacionalidad);
+        populatedSpinner();
+       /* pupulatedSpinner(adapterNacionalidad,db.getAllGeneric("recibe_agua"),spinnerNacionalidad);
         pupulatedSpinner(adapterEtnia,db.getAllGeneric("recibe_agua"),spinnerEtnia);
         pupulatedSpinner(adapterSeguroPublico,db.getAllGeneric("recibe_agua"),spinnerSeguroPublico);
         pupulatedSpinner(adapterParentescoJefeHogar,db.getAllGeneric("recibe_agua"),spinnerParentescoJefeHogar);
         pupulatedSpinner(adapterEstadoCivil,db.getAllGeneric("recibe_agua"),spinnerEstadoCivil);
         pupulatedSpinner(adapterNivelInstruccion,db.getAllGeneric("recibe_agua"),spinnerNivelInstruccion);
         pupulatedSpinner(adapterActSemPasada,db.getAllGeneric("recibe_agua"),spinnerActSemPasada);
-        pupulatedSpinner(adapterNacionalidades,db.getAllGeneric("recibe_agua"),spinnerNacionalidades);
+        pupulatedSpinner(adapterNacionalidades,db.getAllGeneric("nacionalidades"),spinnerNacionalidades);
         pupulatedSpinner(adapterPueblos,db.getAllGeneric("recibe_agua"),spinnerPueblos);
-        pupulatedSpinner(adapterClasificacionDiagnost,db.getAllGeneric("recibe_agua"),spinnerClasificacionDiagnost);
+        pupulatedSpinner(adapterClasificacionDiagnost,db.getAllGeneric("recibe_agua"),spinnerClasificacionDiagnost);*/
 
     }
     private void populatedSpinner() {
         //((TextView) rootView.findViewById(R.id.persona_detail)).setText(mItem.details);
         //llenada de combos
-        pupulatedSpinner(adapterNacionalidad,db.getAllGeneric("recibe_agua"),spinnerNacionalidad);
-        pupulatedSpinner(adapterEtnia,db.getAllGeneric("recibe_agua"),spinnerEtnia);
-        pupulatedSpinner(adapterSeguroPublico,db.getAllGeneric("recibe_agua"),spinnerSeguroPublico);
-        pupulatedSpinner(adapterParentescoJefeHogar,db.getAllGeneric("recibe_agua"),spinnerParentescoJefeHogar);
-        pupulatedSpinner(adapterEstadoCivil,db.getAllGeneric("recibe_agua"),spinnerEstadoCivil);
-        pupulatedSpinner(adapterNivelInstruccion,db.getAllGeneric("recibe_agua"),spinnerNivelInstruccion);
-        pupulatedSpinner(adapterActSemPasada,db.getAllGeneric("recibe_agua"),spinnerActSemPasada);
-        pupulatedSpinner(adapterNacionalidades,db.getAllGeneric("recibe_agua"),spinnerNacionalidades);
-        pupulatedSpinner(adapterPueblos,db.getAllGeneric("recibe_agua"),spinnerPueblos);
-        pupulatedSpinner(adapterClasificacionDiagnost,db.getAllGeneric("recibe_agua"),spinnerClasificacionDiagnost);
+        pupulatedSpinner(adapterNacionalidad,db.getAllGeneric(TABLES.NACIONALIDAD.getTablaName()),spinnerNacionalidad);
+        pupulatedSpinner(adapterEtnia,db.getAllGeneric(TABLES.ETNIA.getTablaName()),spinnerEtnia);
+        pupulatedSpinner(adapterSeguroPublico,db.getAllGeneric(TABLES.SEGPUBLICO.getTablaName()),spinnerSeguroPublico);
+        pupulatedSpinner(adapterParentescoJefeHogar,db.getAllGeneric(TABLES.PARENT_JE_HO.getTablaName()),spinnerParentescoJefeHogar);
+        pupulatedSpinner(adapterEstadoCivil,db.getAllGeneric(TABLES.ESTADO_CIVIL.getTablaName()),spinnerEstadoCivil);
+        pupulatedSpinner(adapterNivelInstruccion,db.getAllGeneric(TABLES.NIVEL_INSTRS.getTablaName()),spinnerNivelInstruccion);
+        pupulatedSpinner(adapterActSemPasada,db.getAllGeneric(TABLES.ACTIVIADAD_TRABAJO.getTablaName()),spinnerActSemPasada);
+        pupulatedSpinner(adapterNacionalidades,db.getAllGeneric(TABLES.NACIONALIDADES.getTablaName()),spinnerNacionalidades);
+        pupulatedSpinner(adapterPueblos,db.getAllGeneric(TABLES.PUEBLOS.getTablaName()),spinnerPueblos);
+        pupulatedSpinner(adapterClasificacionDiagnost,db.getAllGeneric(TABLES.CLASF_DIAGNOS.getTablaName()),spinnerClasificacionDiagnost);
     }
     private void pupulatedSpinner(SimpleCursorAdapter adapter, Cursor cursor,Spinner spinner){
         adapter = new SimpleCursorAdapter(getContext(),
@@ -240,32 +294,5 @@ public class PersonaDetailFragment extends Fragment {
                 SimpleCursorAdapter.FLAG_REGISTER_CONTENT_OBSERVER);//Observer para el refresco
         spinner.setAdapter(adapter);
     }
-    // listener
-//    private TextWatcher redoWatcher = new TextWatcher() {
-//
-//
-//        public void beforeTextChanged(CharSequence s, int start, int count,
-//                                      int after) {
-//        }
-//
-//        @Override
-//        public void onTextChanged(CharSequence s, int start, int before,
-//                                  int count) {
-//        }
-//
-//        @Override
-//        public void afterTextChanged(Editable s) {
-//            if(!s.toString().equals("")) {
-//                int edad = Integer.parseInt(s.toString());
-//                if (edad > 11) {
-//                    spinnerEstadoCivil.setVisibility(View.INVISIBLE);
-//                }else{
-//                    spinnerEstadoCivil.setVisibility(View.VISIBLE);
-//                }
-//            }
-//
-//        }
-//
-//    };
 
 }
