@@ -30,6 +30,7 @@ import android.widget.Switch;
 import android.widget.TextView;
 
 import z9.msp.gob.mspfichafamiliar.R;
+import z9.msp.gob.mspfichafamiliar.S;
 import z9.msp.gob.mspfichafamiliar.activity.dummy.DummyContent;
 import z9.msp.gob.persistencia.DatabaseHandler;
 import z9.msp.gob.persistencia.entity.Personas;
@@ -49,7 +50,11 @@ public class PersonaDetailFragment extends Fragment {
      */
     DatabaseHandler db;
 
+    EditText  editTextCedula;
+    EditText editTextApellidos;
+    EditText editTextnombres;
     EditText editTextEdad;
+    EditText editTextSeguroPrivado;
     
 //TODO: FALTA ITEM PAR RECIBIR EL SEXO
     SimpleCursorAdapter adapterNacionalidad;
@@ -113,20 +118,29 @@ public class PersonaDetailFragment extends Fragment {
                 if(mItem!=null&&mItem.getNombres()!=null) {
                     appBarLayout.setTitle(mItem.getNombres());
                 }else{
-                    appBarLayout.setTitle("Nueva Persona");
+                    appBarLayout.setTitle(S.nuevaPersona);
                 }
             }
         }
     }
 
+
+
+private void initEditText(View rootView){
+    editTextCedula=(EditText) rootView.findViewById(R.id.editTextCedula);
+    editTextApellidos=(EditText) rootView.findViewById(R.id.editTextApellidos);
+    editTextnombres=(EditText) rootView.findViewById(R.id.editTextnombres);
+    editTextEdad=(EditText) rootView.findViewById(R.id.editTextEdad);
+    editTextSeguroPrivado=(EditText) rootView.findViewById(R.id.editTextSeguroPrivado);
+
+}
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         final View rootView = inflater.inflate(R.layout.persona_detail, container, false);
         //mostrarFechas(rootView);
         inicializarSpinner(rootView);
-
-        editTextEdad=(EditText) rootView.findViewById(R.id.editTextEdad);
+        initEditText(rootView);
 
         tv_fechaNac=(TextView) rootView.findViewById(R.id.tv_fechaNac);
         tvNacionalidad=(TextView) rootView.findViewById(R.id.tvNacionalidad);
@@ -272,7 +286,6 @@ public class PersonaDetailFragment extends Fragment {
 
     }
     private void populatedSpinner() {
-        //((TextView) rootView.findViewById(R.id.persona_detail)).setText(mItem.details);
         //llenada de combos
         pupulatedSpinner(adapterNacionalidad,db.getAllGeneric(TABLES.NACIONALIDAD.getTablaName()),spinnerNacionalidad);
         pupulatedSpinner(adapterEtnia,db.getAllGeneric(TABLES.ETNIA.getTablaName()),spinnerEtnia);

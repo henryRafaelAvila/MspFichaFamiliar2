@@ -16,11 +16,14 @@
             android:name=".MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
+
+            <!--
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+            -->
         </activity>
         <!-- <activity -->
         <!-- android:name=".activity.ListFormActivity" -->
@@ -47,11 +50,26 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="z9.msp.gob.mspfichafamiliar.activity.PersonaListActivity" />
         </activity>
-        <activity android:name=".activity.ConfigurationDataBase" />
-       <!-- <activity
+        <activity android:name=".activity.ConfigurationDataBase"
+            android:label="Configuración ">
+        <meta-data
+        android:name="android.support.PARENT_ACTIVITY"
+        android:value="z9.msp.gob.mspfichafamiliar.MasterPageActivity" />
+    </activity>
+        <!--
+            <activity
             android:name=".activity.MortalidadListActivity"
             android:label="@string/title_activity_mortalidad_list"
-            android:theme="@style/AppTheme.NoActionBar"></activity>-->
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        -->
+
+        <activity android:name=".MasterPageActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

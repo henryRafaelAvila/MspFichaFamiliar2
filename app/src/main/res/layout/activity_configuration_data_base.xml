@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_configuration_data_base"
     android:layout_width="match_parent"
@@ -9,25 +10,160 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="z9.msp.gob.mspfichafamiliar.activity.ConfigurationDataBase">
+    tools:context="z9.msp.gob.mspfichafamiliar.activity.ConfigurationDataBase"
+    android:weightSum="1">
 
-
-    <TextView
-        android:text="@string/dir_ip"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView4" />
+        android:layout_height="match_parent">
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:ems="10"
-        android:id="@+id/editText2" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="CONFIGURACION SERVICIO DE INTEGRACION"
+            android:textColor="@android:color/black"
+            android:background="@android:color/darker_gray"
+            android:paddingRight="5dp"
+            android:gravity="center" />
 
-    <TextView
-        android:text="TextView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView5" />
+        <TextView
+            android:text="Dirección IP"
+            android:layout_width="match_parent"
+            android:textStyle="bold"
+            android:textColor="@android:color/background_dark"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView4"
+            android:paddingTop="10dp"
+            android:elevation="1dp"
+            />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:id="@+id/et_direccionIp"
+            android:hint="127.0.0.1"
+            android:text="192.168.0.101" />
+        <TextView
+            android:text="Puerto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textVie5"
+            android:paddingTop="10dp"
+            android:textStyle="bold"
+            android:textColor="@android:color/background_dark"/>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:id="@+id/et_puerto"
+                android:hint="8080"
+                android:text="8090" />
+
+            <TextView
+            android:text="Usuario"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/ttextVie5"
+            android:paddingTop="10dp"
+            android:textStyle="bold"
+            android:textColor="@android:color/background_dark"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:id="@+id/et_usuario"
+            android:hint="usuario"
+            android:text="sadf" />
+
+        <TextView
+            android:text="Clave"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/tttextVie5"
+            android:paddingTop="10dp"
+            android:textStyle="bold"
+            android:textColor="@android:color/background_dark"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:id="@+id/et_clave"
+            android:hint="Clave"
+            android:text="dasd" />
+        <TextView
+            android:text="WS de integración Catálogos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textVie6"
+            android:paddingTop="10dp"
+            android:textStyle="bold"
+            android:textColor="@android:color/background_dark"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:id="@+id/et_catalogos"
+            android:text="/msp.ficha/api/integracion/catalogos" />
+
+        <TextView
+            android:text="WS carga de formulario"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textVie7"
+            android:paddingTop="10dp"
+            android:textStyle="bold"
+            android:textColor="@android:color/background_dark"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:id="@+id/et_uploadForm"
+            android:text="/msp.ficha/api/integracion/catalogos" />
+
+        <TextView
+            android:text="WS descargar de formulario"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textVie8"
+            android:paddingTop="10dp"
+            android:textStyle="bold"
+            android:textColor="@android:color/background_dark"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:id="@+id/et_downloadForm"
+            android:hint="/msp/integration/downloadForm"
+            android:text="/msp.ficha/api/integracion/catalogos" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="232dp">
+
+            <Button
+                android:text="Guardar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/btn_save_config_server"
+                android:layout_weight="1"
+                android:onClick="saveData" />
+        </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+
+
 </LinearLayout>

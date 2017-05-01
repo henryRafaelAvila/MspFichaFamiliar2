@@ -73,15 +73,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navigationView.setNavigationItemSelectedListener(this);
 
         db = new DatabaseHandler(this);
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //ACCION BOTON MAS,  NUEVO FORMLARIO
-                Intent launchactivity = new  Intent(MainActivity.this, NuevoFormularioActivity.class);
-                startActivity(launchactivity);
-            }
-        });
         ListFormFragment leadsFragment = (ListFormFragment)
                 getSupportFragmentManager().findFragmentById(R.id.content_list_form);
 
@@ -123,13 +114,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 //                final ClientRest clientRest=new ClientRest();
 //                String json=clientRest.popupaleDataBAse("myURL");
 //                System.out.println(json);
-                try {
-                    new GetCommentsTask().
-                            execute(
-                                    new URL("http://192.168.0.101:8090/msp.ficha/api/Catalog/datos"));
-                } catch (MalformedURLException e) {
-                    e.printStackTrace();
-                }
+
 
             }
             else{
@@ -156,97 +141,5 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
-    }
-    /*
-    La clase GetCommentsTask representa una tarea asincrona que realizará
-    las operaciones de red necesarias en segundo plano para obtener toda la
-    lista de comentarios alojada en el servidor.
-     */
-    public class GetCommentsTask extends AsyncTask<URL, Void, List<String>> {
-
-        @Override
-        protected List<String> doInBackground(URL... urls) {
-
-            List<String> comments = null;
-
-            try {
-
-                // Establecer la conexión
-                con = (HttpURLConnection)urls[0].openConnection();
-
-                // Obtener el estado del recurso
-                int statusCode = con.getResponseCode();
-
-                if(statusCode!=200) {
-                    comments = new ArrayList<>();
-                    comments.add("El recurso no está disponible");
-                    return comments;
-                }
-                else{
-
-                    /*
-                    Parsear el flujo con formato JSON a una lista de Strings
-                    que permitan crean un adaptador
-                     */
-                    String output;
-                    StringBuilder out=new StringBuilder();
-                    BufferedReader br = new BufferedReader(new InputStreamReader(
-                            (con.getInputStream())));
-                    System.out.println("Output from Server .... \n");
-
-                    while ((output = br.readLine()) != null) {
-                        out.append(output);
-                    }
-                    comments = new ArrayList<>();
-                    comments.add(out.toString());
-                    System.out.println(out.toString());
-                    JSONObject response = new JSONObject(out.toString());
-                    Iterator<?> keys = response.keys();
-                    db.deleteData();
-                    while( keys.hasNext() ) {
-                        String tableName = (String)keys.next();
-                        try {
-                            JSONArray listObject=response.getJSONArray(tableName);
-                            for(int i=0;i<listObject.length();i++){
-                                JSONObject object =listObject.optJSONObject(i);
-
-                                //db.insertMassive(tableName,object);
-                                TABLES table=TABLES.findByTableName(tableName);
-                                if(table!=null) {
-                                    Gson gson = new Gson();
-                                    Object entity = gson.fromJson(listObject.getString(i), table.getaClass());
-                                    db.insert(table, entity);
-                                }
-
-
-                            }
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-
-                    }
-
-
-
-
-                }
-
-            } catch (Exception e) {
-                e.printStackTrace();
-
-            }finally {
-                con.disconnect();
-            }
-            return comments;
-
-        }
-
-        @Override
-        protected void onPostExecute(List<String> s) {
-
-            for (String sItem:s){
-                System.out.println("Output from Server .... \n" +sItem);
-            }
-        }
     }
 }

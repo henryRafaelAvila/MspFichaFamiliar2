@@ -6,6 +6,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.graphics.Path;
 import android.provider.ContactsContract;
 
 
@@ -47,6 +48,7 @@ import z9.msp.gob.persistencia.entity.TipoVivienda;
 import z9.msp.gob.persistencia.entity.TratamientoAgua;
 import z9.msp.gob.persistencia.entity.UbicacionLetrete;
 import z9.msp.gob.persistencia.enums.TABLES;
+import z9.msp.gob.persistencia.enums.WS;
 
 /**
  * Created by henry on 3/26/2017.
@@ -55,7 +57,7 @@ import z9.msp.gob.persistencia.enums.TABLES;
 public class DatabaseHandler extends SQLiteOpenHelper {
     // All Static variables
     // Database Version
-    private static final int DATABASE_VERSION = 3;
+    private static final int DATABASE_VERSION = 7;
     private static final String DATABASE_NAME = "ficha_familiar_msp";
     private Context context;
     SQLiteDatabase db = this.getWritableDatabase();
@@ -69,6 +71,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         System.out.println("********CREATE TABLES DATABASE*************");
         System.out.println("*******************************************");
+        /*ENABLE FOREGIN KEY*/
+        db.execSQL("PRAGMA foreign_keys = ON");//ON - OFF
         for (TABLES tables:TABLES.values()){
             System.out.println(tables.getQuery());
             db.execSQL(tables.getQuery());
@@ -100,6 +104,19 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
         return  cursor;
+    }
+    public String getWs(WS columnName) {
+        String url=null;
+        String selectQuery = "SELECT * FROM config_server";
+        //CREATE TABLE config_server ( ip VARCHAR NOT NULL , puerto INTEGER NOT NULL,
+        // servicio_cat VARCHAR,servicio_up VARCHAR,servicio_down VARCHAR)"),
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+        if (cursor.moveToFirst()) {
+            int colIndex=cursor.getColumnIndex(columnName.getColumnName());
+            url="http://"+cursor.getString(1)+":"+cursor.getInt(2)+"/"+cursor.getString(colIndex)+"?usuario="+cursor.getString(6)+"&clave="+cursor.getString(7);
+        }
+        return url;
     }
     public void insert(TABLES table,Object o) {
 
@@ -213,7 +230,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public void insertTratamientoAgua(TABLES table, TratamientoAgua obj) {
         ContentValues values = new ContentValues();
         values.put("_id", obj.getIdTraAgu());
-        values.put("cod_rec_agu", obj.getCodTraAgu());
+        values.put("cod_tra_agu", obj.getCodTraAgu());
         values.put("descripcion", obj.getDescripcion());
         executeCreateQuery(values,table);
     }
@@ -365,12 +382,21 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         values.put("descripcion", pueblo.getDescripcion());
         executeCreateQuery(values,table);
     }
-    public void executeCreateQuery(ContentValues values,TABLES table){
+    public boolean executeCreateQuery(ContentValues values,TABLES table){
         boolean createSuccessful;
         SQLiteDatabase db = this.getWritableDatabase();
         createSuccessful = db.insert(table.getTablaName(), null, values) > 0;
         System.out.println("insertando... "+table+":"+createSuccessful);
         db.close();
+        return createSuccessful;
+    }
+    public int updateById(TABLES table,int id,ContentValues values){
+        int numRows;
+        SQLiteDatabase db = this.getWritableDatabase();
+        numRows= db.update(table.getTablaName(), values,"_id="+id, null);
+        System.out.println("actualizado... "+table+": numero registros afectados: "+numRows);
+        db.close();
+        return  numRows;
     }
     public void deleteData() {
         SQLiteDatabase database=this.getWritableDatabase();
@@ -380,6 +406,13 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             System.out.println("Eliminado datos de "+tables+": "+delete);
         }
         database.close();
+    }
+    public void deleteData(TABLES tables) {
+        SQLiteDatabase database=this.getWritableDatabase();
+        int delete;
+        delete=database.delete(tables.getTablaName(),null,null);
+        System.out.println("Eliminado datos de "+tables+": "+delete);
+         database.close();
     }
 
 }
