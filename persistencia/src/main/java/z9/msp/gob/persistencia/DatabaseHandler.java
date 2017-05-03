@@ -32,6 +32,7 @@ import z9.msp.gob.persistencia.entity.EstadoCivil;
 import z9.msp.gob.persistencia.entity.EstadoPiso;
 import z9.msp.gob.persistencia.entity.EstadoTecho;
 import z9.msp.gob.persistencia.entity.Etnia;
+import z9.msp.gob.persistencia.entity.Formulario;
 import z9.msp.gob.persistencia.entity.MaterialPared;
 import z9.msp.gob.persistencia.entity.MaterialPiso;
 import z9.msp.gob.persistencia.entity.MaterialTecho;
@@ -39,6 +40,7 @@ import z9.msp.gob.persistencia.entity.Nacionalidad;
 import z9.msp.gob.persistencia.entity.Nacionalidade;
 import z9.msp.gob.persistencia.entity.NivelInstruccion;
 import z9.msp.gob.persistencia.entity.ParentescoJefeHogar;
+import z9.msp.gob.persistencia.entity.Personas;
 import z9.msp.gob.persistencia.entity.ProcedenciaAgua;
 import z9.msp.gob.persistencia.entity.Pueblo;
 import z9.msp.gob.persistencia.entity.RecibeAgua;
@@ -394,7 +396,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         int numRows;
         SQLiteDatabase db = this.getWritableDatabase();
         numRows= db.update(table.getTablaName(), values,"_id="+id, null);
-        System.out.println("actualizado... "+table+": numero registros afectados: "+numRows);
         db.close();
         return  numRows;
     }
@@ -413,6 +414,35 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         delete=database.delete(tables.getTablaName(),null,null);
         System.out.println("Eliminado datos de "+tables+": "+delete);
          database.close();
+    }
+    public List<Formulario> exportData(){
+        Cursor cursor = getAllGeneric(TABLES.FORMULARIO.getTablaName());
+        if (cursor.moveToFirst()) {
+            do {
+                String formularioId=cursor.getString(cursor.getColumnIndex("_id"));
+                Formulario formulario=new Formulario();
+                formulario.setDescripcion(cursor.getString(cursor.getColumnIndex("descripcion")));
+                formulario.setPersonas(getPersonas(formularioId));
+
+            }while (cursor.moveToNext());
+
+        }
+        return null;
+    }
+    public List<Personas> getPersonas(String formularioId){
+        Cursor cursor = getUnidadDatos(TABLES.PERSONAS.getTablaName(),formularioId);
+        List<Personas> personasList=null;
+        if (cursor.moveToFirst()) {
+            personasList=new ArrayList<Personas>();
+            do {
+                Personas personas=new Personas();
+                personas.setNombres(cursor.getString(cursor.getColumnIndex("nombre")));
+                personasList.add(personas);
+
+            }while (cursor.moveToNext());
+
+        }
+        return personasList;
     }
 
 }

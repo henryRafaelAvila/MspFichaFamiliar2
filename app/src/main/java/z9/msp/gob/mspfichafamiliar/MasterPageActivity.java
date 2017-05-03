@@ -39,6 +39,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import z9.msp.gob.mspfichafamiliar.activity.ConfigurationDataBase;
+import z9.msp.gob.mspfichafamiliar.activity.DescargarFormularios;
 import z9.msp.gob.mspfichafamiliar.activity.NuevoFormularioActivity;
 import z9.msp.gob.persistencia.DatabaseHandler;
 import z9.msp.gob.persistencia.enums.TABLES;
@@ -97,6 +98,9 @@ public class MasterPageActivity extends AppCompatActivity{
                 break;
             case R.id.btn_buscar_formulario:
                 startActivityLocal(MainActivity.class);
+                break;
+            case R.id.btn_descargarFormulario:
+                startActivityLocal(DescargarFormularios.class);
                 break;
 
 

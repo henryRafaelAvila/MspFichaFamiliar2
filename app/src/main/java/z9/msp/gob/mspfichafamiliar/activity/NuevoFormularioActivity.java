@@ -75,6 +75,7 @@ public class NuevoFormularioActivity extends AppCompatActivity {
 
     DatabaseHandler db;
    Button miembrosHogar;
+    Button mortalidad;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -309,6 +310,19 @@ public class NuevoFormularioActivity extends AppCompatActivity {
                 Context context = view.getContext();
                 Intent intent = new Intent(context, PersonaListActivity.class);
                 intent.putExtra(PersonaListActivity.FORM_ID, "-1");
+                context.startActivity(intent);
+            }
+
+        });
+
+        mortalidad=(Button)findViewById(R.id.mortalidad);
+        mortalidad.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                Context context = view.getContext();
+                Intent intent = new Intent(context, MortalidadListActivity.class);
+                intent.putExtra(MortalidadListActivity.FORM_ID, "-1");
                 context.startActivity(intent);
             }
 

@@ -1,5 +1,7 @@
 package z9.msp.gob.persistencia.entity;
 
+import java.util.List;
+
 /**
  * Created by henry on 4/2/2017.
  */
@@ -10,12 +12,17 @@ public class Formulario {
     String zona;
     int image;
 
-    public Formulario(String nombre, String descripcion, String zona,int image) {
+
+    public Formulario() {
+    }
+
+    public Formulario(String nombre, String descripcion, String zona, int image) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.zona = zona;
         this.image=image;
     }
+    private List<Personas> personas;
 
     public int getImage() {
         return image;
@@ -47,5 +54,13 @@ public class Formulario {
 
     public void setZona(String zona) {
         this.zona = zona;
+    }
+
+    public List<Personas> getPersonas() {
+        return personas;
+    }
+
+    public void setPersonas(List<Personas> personas) {
+        this.personas = personas;
     }
 }

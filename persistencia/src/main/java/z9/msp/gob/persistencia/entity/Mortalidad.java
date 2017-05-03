@@ -3,13 +3,11 @@ package z9.msp.gob.persistencia.entity;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-import java.util.Date;
-
 /**
  * Created by henry on 4/9/2017.
  */
 
-public class Personas {
+public class Mortalidad {
     String nombres;
     String numCedula;
     int image;
@@ -70,10 +68,10 @@ public class Personas {
     //Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().setPrettyPrinting().create();
 
 
-    public Personas() {
+    public Mortalidad() {
     }
 
-    public Personas(String nombres, String numCedula, String fechaNac, int image) {
+    public Mortalidad(String nombres, String numCedula, String fechaNac, int image) {
         this.nombres = nombres;
         this.numCedula = numCedula;
         this.fechaNac = fechaNac;

@@ -2348,6 +2348,16 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/miembrosHogar"/>
 
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="10dp"
+                android:background="@drawable/red_bg" />
+            <Button
+                android:text="Personas Fallecidas"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/mortalidad"/>
+
 
         </LinearLayout>
     </ScrollView>
