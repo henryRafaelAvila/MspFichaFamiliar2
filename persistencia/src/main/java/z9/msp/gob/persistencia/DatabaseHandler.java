@@ -440,7 +440,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 personasList.add(personas);
 
             }while (cursor.moveToNext());
-
+//
         }
         return personasList;
     }
