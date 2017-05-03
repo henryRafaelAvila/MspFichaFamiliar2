@@ -10,8 +10,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
+import android.widget.Switch;
 import android.widget.SimpleCursorAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -75,7 +74,6 @@ public class NuevoFormularioActivity extends AppCompatActivity {
 
     DatabaseHandler db;
    Button miembrosHogar;
-    Button mortalidad;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -234,7 +232,7 @@ public class NuevoFormularioActivity extends AppCompatActivity {
                         break;
                 }
 
-                if(ocupacion.equals(condicion)){
+                if((ocupacion.trim()).equals(condicion)){
                     activaComponentes (true);
                 }
                 else{
@@ -310,19 +308,6 @@ public class NuevoFormularioActivity extends AppCompatActivity {
                 Context context = view.getContext();
                 Intent intent = new Intent(context, PersonaListActivity.class);
                 intent.putExtra(PersonaListActivity.FORM_ID, "-1");
-                context.startActivity(intent);
-            }
-
-        });
-
-        mortalidad=(Button)findViewById(R.id.mortalidad);
-        mortalidad.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View view) {
-                Context context = view.getContext();
-                Intent intent = new Intent(context, MortalidadListActivity.class);
-                intent.putExtra(MortalidadListActivity.FORM_ID, "-1");
                 context.startActivity(intent);
             }
 
@@ -438,91 +423,46 @@ public class NuevoFormularioActivity extends AppCompatActivity {
         EditText contaminacionaire= (EditText) findViewById(R.id.etxtContaminacionAire);
         contaminacionaire.setEnabled(vf);
 
-        RadioButton animalessi=(RadioButton) findViewById(R.id.radioSi);
-        animalessi.setEnabled(vf);
-        RadioButton animalesno=(RadioButton) findViewById(R.id.radioNo);
-        animalesno.setEnabled(vf);
-        RadioButton vectoresi=(RadioButton) findViewById(R.id.radioSiVectores);
-        vectoresi.setEnabled(vf);
-        RadioButton vectoresno=(RadioButton) findViewById(R.id.radioNoVectores);
-        vectoresno.setEnabled(vf);
-        RadioButton animalessueltossi=(RadioButton) findViewById(R.id.radioSiAnimalesSueltos);
-        animalessueltossi.setEnabled(vf);
-        RadioButton animalessueltosno=(RadioButton) findViewById(R.id.radioNoAnimalesSueltos);
-        animalessueltosno.setEnabled(vf);
+        Switch intradomiciliarios= (Switch) findViewById(R.id.switchIntradomiciliarios);
+        intradomiciliarios.setEnabled(vf);
+        Switch vectores= (Switch) findViewById(R.id.switchVectores);
+        vectores.setEnabled(vf);
+        Switch animalessueltos= (Switch) findViewById(R.id.switchAnimalesSueltos);
+        animalessueltos.setEnabled(vf);
 
-        RadioButton violenciaintrafamisi=(RadioButton) findViewById(R.id.radioSiViloenciaIntra);
-        violenciaintrafamisi.setEnabled(vf);
-        RadioButton violenciaintrafamino=(RadioButton) findViewById(R.id.radioNoViolenciaIntra);
-        violenciaintrafamino.setEnabled(vf);
-        RadioButton desestruccionfamisi=(RadioButton) findViewById(R.id.radioSiDesestructuracionFamiliar);
-        desestruccionfamisi.setEnabled(vf);
-        RadioButton desestruccionfamino=(RadioButton) findViewById(R.id.radioNoDesestructuracionFamiliar);
-        desestruccionfamino.setEnabled(vf);
-        RadioButton problemafamisi=(RadioButton) findViewById(R.id.radioSiProblemasFAmilia);
-        problemafamisi.setEnabled(vf);
-        RadioButton problemafamino=(RadioButton) findViewById(R.id.radioNoProblemasFAmilia);
-        problemafamino.setEnabled(vf);
-        RadioButton problemasociosi=(RadioButton) findViewById(R.id.radioSiProblemasSocia);
-        problemasociosi.setEnabled(vf);
-        RadioButton problemasociono=(RadioButton) findViewById(R.id.radioNoProblemasSocia);
-        problemasociono.setEnabled(vf);
-        RadioButton aislamientosi=(RadioButton) findViewById(R.id.radioSiAislamiento);
-        aislamientosi.setEnabled(vf);
-        RadioButton aislamientono=(RadioButton) findViewById(R.id.radioNoAislamiento);
-        aislamientono.setEnabled(vf);
-        RadioButton escolarizacionsi=(RadioButton) findViewById(R.id.radioSiEscolarizacion);
-        escolarizacionsi.setEnabled(vf);
-        RadioButton escolarizacionno=(RadioButton) findViewById(R.id.radioNoEscolarizacion);
-        escolarizacionno.setEnabled(vf);
-        RadioButton niniosescuelasi=(RadioButton) findViewById(R.id.radioSiNiniosnoescuela);
-        niniosescuelasi.setEnabled(vf);
-        RadioButton niniosescuelano=(RadioButton) findViewById(R.id.radioNoNiniosnoescuela);
-        niniosescuelano.setEnabled(vf);
-        RadioButton alcoholismosi=(RadioButton) findViewById(R.id.radioSiAlcoholismo);
-        alcoholismosi.setEnabled(vf);
-        RadioButton alcoholismono=(RadioButton) findViewById(R.id.radioNoAlcoholismo);
-        alcoholismono.setEnabled(vf);
-        RadioButton drogassi=(RadioButton) findViewById(R.id.radioSiDrogas);
-        drogassi.setEnabled(vf);
-        RadioButton drogasno=(RadioButton) findViewById(R.id.radioNoDrogas);
-        drogasno.setEnabled(vf);
+        Switch violenciaintra= (Switch) findViewById(R.id.switchViolenciaIntra);
+        violenciaintra.setEnabled(vf);
+        Switch desestrucfami= (Switch) findViewById(R.id.switchDesestrucFami);
+        desestrucfami.setEnabled(vf);
+        Switch problemafami= (Switch) findViewById(R.id.switchProblemasFami);
+        problemafami.setEnabled(vf);
+        Switch problemasocio= (Switch) findViewById(R.id.switchProblemasSocio);
+        problemasocio.setEnabled(vf);
+        Switch aislamiento= (Switch) findViewById(R.id.switchAislamiento);
+        aislamiento.setEnabled(vf);
+        Switch escolarizcion= (Switch) findViewById(R.id.switchEscolarizacion);
+        escolarizcion.setEnabled(vf);
+        Switch niniosescuela= (Switch) findViewById(R.id.switchNiniosEscuela);
+        niniosescuela.setEnabled(vf);
+        Switch alcoholismo= (Switch) findViewById(R.id.switchAlcoholismo);
+        alcoholismo.setEnabled(vf);
+        Switch drogas= (Switch) findViewById(R.id.switchDrogas);
+        drogas.setEnabled(vf);
 
-        RadioButton cocinadormitoriosi=(RadioButton) findViewById(R.id.radioSiCocinaDormitorio);
-        cocinadormitoriosi.setEnabled(vf);
-        RadioButton cocinadormitoriono=(RadioButton) findViewById(R.id.radioNoCocinaDormitorio);
-        cocinadormitoriono.setEnabled(vf);
-        RadioButton sedazosi=(RadioButton) findViewById(R.id.radioSiSedazo);
-        sedazosi.setEnabled(vf);
-        RadioButton sedazono=(RadioButton) findViewById(R.id.radioNoSedazo);
-        sedazono.setEnabled(vf);
-        RadioButton mosquiterosi=(RadioButton) findViewById(R.id.radioSiMosquiteros);
-        mosquiterosi.setEnabled(vf);
-        RadioButton mosquiterono=(RadioButton) findViewById(R.id.radioNoMosquiteros);
-        mosquiterono.setEnabled(vf);
-        RadioButton plaguisidasi=(RadioButton) findViewById(R.id.radioSiPlaguisida);
-        plaguisidasi.setEnabled(vf);
-        RadioButton plaguisidano=(RadioButton) findViewById(R.id.radioNoPlaguisida);
-        plaguisidano.setEnabled(vf);
-        RadioButton aepisi=(RadioButton) findViewById(R.id.radioSiAEPI);
-        aepisi.setEnabled(vf);
-        RadioButton aepino=(RadioButton) findViewById(R.id.radioNoAEPI);
-        aepino.setEnabled(vf);
-        RadioButton abandonosi=(RadioButton) findViewById(R.id.radioSiAbandono);
-        abandonosi.setEnabled(vf);
-        RadioButton abandonono=(RadioButton) findViewById(R.id.radioNoAbandono);
-        abandonono.setEnabled(vf);
-        RadioButton irunidadsi=(RadioButton) findViewById(R.id.radioSiIrUnidad);
-        irunidadsi.setEnabled(vf);
-        RadioButton irunidadno=(RadioButton) findViewById(R.id.radioNoIrUnidad);
-        irunidadno.setEnabled(vf);
-
-
-
-
-
-
-
+        Switch cocinadormitorio= (Switch) findViewById(R.id.switchCocinaDormitorio);
+        cocinadormitorio.setEnabled(vf);
+        Switch sedazo= (Switch) findViewById(R.id.switchSedazo);
+        sedazo.setEnabled(vf);
+        Switch mosquitero= (Switch) findViewById(R.id.switchMosquiteros);
+        mosquitero.setEnabled(vf);
+        Switch plaguisida= (Switch) findViewById(R.id.switchPlaguisidas);
+        plaguisida.setEnabled(vf);
+        Switch aepi= (Switch) findViewById(R.id.switchAEPI);
+        aepi.setEnabled(vf);
+        Switch abandono= (Switch) findViewById(R.id.switchAbandono);
+        abandono.setEnabled(vf);
+        Switch irunidad= (Switch) findViewById(R.id.switchIrunidad);
+        irunidad.setEnabled(vf);
 
         Button btbmiembrosfamilia= (Button) findViewById(R.id.miembrosHogar);
         btbmiembrosfamilia.setEnabled(vf);

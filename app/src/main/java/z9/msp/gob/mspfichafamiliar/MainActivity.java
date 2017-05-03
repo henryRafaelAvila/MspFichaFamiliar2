@@ -1,10 +1,6 @@
 package z9.msp.gob.mspfichafamiliar;
 
-import android.content.Context;
 import android.content.Intent;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
@@ -15,45 +11,18 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.JsonReader;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
-
-import com.google.gson.Gson;
-import com.google.gson.JsonObject;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.BufferedInputStream;
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.StringReader;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
 
 import z9.msp.gob.mspfichafamiliar.activity.NuevoFormularioActivity;
 import z9.msp.gob.mspfichafamiliar.fragment.ListFormFragment;
 import z9.msp.gob.persistencia.DatabaseHandler;
-import z9.msp.gob.persistencia.enums.TABLES;
-import z9.msp.gob.persistencia.integration.ClientRest;
 
 import static android.R.attr.value;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
     DatabaseHandler db;
-    /*
-    Cliente para la conexión al servidor
-     */
-    HttpURLConnection con;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,6 +42,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navigationView.setNavigationItemSelectedListener(this);
 
         db = new DatabaseHandler(this);
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+                Intent launchactivity = new  Intent(MainActivity.this, NuevoFormularioActivity.class);
+                startActivity(launchactivity);
+            }
+        });
         ListFormFragment leadsFragment = (ListFormFragment)
                 getSupportFragmentManager().findFragmentById(R.id.content_list_form);
 
@@ -102,24 +82,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-     /*
-            Comprobar la disponibilidad de la Red
-             */
-            ConnectivityManager connMgr = (ConnectivityManager)
-                    getSystemService(Context.CONNECTIVITY_SERVICE);
-
-            NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
-
-            if (networkInfo != null && networkInfo.isConnected()) {
-//                final ClientRest clientRest=new ClientRest();
-//                String json=clientRest.popupaleDataBAse("myURL");
-//                System.out.println(json);
-
-
-            }
-            else{
-                Toast.makeText(this, "Error de conexión", Toast.LENGTH_LONG).show();
-            }
             return true;
         }
 

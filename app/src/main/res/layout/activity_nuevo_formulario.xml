@@ -1391,152 +1391,39 @@
                 android:layout_height="1dp"
                 android:background="@android:color/background_dark"/>
 
-            <GridLayout
+            <Switch
+                android:text="Intradomiciliarios que representan riesgo sanitario"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:alignmentMode="alignBounds"
-                android:columnCount="3"
-                android:rowCount="3">
-                <TextView
-                    android:layout_width="280dp"
-                    android:layout_column="0"
-                    android:layout_row="0"
-                    android:layout_height="wrap_content"
-                    android:text="Intradomiciliarios que representan riesgo sanitario"
-                    android:textColor="@android:color/black"
-                    android:paddingRight="5dp" />
+                android:layout_height="wrap_content"
+                android:textOn="Si"
+                android:textOff="No"
+                android:id="@+id/switchIntradomiciliarios" />
 
-                <RadioGroup
-                    android:id="@+id/radioAnimales"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignEnd="@+id/button2"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_column="1"
-                    android:layout_row="0"
-                    android:orientation="horizontal"
-
-                    >
-
-                    <RadioButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Si"
-                        android:id="@+id/radioSi"
-                        android:layout_marginTop="61dp"
-                        android:layout_alignParentTop="true"
-                        android:layout_centerHorizontal="true"
-                        android:checked="true"
-                       />
-                    <RadioButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="No"
-                        android:id="@+id/radioNo"
-                        android:layout_marginTop="61dp"
-                        android:layout_alignParentTop="false"
-                        android:layout_centerHorizontal="true"
-                        android:checked="false"
-                        />
-
-                </RadioGroup>
                 <Space
                     android:layout_width="wrap_content"
                     android:layout_height="10dp"
                     android:background="@drawable/red_bg" />
 
-                <TextView
-                    android:layout_width="280dp"
-                    android:layout_column="0"
-                    android:layout_row="1"
-                    android:layout_height="wrap_content"
-                    android:text="Presencia de vectores transmisores de enfermedad (zancudos, moscas, ect.)"
-                    android:textColor="@android:color/black"
-                    android:paddingRight="5dp" />
+            <Switch
+                android:text="Presencia de vectores transmisores de enfermedad (zancudos, moscas, ect.)"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textOn="Si"
+                android:textOff="No"
+                android:id="@+id/switchVectores" />
 
-                <RadioGroup
-                    android:id="@+id/radioVectores"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignEnd="@+id/button2"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_column="1"
-                    android:layout_row="1"
-                    android:orientation="horizontal"
-                    >
-
-                    <RadioButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Si"
-                        android:id="@+id/radioSiVectores"
-                        android:layout_marginTop="61dp"
-                        android:layout_alignParentTop="true"
-                        android:layout_centerHorizontal="true"
-                        android:checked="true"
-                        android:layout_column="1"
-                        android:layout_row="1"/>
-                    <RadioButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="No"
-                        android:id="@+id/radioNoVectores"
-                        android:layout_marginTop="61dp"
-                        android:layout_alignParentTop="false"
-                        android:layout_centerHorizontal="true"
-                        android:checked="false"
-                      />
-
-                </RadioGroup>
                 <Space
                     android:layout_width="wrap_content"
                     android:layout_height="10dp"
                     android:background="@drawable/red_bg" />
 
-                <TextView
-                    android:layout_width="280dp"
-                    android:layout_column="0"
-                    android:layout_row="2"
-
-                    android:layout_height="wrap_content"
-                    android:text="Convivencia inadecuada con animales si observa que los animales andan por todos lados en la vivienda sin tener un lugar propio"
-                    android:textColor="@android:color/black"
-                    android:paddingRight="5dp" />
-
-                <RadioGroup
-                    android:id="@+id/radioAnimalesSueltos"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-
-                    android:layout_gravity="center_horizontal"
-                    android:layout_column="1"
-                    android:layout_row="2"
-                    android:orientation="horizontal"
-                    >
-
-                    <RadioButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Si"
-                        android:id="@+id/radioSiAnimalesSueltos"
-                        android:layout_marginTop="61dp"
-                        android:layout_alignParentTop="true"
-                        android:layout_centerHorizontal="true"
-                        android:checked="true"
-                        />
-                    <RadioButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="No"
-                        android:id="@+id/radioNoAnimalesSueltos"
-                        android:layout_marginTop="61dp"
-                        android:layout_alignParentTop="false"
-                        android:layout_centerHorizontal="true"
-                        android:checked="false"
-                        />
-
-                </RadioGroup>
-            </GridLayout>
+            <Switch
+                android:text="Convivencia inadecuada con animales si observa que los animales andan por todos lados en la vivienda sin tener un lugar propio"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textOn="Si"
+                android:textOff="No"
+                android:id="@+id/switchAnimalesSueltos" />
 
             <Space
                 android:layout_width="wrap_content"
@@ -1563,430 +1450,117 @@
                 android:layout_height="10dp"
                 android:background="@drawable/red_bg" />
 
-
-
-            <GridLayout
+            <Switch
+                android:text="Violencia Intrafamiliar"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:alignmentMode="alignBounds"
-                android:columnCount="3"
-                android:rowCount="9">
-                <TextView
-                    android:layout_width="280dp"
-                    android:layout_column="0"
-                    android:layout_row="0"
-                    android:layout_height="wrap_content"
-                    android:text="Violencia Intrafamiliar"
-                    android:textColor="@android:color/black"
-                    android:paddingRight="5dp" />
-
-                <RadioGroup
-                    android:id="@+id/radioViolenciaIntra"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignEnd="@+id/button2"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_column="1"
-                    android:layout_row="0"
-                    android:orientation="horizontal"
-
-                    >
-
-                    <RadioButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Si"
-                        android:id="@+id/radioSiViloenciaIntra"
-                        android:layout_marginTop="61dp"
-                        android:layout_alignParentTop="true"
-                        android:layout_centerHorizontal="true"
-                        android:checked="true"
-                        />
-                    <RadioButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="No"
-                        android:id="@+id/radioNoViolenciaIntra"
-                        android:layout_marginTop="61dp"
-                        android:layout_alignParentTop="false"
-                        android:layout_centerHorizontal="true"
-                        android:checked="false"
-                        />
-
-                </RadioGroup>
-                <Space
-                    android:layout_width="wrap_content"
-                    android:layout_height="10dp"
-                    android:background="@drawable/red_bg" />
-
-                <TextView
-                    android:layout_width="280dp"
-                    android:layout_column="0"
-                    android:layout_row="1"
-                    android:layout_height="wrap_content"
-                    android:text="Desestructuracion Familiar"
-                    android:textColor="@android:color/black"
-                    android:paddingRight="5dp" />
-
-                <RadioGroup
-                    android:id="@+id/radioDesestructuracionFamiliar"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_column="1"
-                    android:layout_row="1"
-                    android:orientation="horizontal"
-                    android:layout_gravity="center_horizontal"
-                    >
-
-                    <RadioButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Si"
-                        android:id="@+id/radioSiDesestructuracionFamiliar"
-                        android:layout_marginTop="61dp"
-                        android:layout_alignParentTop="true"
-                        android:layout_centerHorizontal="true"
-                        android:checked="true"
-                        />
-                    <RadioButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="No"
-                        android:id="@+id/radioNoDesestructuracionFamiliar"
-                        android:layout_marginTop="61dp"
-                        android:layout_alignParentTop="false"
-                        android:layout_centerHorizontal="true"
-                        android:checked="false"
-                        />
-
-                </RadioGroup>
-                <Space
-                    android:layout_width="wrap_content"
-                    android:layout_height="10dp"
-                    android:background="@drawable/red_bg" />
-
-                <TextView
-                    android:layout_width="280dp"
-                    android:layout_column="0"
-                    android:layout_row="2"
-                    android:layout_height="wrap_content"
-                    android:text=" Problemas graves en la familia"
-                    android:textColor="@android:color/black"
-                    android:paddingRight="5dp" />
-
-                <RadioGroup
-                    android:id="@+id/radioProblemasFAmilia"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_column="1"
-                    android:layout_row="2"
-                    android:orientation="horizontal"
-                    android:layout_gravity="center_horizontal"
-                    >
-
-                    <RadioButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Si"
-                        android:id="@+id/radioSiProblemasFAmilia"
-                        android:layout_marginTop="61dp"
-                        android:layout_alignParentTop="true"
-                        android:layout_centerHorizontal="true"
-                        android:checked="true"
-                        />
-                    <RadioButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="No"
-                        android:id="@+id/radioNoProblemasFAmilia"
-                        android:layout_marginTop="61dp"
-                        android:layout_alignParentTop="false"
-                        android:layout_centerHorizontal="true"
-                        android:checked="false"
-                      />
-
-                </RadioGroup>
+                android:layout_height="wrap_content"
+                android:textOn="Si"
+                android:textOff="No"
+                android:id="@+id/switchViolenciaIntra" />
 
                 <Space
                     android:layout_width="wrap_content"
                     android:layout_height="10dp"
                     android:background="@drawable/red_bg" />
 
-                <TextView
-                    android:layout_width="280dp"
-                    android:layout_column="0"
-                    android:layout_row="3"
-                    android:layout_height="wrap_content"
-                    android:text=" Problemas psico-sociales en la familia pero no piden ayuda"
-                    android:textColor="@android:color/black"
-                    android:paddingRight="5dp" />
-
-                <RadioGroup
-                    android:id="@+id/radioProblemasSocia"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_column="1"
-                    android:layout_row="3"
-                    android:orientation="horizontal"
-                    android:layout_gravity="center_horizontal"
-                    >
-
-                    <RadioButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Si"
-                        android:id="@+id/radioSiProblemasSocia"
-                        android:layout_marginTop="61dp"
-                        android:layout_alignParentTop="true"
-                        android:layout_centerHorizontal="true"
-                        android:checked="true"
-                      />
-                    <RadioButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="No"
-                        android:id="@+id/radioNoProblemasSocia"
-                        android:layout_marginTop="61dp"
-                        android:layout_alignParentTop="false"
-                        android:layout_centerHorizontal="true"
-                        android:checked="false"
-                       />
-
-                </RadioGroup>
-                <Space
-                    android:layout_width="wrap_content"
-                    android:layout_height="10dp"
-                    android:background="@drawable/red_bg" />
-
-                <TextView
-                    android:layout_width="280dp"
-                    android:layout_column="0"
-                    android:layout_row="4"
-                    android:layout_height="wrap_content"
-                    android:text=" Familia con riesgo de auto-atencion o aislamiento"
-                    android:textColor="@android:color/black"
-                    android:paddingRight="5dp" />
-
-                <RadioGroup
-                    android:id="@+id/radioAsilamiento"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_column="1"
-                    android:layout_row="4"
-                    android:orientation="horizontal"
-                    android:layout_gravity="center_horizontal"
-                    >
-
-                    <RadioButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Si"
-                        android:id="@+id/radioSiAislamiento"
-                        android:layout_marginTop="61dp"
-                        android:layout_alignParentTop="true"
-                        android:layout_centerHorizontal="true"
-                        android:checked="true"
-                        />
-                    <RadioButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="No"
-                        android:id="@+id/radioNoAislamiento"
-                        android:layout_marginTop="61dp"
-                        android:layout_alignParentTop="false"
-                        android:layout_centerHorizontal="true"
-                        android:checked="false"
-                        />
-
-                </RadioGroup>
+            <Switch
+                android:text="Desestructuracion Familiar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textOn="Si"
+                android:textOff="No"
+                android:id="@+id/switchDesestrucFami" />
 
                 <Space
                     android:layout_width="wrap_content"
                     android:layout_height="10dp"
                     android:background="@drawable/red_bg" />
 
-                <TextView
-                    android:layout_width="280dp"
-                    android:layout_column="0"
-                    android:layout_row="5"
-                    android:layout_height="wrap_content"
-                    android:text=" Numero de miembros de la familia sin escolarizacion"
-                    android:textColor="@android:color/black"
-                    android:paddingRight="5dp" />
-
-                <RadioGroup
-                    android:id="@+id/radioEscolararizacion"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_column="1"
-                    android:layout_row="5"
-                    android:orientation="horizontal"
-                    android:layout_gravity="center_horizontal"
-                    >
-
-                    <RadioButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Si"
-                        android:id="@+id/radioSiEscolarizacion"
-                        android:layout_marginTop="61dp"
-                        android:layout_alignParentTop="true"
-                        android:layout_centerHorizontal="true"
-                        android:checked="true"
-                        />
-                    <RadioButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="No"
-                        android:id="@+id/radioNoEscolarizacion"
-                        android:layout_marginTop="61dp"
-                        android:layout_alignParentTop="false"
-                        android:layout_centerHorizontal="true"
-                        android:checked="false"
-                        />
-
-                </RadioGroup>
+            <Switch
+                android:text="Problemas graves en la familia"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textOn="Si"
+                android:textOff="No"
+                android:id="@+id/switchProblemasFami" />
 
                 <Space
                     android:layout_width="wrap_content"
                     android:layout_height="10dp"
                     android:background="@drawable/red_bg" />
 
-                <TextView
-                    android:layout_width="280dp"
-                    android:layout_column="0"
-                    android:layout_row="6"
-                    android:layout_height="wrap_content"
-                    android:text=" Numero de niños en edad escolar no inceratados"
-                    android:textColor="@android:color/black"
-                    android:paddingRight="5dp" />
-
-                <RadioGroup
-                    android:id="@+id/radioNiniosnoescuela"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_column="1"
-                    android:layout_row="6"
-                    android:orientation="horizontal"
-                    android:layout_gravity="center_horizontal"
-                    >
-
-                    <RadioButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Si"
-                        android:id="@+id/radioSiNiniosnoescuela"
-                        android:layout_marginTop="61dp"
-                        android:layout_alignParentTop="true"
-                        android:layout_centerHorizontal="true"
-                        android:checked="true"
-                       />
-                    <RadioButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="No"
-                        android:id="@+id/radioNoNiniosnoescuela"
-                        android:layout_marginTop="61dp"
-                        android:layout_alignParentTop="false"
-                        android:layout_centerHorizontal="true"
-                        android:checked="false"
-                     />
-
-                </RadioGroup>
+            <Switch
+                android:text=" Problemas psico-sociales en la familia pero no piden ayuda"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textOn="Si"
+                android:textOff="No"
+                android:id="@+id/switchProblemasSocio" />
 
                 <Space
                     android:layout_width="wrap_content"
                     android:layout_height="10dp"
                     android:background="@drawable/red_bg" />
 
-                <TextView
-                    android:layout_width="280dp"
-                    android:layout_column="0"
-                    android:layout_row="7"
-                    android:layout_height="wrap_content"
-                    android:text="Numero de miembros con alcoholismo"
-                    android:textColor="@android:color/black"
-                    android:paddingRight="5dp" />
+            <Switch
+                android:text=" Familia con riesgo de auto-atencion o aislamiento"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textOn="Si"
+                android:textOff="No"
+                android:id="@+id/switchAislamiento" />
 
-                <RadioGroup
-                    android:id="@+id/radioAlcoholismo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_column="1"
-                    android:layout_row="7"
-                    android:orientation="horizontal"
-                    android:layout_gravity="center_horizontal"
-                    >
-
-                    <RadioButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Si"
-                        android:id="@+id/radioSiAlcoholismo"
-                        android:layout_marginTop="61dp"
-                    android:layout_alignParentTop="true"
-                    android:layout_centerHorizontal="true"
-                    android:checked="true"
-                    />
-                    <RadioButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="No"
-                        android:id="@+id/radioNoAlcoholismo"
-                        android:layout_marginTop="61dp"
-                        android:layout_alignParentTop="false"
-                        android:layout_centerHorizontal="true"
-                        android:checked="false"
-                       />
-
-                </RadioGroup>
                 <Space
                     android:layout_width="wrap_content"
                     android:layout_height="10dp"
                     android:background="@drawable/red_bg" />
 
-                <TextView
-                    android:layout_width="280dp"
-                    android:layout_column="0"
-                    android:layout_row="8"
-                    android:layout_height="wrap_content"
-                    android:text="Numero de miembros con drogodependencia"
-                    android:textColor="@android:color/black"
-                    android:paddingRight="5dp" />
+            <Switch
+                android:text=" Numero de miembros de la familia sin escolarizacion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textOn="Si"
+                android:textOff="No"
+                android:id="@+id/switchEscolarizacion" />
 
-                <RadioGroup
-                    android:id="@+id/radioDrogas"
+                <Space
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_column="1"
-                    android:layout_row="8"
-                    android:orientation="horizontal"
-                    android:layout_gravity="center_horizontal"
-                    >
+                    android:layout_height="10dp"
+                    android:background="@drawable/red_bg" />
 
-                    <RadioButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Si"
-                        android:id="@+id/radioSiDrogas"
-                        android:layout_marginTop="61dp"
-                        android:layout_alignParentTop="true"
-                        android:layout_centerHorizontal="true"
-                        android:checked="true"
-                        />
-                    <RadioButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="No"
-                        android:id="@+id/radioNoDrogas"
-                        android:layout_marginTop="61dp"
-                        android:layout_alignParentTop="false"
-                        android:layout_centerHorizontal="true"
-                        android:checked="false"
-                      />
+            <Switch
+                android:text=" Numero de niños en edad escolar no inceratados"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textOn="Si"
+                android:textOff="No"
+                android:id="@+id/switchNiniosEscuela" />
 
-                </RadioGroup>
-            </GridLayout>
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="10dp"
+                    android:background="@drawable/red_bg" />
+
+            <Switch
+                android:text="Numero de miembros con alcoholismo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textOn="Si"
+                android:textOff="No"
+                android:id="@+id/switchAlcoholismo" />
+
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="10dp"
+                    android:background="@drawable/red_bg" />
+
+            <Switch
+                android:text="Numero de miembros con drogodependencia"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textOn="Si"
+                android:textOff="No"
+                android:id="@+id/switchDrogas" />
 
             <Space
                 android:layout_width="wrap_content"
@@ -2008,336 +1582,93 @@
                 android:layout_height="1dp"
                 android:background="@android:color/background_dark"/>
 
-            <GridLayout
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:alignmentMode="alignBounds"
-                android:columnCount="3"
-                android:rowCount="7">
-                <TextView
-                    android:layout_width="280dp"
-                    android:layout_column="0"
-                    android:layout_row="0"
-                    android:layout_height="wrap_content"
-                    android:text="Cocina esta dentro del dormitorio"
-                    android:textColor="@android:color/black"
-                    android:paddingRight="5dp" />
-
-                <RadioGroup
-                    android:id="@+id/radioCocinaDormitorio"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_column="1"
-                    android:layout_row="0"
-                    android:orientation="horizontal"
-
-                    >
-
-                    <RadioButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Si"
-                        android:id="@+id/radioSiCocinaDormitorio"
-                        android:layout_marginTop="61dp"
-                        android:layout_alignParentTop="true"
-                        android:layout_centerHorizontal="true"
-                        android:checked="true"
-                        />
-                    <RadioButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="No"
-                        android:id="@+id/radioNoCocinaDormitorio"
-                        android:layout_marginTop="61dp"
-                        android:layout_alignParentTop="false"
-                        android:layout_centerHorizontal="true"
-                        android:checked="false"
-                        />
-
-                </RadioGroup>
-                <Space
-                    android:layout_width="wrap_content"
-                    android:layout_height="10dp"
-                    android:background="@drawable/red_bg" />
-
-                <TextView
-                    android:layout_width="280dp"
-                    android:layout_column="0"
-                    android:layout_row="1"
-                    android:layout_height="wrap_content"
-                    android:text="No hay sedazo en las ventanas (area endemica de malaria)"
-                    android:textColor="@android:color/black"
-                    android:paddingRight="5dp" />
-
-                <RadioGroup
-                    android:id="@+id/radioSedazo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_column="1"
-                    android:layout_row="1"
-                    android:orientation="horizontal"
-                    android:layout_gravity="center_horizontal"
-                    >
-
-                    <RadioButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Si"
-                        android:id="@+id/radioSiSedazo"
-                        android:layout_marginTop="61dp"
-                        android:layout_alignParentTop="true"
-                        android:layout_centerHorizontal="true"
-                        android:checked="true"
-                        />
-                    <RadioButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="No"
-                        android:id="@+id/radioNoSedazo"
-                        android:layout_marginTop="61dp"
-                        android:layout_alignParentTop="false"
-                        android:layout_centerHorizontal="true"
-                        android:checked="false"
-                        />
-
-                </RadioGroup>
-                <Space
-                    android:layout_width="wrap_content"
-                    android:layout_height="10dp"
-                    android:background="@drawable/red_bg" />
-
-                <TextView
-                    android:layout_width="280dp"
-                    android:layout_column="0"
-                    android:layout_row="2"
-                    android:layout_height="wrap_content"
-                    android:text="No usan mosquiteros (area endemica de malaria)"
-                    android:textColor="@android:color/black"
-                    android:paddingRight="5dp" />
-
-                <RadioGroup
-                    android:id="@+id/radioMosquiteros"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_column="1"
-                    android:layout_row="2"
-                    android:orientation="horizontal"
-                    android:layout_gravity="center_horizontal"
-                    >
-
-                    <RadioButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Si"
-                        android:id="@+id/radioSiMosquiteros"
-                        android:layout_marginTop="61dp"
-                        android:layout_alignParentTop="true"
-                        android:layout_centerHorizontal="true"
-                        android:checked="true"
-                       />
-                    <RadioButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="No"
-                        android:id="@+id/radioNoMosquiteros"
-                        android:layout_marginTop="61dp"
-                        android:layout_alignParentTop="false"
-                        android:layout_centerHorizontal="true"
-                        android:checked="false"
-                        />
-
-                </RadioGroup>
+            <Switch
+                android:text="Cocina esta dentro del dormitorio"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textOn="Si"
+                android:textOff="No"
+                android:id="@+id/switchCocinaDormitorio" />
 
                 <Space
                     android:layout_width="wrap_content"
                     android:layout_height="10dp"
                     android:background="@drawable/red_bg" />
 
-                <TextView
-                    android:layout_width="280dp"
-                    android:layout_column="0"
-                    android:layout_row="3"
-                    android:layout_height="wrap_content"
-                    android:text="Uso de plaguisidas"
-                    android:textColor="@android:color/black"
-                    android:paddingRight="5dp" />
-
-                <RadioGroup
-                    android:id="@+id/radioPlaguisida"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_column="1"
-                    android:layout_row="3"
-                    android:orientation="horizontal"
-                    android:layout_gravity="center_horizontal"
-                    >
-
-                    <RadioButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Si"
-                        android:id="@+id/radioSiPlaguisida"
-                        android:layout_marginTop="61dp"
-                        android:layout_alignParentTop="true"
-                        android:layout_centerHorizontal="true"
-                        android:checked="true"
-                        />
-                    <RadioButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="No"
-                        android:id="@+id/radioNoPlaguisida"
-                        android:layout_marginTop="61dp"
-                        android:layout_alignParentTop="false"
-                        android:layout_centerHorizontal="true"
-                        android:checked="false"
-                    />
-
-                </RadioGroup>
-                <Space
-                    android:layout_width="wrap_content"
-                    android:layout_height="10dp"
-                    android:background="@drawable/red_bg" />
-
-                <TextView
-                    android:layout_width="280dp"
-                    android:layout_column="0"
-                    android:layout_row="4"
-                    android:layout_height="wrap_content"
-                    android:text="Reconocen signos de peligro en AEPI"
-                    android:textColor="@android:color/black"
-                    />
-
-                <RadioGroup
-                    android:id="@+id/radioAEPI"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_column="1"
-                    android:layout_row="4"
-                    android:orientation="horizontal"
-                    android:layout_gravity="center_horizontal"
-                    >
-
-                    <RadioButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Si"
-                        android:id="@+id/radioSiAEPI"
-                        android:layout_marginTop="61dp"
-                        android:layout_alignParentTop="true"
-                        android:layout_centerHorizontal="true"
-                        android:checked="true"
-                        />
-                    <RadioButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="No"
-                        android:id="@+id/radioNoAEPI"
-                        android:layout_marginTop="61dp"
-                        android:layout_alignParentTop="false"
-                        android:layout_centerHorizontal="true"
-                        android:checked="false"
-                        />
-
-                </RadioGroup>
+            <Switch
+                android:text="No hay sedazo en las ventanas (area endemica de malaria)"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textOn="Si"
+                android:textOff="No"
+                android:id="@+id/switchSedazo" />
 
                 <Space
                     android:layout_width="wrap_content"
                     android:layout_height="10dp"
                     android:background="@drawable/red_bg" />
 
-                <TextView
-                    android:layout_width="280dp"
-                    android:layout_column="0"
-                    android:layout_row="5"
-                    android:layout_height="wrap_content"
-                    android:text="Personas de tercera edad y niños en estado de abandono"
-                    android:textColor="@android:color/black"
-                    android:paddingRight="5dp" />
-
-                <RadioGroup
-                    android:id="@+id/radioAbandono"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_column="1"
-                    android:layout_row="5"
-                    android:orientation="horizontal"
-                    android:layout_gravity="center_horizontal"
-                    >
-
-                    <RadioButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Si"
-                        android:id="@+id/radioSiAbandono"
-                        android:layout_marginTop="61dp"
-                        android:layout_alignParentTop="true"
-                        android:layout_centerHorizontal="true"
-                        android:checked="true"
-                        />
-                    <RadioButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="No"
-                        android:id="@+id/radioNoAbandono"
-                        android:layout_marginTop="61dp"
-                        android:layout_alignParentTop="false"
-                        android:layout_centerHorizontal="true"
-                        android:checked="false"
-                        />
-
-                </RadioGroup>
+            <Switch
+                android:text="No usan mosquiteros (area endemica de malaria)"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textOn="Si"
+                android:textOff="No"
+                android:id="@+id/switchMosquiteros" />
 
                 <Space
                     android:layout_width="wrap_content"
                     android:layout_height="10dp"
                     android:background="@drawable/red_bg" />
 
-                <TextView
-                    android:layout_width="280dp"
+            <Switch
+                android:text="Uso de plaguisidas"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textOn="Si"
+                android:textOff="No"
+                android:id="@+id/switchPlaguisidas" />
 
-                    android:layout_column="0"
-                    android:layout_row="6"
-                    android:orientation="horizontal"
-                    android:layout_height="wrap_content"
-                    android:text="Familia que rechaza acudir a unidades de salud"
-                    android:textColor="@android:color/black"
-                     />
-
-                <RadioGroup
-                    android:id="@+id/radioIrUnidad"
+                <Space
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_column="1"
-                    android:layout_row="6"
-                    android:orientation="horizontal"
-                    android:layout_gravity="center_horizontal"
-                    >
+                    android:layout_height="10dp"
+                    android:background="@drawable/red_bg" />
 
-                    <RadioButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:text="Si"
-                        android:id="@+id/radioSiIrUnidad"
-                        android:layout_marginTop="61dp"
-                        android:layout_alignParentTop="true"
-                        android:layout_centerHorizontal="true"
-                        android:checked="true"
-                        />
-                    <RadioButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:text="No"
-                        android:id="@+id/radioNoIrUnidad"
-                        android:layout_marginTop="61dp"
-                        android:layout_alignParentTop="true"
-                        android:layout_centerHorizontal="true"
-                        android:checked="false"
-                        />
+            <Switch
+                android:text="Reconocen signos de peligro en AEPI"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textOn="Si"
+                android:textOff="No"
+                android:id="@+id/switchAEPI" />
 
-                </RadioGroup>
-            </GridLayout>
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="10dp"
+                    android:background="@drawable/red_bg" />
+
+            <Switch
+                android:text="Personas de tercera edad y niños en estado de abandono"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textOn="Si"
+                android:textOff="No"
+                android:id="@+id/switchAbandono" />
+
+
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="10dp"
+                    android:background="@drawable/red_bg" />
+
+            <Switch
+                android:text="Familia que rechaza acudir a unidades de salud"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textOn="Si"
+                android:textOff="No"
+                android:id="@+id/switchIrunidad" />
+
             <Space
                 android:layout_width="wrap_content"
                 android:layout_height="10dp"
@@ -2347,16 +1678,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/miembrosHogar"/>
-
-            <Space
-                android:layout_width="wrap_content"
-                android:layout_height="10dp"
-                android:background="@drawable/red_bg" />
-            <Button
-                android:text="Personas Fallecidas"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/mortalidad"/>
 
 
         </LinearLayout>

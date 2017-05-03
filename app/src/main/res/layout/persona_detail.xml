@@ -12,8 +12,6 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="z9.msp.gob.mspfichafamiliar.activity.PersonaDetailFragment"
     android:weightSum="1">
-
-
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -77,7 +75,7 @@
         android:paddingRight="5dp" />
     <Spinner
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:id="@+id/spinnerParentescoJefeHogar"
         android:layout_alignParentTop="true"
         android:layout_weight="0.39"
@@ -126,8 +124,7 @@
             android:text="@string/hombre"
             android:layout_width="94dp"
             android:layout_height="20dp"
-            android:id="@+id/radioSexoHombre"
-            android:checked="true" />
+            android:id="@+id/radioSexoHombre" />
 
         <RadioButton
             android:text="@string/mujer"
@@ -209,7 +206,6 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/tvNacionalidad"
         android:text="11.- ¿Indique su nacionalidad?"
         android:textColor="@android:color/black"
         android:background="@android:color/darker_gray"
@@ -227,7 +223,6 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/tvPueblos"
         android:text="12.- ¿A que pueblo pertenece?"
         android:textColor="@android:color/black"
         android:background="@android:color/darker_gray"

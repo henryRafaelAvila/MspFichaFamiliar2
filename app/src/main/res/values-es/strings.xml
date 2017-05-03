@@ -27,5 +27,4 @@
     <string name="RecibLechMat">¿Recibio leche materna de ayer hasta hoy 6:00 am?</string>
     <string name="AddSal">¿A los alimnentos preparados los adiciona sal?</string>
     <string name="detSeguroPrivado">Detalle su seguro privado</string>
-    <string name="ip">Dirección ip del servidor</string>
 </resources>
