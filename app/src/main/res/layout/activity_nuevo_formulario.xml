@@ -141,11 +141,12 @@
                 android:id="@+id/txtCroquis"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Croquis de Ubicaciòn de la Vivienda"
+                android:text="Croquis de Ubicacion de la Vivienda"
                 android:background="@android:color/darker_gray"
                 android:textColor="@android:color/black"
                 android:gravity="center_horizontal"
                 android:paddingRight="5dp" />
+
             <View
 
                 android:layout_width="wrap_content"
@@ -1393,10 +1394,10 @@
 
             <Switch
                 android:text="Intradomiciliarios que representan riesgo sanitario"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:textOn="Si"
                 android:textOff="No"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:id="@+id/switchIntradomiciliarios" />
 
                 <Space
@@ -1406,10 +1407,10 @@
 
             <Switch
                 android:text="Presencia de vectores transmisores de enfermedad (zancudos, moscas, ect.)"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:textOn="Si"
                 android:textOff="No"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:id="@+id/switchVectores" />
 
                 <Space
@@ -1419,11 +1420,12 @@
 
             <Switch
                 android:text="Convivencia inadecuada con animales si observa que los animales andan por todos lados en la vivienda sin tener un lugar propio"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:textOn="Si"
                 android:textOff="No"
-                android:id="@+id/switchAnimalesSueltos" />
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/switchAnimalesSueltos"
+                />
 
             <Space
                 android:layout_width="wrap_content"
@@ -1452,62 +1454,58 @@
 
             <Switch
                 android:text="Violencia Intrafamiliar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:textOn="Si"
                 android:textOff="No"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:id="@+id/switchViolenciaIntra" />
 
                 <Space
                     android:layout_width="wrap_content"
                     android:layout_height="10dp"
                     android:background="@drawable/red_bg" />
-
             <Switch
                 android:text="Desestructuracion Familiar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:textOn="Si"
                 android:textOff="No"
-                android:id="@+id/switchDesestrucFami" />
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/switchDestrucFami" />
 
                 <Space
                     android:layout_width="wrap_content"
                     android:layout_height="10dp"
                     android:background="@drawable/red_bg" />
-
             <Switch
-                android:text="Problemas graves en la familia"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:text=" Problemas graves en la familia"
                 android:textOn="Si"
                 android:textOff="No"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:id="@+id/switchProblemasFami" />
 
                 <Space
                     android:layout_width="wrap_content"
                     android:layout_height="10dp"
                     android:background="@drawable/red_bg" />
-
             <Switch
                 android:text=" Problemas psico-sociales en la familia pero no piden ayuda"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:textOn="Si"
                 android:textOff="No"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:id="@+id/switchProblemasSocio" />
 
                 <Space
                     android:layout_width="wrap_content"
                     android:layout_height="10dp"
                     android:background="@drawable/red_bg" />
-
             <Switch
                 android:text=" Familia con riesgo de auto-atencion o aislamiento"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:textOn="Si"
                 android:textOff="No"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:id="@+id/switchAislamiento" />
 
                 <Space
@@ -1517,36 +1515,34 @@
 
             <Switch
                 android:text=" Numero de miembros de la familia sin escolarizacion"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:textOn="Si"
                 android:textOff="No"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:id="@+id/switchEscolarizacion" />
 
                 <Space
                     android:layout_width="wrap_content"
                     android:layout_height="10dp"
                     android:background="@drawable/red_bg" />
-
             <Switch
                 android:text=" Numero de niños en edad escolar no inceratados"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:textOn="Si"
                 android:textOff="No"
-                android:id="@+id/switchNiniosEscuela" />
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/switchNiniosEcuela" />
 
                 <Space
                     android:layout_width="wrap_content"
                     android:layout_height="10dp"
                     android:background="@drawable/red_bg" />
-
             <Switch
                 android:text="Numero de miembros con alcoholismo"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:textOn="Si"
                 android:textOff="No"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:id="@+id/switchAlcoholismo" />
 
                 <Space
@@ -1556,10 +1552,10 @@
 
             <Switch
                 android:text="Numero de miembros con drogodependencia"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:textOn="Si"
                 android:textOff="No"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:id="@+id/switchDrogas" />
 
             <Space
@@ -1584,90 +1580,83 @@
 
             <Switch
                 android:text="Cocina esta dentro del dormitorio"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:textOn="Si"
                 android:textOff="No"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:id="@+id/switchCocinaDormitorio" />
 
                 <Space
                     android:layout_width="wrap_content"
                     android:layout_height="10dp"
                     android:background="@drawable/red_bg" />
-
             <Switch
                 android:text="No hay sedazo en las ventanas (area endemica de malaria)"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:textOn="Si"
                 android:textOff="No"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:id="@+id/switchSedazo" />
 
                 <Space
                     android:layout_width="wrap_content"
                     android:layout_height="10dp"
                     android:background="@drawable/red_bg" />
-
             <Switch
                 android:text="No usan mosquiteros (area endemica de malaria)"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:textOn="Si"
                 android:textOff="No"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:id="@+id/switchMosquiteros" />
 
                 <Space
                     android:layout_width="wrap_content"
                     android:layout_height="10dp"
                     android:background="@drawable/red_bg" />
-
             <Switch
                 android:text="Uso de plaguisidas"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:textOn="Si"
                 android:textOff="No"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:id="@+id/switchPlaguisidas" />
 
                 <Space
                     android:layout_width="wrap_content"
                     android:layout_height="10dp"
                     android:background="@drawable/red_bg" />
-
             <Switch
                 android:text="Reconocen signos de peligro en AEPI"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:textOn="Si"
                 android:textOff="No"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:id="@+id/switchAEPI" />
 
                 <Space
                     android:layout_width="wrap_content"
                     android:layout_height="10dp"
                     android:background="@drawable/red_bg" />
-
             <Switch
                 android:text="Personas de tercera edad y niños en estado de abandono"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:textOn="Si"
                 android:textOff="No"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:id="@+id/switchAbandono" />
-
 
                 <Space
                     android:layout_width="wrap_content"
                     android:layout_height="10dp"
                     android:background="@drawable/red_bg" />
-
             <Switch
                 android:text="Familia que rechaza acudir a unidades de salud"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:textOn="Si"
                 android:textOff="No"
-                android:id="@+id/switchIrunidad" />
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/switchIrUnidad" />
 
             <Space
                 android:layout_width="wrap_content"
@@ -1678,6 +1667,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/miembrosHogar"/>
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="10dp"
+                android:background="@drawable/red_bg" />
+            <Button
+                android:text="Personas Fallecidas"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/mortalidad"/>
 
 
         </LinearLayout>

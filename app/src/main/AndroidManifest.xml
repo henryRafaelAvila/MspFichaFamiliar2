@@ -2,6 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="z9.msp.gob.mspfichafamiliar">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.SET_DEBUG_APP" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -12,11 +16,14 @@
             android:name=".MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
+
+            <!--
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+            -->
         </activity>
         <!-- <activity -->
         <!-- android:name=".activity.ListFormActivity" -->
@@ -42,6 +49,49 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="z9.msp.gob.mspfichafamiliar.activity.PersonaListActivity" />
+        </activity>
+        <activity
+            android:name=".activity.MortalidadDetailActivity"
+            android:label="@string/title_persona_detail"
+            android:parentActivityName=".activity.MortalidadListActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="z9.msp.gob.mspfichafamiliar.activity.MortalidadListActivity" />
+        </activity>
+        <activity
+            android:name=".activity.MortalidadListActivity"
+            android:label="Mortalidad"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="z9.msp.gob.mspfichafamiliar.activity.NuevoFormularioActivity" />
+        </activity>
+        <activity
+            android:name=".activity.ConfigurationDataBase"
+            android:label="Configuración">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="z9.msp.gob.mspfichafamiliar.MasterPageActivity" />
+        </activity>
+        <!--
+            <activity
+            android:name=".activity.MortalidadListActivity"
+            android:label="@string/title_activity_mortalidad_list"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        -->
+
+        <activity android:name=".MasterPageActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".activity.DescargarFormularios" android:label="Descarga de formularios">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="z9.msp.gob.mspfichafamiliar.MasterPageActivity" />
         </activity>
     </application>
 

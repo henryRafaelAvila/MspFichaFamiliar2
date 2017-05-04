@@ -7,7 +7,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Switch;
@@ -74,6 +73,7 @@ public class NuevoFormularioActivity extends AppCompatActivity {
 
     DatabaseHandler db;
    Button miembrosHogar;
+    Button mortalidad;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -232,7 +232,7 @@ public class NuevoFormularioActivity extends AppCompatActivity {
                         break;
                 }
 
-                if((ocupacion.trim()).equals(condicion)){
+                if(ocupacion.equals(condicion)){
                     activaComponentes (true);
                 }
                 else{
@@ -308,6 +308,19 @@ public class NuevoFormularioActivity extends AppCompatActivity {
                 Context context = view.getContext();
                 Intent intent = new Intent(context, PersonaListActivity.class);
                 intent.putExtra(PersonaListActivity.FORM_ID, "-1");
+                context.startActivity(intent);
+            }
+
+        });
+
+        mortalidad=(Button)findViewById(R.id.mortalidad);
+        mortalidad.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                Context context = view.getContext();
+                Intent intent = new Intent(context, MortalidadListActivity.class);
+                intent.putExtra(MortalidadListActivity.FORM_ID, "-1");
                 context.startActivity(intent);
             }
 
@@ -427,25 +440,25 @@ public class NuevoFormularioActivity extends AppCompatActivity {
         intradomiciliarios.setEnabled(vf);
         Switch vectores= (Switch) findViewById(R.id.switchVectores);
         vectores.setEnabled(vf);
-        Switch animalessueltos= (Switch) findViewById(R.id.switchAnimalesSueltos);
-        animalessueltos.setEnabled(vf);
+        Switch animalescueltos= (Switch) findViewById(R.id.switchAnimalesSueltos);
+        animalescueltos.setEnabled(vf);
 
         Switch violenciaintra= (Switch) findViewById(R.id.switchViolenciaIntra);
         violenciaintra.setEnabled(vf);
-        Switch desestrucfami= (Switch) findViewById(R.id.switchDesestrucFami);
-        desestrucfami.setEnabled(vf);
-        Switch problemafami= (Switch) findViewById(R.id.switchProblemasFami);
-        problemafami.setEnabled(vf);
-        Switch problemasocio= (Switch) findViewById(R.id.switchProblemasSocio);
-        problemasocio.setEnabled(vf);
+        Switch desetrucfami= (Switch) findViewById(R.id.switchDestrucFami);
+        desetrucfami.setEnabled(vf);
+        Switch problemasfamilia= (Switch) findViewById(R.id.switchProblemasFami);
+        problemasfamilia.setEnabled(vf);
+        Switch problemassocio= (Switch) findViewById(R.id.switchProblemasSocio);
+        problemassocio.setEnabled(vf);
         Switch aislamiento= (Switch) findViewById(R.id.switchAislamiento);
         aislamiento.setEnabled(vf);
-        Switch escolarizcion= (Switch) findViewById(R.id.switchEscolarizacion);
-        escolarizcion.setEnabled(vf);
-        Switch niniosescuela= (Switch) findViewById(R.id.switchNiniosEscuela);
+        Switch escolarizacion= (Switch) findViewById(R.id.switchEscolarizacion);
+        escolarizacion.setEnabled(vf);
+        Switch niniosescuela= (Switch) findViewById(R.id.switchNiniosEcuela);
         niniosescuela.setEnabled(vf);
-        Switch alcoholismo= (Switch) findViewById(R.id.switchAlcoholismo);
-        alcoholismo.setEnabled(vf);
+        Switch alcohol= (Switch) findViewById(R.id.switchAlcoholismo);
+        alcohol.setEnabled(vf);
         Switch drogas= (Switch) findViewById(R.id.switchDrogas);
         drogas.setEnabled(vf);
 
@@ -453,19 +466,21 @@ public class NuevoFormularioActivity extends AppCompatActivity {
         cocinadormitorio.setEnabled(vf);
         Switch sedazo= (Switch) findViewById(R.id.switchSedazo);
         sedazo.setEnabled(vf);
-        Switch mosquitero= (Switch) findViewById(R.id.switchMosquiteros);
-        mosquitero.setEnabled(vf);
+        Switch mosquiteros= (Switch) findViewById(R.id.switchMosquiteros);
+        mosquiteros.setEnabled(vf);
         Switch plaguisida= (Switch) findViewById(R.id.switchPlaguisidas);
         plaguisida.setEnabled(vf);
         Switch aepi= (Switch) findViewById(R.id.switchAEPI);
         aepi.setEnabled(vf);
         Switch abandono= (Switch) findViewById(R.id.switchAbandono);
         abandono.setEnabled(vf);
-        Switch irunidad= (Switch) findViewById(R.id.switchIrunidad);
+        Switch irunidad= (Switch) findViewById(R.id.switchIrUnidad);
         irunidad.setEnabled(vf);
 
         Button btbmiembrosfamilia= (Button) findViewById(R.id.miembrosHogar);
         btbmiembrosfamilia.setEnabled(vf);
+        Button personasfallecidas= (Button) findViewById(R.id.mortalidad);
+        personasfallecidas.setEnabled(vf);
 
     }
 

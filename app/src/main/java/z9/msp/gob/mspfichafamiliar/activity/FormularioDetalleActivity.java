@@ -14,6 +14,5 @@ public class FormularioDetalleActivity extends AppCompatActivity {
         setContentView(R.layout.activity_formulario_detalle);
         android.support.v7.app.ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
-        //
     }
 }
