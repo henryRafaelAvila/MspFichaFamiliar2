@@ -49,6 +49,7 @@ import z9.msp.gob.persistencia.entity.TipoTransp;
 import z9.msp.gob.persistencia.entity.TipoVivienda;
 import z9.msp.gob.persistencia.entity.TratamientoAgua;
 import z9.msp.gob.persistencia.entity.UbicacionLetrete;
+import z9.msp.gob.persistencia.entity.ViasAcceso;
 import z9.msp.gob.persistencia.enums.TABLES;
 import z9.msp.gob.persistencia.enums.WS;
 
@@ -198,6 +199,9 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             case CLASF_DIAGNOS:
                 insertClasifDiagnostico(table,(ClasifDiagnostico) o);
                 break;
+            case VIAS_ACCESO:
+                insertViasAcceso(table,(ViasAcceso) o);
+                break;
 
         }
     }
@@ -212,6 +216,13 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         values.put("_id", obj.getIdEliBas());
         values.put("cod_eli_bas", obj.getCodEliBas());
+        values.put("descripcion", obj.getDescripcion());
+        executeCreateQuery(values,table);
+    }
+    public void insertViasAcceso(TABLES table, ViasAcceso obj) {
+        ContentValues values = new ContentValues();
+        values.put("_id", obj.getIdViaAcc());
+        values.put("cod_via_acc", obj.getCodViaAcc());
         values.put("descripcion", obj.getDescripcion());
         executeCreateQuery(values,table);
     }
