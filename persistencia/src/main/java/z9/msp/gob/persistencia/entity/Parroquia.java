@@ -16,6 +16,9 @@ public class Parroquia implements Serializable {
 
 	private String descripcion;
 
+	private String tipo;
+
+
 	@SerializedName("id_canton")
 	private Integer id_canton;
 
@@ -49,6 +52,14 @@ public class Parroquia implements Serializable {
 
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
+	}
+
+	public String getTipo() {
+		return this.tipo;
+	}
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
 	}
 
 	public Integer getId_canton() {

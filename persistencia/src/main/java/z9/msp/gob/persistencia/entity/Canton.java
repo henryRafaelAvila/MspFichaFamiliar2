@@ -20,9 +20,21 @@ public class Canton implements Serializable {
 
 	@SerializedName("id_provincia")
 	private Integer provincia_id;
+
+
+	@SerializedName("id_admin")
+	private Integer id_admin;
 	
 
 	public Canton() {
+	}
+
+	public Integer getId_admin() {
+		return id_admin;
+	}
+
+	public void setId_admin(Integer id_admin) {
+		this.id_admin = id_admin;
 	}
 
 	public Integer getIdCanton() {

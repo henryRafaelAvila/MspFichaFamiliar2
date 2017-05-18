@@ -67,7 +67,7 @@ import z9.msp.gob.persistencia.enums.WS;
 public class DatabaseHandler extends SQLiteOpenHelper {
     // All Static variables
     // Database Version
-    private static final int DATABASE_VERSION = 8;
+    private static final int DATABASE_VERSION =11 ;
     private static final String DATABASE_NAME = "ficha_familiar_msp";
     private Context context;
     SQLiteDatabase db = this.getWritableDatabase();
@@ -257,6 +257,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         values.put("_id", obj.getIdParroquia());
         values.put("id_canton", obj.getId_canton());
+        values.put("tipo", obj.getTipo());
         values.put("id_distrito", obj.getId_distrito());
         values.put("cod_parr", obj.getCodParr());
         values.put("descripcion", obj.getDescripcion());
@@ -274,6 +275,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         values.put("_id", obj.getIdCanton());
         values.put("id_provincia", obj.getProvincia_id());
         values.put("cod_cant", obj.getCodCant());
+        values.put("id_admin", obj.getId_admin());
+
         values.put("descripcion", obj.getDescripcion());
         executeCreateQuery(values,table);
     }
