@@ -1,8 +1,8 @@
 package z9.msp.gob.persistencia.entity;
 
-import com.google.gson.annotations.SerializedName;
-
 import java.io.Serializable;
+
+import com.google.gson.annotations.SerializedName;
 
 
 
@@ -24,6 +24,9 @@ public class UnidadOperativa implements Serializable {
 	private String nombreOficial;
 
 	private String telf;
+
+	@SerializedName("id_parroquia")
+	private Integer id_parroquia;
 
 	public UnidadOperativa() {
 	}
@@ -76,4 +79,11 @@ public class UnidadOperativa implements Serializable {
 		this.telf = telf;
 	}
 
+	public Integer getId_parroquia() {
+		return id_parroquia;
+	}
+
+	public void setId_parroquia(Integer id_parroquia) {
+		this.id_parroquia = id_parroquia;
+	}
 }

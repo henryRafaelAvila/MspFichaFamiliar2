@@ -1,6 +1,7 @@
 package z9.msp.gob.persistencia.enums;
 
 import z9.msp.gob.persistencia.entity.ActividadTrab;
+import z9.msp.gob.persistencia.entity.AdministracionZonal;
 import z9.msp.gob.persistencia.entity.Canton;
 import z9.msp.gob.persistencia.entity.ClasifDiagnostico;
 import z9.msp.gob.persistencia.entity.CombustibleCocinar;
@@ -41,9 +42,10 @@ import z9.msp.gob.persistencia.entity.ViasAcceso;
 public enum TABLES {
     CONFIG_SERVER("config_server",null,"CREATE TABLE config_server (_id INTEGER PRIMARY KEY  NOT NULL , ip VARCHAR NOT NULL , puerto INTEGER NOT NULL,servicio_cat VARCHAR,servicio_up VARCHAR,servicio_down VARCHAR,usuario VARCHAR,clave VARCHAR)"),
     PROVINCIA("provincia",Provincia.class,"CREATE TABLE provincia (_id INTEGER PRIMARY KEY  NOT NULL , cod_prov VARCHAR NOT NULL , descripcion VARCHAR NOT NULL )"),
-    CANTON("canton",Canton.class,"CREATE TABLE canton (_id INTEGER PRIMARY KEY  NOT NULL ,id_prov Integer NOT NULL  DEFAULT (null) ,cod_cant VARCHAR NOT NULL ,descripcion VARCHAR NOT NULL )"),
-    PARROQUIA("parroquia",Parroquia.class,"CREATE TABLE parroquia (_id INTEGER PRIMARY KEY  NOT NULL , id_canton INTEGER NOT NULL , id_distrito INTEGER NOT NULL , cod_parr VARCHAR NOT NULL , tipo VARCHAR NOT NULL , descripcion VARCHAR NOT NULL )"),
+    CANTON("canton",Canton.class,"CREATE TABLE canton (_id INTEGER PRIMARY KEY  NOT NULL ,id_provincia Integer NOT NULL  DEFAULT (null) ,cod_cant VARCHAR NOT NULL ,descripcion VARCHAR NOT NULL,id_admin             Integer                 null )"),
+    PARROQUIA("parroquia",Parroquia.class,"CREATE TABLE parroquia (_id INTEGER PRIMARY KEY  NOT NULL , id_canton INTEGER NOT NULL , id_distrito INTEGER NOT NULL , cod_parr VARCHAR NOT NULL , descripcion VARCHAR NOT NULL ,tipo VARCHAR NOT NULL )"),
     DISTRITO("distrito",Distrito.class,"CREATE TABLE distrito (_id INTEGER PRIMARY KEY  NOT NULL , cod_distrito VARCHAR NOT NULL , descripcion VARCHAR NOT NULL )"),
+    ADMISNISTRACION_ZONAL("administracion_zonal",AdministracionZonal.class,"CREATE TABLE administracion_zonal(_id INTEGER PRIMARY KEY  NOT NULL ,cod character VARCHAR NOT NULL,  descripcion VARCHAR NOT NULL)"),
     UNIDAD_OPERATIVA("unidad_operativa",UnidadOperativa.class,"CREATE TABLE unidad_operativa (_id INTEGER PRIMARY KEY  AUTOINCREMENT  NOT NULL , id_parroquia INTEGER NOT NULL , cod_uni_oper VARCHAR NOT NULL , nombre_oficial VARCHAR NOT NULL , nombre_comun VARCHAR NOT NULL , direccion VARCHAR NOT NULL , telf VARCHAR NOT NULL )"),
     ELIMINAR_BASURA("eliminar_basura",EliminarBasura.class,"CREATE TABLE eliminar_basura (_id INTEGER PRIMARY KEY  NOT NULL  DEFAULT (null) ,cod_eli_bas INTEGER NOT NULL ,descripcion VARCHAR NOT NULL )"),
     UBICACION_LETRETE("ubicacion_letrete",UbicacionLetrete.class,"CREATE TABLE ubicacion_letrete (_id INTEGER PRIMARY KEY  NOT NULL  DEFAULT (null) ,cod_ubi_let INTEGER NOT NULL ,descripcion VARCHAR NOT NULL )"),

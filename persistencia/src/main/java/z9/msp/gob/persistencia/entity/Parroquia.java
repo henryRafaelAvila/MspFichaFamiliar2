@@ -1,8 +1,9 @@
 package z9.msp.gob.persistencia.entity;
 
+import java.io.Serializable;
+
 import com.google.gson.annotations.SerializedName;
 
-import java.io.Serializable;
 
 public class Parroquia implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -16,6 +17,14 @@ public class Parroquia implements Serializable {
 	private String descripcion;
 
 	private String tipo;
+
+
+	@SerializedName("id_canton")
+	private Integer id_canton;
+
+
+	@SerializedName("id_distrito")
+	private Integer id_distrito;
 
 
 	public Parroquia() {
@@ -53,4 +62,19 @@ public class Parroquia implements Serializable {
 		this.tipo = tipo;
 	}
 
+	public Integer getId_canton() {
+		return id_canton;
+	}
+
+	public void setId_canton(Integer id_canton) {
+		this.id_canton = id_canton;
+	}
+
+	public Integer getId_distrito() {
+		return id_distrito;
+	}
+
+	public void setId_distrito(Integer id_distrito) {
+		this.id_distrito = id_distrito;
+	}
 }

@@ -1,9 +1,8 @@
 package z9.msp.gob.persistencia.entity;
 
-import com.google.gson.annotations.SerializedName;
-
 import java.io.Serializable;
-import java.util.List;
+
+import com.google.gson.annotations.SerializedName;
 
 
 public class Distrito implements Serializable {
@@ -16,6 +15,7 @@ public class Distrito implements Serializable {
 	private String codDistrito;
 
 	private String descripcion;
+
 
 	public Distrito() {
 	}
@@ -43,6 +43,5 @@ public class Distrito implements Serializable {
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
-
 
 }

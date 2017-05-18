@@ -1,9 +1,10 @@
 package z9.msp.gob.persistencia.entity;
 
+import java.io.Serializable;
 import com.google.gson.annotations.SerializedName;
 
-import java.io.Serializable;
 import java.util.List;
+
 
 public class AdministracionZonal implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -14,7 +15,6 @@ public class AdministracionZonal implements Serializable {
 	private String cod;
 
 	private String descripcion;
-
 
 
 	public AdministracionZonal() {
