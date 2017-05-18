@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.graphics.Path;
 import android.provider.ContactsContract;
+import android.util.Log;
 
 
 import org.json.JSONException;
@@ -23,9 +24,12 @@ import java.util.List;
 
 
 import z9.msp.gob.persistencia.entity.ActividadTrab;
+import z9.msp.gob.persistencia.entity.AdministracionZonal;
+import z9.msp.gob.persistencia.entity.Canton;
 import z9.msp.gob.persistencia.entity.ClasifDiagnostico;
 import z9.msp.gob.persistencia.entity.CombustibleCocinar;
 import z9.msp.gob.persistencia.entity.CondicionOcupacion;
+import z9.msp.gob.persistencia.entity.Distrito;
 import z9.msp.gob.persistencia.entity.EliminarAguaSer;
 import z9.msp.gob.persistencia.entity.EliminarBasura;
 import z9.msp.gob.persistencia.entity.EstadoCivil;
@@ -40,8 +44,10 @@ import z9.msp.gob.persistencia.entity.Nacionalidad;
 import z9.msp.gob.persistencia.entity.Nacionalidade;
 import z9.msp.gob.persistencia.entity.NivelInstruccion;
 import z9.msp.gob.persistencia.entity.ParentescoJefeHogar;
+import z9.msp.gob.persistencia.entity.Parroquia;
 import z9.msp.gob.persistencia.entity.Personas;
 import z9.msp.gob.persistencia.entity.ProcedenciaAgua;
+import z9.msp.gob.persistencia.entity.Provincia;
 import z9.msp.gob.persistencia.entity.Pueblo;
 import z9.msp.gob.persistencia.entity.RecibeAgua;
 import z9.msp.gob.persistencia.entity.SeguroPublico;
@@ -49,6 +55,7 @@ import z9.msp.gob.persistencia.entity.TipoTransp;
 import z9.msp.gob.persistencia.entity.TipoVivienda;
 import z9.msp.gob.persistencia.entity.TratamientoAgua;
 import z9.msp.gob.persistencia.entity.UbicacionLetrete;
+import z9.msp.gob.persistencia.entity.UnidadOperativa;
 import z9.msp.gob.persistencia.entity.ViasAcceso;
 import z9.msp.gob.persistencia.enums.TABLES;
 import z9.msp.gob.persistencia.enums.WS;
@@ -60,7 +67,7 @@ import z9.msp.gob.persistencia.enums.WS;
 public class DatabaseHandler extends SQLiteOpenHelper {
     // All Static variables
     // Database Version
-    private static final int DATABASE_VERSION = 7;
+    private static final int DATABASE_VERSION = 8;
     private static final String DATABASE_NAME = "ficha_familiar_msp";
     private Context context;
     SQLiteDatabase db = this.getWritableDatabase();
@@ -112,11 +119,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
     public String getWs(WS columnName) {
         String url=null;
-        String selectQuery = "SELECT * FROM config_server";
-        //CREATE TABLE config_server ( ip VARCHAR NOT NULL , puerto INTEGER NOT NULL,
-        // servicio_cat VARCHAR,servicio_up VARCHAR,servicio_down VARCHAR)"),
-        SQLiteDatabase db = this.getWritableDatabase();
-        Cursor cursor = db.rawQuery(selectQuery, null);
+        Cursor cursor =getAllGeneric(TABLES.CONFIG_SERVER.getTablaName());
         if (cursor.moveToFirst()) {
             int colIndex=cursor.getColumnIndex(columnName.getColumnName());
             url="http://"+cursor.getString(1)+":"+cursor.getInt(2)+"/"+cursor.getString(colIndex)+"?usuario="+cursor.getString(6)+"&clave="+cursor.getString(7);
@@ -204,101 +207,168 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             case VIAS_ACCESO:
                 insertViasAcceso(table,(ViasAcceso) o);
                 break;
+            case CANTON:
+                insertCanton(table,(Canton) o);
+                break;
+            case PROVINCIA:
+                insertProvincia(table,(Provincia) o);
+                break;
+            case PARROQUIA:
+                insertParroquia(table,(Parroquia) o);
+                break;
+            case UNIDAD_OPERATIVA:
+                insertUnidadOperativa(table,(UnidadOperativa) o);
+                break;
+            case DISTRITO:
+                insertDistrito(table,(Distrito) o);
+                break;
+            case ADMISNISTRACION_ZONAL:
+                insertAdministracionZonal(table,(AdministracionZonal) o);
+                break;
 
         }
     }
-    public void insertClasifDiagnostico(TABLES table, ClasifDiagnostico obj) {
+    private void insertAdministracionZonal(TABLES table, AdministracionZonal obj) {
+        ContentValues values = new ContentValues();
+        values.put("_id", obj.getIdAdmin());
+        values.put("cod", obj.getCod());
+        values.put("descripcion", obj.getDescripcion());
+        executeCreateQuery(values,table);
+    }
+    private void insertDistrito(TABLES table, Distrito obj) {
+        ContentValues values = new ContentValues();
+        values.put("_id", obj.getIdDistrito());
+        values.put("cod_distrito", obj.getCodDistrito());
+        values.put("descripcion", obj.getDescripcion());
+        executeCreateQuery(values,table);
+    }
+    private void insertUnidadOperativa(TABLES table, UnidadOperativa obj) {
+        ContentValues values = new ContentValues();
+        values.put("_id", obj.getIdUnidOper());
+        values.put("id_parroquia", obj.getId_parroquia());
+        values.put("cod_uni_oper", obj.getCodUniOper());
+        values.put("nombre_oficial", obj.getNombreOficial());
+        values.put("nombre_comun", obj.getNombreComun());
+        values.put("direccion", obj.getDireccion());
+        values.put("telf", obj.getTelf());
+        executeCreateQuery(values,table);
+    }
+    private void insertParroquia(TABLES table, Parroquia obj) {
+        ContentValues values = new ContentValues();
+        values.put("_id", obj.getIdParroquia());
+        values.put("id_canton", obj.getId_canton());
+        values.put("id_distrito", obj.getId_distrito());
+        values.put("cod_parr", obj.getCodParr());
+        values.put("descripcion", obj.getDescripcion());
+        executeCreateQuery(values,table);
+    }
+    private void insertProvincia(TABLES table, Provincia obj) {
+        ContentValues values = new ContentValues();
+        values.put("_id", obj.getIdProvincia());
+        values.put("cod_prov", obj.getCodProv());
+        values.put("descripcion", obj.getDescripcion());
+        executeCreateQuery(values,table);
+    }
+    private void insertCanton(TABLES table, Canton obj) {
+        ContentValues values = new ContentValues();
+        values.put("_id", obj.getIdCanton());
+        values.put("id_provincia", obj.getProvincia_id());
+        values.put("cod_cant", obj.getCodCant());
+        values.put("descripcion", obj.getDescripcion());
+        executeCreateQuery(values,table);
+    }
+    private void insertClasifDiagnostico(TABLES table, ClasifDiagnostico obj) {
         ContentValues values = new ContentValues();
         values.put("_id", obj.getIdClafDiag());
         values.put("cod_claf_diag", obj.getCodClafDiag());
         values.put("descripcion", obj.getDescripcion());
         executeCreateQuery(values,table);
     }
-    public void insertEliminarBasura(TABLES table, EliminarBasura obj) {
+    private void insertEliminarBasura(TABLES table, EliminarBasura obj) {
         ContentValues values = new ContentValues();
         values.put("_id", obj.getIdEliBas());
         values.put("cod_eli_bas", obj.getCodEliBas());
         values.put("descripcion", obj.getDescripcion());
         executeCreateQuery(values,table);
     }
-    public void insertViasAcceso(TABLES table, ViasAcceso obj) {
+    private void insertViasAcceso(TABLES table, ViasAcceso obj) {
         ContentValues values = new ContentValues();
         values.put("_id", obj.getIdViaAcc());
         values.put("cod_via_acc", obj.getCodViaAcc());
         values.put("descripcion", obj.getDescripcion());
         executeCreateQuery(values,table);
     }
-    public void insertUbicacionLetrete(TABLES table, UbicacionLetrete obj) {
+    private void insertUbicacionLetrete(TABLES table, UbicacionLetrete obj) {
         ContentValues values = new ContentValues();
         values.put("_id", obj.getIdUbiLet());
         values.put("cod_ubi_let", obj.getCodUbiLet());
         values.put("descripcion", obj.getDescripcion());
         executeCreateQuery(values,table);
     }
-    public void insertEliminarAguaSer(TABLES table, EliminarAguaSer obj) {
+    private void insertEliminarAguaSer(TABLES table, EliminarAguaSer obj) {
         ContentValues values = new ContentValues();
         values.put("_id", obj.getIdElimAguSer());
         values.put("cod_agua_ser", obj.getCodAguaSer());
         values.put("descripcion", obj.getDescripcion());
         executeCreateQuery(values,table);
     }
-    public void insertTratamientoAgua(TABLES table, TratamientoAgua obj) {
+    private void insertTratamientoAgua(TABLES table, TratamientoAgua obj) {
         ContentValues values = new ContentValues();
         values.put("_id", obj.getIdTraAgu());
         values.put("cod_tra_agu", obj.getCodTraAgu());
         values.put("descripcion", obj.getDescripcion());
         executeCreateQuery(values,table);
     }
-    public void insertRecibeAgua(TABLES table, RecibeAgua obj) {
+    private void insertRecibeAgua(TABLES table, RecibeAgua obj) {
         ContentValues values = new ContentValues();
         values.put("_id", obj.getIdRecAgu());
         values.put("cod_rec_agu", obj.getCodRecAgu());
         values.put("descripcion", obj.getDescripcion());
         executeCreateQuery(values,table);
     }
-    public void insertProcedenciaAgua(TABLES table, ProcedenciaAgua obj) {
+    private void insertProcedenciaAgua(TABLES table, ProcedenciaAgua obj) {
         ContentValues values = new ContentValues();
         values.put("_id", obj.getIdProAgudd());
         values.put("cod_pro_agu", obj.getCodProAgu());
         values.put("descripcion", obj.getDescripcion());
         executeCreateQuery(values,table);
     }
-    public void insertCombustibleCocinar(TABLES table, CombustibleCocinar obj) {
+    private void insertCombustibleCocinar(TABLES table, CombustibleCocinar obj) {
         ContentValues values = new ContentValues();
         values.put("_id", obj.getIdCombCoc());
         values.put("cod_coc", obj.getCodCoc());
         values.put("descripcion", obj.getDescripcion());
         executeCreateQuery(values,table);
     }
-    public void insertEstadoPiso(TABLES table, EstadoPiso obj) {
+    private void insertEstadoPiso(TABLES table, EstadoPiso obj) {
         ContentValues values = new ContentValues();
         values.put("_id", obj.getIdEstPis());
         values.put("cod_est_pis", obj.getCodEstPis());
         values.put("descripcion", obj.getDescripcion());
         executeCreateQuery(values,table);
     }
-    public void insertEstadoTecho(TABLES table, EstadoTecho obj) {
+    private void insertEstadoTecho(TABLES table, EstadoTecho obj) {
         ContentValues values = new ContentValues();
         values.put("_id", obj.getIdEstTech());
         values.put("cod_est_tech", obj.getCodEstTech());
         values.put("descripcion", obj.getDescripcion());
         executeCreateQuery(values,table);
     }
-    public void insertMaterialPared(TABLES table, MaterialPared obj) {
+    private void insertMaterialPared(TABLES table, MaterialPared obj) {
         ContentValues values = new ContentValues();
         values.put("_id", obj.getIdMatPar());
         values.put("cod_mat_par", obj.getCodMatPar());
         values.put("descripcion", obj.getDescripcion());
         executeCreateQuery(values,table);
     }
-    public void insertMaterialPiso(TABLES table, MaterialPiso obj) {
+    private void insertMaterialPiso(TABLES table, MaterialPiso obj) {
         ContentValues values = new ContentValues();
         values.put("_id", obj.getIdMatPis());
         values.put("cod_mat_pis", obj.getCodMatPis());
         values.put("descripcion", obj.getDescripcion());
         executeCreateQuery(values,table);
     }
-    public void insertMaterialTecho(TABLES table, MaterialTecho obj) {
+    private void insertMaterialTecho(TABLES table, MaterialTecho obj) {
         ContentValues values = new ContentValues();
         values.put("_id", obj.getIdMatTec());
         values.put("cod_mat_tec", obj.getCodMatTec());
@@ -306,7 +376,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         executeCreateQuery(values,table);
     }
 
-    public void insertTipoTransporte(TABLES table, TipoTransp obj) {
+    private void insertTipoTransporte(TABLES table, TipoTransp obj) {
         ContentValues values = new ContentValues();
         values.put("_id", obj.getIdTipTrans());
         values.put("cod_tip_trans", obj.getCodTipTrans());
@@ -314,7 +384,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         executeCreateQuery(values,table);
     }
 
-    public void insertTipoVivienda(TABLES table, TipoVivienda obj) {
+    private void insertTipoVivienda(TABLES table, TipoVivienda obj) {
 
         ContentValues values = new ContentValues();
         values.put("_id", obj.getIdTipVivId());
@@ -323,7 +393,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         executeCreateQuery(values,table);
 
     }
-    public void insertCondicionOcupacion(TABLES table, CondicionOcupacion obj) {
+    private void insertCondicionOcupacion(TABLES table, CondicionOcupacion obj) {
 
         ContentValues values = new ContentValues();
         values.put("_id", obj.getIdCondOcup());
@@ -331,7 +401,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         values.put("descripcion", obj.getDescripcion());
         executeCreateQuery(values,table);
     }
-    public void insertActividadTrabajo(TABLES table, ActividadTrab actividadTrab) {
+    private void insertActividadTrabajo(TABLES table, ActividadTrab actividadTrab) {
 
         ContentValues values = new ContentValues();
         values.put("_id", actividadTrab.getIdActTrab());
@@ -339,7 +409,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         values.put("descripcion", actividadTrab.getDescripcion());
         executeCreateQuery(values,table);
     }
-    public void insertNivelInstruccion(TABLES table, NivelInstruccion nivelInstruccion) {
+    private void insertNivelInstruccion(TABLES table, NivelInstruccion nivelInstruccion) {
 
         ContentValues values = new ContentValues();
         values.put("_id", nivelInstruccion.getIdNivInst());
@@ -347,42 +417,42 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         values.put("descripcion", nivelInstruccion.getDescripcion());
         executeCreateQuery(values,table);
     }
-    public void insertParentescoJefeHogar(TABLES table, ParentescoJefeHogar parentescoJefeHogar) {
+    private void insertParentescoJefeHogar(TABLES table, ParentescoJefeHogar parentescoJefeHogar) {
         ContentValues values = new ContentValues();
         values.put("_id", parentescoJefeHogar.getIdParJh());
         values.put("cod_par_jh", parentescoJefeHogar.getCodParJh());
         values.put("descripcion", parentescoJefeHogar.getDescripcion());
         executeCreateQuery(values,table);
     }
-    public void insertSeguroPublico(TABLES table, SeguroPublico seguroPublico) {
+    private void insertSeguroPublico(TABLES table, SeguroPublico seguroPublico) {
         ContentValues values = new ContentValues();
         values.put("_id", seguroPublico.getIdSegPub());
         values.put("cod_seg_pub", seguroPublico.getCodSegPub());
         values.put("descripcion", seguroPublico.getDescripcion());
         executeCreateQuery(values,table);
     }
-    public void insertEtnia(TABLES table, Etnia etnia) {
+    private void insertEtnia(TABLES table, Etnia etnia) {
         ContentValues values = new ContentValues();
         values.put("_id", etnia.getIdEtn());
         values.put("cod_etn", etnia.getCodEtn());
         values.put("descripcion", etnia.getDescripcion());
         executeCreateQuery(values,table);
     }
-    public void insertNacionalidades(TABLES table, Nacionalidade nacionalidades) {
+    private void insertNacionalidades(TABLES table, Nacionalidade nacionalidades) {
         ContentValues values = new ContentValues();
         values.put("_id", nacionalidades.getIdNacs());
         values.put("cod_nacs", nacionalidades.getCodNacs());
         values.put("descripcion", nacionalidades.getDescripcion());
         executeCreateQuery(values,table);
     }
-    public void insertNacionalidad(TABLES table,Nacionalidad nacionalidad) {
+    private void insertNacionalidad(TABLES table,Nacionalidad nacionalidad) {
         ContentValues values = new ContentValues();
         values.put("_id", nacionalidad.getId_nac());
         values.put("cod_nac", nacionalidad.getCod_nac());
         values.put("descripcion", nacionalidad.getDescripcion());
         executeCreateQuery(values,table);
     }
-    public void insertEstadoCivil(TABLES table,EstadoCivil estadoCivil) {
+    private void insertEstadoCivil(TABLES table,EstadoCivil estadoCivil) {
 
         ContentValues values = new ContentValues();
         values.put("_id", estadoCivil.getIdEstCiv());
@@ -390,7 +460,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         values.put("descripcion", estadoCivil.getDescripcion());
         executeCreateQuery(values,table);
     }
-    public void insertPueblos(TABLES table,Pueblo pueblo) {
+    private void insertPueblos(TABLES table,Pueblo pueblo) {
         ContentValues values = new ContentValues();
         values.put("_id", pueblo.getIdPue());
         values.put("cod_pue", pueblo.getCodPue());
@@ -401,7 +471,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         boolean createSuccessful;
         SQLiteDatabase db = this.getWritableDatabase();
         createSuccessful = db.insert(table.getTablaName(), null, values) > 0;
-        System.out.println("insertando... "+table+":"+createSuccessful);
+        Log.i("Query","insertando... "+table+":"+createSuccessful);
         db.close();
         return createSuccessful;
     }
@@ -428,6 +498,11 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         System.out.println("Eliminado datos de "+tables+": "+delete);
          database.close();
     }
+    public boolean insertFormularios(Formulario formulario){
+        boolean insertado=false;
+        //TODO implemnetae insercion de formulario, creado para descarga de formularios desde el servidor by token
+        return insertado;
+    }
     public List<Formulario> exportData(){
         Cursor cursor = getAllGeneric(TABLES.FORMULARIO.getTablaName());
         if (cursor.moveToFirst()) {
@@ -442,7 +517,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         }
         return null;
     }
-    public List<Personas> getPersonas(String formularioId){
+    private List<Personas> getPersonas(String formularioId){
         Cursor cursor = getUnidadDatos(TABLES.PERSONAS.getTablaName(),formularioId);
         List<Personas> personasList=null;
         if (cursor.moveToFirst()) {

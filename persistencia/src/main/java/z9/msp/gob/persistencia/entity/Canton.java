@@ -1,9 +1,9 @@
 package z9.msp.gob.persistencia.entity;
 
+import java.io.Serializable;
+
 import com.google.gson.annotations.SerializedName;
 
-import java.io.Serializable;
-import java.util.List;
 
 public class Canton implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -11,12 +11,16 @@ public class Canton implements Serializable {
 	@SerializedName("id_canton")
 	private Integer idCanton;
 
+
 	@SerializedName("cod_cant")
 	private String codCant;
 
 	private String descripcion;
 
 
+	@SerializedName("id_provincia")
+	private Integer provincia_id;
+	
 
 	public Canton() {
 	}
@@ -45,5 +49,12 @@ public class Canton implements Serializable {
 		this.descripcion = descripcion;
 	}
 
+	public Integer getProvincia_id() {
+		return provincia_id;
+	}
+
+	public void setProvincia_id(Integer provincia_id) {
+		this.provincia_id = provincia_id;
+	}
 
 }

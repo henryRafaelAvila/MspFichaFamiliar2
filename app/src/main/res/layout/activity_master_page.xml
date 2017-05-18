@@ -73,7 +73,7 @@
                 android:gravity="center" />
 
             <TextView
-                android:text="SUBIR FORMULARIOS"
+                android:text="EXPORTAR FORMULARIOS"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/textView2"
@@ -139,7 +139,7 @@
                 android:gravity="center" />
 
             <TextView
-                android:text="ACTUALIZAR DATOS"
+                android:text="ACTUALIZAR CATALOGOS"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/f2textView2"

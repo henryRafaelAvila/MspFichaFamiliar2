@@ -16,6 +16,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -42,6 +43,7 @@ import z9.msp.gob.mspfichafamiliar.activity.ConfigurationDataBase;
 import z9.msp.gob.mspfichafamiliar.activity.DescargarFormularios;
 import z9.msp.gob.mspfichafamiliar.activity.NuevoFormularioActivity;
 import z9.msp.gob.persistencia.DatabaseHandler;
+import z9.msp.gob.persistencia.entity.Formulario;
 import z9.msp.gob.persistencia.enums.TABLES;
 import z9.msp.gob.persistencia.enums.WS;
 
@@ -85,6 +87,9 @@ public class MasterPageActivity extends AppCompatActivity{
                 String url=db.getWs(WS.CATALOGO);
                 try {
                     URL urlCat=new URL(url);
+                    System.out.println("Iniciando");
+
+                    progress.setCancelable(false);
                    new GetCommentsTask(progress,this,urlCat).execute();
                 } catch (MalformedURLException e) {
                     e.printStackTrace();
@@ -110,6 +115,90 @@ public class MasterPageActivity extends AppCompatActivity{
         Intent myIntent = new Intent(MasterPageActivity.this,activity);
         myIntent.putExtra("key", value); //Optional parameters
         MasterPageActivity.this.startActivity(myIntent);
+    }
+    public class GetFormulariosTask extends AsyncTask<URL, Void, List<String>> {
+        ProgressDialog progress;
+        Context context;
+        URL url;
+        public GetFormulariosTask(ProgressDialog progress, Context act, URL url) {
+            this.progress = progress;
+            this.context= act;
+            this.url=url;
+        }
+        public void onPreExecute() {
+            progress.show();
+
+        }
+        @Override
+        protected List<String> doInBackground(URL... urls) {
+
+            List<String> comments = new ArrayList<String>();
+            Boolean successful=Boolean.FALSE;
+            try {
+
+                // Establecer la conexión
+                con = (HttpURLConnection)url.openConnection();
+                con.setConnectTimeout(5000);
+                // Obtener el estado del recursocon.responseCode
+                int statusCode = con.getResponseCode();
+
+                if(statusCode!=200) {
+                    comments.add(S.responseServer+statusCode);
+
+                }
+                else{
+
+                    /*
+                    Parsear el flujo con formato JSON a una lista de Strings
+                    que permitan crean un adaptador
+                     */
+                    String output;
+                    StringBuilder out=new StringBuilder();
+                    BufferedReader br = new BufferedReader(new InputStreamReader(
+                            (con.getInputStream())));
+
+                    while ((output = br.readLine()) != null) {
+                        out.append(output);
+                    }
+                    JSONObject response = new JSONObject(out.toString());
+                    String formularioObject = response.getString("formulario");
+                    Gson gson = new Gson();
+                    Formulario formulario = gson.fromJson(formularioObject, Formulario.class);
+                   successful=db.insertFormularios(formulario);
+
+                }
+
+            } catch (Exception e) {
+                comments.add(S.errorServer+" : "+e.getMessage());
+                comments.add(successful.toString());
+
+
+            }finally {
+                con.disconnect();
+            }
+            comments.add(S.successServer);
+            comments.add(successful.toString());
+
+            return comments;
+
+        }
+
+        @Override
+        protected void onPostExecute(List<String> s) {
+            progress.dismiss();
+            AlertDialog.Builder goLogin = new AlertDialog.Builder(context);
+            goLogin.setMessage(s.get(0));
+            goLogin.setCancelable(false);
+            goLogin.setPositiveButton(S.aceptar, new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    dialog.cancel();
+                }
+            });
+            AlertDialog alertLogin = goLogin.create();
+            alertLogin.show();
+
+
+        }
     }
     /*
 La clase GetCommentsTask representa una tarea asincrona que realizará
@@ -169,7 +258,6 @@ lista de comentarios alojada en el servidor.
                                 JSONArray listObject=response.getJSONArray(tableName);
                                 for(int i=0;i<listObject.length();i++){
                                     JSONObject object =listObject.optJSONObject(i);
-
                                     //db.insertMassive(tableName,object);
                                     TABLES table=TABLES.findByTableName(tableName);
                                     if(table!=null) {
