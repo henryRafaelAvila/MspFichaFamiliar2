@@ -97,6 +97,75 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         onCreate(db);
     }
 
+    public void insertFormulario(String codigo,String id_mat_pis,String id_mat_par,String id_pro_agudd,String id_est_tech,String id_rec_agu,String id_cond_ocup,
+                                 String id_tra_agu,String id_via_acc,String id_comb_coc,String id_tip_trans,String id_est_pis,String id_eli_bas,String id_eli_agu,String id_tip_viv,String id_ubi_let,String id_unid_oper,String id_mat_tec,
+                                 String fecha_visita,String tiem_viv_meses,String tiemp_viv_anios,String entr_telf,String entr_cell,String pers_ref_telf,String pers_ref_cell,String num_cuar,String num_dorm,String contamina_suel_desc,
+                                 String contamina_air_desc,String viol_fami,String dest_fami,String prob_gra_fam,String psico_soc,String aisla,String sin_escol,String nin_noescola,String alcoh,String droga,String contamina_agu_desc,
+                                 String intradomi,String vec_trans,String anim_viv,String coc_inhog,String sedazo,String mosquit,String plaguicida,String aepi,String abandono,String ir_uni_sal,String calle1,String calle2,String telefono,String celular,String Edificio,String Manzana,String coordenadas,String responsable,String localidad,String institucion,String tiempo_transporte) {
+        ContentValues values = new ContentValues();
+        values.put("codigo", codigo);
+        values.put("id_mat_pis",id_mat_pis);
+        values.put("id_mat_par",id_mat_par);
+        values.put("id_pro_agudd", id_pro_agudd);
+        values.put("id_est_tech",id_est_tech);
+        values.put("id_rec_agu",id_rec_agu);
+        values.put("id_cond_ocup",id_cond_ocup);
+        values.put("id_tra_agu",id_tra_agu);
+        values.put("id_via_acc",id_via_acc);
+        values.put("id_comb_coc",id_comb_coc);
+        values.put("id_tip_trans",id_tip_trans);
+        values.put("id_est_pis",id_est_pis);
+        values.put("id_eli_bas", id_eli_bas);
+        values.put("id_eli_agu",id_eli_agu);
+        values.put("id_tip_viv",id_tip_viv );
+        values.put("id_ubi_let",id_ubi_let);
+        values.put("id_unid_oper",id_unid_oper );
+        values.put("id_mat_tec",id_mat_tec);
+        values.put("fecha_visita",fecha_visita );
+        values.put("tiem_viv_meses",tiem_viv_meses);
+        values.put("tiemp_viv_anios",tiemp_viv_anios);
+        values.put("entr_telf",entr_telf);
+        values.put("entr_cell",entr_cell );
+        values.put("pers_ref_telf",pers_ref_telf);
+        values.put("pers_ref_cell",pers_ref_cell);
+        values.put("num_cuar",num_cuar);
+        values.put("num_dorm",num_dorm );
+        values.put("contamina_suel_desc",contamina_suel_desc);
+        values.put("contamina_air_desc",contamina_air_desc);
+        values.put("viol_fami",viol_fami);
+        values.put("dest_fami",dest_fami);
+        values.put("prob_gra_fam",prob_gra_fam);
+        values.put("psico_soc",psico_soc);
+        values.put("aisla",aisla);
+        values.put("sin_escol",sin_escol);
+        values.put("nin_noescola",nin_noescola);
+        values.put("alcoh",alcoh);
+        values.put("droga",droga);
+        values.put("contamina_agu_desc",contamina_agu_desc);
+        values.put("intradomi",intradomi);
+        values.put("vec_trans",vec_trans);
+        values.put("anim_viv",anim_viv);
+        values.put("coc_inhog",coc_inhog);
+        values.put("sedazo",sedazo);
+        values.put("mosquit",mosquit);
+        values.put("plaguicida",plaguicida);
+        values.put("aepi",aepi);
+        values.put("abandono",abandono);
+        values.put("ir_uni_sal",ir_uni_sal);
+        values.put("calle1",calle1);
+        values.put("calle2",calle2);
+        values.put("telefono",telefono);
+        values.put("celular",celular);
+        values.put("Edificio",Edificio);
+        values.put("Manzana",Manzana);
+        values.put("coordenadas",coordenadas);
+        values.put("responsable",responsable);
+        values.put("localidad",localidad);
+        values.put("institucion",institucion);
+        values.put("tiempo_transporte",tiempo_transporte);
+
+        db.insert("formulario", null, values);
+    }
 
      public Cursor getUnidadDatos(String tabla,String id) {
         String selectQuery = "SELECT * FROM "+tabla+" WHERE _id=?";

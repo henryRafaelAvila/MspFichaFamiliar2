@@ -14,6 +14,7 @@ import android.widget.Switch;
 import android.widget.SimpleCursorAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -85,8 +86,9 @@ public class NuevoFormularioActivity extends AppCompatActivity {
 
 
     DatabaseHandler db;
-   Button miembrosHogar;
+    Button miembrosHogar;
     Button mortalidad;
+    Button guardar;
 
     String fechacComplString="",coordenadas="",localidad="",manzana="",edificio=""
             ,calle1="",calle2="",telefono="",celular="",cod_ocupacion="",institucion="";
@@ -844,6 +846,23 @@ public class NuevoFormularioActivity extends AppCompatActivity {
 
         });
 
+        guardar=(Button)findViewById(R.id.btnguardar);
+        guardar.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                db.insertFormulario("-1",material_piso,material_paredes,agua_proviene,estado_techo,agua_recibe,cod_ocupacion,
+                        agua_tratamiento,acceso_vivienda,combustible,transporte,estado_piso,basura,agua_servidas,tipo_vivienda,letrete_ubicacion,cod_unidad,material_techo,
+                        fechacComplString,meses,anios,telefonoentrevistado,celularentrevistado,telefonoreferencia,celularreferencia,n_cuartos,n_cuartos_dormir,contaminacion_suelo,
+                        contaminacion_aire,violenciaintra,desestructuracion,problemafami,problemasocio,aislamiento,escolariza,noinsertados,alcoholismo,drogas,contaminacion_agua,
+                        intradomiciliarios,vectores,animales_sueltos,cocinadormitorio,sedazo,mosquitero,plaguicida,aepi,abandono,ircs,calle1,calle2,
+                        telefono,celular,edificio,manzana,coordenadas,responsable,localidad,institucion,tiempo);
+
+                Toast.makeText(getApplicationContext(), responsable, Toast.LENGTH_LONG).show();
+            }
+
+        });
+
     }
 
     public void DatosParroquia(String parr){
@@ -1015,16 +1034,7 @@ public class NuevoFormularioActivity extends AppCompatActivity {
 
 
 
-    public void insertar(){
-       // fechacComplString, institucion,cod_ocupacion,coordenadas,parr,id_canton,id_distrito,id_provincia,id_zona
-        //localidad,manzana,edificio,calle1,calle2,telefono,celular
-        // anios, meses,telefonoentrevistado,celularentrevistado,telefonoreferencia,celularreferencia
-
     }
-
-
-
-}
 
 
 

@@ -72,6 +72,7 @@
                     android:id="@+id/etxtResponsable"
                     android:layout_column="1"
                     android:layout_row="1"
+                    android:editable="true"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 
@@ -1657,6 +1658,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/switchIrUnidad" />
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="10dp"
+                android:background="@drawable/red_bg" />
+            <Button
+                android:text="Guardar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/btnguardar"/>
 
             <Space
                 android:layout_width="wrap_content"
