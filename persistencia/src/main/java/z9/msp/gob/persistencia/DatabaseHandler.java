@@ -72,6 +72,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     // Creating Tables
     @Override
     public void onCreate(SQLiteDatabase db) {
+
         System.out.println("********CREATE TABLES DATABASE*************");
         System.out.println("*******************************************");
         /*ENABLE FOREGIN KEY*/
@@ -86,6 +87,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     // Upgrading database
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+
         System.out.println("********UPDATE DATA BASE*************");
         System.out.println("*******************************************");
         for (TABLES tables:TABLES.values()){
