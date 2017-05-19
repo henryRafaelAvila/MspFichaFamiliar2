@@ -1397,6 +1397,7 @@
                 android:text="Intradomiciliarios que representan riesgo sanitario"
                 android:textOn="Si"
                 android:textOff="No"
+                android:checked="false"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/switchIntradomiciliarios" />

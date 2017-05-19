@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -82,7 +83,7 @@ public class NuevoFormularioActivity extends AppCompatActivity {
 
     String parr="",cod_parr="", ocupacion="";
     String id_canton="",id_distrito="",id_zona="",zona1="";
-    String canton1="", id_provincia="", cod_prov="",cod_distrito="";
+    String canton1="", id_provincia="", cod_prov="",cod_distrito="",id_formulario="";
 
 
     DatabaseHandler db;
@@ -120,36 +121,23 @@ public class NuevoFormularioActivity extends AppCompatActivity {
         fecha_completa.setText(fechacComplString);
 
         inst= (TextView) findViewById(R.id.txtinst);
-        institucion = inst.getText().toString();
         croquistxt=(EditText) findViewById(R.id.etxtCroquis);
-        coordenadas=croquistxt.getText().toString();
         localidadtxt=(EditText) findViewById(R.id.etxLocalidad);
-        localidad=localidadtxt.getText().toString();
         manzanatxt =(EditText) findViewById(R.id.etxManzana);
-        manzana = manzanatxt.getText().toString();
         edificiotxt  =(EditText) findViewById(R.id.etxEdificio);
-        edificio=edificiotxt.getText().toString();
         calle1txt=(EditText) findViewById(R.id.etxtCalle1);
-        calle1=calle1txt.getText().toString();
         calle2txt=(EditText) findViewById(R.id.etxtCalle2);
-        calle2=calle2txt.getText().toString();
         telefonotxt=(EditText) findViewById(R.id.etxtFono);
-        telefono = telefonotxt.getText().toString();
         celulartxt=(EditText) findViewById(R.id.etxtCelular);
-        celular=celulartxt.getText().toString();
+
 
         mesestxt=(EditText) findViewById(R.id.etxtMeses);
-        meses = mesestxt.getText().toString();
         aniostxt=(EditText) findViewById(R.id.etxtAnios);
-        anios=aniostxt.getText().toString();
         telefonoentrevistadotxt=(EditText) findViewById(R.id.etxtFonoFijo);
-        telefonoentrevistado = telefonoentrevistadotxt.getText().toString();
         celularentrevistadotxt=(EditText) findViewById(R.id.etxtCelularEntrevistado);
-        celularentrevistado=celularentrevistadotxt.getText().toString();
         telefonoreferenciatxt=(EditText) findViewById(R.id.etxtFonoFijoReferencia);
-        telefonoreferencia=telefonoreferenciatxt.getText().toString();
         celularreferenciatxt=(EditText) findViewById(R.id.etxtCelularReferencia);
-        celularreferencia=celularreferenciatxt.getText().toString();
+
 
         /*
         Obteniendo las instancias de los Spinners
@@ -268,7 +256,7 @@ public class NuevoFormularioActivity extends AppCompatActivity {
             }
         });
         tiempotxt=(EditText)findViewById(R.id.etxtTiempo);
-        tiempo=tiempotxt.getText().toString();
+
 
 
         spinnerMaterialTecho = (Spinner)findViewById(R.id.spinnerMaterialTecho);
@@ -639,13 +627,12 @@ public class NuevoFormularioActivity extends AppCompatActivity {
         });
 
         contaminacion_suelotxt=(EditText)findViewById(R.id.etxtContaminacionSuelo) ;
-        contaminacion_suelo=contaminacion_suelotxt.getText().toString();
         contaminacion_airetxt=(EditText)findViewById(R.id.etxtContaminacionAire) ;
-        contaminacion_aire=contaminacion_airetxt.getText().toString();
         contaminacion_aguatxt=(EditText)findViewById(R.id.etxtContaminacionAgua) ;
-        contaminacion_agua=contaminacion_aguatxt.getText().toString();
+
 
         intradomiciliariosw = (Switch)findViewById(R.id.switchIntradomiciliarios);
+        intradomiciliariosw.setChecked(true);
         intradomiciliariosw.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 
             @Override
@@ -653,10 +640,14 @@ public class NuevoFormularioActivity extends AppCompatActivity {
                 if(isChecked){
                     intradomiciliarios="1";
                 }
+               else {
+                    intradomiciliarios="2";
+                }
             }
         });
 
         vectoresw = (Switch)findViewById(R.id.switchVectores);
+        vectoresw.setChecked(true);
         vectoresw.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 
             @Override
@@ -664,10 +655,14 @@ public class NuevoFormularioActivity extends AppCompatActivity {
                 if(isChecked){
                     vectores="1";
                 }
+                else {
+                    vectores="2";
+                }
             }
         });
 
         animales_sueltosw= (Switch)findViewById(R.id.switchAnimalesSueltos);
+        animales_sueltosw.setChecked(true);
         animales_sueltosw.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 
             @Override
@@ -675,101 +670,145 @@ public class NuevoFormularioActivity extends AppCompatActivity {
                 if(isChecked){
                     animales_sueltos="1";
                 }
+                else {
+                    animales_sueltos="2";
+                }
             }
         });
 
         violenciaintrasw= (Switch)findViewById(R.id.switchViolenciaIntra);
+        violenciaintrasw.setChecked(true);
        violenciaintrasw.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView,boolean isChecked) {
                 if(isChecked){
                     violenciaintra="1";
                 }
+                else {
+                    violenciaintra="2";
+                }
             }
         });
         desetructuracionsw= (Switch)findViewById(R.id.switchDestrucFami);
+        desetructuracionsw.setChecked(true);
         desetructuracionsw.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView,boolean isChecked) {
                 if(isChecked){
                     desestructuracion="1";
                 }
+                else {
+                    desestructuracion="2";
+                }
             }
         });
         problemafamisw= (Switch)findViewById(R.id.switchProblemasFami);
+        problemafamisw.setChecked(true);
         problemafamisw.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView,boolean isChecked) {
                 if(isChecked){
                     problemafami="1";
                 }
+                else {
+                    problemafami="2";
+                }
             }
         });
         problemasocialesw= (Switch)findViewById(R.id.switchProblemasSocio);
+        problemasocialesw.setChecked(true);
         problemasocialesw.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView,boolean isChecked) {
                 if(isChecked){
                     problemasocio="1";
                 }
+                else {
+                    problemasocio="2";
+                }
             }
         });
         aislamientosw= (Switch)findViewById(R.id.switchAislamiento);
+        aislamientosw.setChecked(true);
         aislamientosw.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView,boolean isChecked) {
                 if(isChecked){
                     aislamiento="1";
                 }
+                else {
+                    aislamiento="2";
+                }
             }
         });
         escolarizacionsw= (Switch)findViewById(R.id.switchEscolarizacion);
+        escolarizacionsw.setChecked(true);
        escolarizacionsw.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView,boolean isChecked) {
                 if(isChecked){
                     escolariza="1";
                 }
+                else {
+                    escolariza="2";
+                }
             }
         });
         insertadosw= (Switch)findViewById(R.id.switchNiniosEcuela);
+        insertadosw.setChecked(true);
         insertadosw.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView,boolean isChecked) {
                 if(isChecked){
                     noinsertados="1";
                 }
+                else {
+                    noinsertados="2";
+                }
             }
         });
         alcoholismosw= (Switch)findViewById(R.id.switchAlcoholismo);
+        alcoholismosw.setChecked(true);
         alcoholismosw.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView,boolean isChecked) {
                 if(isChecked){
                     alcoholismo="1";
                 }
+                else{
+                    alcoholismo="2";
+                }
             }
         });
         drogasw= (Switch)findViewById(R.id.switchDrogas);
+        drogasw.setChecked(true);
         drogasw.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView,boolean isChecked) {
                 if(isChecked){
                     drogas="1";
                 }
+                else {
+                    drogas="2";
+                }
             }
         });
 
         cocinadormitoriosw= (Switch)findViewById(R.id.switchCocinaDormitorio);
+        cocinadormitoriosw.setChecked(true);
         cocinadormitoriosw.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView,boolean isChecked) {
                 if(isChecked){
                     cocinadormitorio="1";
                 }
+                else {
+                    cocinadormitorio="2";
+                }
             }
         });
         sedazosw= (Switch)findViewById(R.id.switchSedazo);
+        sedazosw.setChecked(true);
         sedazosw.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView,boolean isChecked) {
@@ -779,58 +818,74 @@ public class NuevoFormularioActivity extends AppCompatActivity {
             }
         });
        mosquiterosw= (Switch)findViewById(R.id.switchMosquiteros);
+       mosquiterosw.setChecked(true);
        mosquiterosw.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView,boolean isChecked) {
                 if(isChecked){
                     mosquitero="1";
                 }
+                else {
+                    mosquitero="2";
+                }
             }
         });
         plaguicidasw= (Switch)findViewById(R.id.switchPlaguisidas);
+        plaguicidasw.setChecked(true);
         plaguicidasw.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView,boolean isChecked) {
                 if(isChecked){
                     plaguicida="1";
                 }
+                else {
+                    plaguicida="2";
+                }
             }
         });
         aepisw= (Switch)findViewById(R.id.switchAEPI);
+        aepisw.setChecked(true);
         aepisw.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView,boolean isChecked) {
                 if(isChecked){
                     aepi="1";
                 }
+                else {
+                    aepi="2";
+                }
             }
         });
         abandonosw= (Switch)findViewById(R.id.switchAbandono);
+        abandonosw.setChecked(true);
         abandonosw.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView,boolean isChecked) {
                 if(isChecked){
                     abandono="1";
                 }
+                else {
+                    abandono="2";
+                }
             }
         });
         ircssw= (Switch)findViewById(R.id.switchIrUnidad);
+        ircssw.setChecked(true);
         ircssw.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView,boolean isChecked) {
                 if(isChecked){
                     ircs="1";
                 }
+                else{
+                    ircs="2";
+                }
             }
         });
 
         n_cuartostxt=(EditText)findViewById(R.id.etxtNCuartos) ;
-        n_cuartos=n_cuartostxt.getText().toString();
         ncuartos_dormirtxt=(EditText)findViewById(R.id.etxtNCuartosDormir) ;
-        n_cuartos_dormir=ncuartos_dormirtxt.getText().toString();
-
-        responsabletxt=(EditText)findViewById(R.id.etxtResponsable);
-        responsable=responsabletxt.getText().toString();
+       responsabletxt=(EditText)findViewById(R.id.etxtResponsable) ;
 
 
         mortalidad=(Button)findViewById(R.id.mortalidad);
@@ -851,14 +906,56 @@ public class NuevoFormularioActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View view) {
-                db.insertFormulario("-1",material_piso,material_paredes,agua_proviene,estado_techo,agua_recibe,cod_ocupacion,
-                        agua_tratamiento,acceso_vivienda,combustible,transporte,estado_piso,basura,agua_servidas,tipo_vivienda,letrete_ubicacion,cod_unidad,material_techo,
-                        fechacComplString,meses,anios,telefonoentrevistado,celularentrevistado,telefonoreferencia,celularreferencia,n_cuartos,n_cuartos_dormir,contaminacion_suelo,
-                        contaminacion_aire,violenciaintra,desestructuracion,problemafami,problemasocio,aislamiento,escolariza,noinsertados,alcoholismo,drogas,contaminacion_agua,
-                        intradomiciliarios,vectores,animales_sueltos,cocinadormitorio,sedazo,mosquitero,plaguicida,aepi,abandono,ircs,calle1,calle2,
-                        telefono,celular,edificio,manzana,coordenadas,responsable,localidad,institucion,tiempo);
+                String condicion= "ocupada".toUpperCase();
+                responsable=responsabletxt.getText().toString();
+                institucion = inst.getText().toString();
+                coordenadas=croquistxt.getText().toString();
+                localidad=localidadtxt.getText().toString();
+                manzana = manzanatxt.getText().toString();
+                edificio=edificiotxt.getText().toString();
+                calle1=calle1txt.getText().toString();
+                calle2=calle2txt.getText().toString();
+                telefono = telefonotxt.getText().toString();
+                celular=celulartxt.getText().toString();
+                meses = mesestxt.getText().toString();
+                anios=aniostxt.getText().toString();
+                telefonoentrevistado = telefonoentrevistadotxt.getText().toString();
+                celularentrevistado=celularentrevistadotxt.getText().toString();
+                telefonoreferencia=telefonoreferenciatxt.getText().toString();
+                celularreferencia=celularreferenciatxt.getText().toString();
+                tiempo=tiempotxt.getText().toString();
+                n_cuartos=n_cuartostxt.getText().toString();
+                n_cuartos_dormir=ncuartos_dormirtxt.getText().toString();
+                contaminacion_suelo=contaminacion_suelotxt.getText().toString();
+                contaminacion_aire=contaminacion_airetxt.getText().toString();
+                contaminacion_agua=contaminacion_aguatxt.getText().toString();
+                if(ocupacion.trim().equals(condicion)){
+                            db.insertFormulario("-1",material_piso,material_paredes,agua_proviene,estado_techo,agua_recibe,cod_ocupacion,
+                                    agua_tratamiento,acceso_vivienda,combustible,transporte,estado_piso,basura,agua_servidas,tipo_vivienda,letrete_ubicacion,cod_unidad,material_techo,
+                                   fechacComplString,meses,anios,telefonoentrevistado,celularentrevistado,telefonoreferencia,celularreferencia,n_cuartos,n_cuartos_dormir,contaminacion_suelo,
+                                    contaminacion_aire,violenciaintra,desestructuracion,problemafami,problemasocio,aislamiento,escolariza,noinsertados,alcoholismo,drogas,contaminacion_agua,
+                                    intradomiciliarios,vectores,animales_sueltos,cocinadormitorio,sedazo,mosquitero,plaguicida,aepi,abandono,ircs,calle1,calle2,telefono,celular,edificio,manzana,coordenadas,responsable,localidad,institucion,tiempo);
 
-                Toast.makeText(getApplicationContext(), responsable, Toast.LENGTH_LONG).show();
+                }
+                else{
+                    db.insertFormulario("-1","","","","","","",
+                            "","","","","","","","","",cod_unidad,"",
+                            fechacComplString,"","","","","","","","","",
+                            "","","","","","","","","","","",
+                            "","","","","","","","","","",calle1,calle2,
+                            telefono,celular,edificio,manzana,coordenadas,responsable,localidad,institucion,"");
+                }
+
+                Button btbmiembrosfamilia= (Button) findViewById(R.id.miembrosHogar);
+                btbmiembrosfamilia.setEnabled(true);
+                Button personasfallecidas= (Button) findViewById(R.id.mortalidad);
+                personasfallecidas.setEnabled(true);
+                Button btbguardar= (Button) findViewById(R.id.btnguardar);
+                btbguardar.setEnabled(false);
+                Cursor cursor=db.getAllGeneric("formulario");
+                cursor.moveToLast();
+                id_formulario = cursor.getString(0);
+
             }
 
         });
@@ -890,7 +987,7 @@ public class NuevoFormularioActivity extends AppCompatActivity {
         }
         canton= (EditText) findViewById(R.id.etxtCanton);
        canton.setText(""+canton1);
-/*
+
         // Datos zona
         cursor=db.getUnidadDatos("administracion_zonal",id_zona);
         if (cursor.moveToFirst()) {
@@ -900,7 +997,7 @@ public class NuevoFormularioActivity extends AppCompatActivity {
             } while(cursor.moveToNext());
         }
         zona= (EditText) findViewById(R.id.etxtZona);
-        zona.setText(""+zona1);*/
+        zona.setText(""+zona1);
 
         // Datos provincia
         cursor=db.getUnidadDatos("provincia",id_provincia);
