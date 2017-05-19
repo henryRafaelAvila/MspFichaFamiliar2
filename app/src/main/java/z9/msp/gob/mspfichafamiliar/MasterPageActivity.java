@@ -8,7 +8,8 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
-
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.app.AlertDialog;
 import com.google.gson.Gson;
 
 import org.json.JSONArray;

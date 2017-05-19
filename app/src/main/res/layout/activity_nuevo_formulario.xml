@@ -1691,7 +1691,12 @@
                 android:layout_height="wrap_content"
                 android:enabled="false"
                 android:id="@+id/mortalidad"/>
-
+            <TextView
+                android:id="@+id/id_formulario"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="xxx"
+                android:visibility="invisible" />
 
         </LinearLayout>
     </ScrollView>

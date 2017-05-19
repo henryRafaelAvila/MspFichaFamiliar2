@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -16,6 +15,8 @@ import android.widget.SimpleCursorAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import org.w3c.dom.Text;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -946,15 +947,19 @@ public class NuevoFormularioActivity extends AppCompatActivity {
                             telefono,celular,edificio,manzana,coordenadas,responsable,localidad,institucion,"");
                 }
 
+                Toast.makeText(getApplicationContext(), "Datos insertados correctamente", Toast.LENGTH_LONG).show();
                 Button btbmiembrosfamilia= (Button) findViewById(R.id.miembrosHogar);
                 btbmiembrosfamilia.setEnabled(true);
                 Button personasfallecidas= (Button) findViewById(R.id.mortalidad);
                 personasfallecidas.setEnabled(true);
                 Button btbguardar= (Button) findViewById(R.id.btnguardar);
                 btbguardar.setEnabled(false);
+
                 Cursor cursor=db.getAllGeneric("formulario");
                 cursor.moveToLast();
                 id_formulario = cursor.getString(0);
+                TextView id_formulariotxt=(TextView)findViewById(R.id.id_formulario);
+                id_formulariotxt.setText(id_formulario);
 
             }
 
