@@ -43,6 +43,7 @@ import z9.msp.gob.persistencia.entity.MaterialTecho;
 import z9.msp.gob.persistencia.entity.Nacionalidad;
 import z9.msp.gob.persistencia.entity.Nacionalidade;
 import z9.msp.gob.persistencia.entity.NivelInstruccion;
+import z9.msp.gob.persistencia.entity.Parameters;
 import z9.msp.gob.persistencia.entity.ParentescoJefeHogar;
 import z9.msp.gob.persistencia.entity.Parroquia;
 import z9.msp.gob.persistencia.entity.Personas;
@@ -67,7 +68,7 @@ import z9.msp.gob.persistencia.enums.WS;
 public class DatabaseHandler extends SQLiteOpenHelper {
     // All Static variables
     // Database Version
-    private static final int DATABASE_VERSION =11 ;
+    private static final int DATABASE_VERSION =12 ;
     private static final String DATABASE_NAME = "ficha_familiar_msp";
     private Context context;
     SQLiteDatabase db = this.getWritableDatabase();
@@ -177,6 +178,12 @@ public class DatabaseHandler extends SQLiteOpenHelper {
      public Cursor getUnidadDatos(String tabla,String id) {
         String selectQuery = "SELECT * FROM "+tabla+" WHERE _id=?";
         Cursor cursor = db.rawQuery(selectQuery,  new String[] { id});
+        return  cursor;
+    }
+    public Cursor getAllDiscrimiator(Parameters parameters) {
+        String selectQuery = "SELECT * FROM "+parameters.getTABLE().getTablaName()+" " +
+                "WHERE " +parameters.getCOLS().getColsName()+"=?";
+        Cursor cursor = db.rawQuery(selectQuery,  new String[] { parameters.getValueString()});
         return  cursor;
     }
 

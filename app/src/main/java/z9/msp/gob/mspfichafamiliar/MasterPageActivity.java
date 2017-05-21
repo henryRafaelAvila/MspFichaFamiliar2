@@ -7,9 +7,14 @@ import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
+import android.support.annotation.NonNull;
+import android.support.design.widget.NavigationView;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
-import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
@@ -44,7 +49,7 @@ import z9.msp.gob.persistencia.enums.WS;
 
 import static android.R.attr.value;
 
-public class MasterPageActivity extends AppCompatActivity {
+public class MasterPageActivity extends AppCompatActivity{
     ImageButton btn_actualizar_datos;
     ImageButton btn_buscar_formulario;
     ImageButton btn_config_formulario;

@@ -2,6 +2,7 @@ package z9.msp.gob.mspfichafamiliar.activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -18,8 +19,13 @@ import android.widget.TextView;
 import z9.msp.gob.mspfichafamiliar.R;
 
 import z9.msp.gob.mspfichafamiliar.activity.dummy.DummyContent;
+import z9.msp.gob.persistencia.DatabaseHandler;
+import z9.msp.gob.persistencia.entity.Parameters;
 import z9.msp.gob.persistencia.entity.Personas;
+import z9.msp.gob.persistencia.enums.CLS_DISCR;
+import z9.msp.gob.persistencia.enums.TABLES;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -37,13 +43,26 @@ public class PersonaListActivity extends AppCompatActivity {
      * device.
      */
     private boolean mTwoPane;
-    public static final String FORM_ID="";
+    public static final String FORM_ID="FORM_ID";
+    public String formularioId="";
+    DatabaseHandler db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_persona_list);
+        db = new DatabaseHandler(this);
 
+        if (savedInstanceState == null) {
+            Bundle extras = getIntent().getExtras();
+            if(extras == null) {
+                formularioId= null;
+            } else {
+                formularioId= extras.getString(FORM_ID);
+            }
+        } else {
+            formularioId= (String) savedInstanceState.getSerializable(FORM_ID);
+        }
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         toolbar.setTitle(getTitle());
@@ -69,7 +88,23 @@ public class PersonaListActivity extends AppCompatActivity {
     }
 
     private void setupRecyclerView(@NonNull RecyclerView recyclerView) {
-        recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(DummyContent.ITEMS));
+        recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(getPersonasList(formularioId)));
+    }
+    private List<Personas> getPersonasList(@NonNull String formularioId) {
+        Cursor cursor=db.getAllDiscrimiator( new Parameters(TABLES.PERSONAS, CLS_DISCR.FORMULARIO_ID,formularioId));
+        List<Personas> personasList=null;
+        String nombres,numCedula,fechaNac;
+        int image=R.drawable.persona;
+        if(cursor.moveToNext()){
+            personasList=new ArrayList<>();
+            do{
+                nombres=cursor.getString(cursor.getColumnIndex("nombres"));
+                numCedula=cursor.getString(cursor.getColumnIndex("cedula"));
+                fechaNac=cursor.getString(cursor.getColumnIndex("fecha_nac"));
+                personasList.add(new Personas(nombres,numCedula,fechaNac,image));
+            }while (cursor.moveToNext());
+        }
+        return  personasList;
     }
 
     public class SimpleItemRecyclerViewAdapter
