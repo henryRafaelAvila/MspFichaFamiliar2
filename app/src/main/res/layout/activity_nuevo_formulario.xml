@@ -127,6 +127,7 @@
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
                 android:paddingTop="8dp"
+                android:spinnerMode="dialog"
                 />
             <Space
                 android:layout_width="wrap_content"
@@ -471,7 +472,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
-
+                android:spinnerMode="dialog"
                 android:paddingTop="8dp"
 
                 />
@@ -696,6 +697,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
+                android:spinnerMode="dialog"
                 />
 
             <Space
@@ -729,6 +731,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
+                android:spinnerMode="dialog"
                 />
 
             <Space
@@ -762,6 +765,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
+                android:spinnerMode="dialog"
                 />
             <Space
                 android:layout_width="wrap_content"
@@ -827,6 +831,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
+                android:spinnerMode="dialog"
                 />
             <Space
                 android:layout_width="wrap_content"
@@ -860,6 +865,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
+                android:spinnerMode="dialog"
                 />
             <Space
                 android:layout_width="wrap_content"
@@ -893,6 +899,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
+                android:spinnerMode="dialog"
                 />
             <Space
                 android:layout_width="wrap_content"
@@ -927,6 +934,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
+                android:spinnerMode="dialog"
                 />
             <Space
                 android:layout_width="wrap_content"
@@ -960,6 +968,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
+                android:spinnerMode="dialog"
                 />
             <Space
                 android:layout_width="wrap_content"
@@ -992,6 +1001,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
+                android:spinnerMode="dialog"
                 />
                 />
             <!-- Bloque 4-->
@@ -1100,6 +1110,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
+                android:spinnerMode="dialog"
                 />
             <Space
                 android:layout_width="wrap_content"
@@ -1133,6 +1144,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
+                android:spinnerMode="dialog"
                 />
             <Space
                 android:layout_width="wrap_content"
@@ -1165,6 +1177,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
+                android:spinnerMode="dialog"
                 />
             <Space
                 android:layout_width="wrap_content"
@@ -1197,6 +1210,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
+                android:spinnerMode="dialog"
                 />
             <Space
                 android:layout_width="wrap_content"
@@ -1229,6 +1243,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
+                android:spinnerMode="dialog"
                 />
             <Space
                 android:layout_width="wrap_content"
@@ -1261,6 +1276,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
+                android:spinnerMode="dialog"
                 />
             <!-- Bloque 5-->
 
