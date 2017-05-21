@@ -621,7 +621,7 @@ public class NuevoFormularioActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Context context = view.getContext();
                 Intent intent = new Intent(context, PersonaListActivity.class);
-                intent.putExtra(PersonaListActivity.FORM_ID, "-1");
+                intent.putExtra(PersonaListActivity.FORM_ID, id_formulario);
                 context.startActivity(intent);
             }
 
@@ -896,7 +896,7 @@ public class NuevoFormularioActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Context context = view.getContext();
                 Intent intent = new Intent(context, MortalidadListActivity.class);
-                intent.putExtra(MortalidadListActivity.FORM_ID, "-1");
+                intent.putExtra(MortalidadListActivity.FORM_ID, id_formulario);
                 context.startActivity(intent);
             }
 
