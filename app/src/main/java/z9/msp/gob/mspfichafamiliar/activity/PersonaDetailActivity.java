@@ -35,6 +35,7 @@ public class PersonaDetailActivity extends AppCompatActivity {
     DatabaseHandler db;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_persona_detail);
         Toolbar toolbar = (Toolbar) findViewById(R.id.detail_toolbar);
@@ -58,6 +59,8 @@ public class PersonaDetailActivity extends AppCompatActivity {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
 
+
+
         // savedInstanceState is non-null when there is fragment state
         // saved from previous configurations of this activity
         // (e.g. when rotating the screen from portrait to landscape).
@@ -79,6 +82,8 @@ public class PersonaDetailActivity extends AppCompatActivity {
                     .add(R.id.persona_detail_container, fragment)
                     .commit();
         }
+
+
     }
     public String saveOrUpdate(){
         ContentValues contentValues=valueViewPersonDetails();
@@ -176,4 +181,7 @@ public class PersonaDetailActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+
+
 }
