@@ -73,11 +73,11 @@ public class Personas {
     public Personas() {
     }
 
-    public Personas(String nombres, String numCedula, String fechaNac, int image) {
+    public Personas(String nombres, String numCedula, String fechaNac, int idPersona) {
         this.nombres = nombres;
         this.numCedula = numCedula;
         this.fechaNac = fechaNac;
-        this.image = image;
+        this.idPersona = idPersona;
     }
 
     public String getNombres() {
@@ -110,5 +110,149 @@ public class Personas {
 
     public void setImage(int image) {
         this.image = image;
+    }
+
+    public Integer getIdPersona() {
+        return idPersona;
+    }
+
+    public void setIdPersona(Integer idPersona) {
+        this.idPersona = idPersona;
+    }
+
+    public String getApellidos() {
+        return apellidos;
+    }
+
+    public void setApellidos(String apellidos) {
+        this.apellidos = apellidos;
+    }
+
+    public String getDetSegPrivado() {
+        return detSegPrivado;
+    }
+
+    public void setDetSegPrivado(String detSegPrivado) {
+        this.detSegPrivado = detSegPrivado;
+    }
+
+    public String getFechaDiag() {
+        return fechaDiag;
+    }
+
+    public void setFechaDiag(String fechaDiag) {
+        this.fechaDiag = fechaDiag;
+    }
+
+    public Integer getIdActTrab() {
+        return idActTrab;
+    }
+
+    public void setIdActTrab(Integer idActTrab) {
+        this.idActTrab = idActTrab;
+    }
+
+    public Integer getIdCatOcu() {
+        return idCatOcu;
+    }
+
+    public void setIdCatOcu(Integer idCatOcu) {
+        this.idCatOcu = idCatOcu;
+    }
+
+    public Integer getIdClafDiag() {
+        return idClafDiag;
+    }
+
+    public void setIdClafDiag(Integer idClafDiag) {
+        this.idClafDiag = idClafDiag;
+    }
+
+    public Integer getIdEstCiv() {
+        return idEstCiv;
+    }
+
+    public void setIdEstCiv(Integer idEstCiv) {
+        this.idEstCiv = idEstCiv;
+    }
+
+    public Integer getIdEtn() {
+        return idEtn;
+    }
+
+    public void setIdEtn(Integer idEtn) {
+        this.idEtn = idEtn;
+    }
+
+    public Integer getIdNac() {
+        return idNac;
+    }
+
+    public void setIdNac(Integer idNac) {
+        this.idNac = idNac;
+    }
+
+    public Integer getIdNacs() {
+        return idNacs;
+    }
+
+    public void setIdNacs(Integer idNacs) {
+        this.idNacs = idNacs;
+    }
+
+    public Integer getIdNivInst() {
+        return idNivInst;
+    }
+
+    public void setIdNivInst(Integer idNivInst) {
+        this.idNivInst = idNivInst;
+    }
+
+    public Integer getIdParJh() {
+        return idParJh;
+    }
+
+    public void setIdParJh(Integer idParJh) {
+        this.idParJh = idParJh;
+    }
+
+    public Integer getIdPue() {
+        return idPue;
+    }
+
+    public void setIdPue(Integer idPue) {
+        this.idPue = idPue;
+    }
+
+    public Integer getIdSegPub() {
+        return idSegPub;
+    }
+
+    public void setIdSegPub(Integer idSegPub) {
+        this.idSegPub = idSegPub;
+    }
+
+    public Integer getSeguroPriv() {
+        return seguroPriv;
+    }
+
+    public void setSeguroPriv(Integer seguroPriv) {
+        this.seguroPriv = seguroPriv;
+    }
+
+    public Integer getSexo() {
+        return sexo;
+    }
+
+    public void setSexo(Integer sexo) {
+        this.sexo = sexo;
+    }
+
+    public Integer getIdFormulario() {
+        return idFormulario;
+    }
+
+    public void setIdFormulario(Integer idFormulario) {
+        this.idFormulario = idFormulario;
     }
 }

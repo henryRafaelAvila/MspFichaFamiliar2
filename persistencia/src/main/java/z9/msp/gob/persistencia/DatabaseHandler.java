@@ -186,7 +186,58 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery(selectQuery,  new String[] { parameters.getValueString()});
         return  cursor;
     }
+    public Cursor getAllById(TABLES tables,String id) {
+        return  getUnidadDatos(tables.getTablaName(),id);
+    }
+    public List<Formulario> getFormulariosList() {
+        Cursor cursor=getAllGeneric(TABLES.FORMULARIO.getTablaName());
+        List<Formulario> formularioList=new ArrayList<>();
 
+        String nombre, descripcion,  zona;
+        int cont=1;
+        int id=1;
+        if(cursor.moveToNext()){
+            do{
+                nombre="Formulario "+cont;
+                descripcion="cod Provin";
+                zona="Zona 9";
+                id=cursor.getInt(cursor.getColumnIndex("_id"));
+                formularioList.add(new Formulario(nombre, descripcion, zona, id));
+                cont++;
+            }while (cursor.moveToNext());
+        }
+        return  formularioList;
+    }
+public Personas getPersonaById(String id){
+    Cursor cursor=getAllById(TABLES.PERSONAS,id);
+    Personas personas=null;
+    if(cursor.moveToNext()){
+        personas=new Personas();
+        personas.setNombres(cursor.getString(cursor.getColumnIndex("nombres")));
+        personas.setApellidos(cursor.getString(cursor.getColumnIndex("apellidos")));
+        personas.setNumCedula(cursor.getString(cursor.getColumnIndex("cedula")));
+        personas.setDetSegPrivado(cursor.getString(cursor.getColumnIndex("det_seg_privado")));
+        personas.setFechaDiag(cursor.getString(cursor.getColumnIndex("fecha_diag")));
+        personas.setFechaNac(cursor.getString(cursor.getColumnIndex("fecha_nac")));
+        personas.setIdActTrab(cursor.getInt(cursor.getColumnIndex("id_act_trab")));
+        personas.setIdCatOcu(cursor.getInt(cursor.getColumnIndex("id_cat_ocu")));
+        personas.setIdClafDiag(cursor.getInt(cursor.getColumnIndex("id_claf_diag")));
+        personas.setIdEstCiv(cursor.getInt(cursor.getColumnIndex("id_est_civ")));
+        personas.setIdEtn(cursor.getInt(cursor.getColumnIndex("id_etn")));
+        personas.setIdFormulario(cursor.getInt(cursor.getColumnIndex("id_formulario")));
+        personas.setIdNac(cursor.getInt(cursor.getColumnIndex("id_nac")));
+        personas.setIdNacs(cursor.getInt(cursor.getColumnIndex("id_nacs")));
+        personas.setIdNivInst(cursor.getInt(cursor.getColumnIndex("id_niv_inst")));
+        personas.setIdParJh(cursor.getInt(cursor.getColumnIndex("id_par_jh")));
+        personas.setIdPersona(cursor.getInt(cursor.getColumnIndex("_id")));
+        personas.setIdPue(cursor.getInt(cursor.getColumnIndex("id_pue")));
+        personas.setIdSegPub(cursor.getInt(cursor.getColumnIndex("id_seg_pub")));
+        personas.setSexo(cursor.getInt(cursor.getColumnIndex("sexo")));
+
+
+    }
+    return personas;
+}
     public Cursor getAllGeneric(String tableName) {
         String selectQuery = "SELECT * FROM "+tableName;
         SQLiteDatabase db = this.getWritableDatabase();
@@ -554,7 +605,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.close();
         return createSuccessful;
     }
-    public int updateById(TABLES table,int id,ContentValues values){
+    public int updateById(TABLES table,String id,ContentValues values){
         int numRows;
         SQLiteDatabase db = this.getWritableDatabase();
         numRows= db.update(table.getTablaName(), values,"_id="+id, null);

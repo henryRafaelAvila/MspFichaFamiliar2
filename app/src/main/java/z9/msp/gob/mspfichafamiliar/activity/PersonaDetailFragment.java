@@ -84,6 +84,7 @@ public class PersonaDetailFragment extends Fragment {
     private TextView tv_fechaNac;
     private TextView tvNacionalidad;
     private TextView tvPueblos;
+    private TextView tvPersonaId;
     private Button selectFechaNacimiento;
     DatePickerDialog datePickerDialog;
 
@@ -94,7 +95,6 @@ public class PersonaDetailFragment extends Fragment {
      * The dummy content this fragment is presenting.
      */
     private Personas mItem;
-
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).
@@ -110,7 +110,7 @@ public class PersonaDetailFragment extends Fragment {
             // Load the dummy content specified by the fragment
             // arguments. In a real-world scenario, use a Loader
             // to load content from a content provider.
-            mItem = DummyContent.ITEM_MAP.get(getArguments().getString(ARG_ITEM_ID));
+            mItem = db.getPersonaById(getArguments().getString(ARG_ITEM_ID));
 
             Activity activity = this.getActivity();
             CollapsingToolbarLayout appBarLayout = (CollapsingToolbarLayout) activity.findViewById(R.id.toolbar_layout);
@@ -132,8 +132,18 @@ private void initEditText(View rootView){
     editTextnombres=(EditText) rootView.findViewById(R.id.editTextnombres);
     editTextEdad=(EditText) rootView.findViewById(R.id.editTextEdad);
     editTextSeguroPrivado=(EditText) rootView.findViewById(R.id.editTextSeguroPrivado);
+    tvPersonaId=(TextView) rootView.findViewById(R.id.id_persona);
 
 }
+    private  void setValuesTextEdit(Personas mItem){
+        editTextCedula.setText(mItem.getNumCedula());
+        editTextApellidos.setText(mItem.getApellidos());
+        editTextnombres.setText(mItem.getNombres());
+        editTextSeguroPrivado.setText(mItem.getDetSegPrivado());
+        tv_fechaNac.setText(mItem.getFechaNac());
+        tvPersonaId.setText(mItem.getIdPersona()+"");
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -257,7 +267,6 @@ private void initEditText(View rootView){
         return rootView;
     }
     private void inicializarSpinner(View rootView){
-        // Show the dummy content as text in a TextView.
         spinnerNacionalidad= (Spinner)rootView.findViewById(R.id.spinnerNacionalidad);
         spinnerEtnia= (Spinner)rootView.findViewById(R.id.spinnerEtnia);
         spinnerSeguroPublico= (Spinner)rootView.findViewById(R.id.spinnerSeguroPublico);
@@ -269,20 +278,19 @@ private void initEditText(View rootView){
         spinnerPueblos= (Spinner)rootView.findViewById(R.id.spinnerPueblos);
         spinnerClasificacionDiagnost= (Spinner)rootView.findViewById(R.id.spinnerClasificacionDiagnost);
     }
-    private void populatedSpinner(Personas mItem) {
-        //((TextView) rootView.findViewById(R.id.persona_detail)).setText(mItem.details);
-        //llenada de combos
+    private void populatedSpinner(Personas mItema) {
         populatedSpinner();
-       /* pupulatedSpinner(adapterNacionalidad,db.getAllGeneric("recibe_agua"),spinnerNacionalidad);
-        pupulatedSpinner(adapterEtnia,db.getAllGeneric("recibe_agua"),spinnerEtnia);
-        pupulatedSpinner(adapterSeguroPublico,db.getAllGeneric("recibe_agua"),spinnerSeguroPublico);
-        pupulatedSpinner(adapterParentescoJefeHogar,db.getAllGeneric("recibe_agua"),spinnerParentescoJefeHogar);
-        pupulatedSpinner(adapterEstadoCivil,db.getAllGeneric("recibe_agua"),spinnerEstadoCivil);
-        pupulatedSpinner(adapterNivelInstruccion,db.getAllGeneric("recibe_agua"),spinnerNivelInstruccion);
-        pupulatedSpinner(adapterActSemPasada,db.getAllGeneric("recibe_agua"),spinnerActSemPasada);
-        pupulatedSpinner(adapterNacionalidades,db.getAllGeneric("nacionalidades"),spinnerNacionalidades);
-        pupulatedSpinner(adapterPueblos,db.getAllGeneric("recibe_agua"),spinnerPueblos);
-        pupulatedSpinner(adapterClasificacionDiagnost,db.getAllGeneric("recibe_agua"),spinnerClasificacionDiagnost);*/
+        setValuesTextEdit(mItem);
+        spinnerNacionalidad.setSelection(mItem.getIdNac());
+        spinnerEtnia.setSelection(mItem.getIdEtn());
+        spinnerSeguroPublico.setSelection(mItem.getIdSegPub());
+        spinnerParentescoJefeHogar.setSelection(mItem.getIdParJh());
+        spinnerEstadoCivil.setSelection(mItem.getIdEstCiv());
+        spinnerNivelInstruccion.setSelection(mItem.getIdNivInst());
+        spinnerActSemPasada.setSelection(mItem.getIdActTrab());
+        spinnerNacionalidades.setSelection(mItem.getIdNacs());
+        spinnerPueblos.setSelection(mItem.getIdPue());
+        spinnerClasificacionDiagnost.setSelection(mItem.getIdClafDiag());
 
     }
     private void populatedSpinner() {

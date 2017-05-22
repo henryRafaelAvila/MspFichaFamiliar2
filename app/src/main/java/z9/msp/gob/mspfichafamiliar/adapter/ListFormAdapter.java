@@ -57,7 +57,7 @@ public class ListFormAdapter extends ArrayAdapter<Formulario> {
         holder.name.setText(formulario.getNombre());
         holder.title.setText(formulario.getDescripcion());
         holder.company.setText(formulario.getZona());
-        Glide.with(getContext()).load(formulario.getImage()).into(holder.avatar);
+        Glide.with(getContext()).load(R.drawable.home).into(holder.avatar);
 
         return convertView;
     }

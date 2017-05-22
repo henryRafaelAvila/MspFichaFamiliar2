@@ -309,17 +309,11 @@
         android:layout_centerHorizontal="true"
         android:layout_weight="0.39"
         android:spinnerMode="dialog" />
-
-
+    <TextView
+        android:id="@+id/id_persona"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="-1"
+        />
 
 </LinearLayout>
-    <!--
-    <TextView xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/persona_detail"
-        style="?android:attr/textAppearanceLarge"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="16dp"
-        android:textIsSelectable="true"
-        tools:context="z9.msp.gob.mspfichafamiliar.activity.PersonaDetailFragment" />-->

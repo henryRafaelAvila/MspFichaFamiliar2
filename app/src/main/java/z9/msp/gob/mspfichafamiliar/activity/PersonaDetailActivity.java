@@ -1,6 +1,7 @@
 package z9.msp.gob.mspfichafamiliar.activity;
 
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.Intent;
 import android.database.sqlite.SQLiteCursor;
 import android.os.Bundle;
@@ -22,6 +23,7 @@ import java.util.Calendar;
 import z9.msp.gob.mspfichafamiliar.R;
 import z9.msp.gob.mspfichafamiliar.S;
 import z9.msp.gob.persistencia.DatabaseHandler;
+import z9.msp.gob.persistencia.enums.CLS_DISCR;
 import z9.msp.gob.persistencia.enums.TABLES;
 import z9.msp.gob.persistencia.enums.WS;
 
@@ -33,6 +35,7 @@ import z9.msp.gob.persistencia.enums.WS;
  */
 public class PersonaDetailActivity extends AppCompatActivity {
     DatabaseHandler db;
+    String formularioId;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -46,7 +49,6 @@ public class PersonaDetailActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String url=db.getWs(WS.CATALOGO);
                 String msj=saveOrUpdate();
                 Snackbar.make(view, msj, Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
@@ -58,21 +60,7 @@ public class PersonaDetailActivity extends AppCompatActivity {
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
-
-
-
-        // savedInstanceState is non-null when there is fragment state
-        // saved from previous configurations of this activity
-        // (e.g. when rotating the screen from portrait to landscape).
-        // In this case, the fragment will automatically be re-added
-        // to its container so we don't need to manually add it.
-        // For more information, see the Fragments API guide at:
-        //
-        // http://developer.android.com/guide/components/fragments.html
-        //
         if (savedInstanceState == null) {
-            // Create the detail fragment and add it to the activity
-            // using a fragment transaction.
             Bundle arguments = new Bundle();
             arguments.putString(PersonaDetailFragment.ARG_ITEM_ID,
                     getIntent().getStringExtra(PersonaDetailFragment.ARG_ITEM_ID));
@@ -82,21 +70,47 @@ public class PersonaDetailActivity extends AppCompatActivity {
                     .add(R.id.persona_detail_container, fragment)
                     .commit();
         }
+        if (savedInstanceState == null) {
+            Bundle extras = getIntent().getExtras();
+            if(extras == null) {
+                formularioId= null;
+            } else {
+                formularioId= extras.getString(PersonaListActivity.FORM_ID);
+            }
+        } else {
+            formularioId= (String) savedInstanceState.getSerializable(PersonaListActivity.FORM_ID);
+        }
 
 
     }
     public String saveOrUpdate(){
         ContentValues contentValues=valueViewPersonDetails();
         String msj=null;
-
-              boolean resultInsert= db.executeCreateQuery(contentValues, TABLES.PERSONAS);
-        if(resultInsert){
+    String personaId=getTexViewValue(R.id.id_persona);
+        boolean resultInsert=false;
+        if(personaId!=null&&personaId.equals("-1")) {
+            resultInsert= db.executeCreateQuery(contentValues, TABLES.PERSONAS);
             msj=contentValues.get("nombres").toString()+" "+S.insertDato;
+        }else{
+            int rows=db.updateById(TABLES.PERSONAS,personaId,contentValues);
+            if(rows>0){
+            resultInsert=true;
+                msj=contentValues.get("nombres").toString()+" "+S.updateDato +" :Tot: "+rows;
+            }
+        }
+        if(resultInsert){
+
+            Context context = this;
+            Intent intent = new Intent(context, PersonaListActivity.class);
+            intent.putExtra(PersonaListActivity.FORM_ID, formularioId);
+            context.startActivity(intent);
         }
         return msj;
     }
     public ContentValues valueViewPersonDetails(){
         ContentValues values=new ContentValues();
+        values.put(CLS_DISCR.FORMULARIO_ID.getColsName(),formularioId);
+        values.put("cedula",getTextEditText(R.id.editTextCedula));
         values.put("cedula",getTextEditText(R.id.editTextCedula));
         values.put("apellidos",getTextEditText(R.id.editTextApellidos));
         values.put("nombres",getTextEditText(R.id.editTextnombres));
@@ -163,6 +177,12 @@ public class PersonaDetailActivity extends AppCompatActivity {
         EditText obj=(EditText) findViewById(editText);
        if(obj!=null)
            return obj.getText().toString();
+        else return null;
+    }
+    private String getTexViewValue(int editText){
+        TextView obj=(TextView) findViewById(editText);
+        if(obj!=null)
+            return obj.getText().toString();
         else return null;
     }
     @Override

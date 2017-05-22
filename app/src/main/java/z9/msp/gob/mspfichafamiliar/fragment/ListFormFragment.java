@@ -13,8 +13,10 @@ import android.widget.Toast;
 
 import z9.msp.gob.mspfichafamiliar.R;
 import z9.msp.gob.mspfichafamiliar.activity.FormularioDetalleActivity;
+import z9.msp.gob.mspfichafamiliar.activity.NuevoFormularioActivity;
 import z9.msp.gob.mspfichafamiliar.adapter.ListFormAdapter;
 import z9.msp.gob.mspfichafamiliar.bdd.FormularioRepositorio;
+import z9.msp.gob.persistencia.DatabaseHandler;
 import z9.msp.gob.persistencia.entity.Formulario;
 
 /**
@@ -39,6 +41,7 @@ public class ListFormFragment extends Fragment {
     private ListFormAdapter mListFormAdapter;
 
     private OnFragmentInteractionListener mListener;
+    DatabaseHandler db;
 
     public ListFormFragment() {
         // Required empty public constructor
@@ -56,6 +59,7 @@ public class ListFormFragment extends Fragment {
     public static ListFormFragment newInstance(String param1, String param2) {
         ListFormFragment fragment = new ListFormFragment();
         Bundle args = new Bundle();
+
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
@@ -65,6 +69,7 @@ public class ListFormFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        db = new DatabaseHandler(this.getContext());
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
@@ -82,8 +87,7 @@ public class ListFormFragment extends Fragment {
         mListForm = (ListView) root.findViewById(R.id.form_list);
 
         // Inicializar el adaptador con la fuente de datos.
-        mListFormAdapter = new ListFormAdapter(getActivity(),
-                FormularioRepositorio.getInstance().getAllFormularios());
+        mListFormAdapter =  new ListFormAdapter(getActivity(),db.getFormulariosList());
 
         //Relacionando la lista con el adaptador
         mListForm.setAdapter(mListFormAdapter);
@@ -93,10 +97,8 @@ public class ListFormFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
                 Formulario currentFormulario = mListFormAdapter.getItem(position);
-                Toast.makeText(getActivity(),
-                        "PANTALLA LAS VER DETALLE DEL FOMRULARIO: \n" + currentFormulario.getNombre(),
-                        Toast.LENGTH_SHORT).show();
-                Intent i = new Intent(getActivity(),FormularioDetalleActivity.class);
+                Intent i = new Intent(getActivity(),NuevoFormularioActivity.class);
+                i.putExtra(NuevoFormularioActivity.FORMULARIO_ID, currentFormulario.getId()+"");
                 startActivity(i);
             }
         });

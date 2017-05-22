@@ -25,6 +25,7 @@ import z9.msp.gob.mspfichafamiliar.R;
 import z9.msp.gob.persistencia.DatabaseHandler;
 
 public class NuevoFormularioActivity extends AppCompatActivity {
+    public  static final String FORMULARIO_ID="FORMULARIO_ID";
     Date fecha;
     TextView fecha_completa;
     EditText parroquia;
@@ -901,7 +902,17 @@ public class NuevoFormularioActivity extends AppCompatActivity {
             }
 
         });
-
+        if (savedInstanceState == null) {
+            Bundle extras = getIntent().getExtras();
+            if(extras == null) {
+                id_formulario= null;
+            } else {
+                id_formulario= extras.getString(FORMULARIO_ID);
+                initBotones();
+            }
+        } else {
+            id_formulario= (String) savedInstanceState.getSerializable(FORMULARIO_ID);
+        }
         guardar=(Button)findViewById(R.id.btnguardar);
         guardar.setOnClickListener(new View.OnClickListener() {
 
@@ -930,21 +941,23 @@ public class NuevoFormularioActivity extends AppCompatActivity {
                 contaminacion_suelo=contaminacion_suelotxt.getText().toString();
                 contaminacion_aire=contaminacion_airetxt.getText().toString();
                 contaminacion_agua=contaminacion_aguatxt.getText().toString();
-                if(ocupacion.trim().equals(condicion)){
-                            db.insertFormulario("-1",material_piso,material_paredes,agua_proviene,estado_techo,agua_recibe,cod_ocupacion,
-                                    agua_tratamiento,acceso_vivienda,combustible,transporte,estado_piso,basura,agua_servidas,tipo_vivienda,letrete_ubicacion,cod_unidad,material_techo,
-                                   fechacComplString,meses,anios,telefonoentrevistado,celularentrevistado,telefonoreferencia,celularreferencia,n_cuartos,n_cuartos_dormir,contaminacion_suelo,
-                                    contaminacion_aire,violenciaintra,desestructuracion,problemafami,problemasocio,aislamiento,escolariza,noinsertados,alcoholismo,drogas,contaminacion_agua,
-                                    intradomiciliarios,vectores,animales_sueltos,cocinadormitorio,sedazo,mosquitero,plaguicida,aepi,abandono,ircs,calle1,calle2,telefono,celular,edificio,manzana,coordenadas,responsable,localidad,institucion,tiempo);
+                if(id_formulario!=null&&!id_formulario.equals("")) {
+                    if (ocupacion.trim().equals(condicion)) {
+                        db.insertFormulario("-1", material_piso, material_paredes, agua_proviene, estado_techo, agua_recibe, cod_ocupacion,
+                                agua_tratamiento, acceso_vivienda, combustible, transporte, estado_piso, basura, agua_servidas, tipo_vivienda, letrete_ubicacion, cod_unidad, material_techo,
+                                fechacComplString, meses, anios, telefonoentrevistado, celularentrevistado, telefonoreferencia, celularreferencia, n_cuartos, n_cuartos_dormir, contaminacion_suelo,
+                                contaminacion_aire, violenciaintra, desestructuracion, problemafami, problemasocio, aislamiento, escolariza, noinsertados, alcoholismo, drogas, contaminacion_agua,
+                                intradomiciliarios, vectores, animales_sueltos, cocinadormitorio, sedazo, mosquitero, plaguicida, aepi, abandono, ircs, calle1, calle2, telefono, celular, edificio, manzana, coordenadas, responsable, localidad, institucion, tiempo);
 
-                }
-                else{
-                    db.insertFormulario("-1","","","","","","",
-                            "","","","","","","","","",cod_unidad,"",
-                            fechacComplString,"","","","","","","","","",
-                            "","","","","","","","","","","",
-                            "","","","","","","","","","",calle1,calle2,
-                            telefono,celular,edificio,manzana,coordenadas,responsable,localidad,institucion,"");
+                    } else {
+                        db.insertFormulario("-1", "", "", "", "", "", "",
+                                "", "", "", "", "", "", "", "", "", cod_unidad, "",
+                                fechacComplString, "", "", "", "", "", "", "", "", "",
+                                "", "", "", "", "", "", "", "", "", "", "",
+                                "", "", "", "", "", "", "", "", "", "", calle1, calle2,
+                                telefono, celular, edificio, manzana, coordenadas, responsable, localidad, institucion, "");
+                    }
+
                 }
 
                 Toast.makeText(getApplicationContext(), "Datos insertados correctamente", Toast.LENGTH_LONG).show();
@@ -965,8 +978,19 @@ public class NuevoFormularioActivity extends AppCompatActivity {
 
         });
 
-    }
 
+    }
+private void initBotones(){
+    if(id_formulario!=null&&!id_formulario.equals("")){
+        Button btbmiembrosfamilia= (Button) findViewById(R.id.miembrosHogar);
+        btbmiembrosfamilia.setEnabled(true);
+        Button personasfallecidas= (Button) findViewById(R.id.mortalidad);
+        personasfallecidas.setEnabled(true);
+        Button btbguardar= (Button) findViewById(R.id.btnguardar);
+        btbguardar.setEnabled(false);
+        btbguardar.setText("ACTUALIZAR");
+    }
+}
     public void DatosParroquia(String parr){
         Cursor cursor=db.getUnidadDatos("parroquia",parr);
         if (cursor.moveToFirst()) {

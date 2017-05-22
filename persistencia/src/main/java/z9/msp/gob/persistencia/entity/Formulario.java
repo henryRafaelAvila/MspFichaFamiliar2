@@ -10,26 +10,26 @@ public class Formulario {
     String nombre;
     String descripcion;
     String zona;
-    int image;
+    int id;
 
 
     public Formulario() {
     }
 
-    public Formulario(String nombre, String descripcion, String zona, int image) {
+    public Formulario(String nombre, String descripcion, String zona, int id) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.zona = zona;
-        this.image=image;
+        this.id=id;
     }
     private List<Personas> personas;
 
-    public int getImage() {
-        return image;
+    public int getId() {
+        return id;
     }
 
-    public void setImage(int image) {
-        this.image = image;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getNombre() {

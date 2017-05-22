@@ -2,8 +2,10 @@ package z9.msp.gob.mspfichafamiliar.activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
@@ -18,6 +20,7 @@ import android.widget.TextView;
 
 import z9.msp.gob.mspfichafamiliar.R;
 
+import z9.msp.gob.mspfichafamiliar.Session;
 import z9.msp.gob.mspfichafamiliar.activity.dummy.DummyContent;
 import z9.msp.gob.persistencia.DatabaseHandler;
 import z9.msp.gob.persistencia.entity.Parameters;
@@ -46,19 +49,23 @@ public class PersonaListActivity extends AppCompatActivity {
     public static final String FORM_ID="FORM_ID";
     public String formularioId="";
     DatabaseHandler db;
+   Session session;
+    List<Personas> personasList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_persona_list);
+        session=new Session(this);
         db = new DatabaseHandler(this);
 
         if (savedInstanceState == null) {
             Bundle extras = getIntent().getExtras();
             if(extras == null) {
-                formularioId= null;
+                formularioId=session.getFormulariosId();
             } else {
                 formularioId= extras.getString(FORM_ID);
+                session.setFormulariosId(formularioId);
             }
         } else {
             formularioId= (String) savedInstanceState.getSerializable(FORM_ID);
@@ -75,6 +82,7 @@ public class PersonaListActivity extends AppCompatActivity {
                 Context context = view.getContext();
                 Intent intent = new Intent(context, PersonaDetailActivity.class);
                 intent.putExtra(PersonaDetailFragment.ARG_ITEM_ID, "-1");
+                intent.putExtra(FORM_ID,formularioId);
                 context.startActivity(intent);
             }
         });
@@ -88,20 +96,22 @@ public class PersonaListActivity extends AppCompatActivity {
     }
 
     private void setupRecyclerView(@NonNull RecyclerView recyclerView) {
-        recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(getPersonasList(formularioId)));
+        personasList=getPersonasList();
+        recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(personasList));
     }
-    private List<Personas> getPersonasList(@NonNull String formularioId) {
+    private List<Personas>  getPersonasList(){
+        formularioId=session.getFormulariosId();
         Cursor cursor=db.getAllDiscrimiator( new Parameters(TABLES.PERSONAS, CLS_DISCR.FORMULARIO_ID,formularioId));
-        List<Personas> personasList=null;
+        List<Personas> personasList=new ArrayList<>();
         String nombres,numCedula,fechaNac;
-        int image=R.drawable.persona;
+        int id=0;
         if(cursor.moveToNext()){
-            personasList=new ArrayList<>();
             do{
                 nombres=cursor.getString(cursor.getColumnIndex("nombres"));
                 numCedula=cursor.getString(cursor.getColumnIndex("cedula"));
                 fechaNac=cursor.getString(cursor.getColumnIndex("fecha_nac"));
-                personasList.add(new Personas(nombres,numCedula,fechaNac,image));
+                id=cursor.getInt(cursor.getColumnIndex("_id"));
+                personasList.add(new Personas(nombres,numCedula,fechaNac,id));
             }while (cursor.moveToNext());
         }
         return  personasList;
@@ -129,14 +139,14 @@ public class PersonaListActivity extends AppCompatActivity {
             holder.cedula.setText(mValues.get(position).getNumCedula());
             holder.nombres.setText(mValues.get(position).getNombres());
             holder.fechaNac.setText(mValues.get(position).getFechaNac());
-            holder.foto.setImageResource(mValues.get(position).getImage()); //setImageResource();
+            holder.foto.setImageResource(R.drawable.persona); //setImageResource();
 
             holder.mView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     if (mTwoPane) {
                         Bundle arguments = new Bundle();
-                        arguments.putString(PersonaDetailFragment.ARG_ITEM_ID, holder.mItem.getNumCedula());
+                        arguments.putString(PersonaDetailFragment.ARG_ITEM_ID, holder.mItem.getIdPersona()+"");
                         PersonaDetailFragment fragment = new PersonaDetailFragment();
                         fragment.setArguments(arguments);
                         getSupportFragmentManager().beginTransaction()
@@ -145,7 +155,7 @@ public class PersonaListActivity extends AppCompatActivity {
                     } else {
                         Context context = v.getContext();
                         Intent intent = new Intent(context, PersonaDetailActivity.class);
-                        intent.putExtra(PersonaDetailFragment.ARG_ITEM_ID, holder.mItem.getNumCedula());
+                        intent.putExtra(PersonaDetailFragment.ARG_ITEM_ID, holder.mItem.getIdPersona()+"");
 
                         context.startActivity(intent);
                     }
