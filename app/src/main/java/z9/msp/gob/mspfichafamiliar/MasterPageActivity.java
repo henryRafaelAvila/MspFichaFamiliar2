@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
@@ -25,6 +26,8 @@ import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -39,9 +42,12 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import cz.msebera.android.httpclient.client.HttpClient;
+import cz.msebera.android.httpclient.impl.client.DefaultHttpClient;
 import z9.msp.gob.mspfichafamiliar.activity.ConfigurationDataBase;
 import z9.msp.gob.mspfichafamiliar.activity.DescargarFormularios;
 import z9.msp.gob.mspfichafamiliar.activity.NuevoFormularioActivity;
+import z9.msp.gob.mspfichafamiliar.utilsApp.RestClient;
 import z9.msp.gob.persistencia.DatabaseHandler;
 import z9.msp.gob.persistencia.entity.Formulario;
 import z9.msp.gob.persistencia.enums.TABLES;
@@ -83,7 +89,7 @@ public class MasterPageActivity extends AppCompatActivity{
 
                     progress.setMessage(S.establecerConeccion);
                 progress.show();
-                String url=db.getWs(WS.CATALOGO);
+                final String url=db.getWs(WS.CATALOGO);
                 try {
                     URL urlCat=new URL(url);
                     System.out.println("Iniciando");
@@ -93,6 +99,12 @@ public class MasterPageActivity extends AppCompatActivity{
                 } catch (MalformedURLException e) {
                     e.printStackTrace();
                 }
+                break;
+            case R.id.btn_subir_formualario:
+                HttpClient httpClient = new DefaultHttpClient();
+                progress.setMessage(S.establecerConeccion);
+                progress.show();
+                UploadWebService();
                 break;
             case R.id.btn_config_formulario:
                 startActivityLocal(ConfigurationDataBase.class);
@@ -108,6 +120,32 @@ public class MasterPageActivity extends AppCompatActivity{
                 break;
 
 
+        }
+    }
+    private void UploadWebService(){
+        Cursor cursor=db.getAllGeneric(TABLES.FORMULARIO.getTablaName());
+        final Gson gson = new Gson();
+        final JsonObject jo = new JsonObject();
+        final String uploadURL=db.getWs(WS.CARGA_FORMULARIOS);
+        RestClient client = new RestClient(uploadURL);
+        if(cursor.moveToNext()){
+            do{
+               String id=cursor.getString(cursor.getColumnIndex("_id"));
+                progress.setMessage("subiendo formulario " +id);
+                Formulario formulario=db.exportData(id);
+                JsonElement je = gson.toJsonTree(formulario);
+                jo.add("formulario", je);
+                String representacionJSON = jo.toString();
+                client.AddParam("formulario", representacionJSON);
+                try {
+                    client.Execute(RestClient.RequestMethod.GET);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                String response = client.getResponse();
+                System.out.println(response);
+                progress.setMessage("sever respose " +response);
+            }while (cursor.moveToNext());
         }
     }
     private void startActivityLocal(Class activity){
@@ -308,6 +346,5 @@ lista de comentarios alojada en el servidor.
 
         }
     }
-
 
 }

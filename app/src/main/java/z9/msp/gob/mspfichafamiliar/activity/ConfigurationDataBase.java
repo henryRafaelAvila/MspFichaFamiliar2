@@ -1,6 +1,7 @@
 package z9.msp.gob.mspfichafamiliar.activity;
 
 import android.content.ContentValues;
+import android.content.Intent;
 import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -8,6 +9,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import z9.msp.gob.mspfichafamiliar.MasterPageActivity;
 import z9.msp.gob.mspfichafamiliar.R;
 import z9.msp.gob.persistencia.DatabaseHandler;
 import z9.msp.gob.persistencia.enums.TABLES;
@@ -28,9 +30,9 @@ public class ConfigurationDataBase extends AppCompatActivity {
         initComponets();
         db = new DatabaseHandler(this);
         //CREATE TABLE config_server (_id INTEGER PRIMARY KEY  NOT NULL , ip VARCHAR NOT NULL , puerto INTEGER NOT NULL,
-        // servicio_cat VARCHAR,servicio_up VARCHAR,servicio_down VARCHAR)"),
-        Cursor cursor=db.getAllGeneric("config_server");
-        if (cursor.moveToFirst()) {
+        // servicio_cat VARCHAR,servicio_up VARCHAR,servicio_down VARCHAR)"),config_server
+        Cursor cursor=db.getAllGeneric(TABLES.CONFIG_SERVER.getTablaName());
+        if (cursor.moveToNext()) {
             et_direccionIp.setText(cursor.getString(1));
             et_puerto.setText(cursor.getInt(2)+"");
             et_catalogos.setText(cursor.getString(3));
@@ -79,6 +81,8 @@ public class ConfigurationDataBase extends AppCompatActivity {
                 break;
         }
             showMessage("Datos guardados correctamente. !");
+            Intent myIntent = new Intent(ConfigurationDataBase.this, MasterPageActivity.class);
+            ConfigurationDataBase.this.startActivity(myIntent);
         }
     }
     private void initComponets(){

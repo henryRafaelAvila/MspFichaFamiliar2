@@ -93,7 +93,7 @@ public class MortalidadListActivity extends AppCompatActivity {
             holder.mItem = mValues.get(position);
             holder.cedula.setText(mValues.get(position).getNumCedula());
             holder.nombres.setText(mValues.get(position).getNombres());
-            holder.fechaNac.setText(mValues.get(position).getFechaNac());
+            holder.fechaNac.setText(mValues.get(position).getCausa());
             holder.foto.setImageResource(mValues.get(position).getImage()); //setImageResource();
 
             holder.mView.setOnClickListener(new View.OnClickListener() {

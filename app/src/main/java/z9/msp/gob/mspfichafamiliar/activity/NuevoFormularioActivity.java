@@ -941,7 +941,8 @@ public class NuevoFormularioActivity extends AppCompatActivity {
                 contaminacion_suelo=contaminacion_suelotxt.getText().toString();
                 contaminacion_aire=contaminacion_airetxt.getText().toString();
                 contaminacion_agua=contaminacion_aguatxt.getText().toString();
-                if(id_formulario!=null&&!id_formulario.equals("")) {
+                //TODO; hola no permite ingrear nuevos formualrios, henry realizar moficacion y comento codigo orignal debido a que no inserta
+                /*if(id_formulario!=null&&!id_formulario.equals("")) {
                     if (ocupacion.trim().equals(condicion)) {
                         db.insertFormulario("-1", material_piso, material_paredes, agua_proviene, estado_techo, agua_recibe, cod_ocupacion,
                                 agua_tratamiento, acceso_vivienda, combustible, transporte, estado_piso, basura, agua_servidas, tipo_vivienda, letrete_ubicacion, cod_unidad, material_techo,
@@ -951,6 +952,24 @@ public class NuevoFormularioActivity extends AppCompatActivity {
 
                     } else {
                         db.insertFormulario("-1", "", "", "", "", "", "",
+                                "", "", "", "", "", "", "", "", "", cod_unidad, "",
+                                fechacComplString, "", "", "", "", "", "", "", "", "",
+                                "", "", "", "", "", "", "", "", "", "", "",
+                                "", "", "", "", "", "", "", "", "", "", calle1, calle2,
+                                telefono, celular, edificio, manzana, coordenadas, responsable, localidad, institucion, "");
+                    }
+
+                }*/
+                if(id_formulario==null||id_formulario.equals("")) {
+                    if (ocupacion.trim().equals(condicion)) {
+                        id_formulario=db.insertFormulario("-1", material_piso, material_paredes, agua_proviene, estado_techo, agua_recibe, cod_ocupacion,
+                                agua_tratamiento, acceso_vivienda, combustible, transporte, estado_piso, basura, agua_servidas, tipo_vivienda, letrete_ubicacion, cod_unidad, material_techo,
+                                fechacComplString, meses, anios, telefonoentrevistado, celularentrevistado, telefonoreferencia, celularreferencia, n_cuartos, n_cuartos_dormir, contaminacion_suelo,
+                                contaminacion_aire, violenciaintra, desestructuracion, problemafami, problemasocio, aislamiento, escolariza, noinsertados, alcoholismo, drogas, contaminacion_agua,
+                                intradomiciliarios, vectores, animales_sueltos, cocinadormitorio, sedazo, mosquitero, plaguicida, aepi, abandono, ircs, calle1, calle2, telefono, celular, edificio, manzana, coordenadas, responsable, localidad, institucion, tiempo);
+
+                    } else {
+                        id_formulario=db.insertFormulario("-1", "", "", "", "", "", "",
                                 "", "", "", "", "", "", "", "", "", cod_unidad, "",
                                 fechacComplString, "", "", "", "", "", "", "", "", "",
                                 "", "", "", "", "", "", "", "", "", "", "",
@@ -968,9 +987,9 @@ public class NuevoFormularioActivity extends AppCompatActivity {
                 Button btbguardar= (Button) findViewById(R.id.btnguardar);
                 btbguardar.setEnabled(false);
 
-                Cursor cursor=db.getAllGeneric("formulario");
+               /* Cursor cursor=db.getAllGeneric("formulario");
                 cursor.moveToLast();
-                id_formulario = cursor.getString(0);
+                id_formulario = cursor.getString(0);*/
                 TextView id_formulariotxt=(TextView)findViewById(R.id.id_formulario);
                 id_formulariotxt.setText(id_formulario);
 
@@ -993,6 +1012,7 @@ private void initBotones(){
 }
     public void DatosParroquia(String parr){
         Cursor cursor=db.getUnidadDatos("parroquia",parr);
+        //todo: observacion. H.A por accidente estaba usando  moveToFirst()<Causa problema con un solo registro> en lugar moveToNext(), validar Natys si tu necesitas moveToFisrt
         if (cursor.moveToFirst()) {
             //Datos parroquia
             do {

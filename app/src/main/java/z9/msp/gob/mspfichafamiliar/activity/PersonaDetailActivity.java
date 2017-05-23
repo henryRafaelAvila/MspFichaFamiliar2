@@ -22,6 +22,7 @@ import java.util.Calendar;
 
 import z9.msp.gob.mspfichafamiliar.R;
 import z9.msp.gob.mspfichafamiliar.S;
+import z9.msp.gob.mspfichafamiliar.Session;
 import z9.msp.gob.persistencia.DatabaseHandler;
 import z9.msp.gob.persistencia.enums.CLS_DISCR;
 import z9.msp.gob.persistencia.enums.TABLES;
@@ -36,6 +37,8 @@ import z9.msp.gob.persistencia.enums.WS;
 public class PersonaDetailActivity extends AppCompatActivity {
     DatabaseHandler db;
     String formularioId;
+    Session session;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -44,7 +47,7 @@ public class PersonaDetailActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.detail_toolbar);
         setSupportActionBar(toolbar);
         db = new DatabaseHandler(this);
-
+        session=new Session(this);
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -84,6 +87,7 @@ public class PersonaDetailActivity extends AppCompatActivity {
 
     }
     public String saveOrUpdate(){
+        formularioId=session.getFormulariosId();
         ContentValues contentValues=valueViewPersonDetails();
         String msj=null;
     String personaId=getTexViewValue(R.id.id_persona);

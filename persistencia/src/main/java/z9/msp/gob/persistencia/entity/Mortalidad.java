@@ -3,79 +3,134 @@ package z9.msp.gob.persistencia.entity;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import z9.msp.gob.persistencia.utils.Utilitarios;
+
 /**
  * Created by henry on 4/9/2017.
  */
 
-public class Mortalidad {
-    String nombres;
-    String numCedula;
-    int image;
-    private Integer idPersona;
+public class Mortalidad implements Serializable {
+
+    @Expose(serialize = false)
+    transient int image;
+    //
+    @SerializedName("id_mortalida")
+    private Integer idMortalida;
 
     private String apellidos;
 
+    private String causa;
+
     private String cedula;
 
-    @SerializedName("det_seg_privado")
-    private String detSegPrivado;
+    private Integer edad;
 
-    @SerializedName("fecha_diag")
-    private String fechaDiag;
-
-    @SerializedName("fecha_nac")
-    private String fechaNac;
-
-    @SerializedName("id_act_trab")
-    private Integer idActTrab;
-
-    @SerializedName("id_cat_ocu")
-    private Integer idCatOcu;
-
-    @SerializedName("id_claf_diag")
-    private Integer idClafDiag;
-
-    @SerializedName("id_est_civ")
-    private Integer idEstCiv;
-
-    @SerializedName("id_etn")
-    private Integer idEtn;
-
-    @SerializedName("id_nac")
-    private Integer idNac;
-
-    @SerializedName("id_nacs")
-    private Integer idNacs;
-
-    @SerializedName("id_niv_inst")
-    private Integer idNivInst;
+    @SerializedName("fecha_muerte")
+    private Date fechaMuerte;
 
     @SerializedName("id_par_jh")
     private Integer idParJh;
 
-    @SerializedName("id_pue")
-    private Integer idPue;
-
-    @SerializedName("id_seg_pub")
-    private Integer idSegPub;
-
-    @SerializedName("seguro_priv")
-    private Integer seguroPriv;
+    private String nombres;
 
     private Integer sexo;
+
     @Expose(serialize = false)
     private Integer idFormulario;
-    //Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().setPrettyPrinting().create();
-
 
     public Mortalidad() {
     }
 
-    public Mortalidad(String nombres, String numCedula, String fechaNac, int image) {
+    public Mortalidad(String nombres, String numCedula, String fechaMuerte, int image) {
+        DateFormat format = new SimpleDateFormat("dd/mm/yyy");
+        Date date = null;
+        try {
+            format.parse(fechaMuerte);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
         this.nombres = nombres;
-        this.numCedula = numCedula;
-        this.fechaNac = fechaNac;
+        this.cedula = numCedula;
+        this.fechaMuerte = date;
         this.image = image;
+    }
+
+    public String getNumCedula() {
+        return cedula;
+    }
+
+    public void setNumCedula(String numCedula) {
+        this.cedula = numCedula;
+    }
+
+    public int getImage() {
+        return image;
+    }
+
+    public void setImage(int image) {
+        this.image = image;
+    }
+
+    public Integer getIdMortalida() {
+        return idMortalida;
+    }
+
+    public void setIdMortalida(Integer idMortalida) {
+        this.idMortalida = idMortalida;
+    }
+
+    public String getApellidos() {
+        return apellidos;
+    }
+
+    public void setApellidos(String apellidos) {
+        this.apellidos = apellidos;
+    }
+
+    public String getCausa() {
+        return causa;
+    }
+
+    public void setCausa(String causa) {
+        this.causa = causa;
+    }
+
+    public String getCedula() {
+        return cedula;
+    }
+
+    public void setCedula(String cedula) {
+        this.cedula = cedula;
+    }
+
+    public Integer getEdad() {
+        return edad;
+    }
+
+    public void setEdad(Integer edad) {
+        this.edad = edad;
+    }
+
+    public Date getFechaMuerte() {
+        return fechaMuerte;
+    }
+
+    public void setFechaMuerte(String fechaMuerte) {
+        this.fechaMuerte = new Utilitarios().stringToDate(fechaMuerte);
+    }
+
+    public Integer getIdParJh() {
+        return idParJh;
+    }
+
+    public void setIdParJh(Integer idParJh) {
+        this.idParJh = idParJh;
     }
 
     public String getNombres() {
@@ -86,27 +141,20 @@ public class Mortalidad {
         this.nombres = nombres;
     }
 
-    public String getNumCedula() {
-        return numCedula;
+    public Integer getSexo() {
+        return sexo;
     }
 
-    public void setNumCedula(String numCedula) {
-        this.numCedula = numCedula;
+    public void setSexo(Integer sexo) {
+        this.sexo = sexo;
     }
 
-    public String getFechaNac() {
-        return fechaNac;
+    public Integer getIdFormulario() {
+        return idFormulario;
     }
 
-    public void setFechaNac(String fechaNac) {
-        this.fechaNac = fechaNac;
-    }
-
-    public int getImage() {
-        return image;
-    }
-
-    public void setImage(int image) {
-        this.image = image;
+    public void setIdFormulario(Integer idFormulario) {
+        this.idFormulario = idFormulario;
     }
 }
+
