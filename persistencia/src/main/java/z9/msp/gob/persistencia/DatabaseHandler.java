@@ -633,19 +633,72 @@ public Personas getPersonaById(String id){
         //TODO implemnetae insercion de formulario, creado para descarga de formularios desde el servidor by token
         return insertado;
     }
-    public List<Formulario> exportData(){
-        Cursor cursor = getAllGeneric(TABLES.FORMULARIO.getTablaName());
+    public Formulario exportData(String formularioId){
+        Cursor cursor = getAllById(TABLES.FORMULARIO,formularioId);
+        Formulario formulario=null;
         if (cursor.moveToFirst()) {
-            do {
-                String formularioId=cursor.getString(cursor.getColumnIndex("_id"));
-                Formulario formulario=new Formulario();
-                formulario.setDescripcion(cursor.getString(cursor.getColumnIndex("descripcion")));
-                formulario.setPersonas(getPersonas(formularioId));
+            formulario=new Formulario();
+            formulario.setCodigo(cursor.getInt(cursor.getColumnIndex("codigo")));
+            formulario.setAnimConvInad(cursor.getInt(cursor.getColumnIndex("anim_conv_inad")));
+            formulario.setAnimIntradomi(cursor.getInt(cursor.getColumnIndex("anim_intradomi")));
+            formulario.setAnimVecTrans(cursor.getInt(cursor.getColumnIndex("anim_vec_trans")));
+            formulario.setCallePrincipal(cursor.getString(cursor.getColumnIndex("calle_principal")));
+            formulario.setCalleSec(cursor.getString(cursor.getColumnIndex("calle_sec")));
+            formulario.setCelular(cursor.getString(cursor.getColumnIndex("celular")));
+            formulario.setContaminaAgu(cursor.getInt(cursor.getColumnIndex("contamina_agu")));
+            formulario.setContaminaAir(cursor.getInt(cursor.getColumnIndex("contamina_air")));
+            formulario.setContaminaSuel(cursor.getInt(cursor.getColumnIndex("contamina_suel")));
+            formulario.setEntrCell(cursor.getString(cursor.getColumnIndex("entr_cell")));
+            formulario.setEntrTelf(cursor.getString(cursor.getColumnIndex("entr_telf")));
+            formulario.setFechaVisita(cursor.getString(cursor.getColumnIndex("fecha_visita")));
+            formulario.setIdCombCoc(cursor.getInt(cursor.getColumnIndex("id_comb_coc")));
+            formulario.setIdCondOcup(cursor.getInt(cursor.getColumnIndex("id_cond_ocup")));
+            formulario.setIdEliBas(cursor.getInt(cursor.getColumnIndex("id_eli_bas")));
+            formulario.setIdEstPar(cursor.getInt(cursor.getColumnIndex("id_est_par")));
+            formulario.setIdEstPis(cursor.getInt(cursor.getColumnIndex("id_est_pis")));
+            formulario.setIdEstTech(cursor.getInt(cursor.getColumnIndex("id_est_tech")));
+            formulario.setIdMatPar(cursor.getInt(cursor.getColumnIndex("id_mat_par")));
+            formulario.setIdMatPis(cursor.getInt(cursor.getColumnIndex("id_mat_pis")));
+            formulario.setIdMatTec(cursor.getInt(cursor.getColumnIndex("id_mat_tec")));
+            formulario.setIdProAgudd(cursor.getInt(cursor.getColumnIndex("id_pro_agudd")));
+            formulario.setIdRecAgu(cursor.getInt(cursor.getColumnIndex("id_rec_agu")));
+            formulario.setIdTipTrans(cursor.getInt(cursor.getColumnIndex("id_tip_trans")));
+            formulario.setIdTipVivId(cursor.getInt(cursor.getColumnIndex("id_tip_viv_id")));
+            formulario.setIdTraAgu(cursor.getInt(cursor.getColumnIndex("id_tra_agu")));
+            formulario.setIdUbiLet(cursor.getInt(cursor.getColumnIndex("id_ubi_let")));
+            formulario.setIdUnidOper(cursor.getInt(cursor.getColumnIndex("id_unid_oper")));
+            formulario.setIdViaAcc(cursor.getInt(cursor.getColumnIndex("id_via_acc")));
+            formulario.setNumCuar(cursor.getString(cursor.getColumnIndex("num_cuar")));
+            formulario.setNumDorm(cursor.getString(cursor.getColumnIndex("num_dorm")));
+            formulario.setPersRefCell(cursor.getString(cursor.getColumnIndex("pers_ref_cell")));
+            formulario.setPersRefTelf(cursor.getString(cursor.getColumnIndex("pers_ref_telf")));
+            formulario.setRiesgoIncend(cursor.getInt(cursor.getColumnIndex("riesgo_incend")));
+            formulario.setRsAisla(cursor.getInt(cursor.getColumnIndex("rs_aisla")));
+            formulario.setRsDestFami(cursor.getInt(cursor.getColumnIndex("rs_dest_fami")));
+            formulario.setRsNumAlcoh(cursor.getInt(cursor.getColumnIndex("rs_num_alcoh")));
+            formulario.setRsNumDrogDep(cursor.getInt(cursor.getColumnIndex("rs_num_drog_dep")));
+            formulario.setRsNumNinNoescola(cursor.getInt(cursor.getColumnIndex("rs_num_nin_noescola")));
+            formulario.setRsNumSinEscol(cursor.getInt(cursor.getColumnIndex("rs_num_sin_escol")));
+            formulario.setRsProbGraFam(cursor.getInt(cursor.getColumnIndex("rs_prob_gra_fam")));
+            formulario.setRsPsicoSoc(cursor.getInt(cursor.getColumnIndex("rs_psico_soc")));
+            formulario.setRsViolFami(cursor.getInt(cursor.getColumnIndex("rs_viol_fami")));
+            formulario.setRsanAepi(cursor.getInt(cursor.getColumnIndex("rsan_aepi")));
+            formulario.setRsanCocInhog(cursor.getInt(cursor.getColumnIndex("rsan_coc_inhog")));
+            formulario.setRsanMosquit(cursor.getInt(cursor.getColumnIndex("rsan_mosquit")));
+            formulario.setRsanPlaguicida(cursor.getInt(cursor.getColumnIndex("rsan_plaguicida")));
+            formulario.setRsanRechUniSal(cursor.getInt(cursor.getColumnIndex("rsan_rech_uni_sal")));
+            formulario.setRsanSedazo(cursor.getInt(cursor.getColumnIndex("rsan_sedazo")));
+            formulario.setRsasAbandono(cursor.getInt(cursor.getColumnIndex("rsas_abandono")));
+            formulario.setTelefono(cursor.getString(cursor.getColumnIndex("telefono")));
+            formulario.setTiemVivMeses(cursor.getInt(cursor.getColumnIndex("tiem_viv_meses")));
+            formulario.setTiempVivAnios(cursor.getInt(cursor.getColumnIndex("tiemp_viv_anios")));
+            formulario.setTiempoTransporte(cursor.getInt(cursor.getColumnIndex("tiempo_transporte")));
+            formulario.setUbiZonInun(cursor.getInt(cursor.getColumnIndex("ubi_zon_inun")));
+            formulario.setPersonas(getPersonas(formularioId));
 
-            }while (cursor.moveToNext());
 
         }
-        return null;
+        return formulario;
     }
     private List<Personas> getPersonas(String formularioId){
         Cursor cursor = getUnidadDatos(TABLES.PERSONAS.getTablaName(),formularioId);
@@ -653,8 +706,8 @@ public Personas getPersonaById(String id){
         if (cursor.moveToFirst()) {
             personasList=new ArrayList<Personas>();
             do {
-                Personas personas=new Personas();
-                personas.setNombres(cursor.getString(cursor.getColumnIndex("nombre")));
+                String id=cursor.getString(cursor.getColumnIndex("_id"));
+                Personas personas=getPersonaById(id);
                 personasList.add(personas);
 
             }while (cursor.moveToNext());
@@ -662,5 +715,6 @@ public Personas getPersonaById(String id){
         }
         return personasList;
     }
+
 
 }
