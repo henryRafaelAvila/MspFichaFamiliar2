@@ -1,5 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="app_name">Msp Ficha Familiar</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_list_form">ListFormActivity</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Configuración</string>
+    <string name="author_email">havilaj@est.ups.edu.ec,ncuevac@est.ups.edu.ec</string>
+    <!--menu de exportacion de datos-->
+    <string name="exportar">Sincronizar</string>
+    <string name="compartir">Compartir</string>
+    <string name="dir_ip">Dirección IP</string>
+    <string name="start">Inicio</string>
+    <string name="title_persona_list">Personas</string>
+    <string name="title_persona_detail">Persona Detail</string>
     <string name="nacionalidad">Nacionaldad</string>
     <string name="apellidos">Ingrese los Apellidos</string>
     <string name="nombre">Ingrese los Nombres</string>
@@ -28,4 +46,9 @@
     <string name="AddSal">¿A los alimnentos preparados los adiciona sal?</string>
     <string name="detSeguroPrivado">Detalle su seguro privado</string>
     <string name="ip">Dirección ip del servidor</string>
+    <string name="title_activity_mortalidad_list">MortalidadListActivity</string>
+
+    <string name="title_activity_master_page">MasterPageActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
 </resources>
