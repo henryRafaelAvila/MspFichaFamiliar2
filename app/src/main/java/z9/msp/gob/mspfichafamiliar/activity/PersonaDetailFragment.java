@@ -281,7 +281,7 @@ private void initEditText(View rootView){
     private void populatedSpinner(Personas mItema) {
         populatedSpinner();
         setValuesTextEdit(mItem);
-        spinnerNacionalidad.setSelection(mItem.getIdNac());
+       /* spinnerNacionalidad.setSelection(mItem.getIdNac());
         spinnerEtnia.setSelection(mItem.getIdEtn());
         spinnerSeguroPublico.setSelection(mItem.getIdSegPub());
         spinnerParentescoJefeHogar.setSelection(mItem.getIdParJh());
@@ -290,7 +290,7 @@ private void initEditText(View rootView){
         spinnerActSemPasada.setSelection(mItem.getIdActTrab());
         spinnerNacionalidades.setSelection(mItem.getIdNacs());
         spinnerPueblos.setSelection(mItem.getIdPue());
-        spinnerClasificacionDiagnost.setSelection(mItem.getIdClafDiag());
+        spinnerClasificacionDiagnost.setSelection(mItem.getIdClafDiag());*/
 
     }
     private void populatedSpinner() {

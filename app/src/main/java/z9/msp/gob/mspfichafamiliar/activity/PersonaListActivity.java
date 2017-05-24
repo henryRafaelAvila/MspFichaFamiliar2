@@ -70,7 +70,7 @@ public class PersonaListActivity extends AppCompatActivity {
         } else {
             formularioId= (String) savedInstanceState.getSerializable(FORM_ID);
         }
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+       Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         toolbar.setTitle(getTitle());
 

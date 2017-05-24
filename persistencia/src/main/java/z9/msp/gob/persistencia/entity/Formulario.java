@@ -21,9 +21,24 @@ public class Formulario {
     //TODO fin campos generados en su version incial por pruebas de datos
     @SerializedName("id_formulario")
     private Integer idFormulario;
-
     @SerializedName("codigo")
     private Integer codigo;
+    @SerializedName("id_mat_pis")
+    private Integer idMatPis;
+    @SerializedName("id_mat_par")
+    private Integer idMatPar;
+    @SerializedName("id_pro_agudd")
+    private Integer idProAgudd;
+
+    @SerializedName("id_rec_agu")
+    private Integer idRecAgu;
+
+    @SerializedName("id_tra_agu")
+    private Integer idTraAgu;
+    @SerializedName("id_via_acc")
+    private Integer idViaAcc;
+
+
 
     @SerializedName("anim_conv_inad")
     private Integer animConvInad;
@@ -91,20 +106,11 @@ public class Formulario {
     @SerializedName("id_est_tech")
     private Integer idEstTech;
 
-    @SerializedName("id_mat_par")
-    private Integer idMatPar;
 
-    @SerializedName("id_mat_pis")
-    private Integer idMatPis;
 
     @SerializedName("id_mat_tec")
     private Integer idMatTec;
 
-    @SerializedName("id_pro_agudd")
-    private Integer idProAgudd;
-
-    @SerializedName("id_rec_agu")
-    private Integer idRecAgu;
 
     @SerializedName("id_tip_trans")
     private Integer idTipTrans;
@@ -112,8 +118,6 @@ public class Formulario {
     @SerializedName("id_tip_viv_id")
     private Integer idTipVivId;
 
-    @SerializedName("id_tra_agu")
-    private Integer idTraAgu;
 
     @SerializedName("id_ubi_let")
     private Integer idUbiLet;
@@ -121,8 +125,6 @@ public class Formulario {
     @SerializedName("id_unid_oper")
     private Integer idUnidOper;
 
-    @SerializedName("id_via_acc")
-    private Integer idViaAcc;
 
     @SerializedName("num_cuar")
     private String numCuar;

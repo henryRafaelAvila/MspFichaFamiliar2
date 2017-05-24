@@ -36,6 +36,7 @@
         <activity
             android:name=".activity.PersonaListActivity"
             android:label="@string/title_persona_list"
+            android:parentActivityName=".activity.FormularioDetalleActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
