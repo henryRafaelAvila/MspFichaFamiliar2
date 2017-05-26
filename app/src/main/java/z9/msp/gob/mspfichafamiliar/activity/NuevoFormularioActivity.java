@@ -3,6 +3,7 @@ package z9.msp.gob.mspfichafamiliar.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.drawable.Drawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -124,6 +125,18 @@ public class NuevoFormularioActivity extends AppCompatActivity {
 
         inst= (TextView) findViewById(R.id.txtinst);
         croquistxt=(EditText) findViewById(R.id.etxtCroquis);
+        croquistxt.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if ( !hasFocus || hasFocus ) {
+                    String valor = (croquistxt.getText().toString() );
+                    if ( valor.isEmpty()) {
+                        croquistxt.setError( "Ingrese las coordenadas");
+
+                    }
+                }
+            }
+        });
         localidadtxt=(EditText) findViewById(R.id.etxLocalidad);
         manzanatxt =(EditText) findViewById(R.id.etxManzana);
         edificiotxt  =(EditText) findViewById(R.id.etxEdificio);
@@ -134,6 +147,19 @@ public class NuevoFormularioActivity extends AppCompatActivity {
 
 
         mesestxt=(EditText) findViewById(R.id.etxtMeses);
+        mesestxt.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if ( !hasFocus ) {
+                    int valor = Integer.parseInt(mesestxt.getText().toString() );
+                    if ( valor > 11 ) {
+                        mesestxt.setError( "Ingrese solo valores menores igual a 11");
+                        mesestxt.setText("");
+                        mesestxt.requestFocus();
+                    }
+                }
+            }
+        });
         aniostxt=(EditText) findViewById(R.id.etxtAnios);
         telefonoentrevistadotxt=(EditText) findViewById(R.id.etxtFonoFijo);
         celularentrevistadotxt=(EditText) findViewById(R.id.etxtCelularEntrevistado);
@@ -888,6 +914,18 @@ public class NuevoFormularioActivity extends AppCompatActivity {
         n_cuartostxt=(EditText)findViewById(R.id.etxtNCuartos) ;
         ncuartos_dormirtxt=(EditText)findViewById(R.id.etxtNCuartosDormir) ;
        responsabletxt=(EditText)findViewById(R.id.etxtResponsable) ;
+        responsabletxt.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if ( !hasFocus || hasFocus ) {
+                    String valor = (responsabletxt.getText().toString() );
+                    if ( valor.isEmpty()) {
+                        responsabletxt.setError( "Ingrese losa datos solicitados");
+
+                    }
+                }
+            }
+        });
 
 
         mortalidad=(Button)findViewById(R.id.mortalidad);
@@ -941,7 +979,7 @@ public class NuevoFormularioActivity extends AppCompatActivity {
                 contaminacion_suelo=contaminacion_suelotxt.getText().toString();
                 contaminacion_aire=contaminacion_airetxt.getText().toString();
                 contaminacion_agua=contaminacion_aguatxt.getText().toString();
-                //TODO; hola no permite ingrear nuevos formualrios, henry realizar moficacion y comento codigo orignal debido a que no inserta
+
                 /*if(id_formulario!=null&&!id_formulario.equals("")) {
                     if (ocupacion.trim().equals(condicion)) {
                         db.insertFormulario("-1", material_piso, material_paredes, agua_proviene, estado_techo, agua_recibe, cod_ocupacion,
@@ -1017,7 +1055,7 @@ private void initBotones(){
             //Datos parroquia
             do {
                 String codigo= cursor.getString(0);
-                cod_parr = cursor.getString(3);
+                cod_parr = cursor.getString(4);
                 id_canton=cursor.getString(1);
                 id_distrito=cursor.getString(2);
             } while(cursor.moveToNext());
@@ -1029,7 +1067,7 @@ private void initBotones(){
         cursor=db.getUnidadDatos("canton",id_canton);
         if (cursor.moveToFirst()) {
             do {
-                canton1=cursor.getString(2);
+                canton1=cursor.getString(3);
                 id_provincia=cursor.getString(1);
                 id_zona=cursor.getString(4);
             } while(cursor.moveToNext());
@@ -1041,7 +1079,7 @@ private void initBotones(){
         cursor=db.getUnidadDatos("administracion_zonal",id_zona);
         if (cursor.moveToFirst()) {
             do {
-                zona1=cursor.getString(1);
+                zona1=cursor.getString(2);
 
             } while(cursor.moveToNext());
         }
@@ -1052,7 +1090,7 @@ private void initBotones(){
         cursor=db.getUnidadDatos("provincia",id_provincia);
         if (cursor.moveToFirst()) {
             do {
-                cod_prov=cursor.getString(1);
+                cod_prov=cursor.getString(2);
 
             } while(cursor.moveToNext());
         }
@@ -1063,7 +1101,7 @@ private void initBotones(){
         cursor=db.getUnidadDatos("distrito",id_distrito);
         if (cursor.moveToFirst()) {
             do {
-                cod_distrito=cursor.getString(1);
+                cod_distrito=cursor.getString(2);
 
             } while(cursor.moveToNext());
         }
