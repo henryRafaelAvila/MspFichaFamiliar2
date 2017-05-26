@@ -59,6 +59,7 @@ import z9.msp.gob.persistencia.entity.TratamientoAgua;
 import z9.msp.gob.persistencia.entity.UbicacionLetrete;
 import z9.msp.gob.persistencia.entity.UnidadOperativa;
 import z9.msp.gob.persistencia.entity.ViasAcceso;
+import z9.msp.gob.persistencia.enums.CLS_DISCR;
 import z9.msp.gob.persistencia.enums.TABLES;
 import z9.msp.gob.persistencia.enums.WS;
 
@@ -631,6 +632,7 @@ public Personas getPersonaById(String id){
         System.out.println("Eliminado datos de "+tables+": "+delete);
          database.close();
     }
+
     public boolean insertFormularios(Formulario formulario){
         boolean insertado=false;
         //TODO implemnetae insercion de formulario, creado para descarga de formularios desde el servidor by token
@@ -768,6 +770,24 @@ public Personas getPersonaById(String id){
         }
         closeCursor(cursor);
         return mortalidad;
+    }
+    public int deleteByKey(TABLES tables,CLS_DISCR clsDiscr,String value) {
+        SQLiteDatabase database=this.getWritableDatabase();
+        int delete=-1;
+        delete=database.delete(tables.getTablaName(),clsDiscr.getColsName()+"="+value,null);
+        database.close();
+        return  delete;
+    }
+    private int deletePersonasByFormId(String formularioId) {
+        return deleteByKey(TABLES.PERSONAS,CLS_DISCR.FORMULARIO_ID,formularioId);
+    }
+    private int deleteMortalidadByFormId(String formularioId) {
+        return deleteByKey(TABLES.MORTALIDAD,CLS_DISCR.FORMULARIO_ID,formularioId);
+    }
+    public int deleteFormularioById(String formularioId) {
+        deletePersonasByFormId(formularioId);
+        deleteMortalidadByFormId(formularioId);
+        return deleteByKey(TABLES.FORMULARIO,CLS_DISCR.ID,formularioId);
     }
 
 }

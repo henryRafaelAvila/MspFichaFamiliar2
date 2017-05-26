@@ -130,15 +130,19 @@ public class MasterPageActivity extends AppCompatActivity{
         RestClient client = new RestClient(uploadURL);
         if(cursor.moveToNext()){
             do{
-               String id=cursor.getString(cursor.getColumnIndex("_id"));
-                progress.setMessage("subiendo formulario " +id);
-                Formulario formulario=db.exportData(id);
+               String fomularoId=cursor.getString(cursor.getColumnIndex("_id"));
+                progress.setMessage("subiendo formulario " +fomularoId);
+                Formulario formulario=db.exportData(fomularoId);
                 JsonElement je = gson.toJsonTree(formulario);
                 jo.add("formulario", je);
                 String representacionJSON = jo.toString();
                 client.AddParam("formulario", representacionJSON);
                 try {
                     client.Execute(RestClient.RequestMethod.GET);
+                    String response="Error";
+                    if(response.equals("OK")){
+                        db.deleteFormularioById(fomularoId);
+                    }
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
