@@ -223,7 +223,6 @@ public Personas getPersonaById(String id){
         personas.setFechaDiag(cursor.getString(cursor.getColumnIndex("fecha_diag")));
         personas.setFechaNac(cursor.getString(cursor.getColumnIndex("fecha_nac")));
         personas.setIdActTrab(cursor.getInt(cursor.getColumnIndex("id_act_trab")));
-        personas.setIdCatOcu(cursor.getInt(cursor.getColumnIndex("id_cat_ocu")));
         personas.setIdClafDiag(cursor.getInt(cursor.getColumnIndex("id_claf_diag")));
         personas.setIdEstCiv(cursor.getInt(cursor.getColumnIndex("id_est_civ")));
         personas.setIdEtn(cursor.getInt(cursor.getColumnIndex("id_etn")));
@@ -654,14 +653,14 @@ public Personas getPersonaById(String id){
         if (cursor.moveToNext()) {
             formulario=new Formulario();
             formulario.setCodigo(cursor.getInt(cursor.getColumnIndex("codigo")));
-            formulario.setCallePrincipal(cursor.getString(cursor.getColumnIndex("calle1")));
-            formulario.setCalleSec(cursor.getString(cursor.getColumnIndex("calle2")));
-            formulario.setCallePrincipal(cursor.getString(cursor.getColumnIndex("calle1")));
-            formulario.setCalleSec(cursor.getString(cursor.getColumnIndex("calle2")));
+            //TODO: CAMBIO OBLIGARIO
+            formulario.setResponsable("hENRY aVILA");
+            formulario.setCalle1(cursor.getString(cursor.getColumnIndex("calle1")));
+            formulario.setCalle2(cursor.getString(cursor.getColumnIndex("calle2")));
             formulario.setCelular(cursor.getString(cursor.getColumnIndex("celular")));
-            formulario.setContaminaAgu(cursor.getInt(cursor.getColumnIndex("contamina_agu_desc")));
-            formulario.setContaminaAir(cursor.getInt(cursor.getColumnIndex("contamina_air_desc")));
-            formulario.setContaminaSuel(cursor.getInt(cursor.getColumnIndex("contamina_suel_desc")));
+            formulario.setContaminaAguDesc(cursor.getString(cursor.getColumnIndex("contamina_agu_desc")));
+            formulario.setContaminaAirDesc(cursor.getString(cursor.getColumnIndex("contamina_air_desc")));
+            formulario.setContaminaSuelDesc(cursor.getString(cursor.getColumnIndex("contamina_suel_desc")));
             formulario.setEntrCell(cursor.getString(cursor.getColumnIndex("entr_cell")));
             formulario.setEntrTelf(cursor.getString(cursor.getColumnIndex("entr_telf")));
             formulario.setFechaVisita(cursor.getString(cursor.getColumnIndex("fecha_visita")));
@@ -677,7 +676,6 @@ public Personas getPersonaById(String id){
             formulario.setIdProAgudd(cursor.getInt(cursor.getColumnIndex("id_pro_agudd")));
             formulario.setIdRecAgu(cursor.getInt(cursor.getColumnIndex("id_rec_agu")));
             formulario.setIdTipTrans(cursor.getInt(cursor.getColumnIndex("id_tip_trans")));
-            //formulario.setIdTipVivId(cursor.getInt(cursor.getColumnIndex("id_tip_viv_id")));
             formulario.setIdTraAgu(cursor.getInt(cursor.getColumnIndex("id_tra_agu")));
             //formulario.setIdUbiLet(cursor.getInt(cursor.getColumnIndex("id_ubi_let")));
             formulario.setIdUnidOper(cursor.getInt(cursor.getColumnIndex("id_unid_oper")));
@@ -688,22 +686,22 @@ public Personas getPersonaById(String id){
             formulario.setPersRefTelf(cursor.getString(cursor.getColumnIndex("pers_ref_telf")));
 
             //formulario.setRiesgoIncend(cursor.getInt(cursor.getColumnIndex("riesgo_incend")));
-            formulario.setRsAisla(cursor.getInt(cursor.getColumnIndex("aisla")));
-            formulario.setRsDestFami(cursor.getInt(cursor.getColumnIndex("dest_fami")));
-            formulario.setRsNumAlcoh(cursor.getInt(cursor.getColumnIndex("alcoh")));
-            formulario.setRsNumDrogDep(cursor.getInt(cursor.getColumnIndex("droga")));
-            formulario.setRsNumNinNoescola(cursor.getInt(cursor.getColumnIndex("nin_noescola")));
-            formulario.setRsNumSinEscol(cursor.getInt(cursor.getColumnIndex("sin_escol")));
-            formulario.setRsProbGraFam(cursor.getInt(cursor.getColumnIndex("prob_gra_fam")));
-            formulario.setRsPsicoSoc(cursor.getInt(cursor.getColumnIndex("psico_soc")));
-            formulario.setRsViolFami(cursor.getInt(cursor.getColumnIndex("viol_fami")));
-            formulario.setRsanAepi(cursor.getInt(cursor.getColumnIndex("aepi")));
+            formulario.setAisla(cursor.getInt(cursor.getColumnIndex("aisla")));
+            formulario.setDestFami(cursor.getInt(cursor.getColumnIndex("dest_fami")));
+            formulario.setAlcoh(cursor.getInt(cursor.getColumnIndex("alcoh")));
+            formulario.setDroga(cursor.getInt(cursor.getColumnIndex("droga")));
+            formulario.setNinNoescola(cursor.getInt(cursor.getColumnIndex("nin_noescola")));
+            formulario.setSinEscol(cursor.getInt(cursor.getColumnIndex("sin_escol")));
+            formulario.setProbGraFam(cursor.getInt(cursor.getColumnIndex("prob_gra_fam")));
+            formulario.setPsicoSoc(cursor.getInt(cursor.getColumnIndex("psico_soc")));
+            formulario.setViolFami(cursor.getInt(cursor.getColumnIndex("viol_fami")));
+            formulario.setAepi(cursor.getInt(cursor.getColumnIndex("aepi")));
             //formulario.setRsanCocInhog(cursor.getInt(cursor.getColumnIndex("rsan_coc_inhog")));
-            formulario.setRsanMosquit(cursor.getInt(cursor.getColumnIndex("mosquit")));
-            formulario.setRsanPlaguicida(cursor.getInt(cursor.getColumnIndex("plaguicida")));
+            formulario.setMosquit(cursor.getInt(cursor.getColumnIndex("mosquit")));
+            formulario.setPlaguicida(cursor.getInt(cursor.getColumnIndex("plaguicida")));
             //formulario.setRsanRechUniSal(cursor.getInt(cursor.getColumnIndex("rsan_rech_uni_sal")));
-            formulario.setRsanSedazo(cursor.getInt(cursor.getColumnIndex("sedazo")));
-            formulario.setRsasAbandono(cursor.getInt(cursor.getColumnIndex("abandono")));
+            formulario.setSedazo(cursor.getInt(cursor.getColumnIndex("sedazo")));
+            formulario.setAbandono(cursor.getInt(cursor.getColumnIndex("abandono")));
 
             formulario.setTelefono(cursor.getString(cursor.getColumnIndex("telefono")));
             formulario.setTiemVivMeses(cursor.getInt(cursor.getColumnIndex("tiem_viv_meses")));
@@ -761,11 +759,11 @@ public Personas getPersonaById(String id){
             mortalidad.setNombres(cursor.getString(cursor.getColumnIndex("nombres")));
             mortalidad.setApellidos(cursor.getString(cursor.getColumnIndex("apellidos")));
             mortalidad.setCausa(cursor.getString(cursor.getColumnIndex("cedula")));
-            mortalidad.setEdad(cursor.getInt(cursor.getColumnIndex("det_seg_privado")));
-            mortalidad.setFechaMuerte(cursor.getString(cursor.getColumnIndex("fecha_diag")));
-            mortalidad.setIdParJh(cursor.getInt(cursor.getColumnIndex("fecha_nac")));
-            mortalidad.setSexo(cursor.getInt(cursor.getColumnIndex("id_act_trab")));
-            mortalidad.setIdFormulario(cursor.getInt(cursor.getColumnIndex("id_cat_ocu")));
+            mortalidad.setEdad(cursor.getInt(cursor.getColumnIndex("edad")));
+            mortalidad.setFechaMuerte(cursor.getString(cursor.getColumnIndex("fecha_muerte")));
+            mortalidad.setIdParJh(cursor.getInt(cursor.getColumnIndex("id_par_jh")));
+            mortalidad.setSexo(cursor.getInt(cursor.getColumnIndex("sexo")));
+            mortalidad.setIdFormulario(cursor.getInt(cursor.getColumnIndex("id_formulario")));
 
         }
         closeCursor(cursor);

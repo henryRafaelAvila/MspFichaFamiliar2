@@ -119,7 +119,7 @@ public class NuevoFormularioActivity extends AppCompatActivity {
         fecha=new Date();
         fecha_completa= (TextView) findViewById(R.id.etxtfecha);
 
-        SimpleDateFormat fecc=new SimpleDateFormat("dd/MM/yy");
+        SimpleDateFormat fecc=new SimpleDateFormat("dd/mm/yyyy");
         fechacComplString = fecc.format(fecha);
         fecha_completa.setText(fechacComplString);
 

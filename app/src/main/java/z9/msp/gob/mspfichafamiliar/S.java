@@ -11,6 +11,7 @@ public static final String establecerConeccion="Por favor espere, esto puede tar
     public static final String errorServer="Servidor no disponible !! ";
     public static final String responseServer="Servidor response código: ";
     public static final String successServer="Proceso finalizado correctamente";
+    public static final String fin="Proceso finalizado";
     public static final String aceptar="Aceptar";
     public static final String nuevaPersona="Nueva Persona";
 
