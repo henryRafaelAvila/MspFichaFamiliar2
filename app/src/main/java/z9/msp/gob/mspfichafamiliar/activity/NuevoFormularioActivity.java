@@ -101,10 +101,10 @@ public class NuevoFormularioActivity extends AppCompatActivity {
     String material_paredes="",estado_techo="",estado_piso="",combustible="",n_cuartos="",n_cuartos_dormir="";
     String agua_proviene="",agua_recibe="",agua_tratamiento="",agua_servidas="",letrete_ubicacion="",basura="";
     String contaminacion_suelo="",contaminacion_aire="",contaminacion_agua="";
-    String intradomiciliarios="",vectores="",animales_sueltos="";
-    String violenciaintra="",desestructuracion="",problemafami="",problemasocio="",aislamiento="",escolariza="",
-            noinsertados="",alcoholismo="",drogas="";
-    String cocinadormitorio="",sedazo="",mosquitero="",plaguicida="",aepi="",abandono="",ircs="",cod_unidad="";
+    String intradomiciliarios="1",vectores="1",animales_sueltos="1";
+    String violenciaintra="1",desestructuracion="1",problemafami="1",problemasocio="1",aislamiento="1",escolariza="1",
+            noinsertados="1",alcoholismo="1",drogas="1";
+    String cocinadormitorio="1",sedazo="1",mosquitero="1",plaguicida="1",aepi="1",abandono="1",ircs="1",cod_unidad="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
