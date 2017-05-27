@@ -155,7 +155,7 @@ public class NuevoFormularioActivity extends AppCompatActivity {
                     if ( valor > 11 ) {
                         mesestxt.setError( "Ingrese solo valores menores igual a 11");
                         mesestxt.setText("");
-                        mesestxt.requestFocus();
+
                     }
                 }
             }
