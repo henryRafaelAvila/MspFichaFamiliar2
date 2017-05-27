@@ -1,5 +1,8 @@
 package z9.msp.gob.persistencia.utils;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -7,8 +10,16 @@ import java.util.Date;
  */
 
 public class Utilitarios {
-    public Date stringToDate(String date){
-        //TODO implementar conversion string to date
-        return new Date();
+
+    public static Date stringToDate(String fechaVisita) {
+        DateFormat format = new SimpleDateFormat("dd/mm/yyyy");
+        Date date = null;
+        try {
+            date=format.parse(fechaVisita);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+       return  date;
     }
 }

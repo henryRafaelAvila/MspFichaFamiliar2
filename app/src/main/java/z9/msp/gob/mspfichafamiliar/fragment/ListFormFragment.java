@@ -98,7 +98,7 @@ public class ListFormFragment extends Fragment {
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
                 Formulario currentFormulario = mListFormAdapter.getItem(position);
                 Intent i = new Intent(getActivity(),NuevoFormularioActivity.class);
-                i.putExtra(NuevoFormularioActivity.FORMULARIO_ID, currentFormulario.getId()+"");
+                i.putExtra(NuevoFormularioActivity.FORMULARIO_ID, currentFormulario.getIdFormulario()+"");
                 startActivity(i);
             }
         });

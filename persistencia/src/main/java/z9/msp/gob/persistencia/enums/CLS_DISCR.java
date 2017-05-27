@@ -5,7 +5,8 @@ package z9.msp.gob.persistencia.enums;
  */
 
 public enum CLS_DISCR {
-    FORMULARIO_ID("id_formulario");
+    FORMULARIO_ID("id_formulario"),
+    ID("_id");
     String colsName;
 
     CLS_DISCR(String colsName) {

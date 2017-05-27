@@ -31,8 +31,6 @@ public class Personas {
     @SerializedName("id_act_trab")
     private Integer idActTrab;
 
-    @SerializedName("id_cat_ocu")
-    private Integer idCatOcu;
 
     @SerializedName("id_claf_diag")
     private Integer idClafDiag;
@@ -150,14 +148,6 @@ public class Personas {
 
     public void setIdActTrab(Integer idActTrab) {
         this.idActTrab = idActTrab;
-    }
-
-    public Integer getIdCatOcu() {
-        return idCatOcu;
-    }
-
-    public void setIdCatOcu(Integer idCatOcu) {
-        this.idCatOcu = idCatOcu;
     }
 
     public Integer getIdClafDiag() {

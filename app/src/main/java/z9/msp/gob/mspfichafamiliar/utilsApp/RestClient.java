@@ -4,6 +4,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.net.URI;
+import java.net.URL;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 
@@ -16,8 +18,13 @@ import cz.msebera.android.httpclient.client.entity.UrlEncodedFormEntity;
 import cz.msebera.android.httpclient.client.methods.HttpGet;
 import cz.msebera.android.httpclient.client.methods.HttpPost;
 import cz.msebera.android.httpclient.client.methods.HttpUriRequest;
+import cz.msebera.android.httpclient.client.utils.URIUtils;
+import cz.msebera.android.httpclient.client.utils.URLEncodedUtils;
 import cz.msebera.android.httpclient.impl.client.DefaultHttpClient;
 import cz.msebera.android.httpclient.message.BasicNameValuePair;
+import cz.msebera.android.httpclient.params.BasicHttpParams;
+import cz.msebera.android.httpclient.params.HttpConnectionParams;
+import cz.msebera.android.httpclient.params.HttpParams;
 import cz.msebera.android.httpclient.protocol.HTTP;
 
 /**
@@ -93,8 +100,23 @@ public class RestClient {
                         }
                     }
                 }
+                URL parts=new URL(url);
+                int port=parts.getPort();
+                String protocols=parts.getProtocol();
+                String path=parts.getPath();
+                String host=parts.getHost();
+                URI uri = URIUtils.createURI(protocols, host, port,path,
+                        URLEncodedUtils.format(params, "UTF-8"), null);
+                HttpGet httpGet = new HttpGet(uri);
+                HttpClient httpClient = new DefaultHttpClient();
+                final HttpParams httpParams = new BasicHttpParams();
+                HttpConnectionParams.setConnectionTimeout(httpParams, 3000);
+                httpClient = new DefaultHttpClient(httpParams);
+                HttpResponse httpResponse = httpClient.execute(httpGet);
+                response =convertStreamToString(httpResponse.getEntity().getContent());
 
-                HttpGet request = new HttpGet(url + combinedParams);
+                        //IOUtils.toString(httpResponse.getEntity().getContent(), "UTF-8");
+                /*HttpGet request = new HttpGet(url + combinedParams);
 
                 //add headers
                 for(NameValuePair h : headers)
@@ -102,7 +124,7 @@ public class RestClient {
                     request.addHeader(h.getName(), h.getValue());
                 }
 
-                executeRequest(request, url);
+                executeRequest(request, url);*/
                 break;
             }
             case POST:

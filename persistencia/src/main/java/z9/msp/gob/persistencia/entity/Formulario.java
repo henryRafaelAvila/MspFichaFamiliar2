@@ -1,211 +1,147 @@
 package z9.msp.gob.persistencia.entity;
 
-import com.google.gson.annotations.SerializedName;
-
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
-/**
- * Created by henry on 4/2/2017.
- */
+import z9.msp.gob.persistencia.entity.Mortalidad;
+import z9.msp.gob.persistencia.entity.Personas;
+import z9.msp.gob.persistencia.utils.Utilitarios;
 
-public class Formulario {
-    //TODO campos generados en su version incial por pruebas de datos
+
+/**
+ * The persistent class for the formulario database table.
+ *
+ */
+public class Formulario implements Serializable {
+    private static final long serialVersionUID = 1L;
+
     String nombre;
     String descripcion;
     String zona;
-    int id;
-    //TODO fin campos generados en su version incial por pruebas de datos
-    @SerializedName("id_formulario")
+
     private Integer idFormulario;
-    @SerializedName("codigo")
-    private Integer codigo;
-    @SerializedName("id_mat_pis")
-    private Integer idMatPis;
-    @SerializedName("id_mat_par")
-    private Integer idMatPar;
-    @SerializedName("id_pro_agudd")
-    private Integer idProAgudd;
 
-    @SerializedName("id_rec_agu")
-    private Integer idRecAgu;
+    private Integer abandono;
 
-    @SerializedName("id_tra_agu")
-    private Integer idTraAgu;
-    @SerializedName("id_via_acc")
-    private Integer idViaAcc;
+    private Integer aepi;
 
+    private Integer aisla;
 
+    private Integer alcoh;
 
-    @SerializedName("anim_conv_inad")
-    private Integer animConvInad;
+    private Integer animViv;
 
-    @SerializedName("anim_intradomi")
-    private Integer animIntradomi;
+    private String calle1;
 
-    @SerializedName("anim_vec_trans")
-    private Integer animVecTrans;
+    private String calle2;
 
-    @SerializedName("calle_principal")
-    private String callePrincipal;
-
-    @SerializedName("calle_sec")
-    private String calleSec;
-
-    @SerializedName("celular")
     private String celular;
 
-    @SerializedName("contamina_agu")
-    private Integer contaminaAgu;
+    private Integer cocInhog;
 
-    @SerializedName("contamina_agu_desc")
+    private Integer codigo;
+
     private String contaminaAguDesc;
 
-    @SerializedName("contamina_air")
-    private Integer contaminaAir;
-
-    @SerializedName("contamina_air_desc")
     private String contaminaAirDesc;
 
-    @SerializedName("contamina_suel")
-    private Integer contaminaSuel;
-
-    @SerializedName("contamina_suel_desc")
     private String contaminaSuelDesc;
 
-    @SerializedName("entr_cell")
+    private String coordenadas;
+
+    private Integer destFami;
+
+    private Integer droga;
+
+    private String edificio;
+
     private String entrCell;
 
-    @SerializedName("entr_telf")
     private String entrTelf;
 
-    @SerializedName("fecha_visita")
     private Date fechaVisita;
 
-    @SerializedName("hogar")
-    private String hogar;
-
-    @SerializedName("id_comb_coc")
     private Integer idCombCoc;
 
-    @SerializedName("id_cond_ocup")
     private Integer idCondOcup;
 
-    @SerializedName("id_eli_bas")
+    private Integer idEliAgu;
+
     private Integer idEliBas;
 
-    @SerializedName("id_est_par")
-    private Integer idEstPar;
-
-    @SerializedName("id_est_pis")
     private Integer idEstPis;
 
-    @SerializedName("id_est_tech")
     private Integer idEstTech;
 
+    private Integer idMatPar;
 
+    private Integer idMatPis;
 
-    @SerializedName("id_mat_tec")
     private Integer idMatTec;
 
+    private Integer idProAgudd;
 
-    @SerializedName("id_tip_trans")
+    private Integer idRecAgu;
+
     private Integer idTipTrans;
 
-    @SerializedName("id_tip_viv_id")
-    private Integer idTipVivId;
+    private Integer idTipViv;
 
+    private Integer idTraAgu;
 
-    @SerializedName("id_ubi_let")
     private Integer idUbiLet;
 
-    @SerializedName("id_unid_oper")
     private Integer idUnidOper;
 
+    private Integer idViaAcc;
 
-    @SerializedName("num_cuar")
+    private String institucion;
+
+    private Integer intradomi;
+
+    private Integer irUniSal;
+
+    private String localidad;
+
+    private Integer manzana;
+
+    private Integer mosquit;
+
+    private Integer ninNoescola;
+
     private String numCuar;
 
-    @SerializedName("num_dorm")
     private String numDorm;
 
-    @SerializedName("pers_ref_cell")
     private String persRefCell;
 
-    @SerializedName("pers_ref_telf")
     private String persRefTelf;
 
-    @SerializedName("riesgo_incend")
-    private Integer riesgoIncend;
+    private Integer plaguicida;
 
-    @SerializedName("rs_aisla")
-    private Integer rsAisla;
+    private Integer probGraFam;
 
-    @SerializedName("rs_dest_fami")
-    private Integer rsDestFami;
+    private Integer psicoSoc;
 
-    @SerializedName("rs_num_alcoh")
-    private Integer rsNumAlcoh;
+    private String responsable;
 
-    @SerializedName("rs_num_drog_dep")
-    private Integer rsNumDrogDep;
+    private Integer sedazo;
 
-    @SerializedName("rs_num_nin_noescola")
-    private Integer rsNumNinNoescola;
+    private Integer sinEscol;
 
-    @SerializedName("rs_num_sin_escol")
-    private Integer rsNumSinEscol;
-
-    @SerializedName("rs_prob_gra_fam")
-    private Integer rsProbGraFam;
-
-    @SerializedName("rs_psico_soc")
-    private Integer rsPsicoSoc;
-
-    @SerializedName("rs_viol_fami")
-    private Integer rsViolFami;
-
-    @SerializedName("rsan_aepi")
-    private Integer rsanAepi;
-
-    @SerializedName("rsan_coc_inhog")
-    private Integer rsanCocInhog;
-
-    @SerializedName("rsan_mosquit")
-    private Integer rsanMosquit;
-
-    @SerializedName("rsan_plaguicida")
-    private Integer rsanPlaguicida;
-
-    @SerializedName("rsan_rech_uni_sal")
-    private Integer rsanRechUniSal;
-
-    @SerializedName("rsan_sedazo")
-    private Integer rsanSedazo;
-
-    @SerializedName("rsas_abandono")
-    private Integer rsasAbandono;
-
-    @SerializedName("telefono")
     private String telefono;
 
-
-    @SerializedName("tiem_viv_meses")
     private Integer tiemVivMeses;
 
-    @SerializedName("tiemp_viv_anios")
     private Integer tiempVivAnios;
 
-    @SerializedName("tiempo_transporte")
     private Integer tiempoTransporte;
 
-    @SerializedName("ubi_zon_inun")
-    private Integer ubiZonInun;
+    private Integer vecTrans;
 
-    //bi-directional many-to-one association to Mortalidad
+    private Integer violFami;
+
     private List<Mortalidad> mortalidads;
 
     //bi-directional many-to-one association to Persona
@@ -213,22 +149,500 @@ public class Formulario {
 
     public Formulario() {
     }
-
-
     public Formulario(String nombre, String descripcion, String zona, int id) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.zona = zona;
-        this.id=id;
+        this.idFormulario=id;
     }
 
-//TODO campos generados en su version incial por pruebas de datos
-    public int getId() {
-        return id;
+    public Integer getIdFormulario() {
+        return this.idFormulario;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setIdFormulario(Integer idFormulario) {
+        this.idFormulario = idFormulario;
+    }
+
+    public Integer getAbandono() {
+        return this.abandono;
+    }
+
+    public void setAbandono(Integer abandono) {
+        this.abandono = abandono;
+    }
+
+    public Integer getAepi() {
+        return this.aepi;
+    }
+
+    public void setAepi(Integer aepi) {
+        this.aepi = aepi;
+    }
+
+    public Integer getAisla() {
+        return this.aisla;
+    }
+
+    public void setAisla(Integer aisla) {
+        this.aisla = aisla;
+    }
+
+    public Integer getAlcoh() {
+        return this.alcoh;
+    }
+
+    public void setAlcoh(Integer alcoh) {
+        this.alcoh = alcoh;
+    }
+
+    public Integer getAnimViv() {
+        return this.animViv;
+    }
+
+    public void setAnimViv(Integer animViv) {
+        this.animViv = animViv;
+    }
+
+    public String getCalle1() {
+        return this.calle1;
+    }
+
+    public void setCalle1(String calle1) {
+        this.calle1 = calle1;
+    }
+
+    public String getCalle2() {
+        return this.calle2;
+    }
+
+    public void setCalle2(String calle2) {
+        this.calle2 = calle2;
+    }
+
+    public String getCelular() {
+        return this.celular;
+    }
+
+    public void setCelular(String celular) {
+        this.celular = celular;
+    }
+
+    public Integer getCocInhog() {
+        return this.cocInhog;
+    }
+
+    public void setCocInhog(Integer cocInhog) {
+        this.cocInhog = cocInhog;
+    }
+
+    public Integer getCodigo() {
+        return this.codigo;
+    }
+
+    public void setCodigo(Integer codigo) {
+        this.codigo = codigo;
+    }
+
+    public String getContaminaAguDesc() {
+        return this.contaminaAguDesc;
+    }
+
+    public void setContaminaAguDesc(String contaminaAguDesc) {
+        this.contaminaAguDesc = contaminaAguDesc;
+    }
+
+    public String getContaminaAirDesc() {
+        return this.contaminaAirDesc;
+    }
+
+    public void setContaminaAirDesc(String contaminaAirDesc) {
+        this.contaminaAirDesc = contaminaAirDesc;
+    }
+
+    public String getContaminaSuelDesc() {
+        return this.contaminaSuelDesc;
+    }
+
+    public void setContaminaSuelDesc(String contaminaSuelDesc) {
+        this.contaminaSuelDesc = contaminaSuelDesc;
+    }
+
+    public String getCoordenadas() {
+        return this.coordenadas;
+    }
+
+    public void setCoordenadas(String coordenadas) {
+        this.coordenadas = coordenadas;
+    }
+
+    public Integer getDestFami() {
+        return this.destFami;
+    }
+
+    public void setDestFami(Integer destFami) {
+        this.destFami = destFami;
+    }
+
+    public Integer getDroga() {
+        return this.droga;
+    }
+
+    public void setDroga(Integer droga) {
+        this.droga = droga;
+    }
+
+    public String getEdificio() {
+        return this.edificio;
+    }
+
+    public void setEdificio(String edificio) {
+        this.edificio = edificio;
+    }
+
+    public String getEntrCell() {
+        return this.entrCell;
+    }
+
+    public void setEntrCell(String entrCell) {
+        this.entrCell = entrCell;
+    }
+
+    public String getEntrTelf() {
+        return this.entrTelf;
+    }
+
+    public void setEntrTelf(String entrTelf) {
+        this.entrTelf = entrTelf;
+    }
+
+    public Date getFechaVisita() {
+        return this.fechaVisita;
+    }
+
+    public void setFechaVisita(String fechaVisita) {
+        Date date= Utilitarios.stringToDate(fechaVisita);
+        this.fechaVisita = date;
+    }
+
+    public Integer getIdCombCoc() {
+        return this.idCombCoc;
+    }
+
+    public void setIdCombCoc(Integer idCombCoc) {
+        this.idCombCoc = idCombCoc;
+    }
+
+    public Integer getIdCondOcup() {
+        return this.idCondOcup;
+    }
+
+    public void setIdCondOcup(Integer idCondOcup) {
+        this.idCondOcup = idCondOcup;
+    }
+
+    public Integer getIdEliAgu() {
+        return this.idEliAgu;
+    }
+
+    public void setIdEliAgu(Integer idEliAgu) {
+        this.idEliAgu = idEliAgu;
+    }
+
+    public Integer getIdEliBas() {
+        return this.idEliBas;
+    }
+
+    public void setIdEliBas(Integer idEliBas) {
+        this.idEliBas = idEliBas;
+    }
+
+    public Integer getIdEstPis() {
+        return this.idEstPis;
+    }
+
+    public void setIdEstPis(Integer idEstPis) {
+        this.idEstPis = idEstPis;
+    }
+
+    public Integer getIdEstTech() {
+        return this.idEstTech;
+    }
+
+    public void setIdEstTech(Integer idEstTech) {
+        this.idEstTech = idEstTech;
+    }
+
+    public Integer getIdMatPar() {
+        return this.idMatPar;
+    }
+
+    public void setIdMatPar(Integer idMatPar) {
+        this.idMatPar = idMatPar;
+    }
+
+    public Integer getIdMatPis() {
+        return this.idMatPis;
+    }
+
+    public void setIdMatPis(Integer idMatPis) {
+        this.idMatPis = idMatPis;
+    }
+
+    public Integer getIdMatTec() {
+        return this.idMatTec;
+    }
+
+    public void setIdMatTec(Integer idMatTec) {
+        this.idMatTec = idMatTec;
+    }
+
+    public Integer getIdProAgudd() {
+        return this.idProAgudd;
+    }
+
+    public void setIdProAgudd(Integer idProAgudd) {
+        this.idProAgudd = idProAgudd;
+    }
+
+    public Integer getIdRecAgu() {
+        return this.idRecAgu;
+    }
+
+    public void setIdRecAgu(Integer idRecAgu) {
+        this.idRecAgu = idRecAgu;
+    }
+
+    public Integer getIdTipTrans() {
+        return this.idTipTrans;
+    }
+
+    public void setIdTipTrans(Integer idTipTrans) {
+        this.idTipTrans = idTipTrans;
+    }
+
+    public Integer getIdTipViv() {
+        return this.idTipViv;
+    }
+
+    public void setIdTipViv(Integer idTipViv) {
+        this.idTipViv = idTipViv;
+    }
+
+    public Integer getIdTraAgu() {
+        return this.idTraAgu;
+    }
+
+    public void setIdTraAgu(Integer idTraAgu) {
+        this.idTraAgu = idTraAgu;
+    }
+
+    public Integer getIdUbiLet() {
+        return this.idUbiLet;
+    }
+
+    public void setIdUbiLet(Integer idUbiLet) {
+        this.idUbiLet = idUbiLet;
+    }
+
+    public Integer getIdUnidOper() {
+        return this.idUnidOper;
+    }
+
+    public void setIdUnidOper(Integer idUnidOper) {
+        this.idUnidOper = idUnidOper;
+    }
+
+    public Integer getIdViaAcc() {
+        return this.idViaAcc;
+    }
+
+    public void setIdViaAcc(Integer idViaAcc) {
+        this.idViaAcc = idViaAcc;
+    }
+
+    public String getInstitucion() {
+        return this.institucion;
+    }
+
+    public void setInstitucion(String institucion) {
+        this.institucion = institucion;
+    }
+
+    public Integer getIntradomi() {
+        return this.intradomi;
+    }
+
+    public void setIntradomi(Integer intradomi) {
+        this.intradomi = intradomi;
+    }
+
+    public Integer getIrUniSal() {
+        return this.irUniSal;
+    }
+
+    public void setIrUniSal(Integer irUniSal) {
+        this.irUniSal = irUniSal;
+    }
+
+    public String getLocalidad() {
+        return this.localidad;
+    }
+
+    public void setLocalidad(String localidad) {
+        this.localidad = localidad;
+    }
+
+    public Integer getManzana() {
+        return this.manzana;
+    }
+
+    public void setManzana(Integer manzana) {
+        this.manzana = manzana;
+    }
+
+    public Integer getMosquit() {
+        return this.mosquit;
+    }
+
+    public void setMosquit(Integer mosquit) {
+        this.mosquit = mosquit;
+    }
+
+    public Integer getNinNoescola() {
+        return this.ninNoescola;
+    }
+
+    public void setNinNoescola(Integer ninNoescola) {
+        this.ninNoescola = ninNoescola;
+    }
+
+    public String getNumCuar() {
+        return this.numCuar;
+    }
+
+    public void setNumCuar(String numCuar) {
+        this.numCuar = numCuar;
+    }
+
+    public String getNumDorm() {
+        return this.numDorm;
+    }
+
+    public void setNumDorm(String numDorm) {
+        this.numDorm = numDorm;
+    }
+
+    public String getPersRefCell() {
+        return this.persRefCell;
+    }
+
+    public void setPersRefCell(String persRefCell) {
+        this.persRefCell = persRefCell;
+    }
+
+    public String getPersRefTelf() {
+        return this.persRefTelf;
+    }
+
+    public void setPersRefTelf(String persRefTelf) {
+        this.persRefTelf = persRefTelf;
+    }
+
+    public Integer getPlaguicida() {
+        return this.plaguicida;
+    }
+
+    public void setPlaguicida(Integer plaguicida) {
+        this.plaguicida = plaguicida;
+    }
+
+    public Integer getProbGraFam() {
+        return this.probGraFam;
+    }
+
+    public void setProbGraFam(Integer probGraFam) {
+        this.probGraFam = probGraFam;
+    }
+
+    public Integer getPsicoSoc() {
+        return this.psicoSoc;
+    }
+
+    public void setPsicoSoc(Integer psicoSoc) {
+        this.psicoSoc = psicoSoc;
+    }
+
+    public String getResponsable() {
+        return this.responsable;
+    }
+
+    public void setResponsable(String responsable) {
+        this.responsable = responsable;
+    }
+
+    public Integer getSedazo() {
+        return this.sedazo;
+    }
+
+    public void setSedazo(Integer sedazo) {
+        this.sedazo = sedazo;
+    }
+
+    public Integer getSinEscol() {
+        return this.sinEscol;
+    }
+
+    public void setSinEscol(Integer sinEscol) {
+        this.sinEscol = sinEscol;
+    }
+
+    public String getTelefono() {
+        return this.telefono;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+
+    public Integer getTiemVivMeses() {
+        return this.tiemVivMeses;
+    }
+
+    public void setTiemVivMeses(Integer tiemVivMeses) {
+        this.tiemVivMeses = tiemVivMeses;
+    }
+
+    public Integer getTiempVivAnios() {
+        return this.tiempVivAnios;
+    }
+
+    public void setTiempVivAnios(Integer tiempVivAnios) {
+        this.tiempVivAnios = tiempVivAnios;
+    }
+
+    public Integer getTiempoTransporte() {
+        return this.tiempoTransporte;
+    }
+
+    public void setTiempoTransporte(Integer tiempoTransporte) {
+        this.tiempoTransporte = tiempoTransporte;
+    }
+
+    public Integer getVecTrans() {
+        return this.vecTrans;
+    }
+
+    public void setVecTrans(Integer vecTrans) {
+        this.vecTrans = vecTrans;
+    }
+
+    public Integer getViolFami() {
+        return this.violFami;
+    }
+
+    public void setViolFami(Integer violFami) {
+        this.violFami = violFami;
     }
 
     public String getNombre() {
@@ -253,504 +667,6 @@ public class Formulario {
 
     public void setZona(String zona) {
         this.zona = zona;
-    }
-    //todo fin de campos version incial
-
-
-    public Integer getIdFormulario() {
-        return idFormulario;
-    }
-
-    public void setIdFormulario(Integer idFormulario) {
-        this.idFormulario = idFormulario;
-    }
-
-    public Integer getCodigo() {
-        return codigo;
-    }
-
-    public void setCodigo(Integer codigo) {
-        this.codigo = codigo;
-    }
-
-    public Integer getAnimConvInad() {
-        return animConvInad;
-    }
-
-    public void setAnimConvInad(Integer animConvInad) {
-        this.animConvInad = animConvInad;
-    }
-
-    public Integer getAnimIntradomi() {
-        return animIntradomi;
-    }
-
-    public void setAnimIntradomi(Integer animIntradomi) {
-        this.animIntradomi = animIntradomi;
-    }
-
-    public Integer getAnimVecTrans() {
-        return animVecTrans;
-    }
-
-    public void setAnimVecTrans(Integer animVecTrans) {
-        this.animVecTrans = animVecTrans;
-    }
-
-    public String getCallePrincipal() {
-        return callePrincipal;
-    }
-
-    public void setCallePrincipal(String callePrincipal) {
-        this.callePrincipal = callePrincipal;
-    }
-
-    public String getCalleSec() {
-        return calleSec;
-    }
-
-    public void setCalleSec(String calleSec) {
-        this.calleSec = calleSec;
-    }
-
-    public String getCelular() {
-        return celular;
-    }
-
-    public void setCelular(String celular) {
-        this.celular = celular;
-    }
-
-    public Integer getContaminaAgu() {
-        return contaminaAgu;
-    }
-
-    public void setContaminaAgu(Integer contaminaAgu) {
-        this.contaminaAgu = contaminaAgu;
-    }
-
-    public String getContaminaAguDesc() {
-        return contaminaAguDesc;
-    }
-
-    public void setContaminaAguDesc(String contaminaAguDesc) {
-        this.contaminaAguDesc = contaminaAguDesc;
-    }
-
-    public Integer getContaminaAir() {
-        return contaminaAir;
-    }
-
-    public void setContaminaAir(Integer contaminaAir) {
-        this.contaminaAir = contaminaAir;
-    }
-
-    public String getContaminaAirDesc() {
-        return contaminaAirDesc;
-    }
-
-    public void setContaminaAirDesc(String contaminaAirDesc) {
-        this.contaminaAirDesc = contaminaAirDesc;
-    }
-
-    public Integer getContaminaSuel() {
-        return contaminaSuel;
-    }
-
-    public void setContaminaSuel(Integer contaminaSuel) {
-        this.contaminaSuel = contaminaSuel;
-    }
-
-    public String getContaminaSuelDesc() {
-        return contaminaSuelDesc;
-    }
-
-    public void setContaminaSuelDesc(String contaminaSuelDesc) {
-        this.contaminaSuelDesc = contaminaSuelDesc;
-    }
-
-    public String getEntrCell() {
-        return entrCell;
-    }
-
-    public void setEntrCell(String entrCell) {
-        this.entrCell = entrCell;
-    }
-
-    public String getEntrTelf() {
-        return entrTelf;
-    }
-
-    public void setEntrTelf(String entrTelf) {
-        this.entrTelf = entrTelf;
-    }
-
-    public Date getFechaVisita() {
-        return fechaVisita;
-    }
-
-    public void setFechaVisita(String fechaVisita) {
-        DateFormat format = new SimpleDateFormat("dd/mm/yyy");
-        Date date = null;
-        try {
-            format.parse(fechaVisita);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-
-        this.fechaVisita = date;
-    }
-
-    public String getHogar() {
-        return hogar;
-    }
-
-    public void setHogar(String hogar) {
-        this.hogar = hogar;
-    }
-
-    public Integer getIdCombCoc() {
-        return idCombCoc;
-    }
-
-    public void setIdCombCoc(Integer idCombCoc) {
-        this.idCombCoc = idCombCoc;
-    }
-
-    public Integer getIdCondOcup() {
-        return idCondOcup;
-    }
-
-    public void setIdCondOcup(Integer idCondOcup) {
-        this.idCondOcup = idCondOcup;
-    }
-
-    public Integer getIdEliBas() {
-        return idEliBas;
-    }
-
-    public void setIdEliBas(Integer idEliBas) {
-        this.idEliBas = idEliBas;
-    }
-
-    public Integer getIdEstPar() {
-        return idEstPar;
-    }
-
-    public void setIdEstPar(Integer idEstPar) {
-        this.idEstPar = idEstPar;
-    }
-
-    public Integer getIdEstPis() {
-        return idEstPis;
-    }
-
-    public void setIdEstPis(Integer idEstPis) {
-        this.idEstPis = idEstPis;
-    }
-
-    public Integer getIdEstTech() {
-        return idEstTech;
-    }
-
-    public void setIdEstTech(Integer idEstTech) {
-        this.idEstTech = idEstTech;
-    }
-
-    public Integer getIdMatPar() {
-        return idMatPar;
-    }
-
-    public void setIdMatPar(Integer idMatPar) {
-        this.idMatPar = idMatPar;
-    }
-
-    public Integer getIdMatPis() {
-        return idMatPis;
-    }
-
-    public void setIdMatPis(Integer idMatPis) {
-        this.idMatPis = idMatPis;
-    }
-
-    public Integer getIdMatTec() {
-        return idMatTec;
-    }
-
-    public void setIdMatTec(Integer idMatTec) {
-        this.idMatTec = idMatTec;
-    }
-
-    public Integer getIdProAgudd() {
-        return idProAgudd;
-    }
-
-    public void setIdProAgudd(Integer idProAgudd) {
-        this.idProAgudd = idProAgudd;
-    }
-
-    public Integer getIdRecAgu() {
-        return idRecAgu;
-    }
-
-    public void setIdRecAgu(Integer idRecAgu) {
-        this.idRecAgu = idRecAgu;
-    }
-
-    public Integer getIdTipTrans() {
-        return idTipTrans;
-    }
-
-    public void setIdTipTrans(Integer idTipTrans) {
-        this.idTipTrans = idTipTrans;
-    }
-
-    public Integer getIdTipVivId() {
-        return idTipVivId;
-    }
-
-    public void setIdTipVivId(Integer idTipVivId) {
-        this.idTipVivId = idTipVivId;
-    }
-
-    public Integer getIdTraAgu() {
-        return idTraAgu;
-    }
-
-    public void setIdTraAgu(Integer idTraAgu) {
-        this.idTraAgu = idTraAgu;
-    }
-
-    public Integer getIdUbiLet() {
-        return idUbiLet;
-    }
-
-    public void setIdUbiLet(Integer idUbiLet) {
-        this.idUbiLet = idUbiLet;
-    }
-
-    public Integer getIdUnidOper() {
-        return idUnidOper;
-    }
-
-    public void setIdUnidOper(Integer idUnidOper) {
-        this.idUnidOper = idUnidOper;
-    }
-
-    public Integer getIdViaAcc() {
-        return idViaAcc;
-    }
-
-    public void setIdViaAcc(Integer idViaAcc) {
-        this.idViaAcc = idViaAcc;
-    }
-
-    public String getNumCuar() {
-        return numCuar;
-    }
-
-    public void setNumCuar(String numCuar) {
-        this.numCuar = numCuar;
-    }
-
-    public String getNumDorm() {
-        return numDorm;
-    }
-
-    public void setNumDorm(String numDorm) {
-        this.numDorm = numDorm;
-    }
-
-    public String getPersRefCell() {
-        return persRefCell;
-    }
-
-    public void setPersRefCell(String persRefCell) {
-        this.persRefCell = persRefCell;
-    }
-
-    public String getPersRefTelf() {
-        return persRefTelf;
-    }
-
-    public void setPersRefTelf(String persRefTelf) {
-        this.persRefTelf = persRefTelf;
-    }
-
-    public Integer getRiesgoIncend() {
-        return riesgoIncend;
-    }
-
-    public void setRiesgoIncend(Integer riesgoIncend) {
-        this.riesgoIncend = riesgoIncend;
-    }
-
-    public Integer getRsAisla() {
-        return rsAisla;
-    }
-
-    public void setRsAisla(Integer rsAisla) {
-        this.rsAisla = rsAisla;
-    }
-
-    public Integer getRsDestFami() {
-        return rsDestFami;
-    }
-
-    public void setRsDestFami(Integer rsDestFami) {
-        this.rsDestFami = rsDestFami;
-    }
-
-    public Integer getRsNumAlcoh() {
-        return rsNumAlcoh;
-    }
-
-    public void setRsNumAlcoh(Integer rsNumAlcoh) {
-        this.rsNumAlcoh = rsNumAlcoh;
-    }
-
-    public Integer getRsNumDrogDep() {
-        return rsNumDrogDep;
-    }
-
-    public void setRsNumDrogDep(Integer rsNumDrogDep) {
-        this.rsNumDrogDep = rsNumDrogDep;
-    }
-
-    public Integer getRsNumNinNoescola() {
-        return rsNumNinNoescola;
-    }
-
-    public void setRsNumNinNoescola(Integer rsNumNinNoescola) {
-        this.rsNumNinNoescola = rsNumNinNoescola;
-    }
-
-    public Integer getRsNumSinEscol() {
-        return rsNumSinEscol;
-    }
-
-    public void setRsNumSinEscol(Integer rsNumSinEscol) {
-        this.rsNumSinEscol = rsNumSinEscol;
-    }
-
-    public Integer getRsProbGraFam() {
-        return rsProbGraFam;
-    }
-
-    public void setRsProbGraFam(Integer rsProbGraFam) {
-        this.rsProbGraFam = rsProbGraFam;
-    }
-
-    public Integer getRsPsicoSoc() {
-        return rsPsicoSoc;
-    }
-
-    public void setRsPsicoSoc(Integer rsPsicoSoc) {
-        this.rsPsicoSoc = rsPsicoSoc;
-    }
-
-    public Integer getRsViolFami() {
-        return rsViolFami;
-    }
-
-    public void setRsViolFami(Integer rsViolFami) {
-        this.rsViolFami = rsViolFami;
-    }
-
-    public Integer getRsanAepi() {
-        return rsanAepi;
-    }
-
-    public void setRsanAepi(Integer rsanAepi) {
-        this.rsanAepi = rsanAepi;
-    }
-
-    public Integer getRsanCocInhog() {
-        return rsanCocInhog;
-    }
-
-    public void setRsanCocInhog(Integer rsanCocInhog) {
-        this.rsanCocInhog = rsanCocInhog;
-    }
-
-    public Integer getRsanMosquit() {
-        return rsanMosquit;
-    }
-
-    public void setRsanMosquit(Integer rsanMosquit) {
-        this.rsanMosquit = rsanMosquit;
-    }
-
-    public Integer getRsanPlaguicida() {
-        return rsanPlaguicida;
-    }
-
-    public void setRsanPlaguicida(Integer rsanPlaguicida) {
-        this.rsanPlaguicida = rsanPlaguicida;
-    }
-
-    public Integer getRsanRechUniSal() {
-        return rsanRechUniSal;
-    }
-
-    public void setRsanRechUniSal(Integer rsanRechUniSal) {
-        this.rsanRechUniSal = rsanRechUniSal;
-    }
-
-    public Integer getRsanSedazo() {
-        return rsanSedazo;
-    }
-
-    public void setRsanSedazo(Integer rsanSedazo) {
-        this.rsanSedazo = rsanSedazo;
-    }
-
-    public Integer getRsasAbandono() {
-        return rsasAbandono;
-    }
-
-    public void setRsasAbandono(Integer rsasAbandono) {
-        this.rsasAbandono = rsasAbandono;
-    }
-
-    public String getTelefono() {
-        return telefono;
-    }
-
-    public void setTelefono(String telefono) {
-        this.telefono = telefono;
-    }
-
-    public Integer getTiemVivMeses() {
-        return tiemVivMeses;
-    }
-
-    public void setTiemVivMeses(Integer tiemVivMeses) {
-        this.tiemVivMeses = tiemVivMeses;
-    }
-
-    public Integer getTiempVivAnios() {
-        return tiempVivAnios;
-    }
-
-    public void setTiempVivAnios(Integer tiempVivAnios) {
-        this.tiempVivAnios = tiempVivAnios;
-    }
-
-    public Integer getTiempoTransporte() {
-        return tiempoTransporte;
-    }
-
-    public void setTiempoTransporte(Integer tiempoTransporte) {
-        this.tiempoTransporte = tiempoTransporte;
-    }
-
-    public Integer getUbiZonInun() {
-        return ubiZonInun;
-    }
-
-    public void setUbiZonInun(Integer ubiZonInun) {
-        this.ubiZonInun = ubiZonInun;
     }
 
     public List<Mortalidad> getMortalidads() {

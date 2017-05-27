@@ -101,10 +101,13 @@ public class MasterPageActivity extends AppCompatActivity{
                 }
                 break;
             case R.id.btn_subir_formualario:
-                HttpClient httpClient = new DefaultHttpClient();
                 progress.setMessage(S.establecerConeccion);
                 progress.show();
-                UploadWebService();
+                final String urlUp=db.getWs(WS.CARGA_FORMULARIOS);
+                   progress.setCancelable(false);
+                    new GetFormulariosTask(progress,this,urlUp).execute();
+
+
                 break;
             case R.id.btn_config_formulario:
                 startActivityLocal(ConfigurationDataBase.class);
@@ -122,42 +125,17 @@ public class MasterPageActivity extends AppCompatActivity{
 
         }
     }
-    private void UploadWebService(){
-        Cursor cursor=db.getAllGeneric(TABLES.FORMULARIO.getTablaName());
-        final Gson gson = new Gson();
-        final JsonObject jo = new JsonObject();
-        final String uploadURL=db.getWs(WS.CARGA_FORMULARIOS);
-        RestClient client = new RestClient(uploadURL);
-        if(cursor.moveToNext()){
-            do{
-               String id=cursor.getString(cursor.getColumnIndex("_id"));
-                progress.setMessage("subiendo formulario " +id);
-                Formulario formulario=db.exportData(id);
-                JsonElement je = gson.toJsonTree(formulario);
-                jo.add("formulario", je);
-                String representacionJSON = jo.toString();
-                client.AddParam("formulario", representacionJSON);
-                try {
-                    client.Execute(RestClient.RequestMethod.GET);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-                String response = client.getResponse();
-                System.out.println(response);
-                progress.setMessage("sever respose " +response);
-            }while (cursor.moveToNext());
-        }
-    }
+
     private void startActivityLocal(Class activity){
         Intent myIntent = new Intent(MasterPageActivity.this,activity);
         myIntent.putExtra("key", value); //Optional parameters
         MasterPageActivity.this.startActivity(myIntent);
     }
-    public class GetFormulariosTask extends AsyncTask<URL, Void, List<String>> {
+    public class GetFormulariosTask extends AsyncTask<String, Void, List<String>> {
         ProgressDialog progress;
         Context context;
-        URL url;
-        public GetFormulariosTask(ProgressDialog progress, Context act, URL url) {
+        String url;
+        public GetFormulariosTask(ProgressDialog progress, Context act, String url) {
             this.progress = progress;
             this.context= act;
             this.url=url;
@@ -167,54 +145,38 @@ public class MasterPageActivity extends AppCompatActivity{
 
         }
         @Override
-        protected List<String> doInBackground(URL... urls) {
+        protected List<String> doInBackground(String... urls) {
 
             List<String> comments = new ArrayList<String>();
-            Boolean successful=Boolean.FALSE;
-            try {
+            Cursor cursor=db.getAllGeneric(TABLES.FORMULARIO.getTablaName());
+            final Gson gson = new Gson();
+            final JsonObject jo = new JsonObject();
 
-                // Establecer la conexión
-                con = (HttpURLConnection)url.openConnection();
-                con.setConnectTimeout(5000);
-                // Obtener el estado del recursocon.responseCode
-                int statusCode = con.getResponseCode();
+            RestClient client = new RestClient(url);
+            if(cursor.moveToNext()){
+                do{
+                    String fomularoId=cursor.getString(cursor.getColumnIndex("_id"));
+                    Formulario formulario=db.exportData(fomularoId);
+                    JsonElement je = gson.toJsonTree(formulario);
+                    jo.add("formulario", je);
+                    String representacionJSON = jo.toString();
+                    String response="Error";
+                    client.AddParam("formulario", representacionJSON);
+                    try {
+                        client.Execute(RestClient.RequestMethod.GET);
 
-                if(statusCode!=200) {
-                    comments.add(S.responseServer+statusCode);
-
-                }
-                else{
-
-                    /*
-                    Parsear el flujo con formato JSON a una lista de Strings
-                    que permitan crean un adaptador
-                     */
-                    String output;
-                    StringBuilder out=new StringBuilder();
-                    BufferedReader br = new BufferedReader(new InputStreamReader(
-                            (con.getInputStream())));
-
-                    while ((output = br.readLine()) != null) {
-                        out.append(output);
+                        response = client.getResponse();
+                        if(response.equals("OK")){
+                            db.deleteFormularioById(fomularoId);
+                        }
+                    } catch (Exception e) {
+                        comments.add(S.errorServer+ ":"+e.getMessage());
+                        e.printStackTrace();
                     }
-                    JSONObject response = new JSONObject(out.toString());
-                    String formularioObject = response.getString("formulario");
-                    Gson gson = new Gson();
-                    Formulario formulario = gson.fromJson(formularioObject, Formulario.class);
-                   successful=db.insertFormularios(formulario);
+                }while (cursor.moveToNext());
 
-                }
-
-            } catch (Exception e) {
-                comments.add(S.errorServer+" : "+e.getMessage());
-                comments.add(successful.toString());
-
-
-            }finally {
-                con.disconnect();
             }
             comments.add(S.successServer);
-            comments.add(successful.toString());
 
             return comments;
 
