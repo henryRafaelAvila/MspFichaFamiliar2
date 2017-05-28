@@ -42,12 +42,17 @@ public class MortalidadDetailFragment extends Fragment {
      */
     DatabaseHandler db;
 
-    EditText  editTextCedula;
 
-    SimpleCursorAdapter adapterNacionalidad;
+    SimpleCursorAdapter adapterCausaMortalidad;
+    SimpleCursorAdapter adapterParentescoJefeHogar;
 
-
-    Spinner spinnerNacionalidad;
+    Spinner spinnerCausaMortalidad;
+    Spinner spinnerParentescoJefeHogar;
+    EditText editTextApellidos;
+    EditText editTextnombres;
+    EditText editTextEdad;
+    private TextView tv_fechaNac;
+    RadioGroup radioGroupsexo;
 
 
     public static final String ARG_ITEM_ID = "item_id";
@@ -72,7 +77,7 @@ public class MortalidadDetailFragment extends Fragment {
             // Load the dummy content specified by the fragment
             // arguments. In a real-world scenario, use a Loader
             // to load content from a content provider.
-            mItem = DummyContentMortalidad.ITEM_MAP.get(getArguments().getString(ARG_ITEM_ID));
+            mItem = db.getMortalidadById(getArguments().getString(ARG_ITEM_ID));
 
             Activity activity = this.getActivity();
             CollapsingToolbarLayout appBarLayout = (CollapsingToolbarLayout) activity.findViewById(R.id.toolbar_layout);
@@ -112,7 +117,8 @@ private void initEditText(View rootView){
     }
     private void inicializarSpinner(View rootView){
         // Show the dummy content as text in a TextView.
-        spinnerNacionalidad= (Spinner)rootView.findViewById(R.id.spinnerMortalidad);
+        spinnerCausaMortalidad= (Spinner)rootView.findViewById(R.id.spinnerCausaMortalidad);
+        spinnerParentescoJefeHogar= (Spinner)rootView.findViewById(R.id.spinnerParentescoJefeHogar);
     }
     private void populatedSpinner(Mortalidad mItem) {
         //((TextView) rootView.findViewById(R.id.persona_detail)).setText(mItem.details);
@@ -122,7 +128,8 @@ private void initEditText(View rootView){
     }
     private void populatedSpinner() {
         //llenada de combos
-        pupulatedSpinner(adapterNacionalidad,db.getAllGeneric(TABLES.NACIONALIDAD.getTablaName()),spinnerNacionalidad);
+        pupulatedSpinner(adapterCausaMortalidad,db.getAllGeneric(TABLES.NACIONALIDAD.getTablaName()),spinnerCausaMortalidad);
+        pupulatedSpinner(adapterParentescoJefeHogar,db.getAllGeneric(TABLES.NACIONALIDAD.getTablaName()),spinnerParentescoJefeHogar);
     }
     private void pupulatedSpinner(SimpleCursorAdapter adapter, Cursor cursor,Spinner spinner){
         adapter = new SimpleCursorAdapter(getContext(),

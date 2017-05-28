@@ -27,6 +27,7 @@ import z9.msp.gob.persistencia.entity.Parameters;
 import z9.msp.gob.persistencia.entity.Personas;
 import z9.msp.gob.persistencia.enums.CLS_DISCR;
 import z9.msp.gob.persistencia.enums.TABLES;
+import z9.msp.gob.persistencia.utils.Utilitarios;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -138,7 +139,7 @@ public class PersonaListActivity extends AppCompatActivity {
             holder.mItem = mValues.get(position);
             holder.cedula.setText(mValues.get(position).getNumCedula());
             holder.nombres.setText(mValues.get(position).getNombres());
-            holder.fechaNac.setText(mValues.get(position).getFechaNac());
+            holder.fechaNac.setText(Utilitarios.dateToString(mValues.get(position).getFechaNac()));
             holder.foto.setImageResource(R.drawable.persona); //setImageResource();
 
             holder.mView.setOnClickListener(new View.OnClickListener() {

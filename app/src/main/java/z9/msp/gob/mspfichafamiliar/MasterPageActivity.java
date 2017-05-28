@@ -162,12 +162,16 @@ public class MasterPageActivity extends AppCompatActivity{
                     String representacionJSON = jo.toString();
                     String response="Error";
                     client.AddParam("formulario", representacionJSON);
+                    client.AddParam("usuario", db.getWsUser());
+                    client.AddParam("clave", db.getWsPassword());
                     try {
                         client.Execute(RestClient.RequestMethod.GET);
 
                         response = client.getResponse();
                         if(response.equals("OK")){
                             db.deleteFormularioById(fomularoId);
+                        }else{
+                            comments.add(response);
                         }
                     } catch (Exception e) {
                         comments.add(S.errorServer+ ":"+e.getMessage());

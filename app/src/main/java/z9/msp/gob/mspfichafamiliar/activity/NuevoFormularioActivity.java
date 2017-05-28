@@ -1,5 +1,6 @@
 package z9.msp.gob.mspfichafamiliar.activity;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
@@ -24,6 +25,8 @@ import java.util.Date;
 
 import z9.msp.gob.mspfichafamiliar.R;
 import z9.msp.gob.persistencia.DatabaseHandler;
+import z9.msp.gob.persistencia.entity.Formulario;
+import z9.msp.gob.persistencia.enums.TABLES;
 
 public class NuevoFormularioActivity extends AppCompatActivity {
     public  static final String FORMULARIO_ID="FORMULARIO_ID";
@@ -979,42 +982,26 @@ public class NuevoFormularioActivity extends AppCompatActivity {
                 contaminacion_suelo=contaminacion_suelotxt.getText().toString();
                 contaminacion_aire=contaminacion_airetxt.getText().toString();
                 contaminacion_agua=contaminacion_aguatxt.getText().toString();
+                ContentValues values=null;
+                if (ocupacion.trim().equals(condicion)) {
+                    values=db.setValuesFormulario("-1", material_piso, material_paredes, agua_proviene, estado_techo, agua_recibe, cod_ocupacion,
+                            agua_tratamiento, acceso_vivienda, combustible, transporte, estado_piso, basura, agua_servidas, tipo_vivienda, letrete_ubicacion, cod_unidad, material_techo,
+                            fechacComplString, meses, anios, telefonoentrevistado, celularentrevistado, telefonoreferencia, celularreferencia, n_cuartos, n_cuartos_dormir, contaminacion_suelo,
+                            contaminacion_aire, violenciaintra, desestructuracion, problemafami, problemasocio, aislamiento, escolariza, noinsertados, alcoholismo, drogas, contaminacion_agua,
+                            intradomiciliarios, vectores, animales_sueltos, cocinadormitorio, sedazo, mosquitero, plaguicida, aepi, abandono, ircs, calle1, calle2, telefono, celular, edificio, manzana, coordenadas, responsable, localidad, institucion, tiempo);
 
-                /*if(id_formulario!=null&&!id_formulario.equals("")) {
-                    if (ocupacion.trim().equals(condicion)) {
-                        db.insertFormulario("-1", material_piso, material_paredes, agua_proviene, estado_techo, agua_recibe, cod_ocupacion,
-                                agua_tratamiento, acceso_vivienda, combustible, transporte, estado_piso, basura, agua_servidas, tipo_vivienda, letrete_ubicacion, cod_unidad, material_techo,
-                                fechacComplString, meses, anios, telefonoentrevistado, celularentrevistado, telefonoreferencia, celularreferencia, n_cuartos, n_cuartos_dormir, contaminacion_suelo,
-                                contaminacion_aire, violenciaintra, desestructuracion, problemafami, problemasocio, aislamiento, escolariza, noinsertados, alcoholismo, drogas, contaminacion_agua,
-                                intradomiciliarios, vectores, animales_sueltos, cocinadormitorio, sedazo, mosquitero, plaguicida, aepi, abandono, ircs, calle1, calle2, telefono, celular, edificio, manzana, coordenadas, responsable, localidad, institucion, tiempo);
-
-                    } else {
-                        db.insertFormulario("-1", "", "", "", "", "", "",
-                                "", "", "", "", "", "", "", "", "", cod_unidad, "",
-                                fechacComplString, "", "", "", "", "", "", "", "", "",
-                                "", "", "", "", "", "", "", "", "", "", "",
-                                "", "", "", "", "", "", "", "", "", "", calle1, calle2,
-                                telefono, celular, edificio, manzana, coordenadas, responsable, localidad, institucion, "");
-                    }
-
-                }*/
+                } else {
+                    values=db.setValuesFormulario("-1", "", "", "", "", "", "",
+                            "", "", "", "", "", "", "", "", "", cod_unidad, "",
+                            fechacComplString, "", "", "", "", "", "", "", "", "",
+                            "", "", "", "", "", "", "", "", "", "", "",
+                            "", "", "", "", "", "", "", "", "", "", calle1, calle2,
+                            telefono, celular, edificio, manzana, coordenadas, responsable, localidad, institucion, "");
+                }
                 if(id_formulario==null||id_formulario.equals("")) {
-                    if (ocupacion.trim().equals(condicion)) {
-                        id_formulario=db.insertFormulario("-1", material_piso, material_paredes, agua_proviene, estado_techo, agua_recibe, cod_ocupacion,
-                                agua_tratamiento, acceso_vivienda, combustible, transporte, estado_piso, basura, agua_servidas, tipo_vivienda, letrete_ubicacion, cod_unidad, material_techo,
-                                fechacComplString, meses, anios, telefonoentrevistado, celularentrevistado, telefonoreferencia, celularreferencia, n_cuartos, n_cuartos_dormir, contaminacion_suelo,
-                                contaminacion_aire, violenciaintra, desestructuracion, problemafami, problemasocio, aislamiento, escolariza, noinsertados, alcoholismo, drogas, contaminacion_agua,
-                                intradomiciliarios, vectores, animales_sueltos, cocinadormitorio, sedazo, mosquitero, plaguicida, aepi, abandono, ircs, calle1, calle2, telefono, celular, edificio, manzana, coordenadas, responsable, localidad, institucion, tiempo);
-
-                    } else {
-                        id_formulario=db.insertFormulario("-1", "", "", "", "", "", "",
-                                "", "", "", "", "", "", "", "", "", cod_unidad, "",
-                                fechacComplString, "", "", "", "", "", "", "", "", "",
-                                "", "", "", "", "", "", "", "", "", "", "",
-                                "", "", "", "", "", "", "", "", "", "", calle1, calle2,
-                                telefono, celular, edificio, manzana, coordenadas, responsable, localidad, institucion, "");
-                    }
-
+                 id_formulario=db.insertWithParam(TABLES.FORMULARIO,values);
+                }else {
+                    db.updateById(TABLES.FORMULARIO,id_formulario,values);
                 }
 
                 Toast.makeText(getApplicationContext(), "Datos insertados correctamente", Toast.LENGTH_LONG).show();
@@ -1025,9 +1012,6 @@ public class NuevoFormularioActivity extends AppCompatActivity {
                 Button btbguardar= (Button) findViewById(R.id.btnguardar);
                 btbguardar.setEnabled(false);
 
-               /* Cursor cursor=db.getAllGeneric("formulario");
-                cursor.moveToLast();
-                id_formulario = cursor.getString(0);*/
                 TextView id_formulariotxt=(TextView)findViewById(R.id.id_formulario);
                 id_formulariotxt.setText(id_formulario);
 
@@ -1044,13 +1028,19 @@ private void initBotones(){
         Button personasfallecidas= (Button) findViewById(R.id.mortalidad);
         personasfallecidas.setEnabled(true);
         Button btbguardar= (Button) findViewById(R.id.btnguardar);
-        btbguardar.setEnabled(false);
+        btbguardar.setEnabled(true);
         btbguardar.setText("ACTUALIZAR");
+        pupulateFormulario();
     }
 }
+    private void pupulateFormulario(){
+        //TODO llenar campos del formualarios
+        Formulario formulario=db.getFormuarioByID(id_formulario);
+        responsabletxt.setText(formulario.getResponsable());
+
+    }
     public void DatosParroquia(String parr){
         Cursor cursor=db.getUnidadDatos("parroquia",parr);
-        //todo: observacion. H.A por accidente estaba usando  moveToFirst()<Causa problema con un solo registro> en lugar moveToNext(), validar Natys si tu necesitas moveToFisrt
         if (cursor.moveToFirst()) {
             //Datos parroquia
             do {

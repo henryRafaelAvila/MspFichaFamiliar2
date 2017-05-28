@@ -5,6 +5,8 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.Date;
 
+import z9.msp.gob.persistencia.utils.Utilitarios;
+
 /**
  * Created by henry on 4/9/2017.
  */
@@ -23,10 +25,10 @@ public class Personas {
     private String detSegPrivado;
 
     @SerializedName("fecha_diag")
-    private String fechaDiag;
+    private Date fechaDiag;
 
     @SerializedName("fecha_nac")
-    private String fechaNac;
+    private Date fechaNac;
 
     @SerializedName("id_act_trab")
     private Integer idActTrab;
@@ -74,7 +76,7 @@ public class Personas {
     public Personas(String nombres, String numCedula, String fechaNac, int idPersona) {
         this.nombres = nombres;
         this.numCedula = numCedula;
-        this.fechaNac = fechaNac;
+        this.fechaNac = Utilitarios.stringToDate(fechaNac);
         this.idPersona = idPersona;
     }
 
@@ -94,12 +96,12 @@ public class Personas {
         this.numCedula = numCedula;
     }
 
-    public String getFechaNac() {
+    public Date getFechaNac() {
         return fechaNac;
     }
 
     public void setFechaNac(String fechaNac) {
-        this.fechaNac = fechaNac;
+        this.fechaNac = Utilitarios.stringToDate(fechaNac);
     }
 
     public int getImage() {
@@ -134,12 +136,12 @@ public class Personas {
         this.detSegPrivado = detSegPrivado;
     }
 
-    public String getFechaDiag() {
+    public Date getFechaDiag() {
         return fechaDiag;
     }
 
     public void setFechaDiag(String fechaDiag) {
-        this.fechaDiag = fechaDiag;
+        this.fechaDiag = Utilitarios.stringToDate(fechaDiag);
     }
 
     public Integer getIdActTrab() {

@@ -41,6 +41,7 @@ public class ConfigurationDataBase extends AppCompatActivity {
             et_usuario.setText(cursor.getString(6));
             et_clave.setText(cursor.getString(7));
         }
+        db.closeCursor(cursor);
     }
     private boolean hasError(){
         if(validateEditText(et_direccionIp,"Dirección IP")) return true;

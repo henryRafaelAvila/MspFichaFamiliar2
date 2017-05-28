@@ -22,4 +22,11 @@ public class Utilitarios {
 
        return  date;
     }
+    public static String dateToString(Date fechaVisita) {
+        DateFormat format = new SimpleDateFormat("dd/mm/yyyy");
+        String reportDate="";
+       reportDate = format.format(fechaVisita);
+
+        return  reportDate;
+    }
 }

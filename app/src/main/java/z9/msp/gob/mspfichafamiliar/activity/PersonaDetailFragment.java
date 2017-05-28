@@ -35,6 +35,7 @@ import z9.msp.gob.mspfichafamiliar.activity.dummy.DummyContent;
 import z9.msp.gob.persistencia.DatabaseHandler;
 import z9.msp.gob.persistencia.entity.Personas;
 import z9.msp.gob.persistencia.enums.TABLES;
+import z9.msp.gob.persistencia.utils.Utilitarios;
 
 
 /**
@@ -140,7 +141,7 @@ private void initEditText(View rootView){
         editTextApellidos.setText(mItem.getApellidos());
         editTextnombres.setText(mItem.getNombres());
         editTextSeguroPrivado.setText(mItem.getDetSegPrivado());
-        tv_fechaNac.setText(mItem.getFechaNac());
+        tv_fechaNac.setText(Utilitarios.dateToString(mItem.getFechaNac()));
         tvPersonaId.setText(mItem.getIdPersona()+"");
     }
 
