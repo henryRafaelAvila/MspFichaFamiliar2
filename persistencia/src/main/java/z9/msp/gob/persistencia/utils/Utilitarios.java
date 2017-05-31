@@ -1,9 +1,16 @@
 package z9.msp.gob.persistencia.utils;
 
+import android.content.ContentValues;
+import android.database.Cursor;
+import android.widget.Spinner;
+
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * Created by henry on 5/22/2017.
@@ -12,15 +19,26 @@ import java.util.Date;
 public class Utilitarios {
 
     public static Date stringToDate(String fechaVisita) {
-        DateFormat format = new SimpleDateFormat("dd/mm/yyyy");
+
         Date date = null;
-        try {
-            date=format.parse(fechaVisita);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+        if(fechaVisita!=null){
+            int sizeDateToFormat=fechaVisita.length();
+            String fomatDate;
+            if(sizeDateToFormat<11){
+                DateFormat format = new SimpleDateFormat("dd/mm/yyyy");
+            try {
+                    date=format.parse(fechaVisita);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+            }else{
+               date =new Date(fechaVisita);
+            }
+
 
        return  date;
+        }
+        return date;
     }
     public static String dateToString(Date fechaVisita) {
         DateFormat format = new SimpleDateFormat("dd/mm/yyyy");
@@ -28,5 +46,42 @@ public class Utilitarios {
        reportDate = format.format(fechaVisita);
 
         return  reportDate;
+    }
+    public static String decodeNull(String value) {
+        String resp=null;
+        if(value!=null&&value.equals("0")){
+            value=resp;
+        }
+        return  value;
+    }
+    public static int getPosition(Spinner spinner,String value) {
+        int pos=-1;
+        if(spinner!=null){
+            int tot=spinner.getCount();
+            Cursor cursor=null;
+            for (int i=0;i<tot;i++){
+                cursor=(Cursor)spinner.getItemAtPosition(i);
+
+            }
+        }
+        return pos;
+    }
+    public static ContentValues decodeContentValues(ContentValues contentValues){
+        Set<Map.Entry<String, Object>> s=contentValues.valueSet();
+        Iterator itr = s.iterator();
+        while(itr.hasNext())
+        {
+            Map.Entry me = (Map.Entry)itr.next();
+            String key = me.getKey().toString();
+            Object value =  me.getValue();
+            if(key.startsWith("id_")){
+                if(value instanceof Integer){
+                    if(((Integer)(value))<1){
+                        contentValues.remove(key);
+                    }
+                }
+            }
+        }
+        return contentValues;
     }
 }

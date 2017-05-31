@@ -51,8 +51,9 @@
                 android:layout_height="wrap_content"
                 android:inputType="textPersonName"
                 android:ems="10"
-                android:id="@+id/et_direccionIp"
+                android:id="@+id/et_num_formularios"
                 android:hint="1,2,3,4,5" />
+
             <TextView
                 android:text="Fecha desde"
                 android:layout_width="match_parent"
@@ -95,9 +96,9 @@
                     android:text="Descargar Formulario"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/btn_save_config_server"
+                    android:id="@+id/btn_download_form"
                     android:layout_weight="1"
-                    android:onClick="saveData" />
+                    android:onClick="onClickButton (DescargarFormularios)" />
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

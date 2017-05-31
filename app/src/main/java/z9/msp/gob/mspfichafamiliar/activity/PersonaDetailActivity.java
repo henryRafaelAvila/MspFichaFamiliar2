@@ -115,7 +115,6 @@ public class PersonaDetailActivity extends AppCompatActivity {
         ContentValues values=new ContentValues();
         values.put(CLS_DISCR.FORMULARIO_ID.getColsName(),formularioId);
         values.put("cedula",getTextEditText(R.id.editTextCedula));
-        values.put("cedula",getTextEditText(R.id.editTextCedula));
         values.put("apellidos",getTextEditText(R.id.editTextApellidos));
         values.put("nombres",getTextEditText(R.id.editTextnombres));
         values.put("id_par_jh",getValueSpinnerSelected(R.id.spinnerParentescoJefeHogar));

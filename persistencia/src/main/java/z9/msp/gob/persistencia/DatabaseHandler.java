@@ -19,6 +19,7 @@ import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Iterator;
 import java.util.List;
 
@@ -62,6 +63,7 @@ import z9.msp.gob.persistencia.entity.ViasAcceso;
 import z9.msp.gob.persistencia.enums.CLS_DISCR;
 import z9.msp.gob.persistencia.enums.TABLES;
 import z9.msp.gob.persistencia.enums.WS;
+import z9.msp.gob.persistencia.utils.Utilitarios;
 
 /**
  * Created by henry on 3/26/2017.
@@ -225,6 +227,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public Personas getPersonaById(String id) {
         Cursor cursor = getAllById(TABLES.PERSONAS, id);
         Personas personas = null;
+        int idPue=-1;
         if (cursor.moveToNext()) {
             personas = new Personas();
             personas.setNombres(cursor.getString(cursor.getColumnIndex("nombres")));
@@ -243,7 +246,10 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             personas.setIdNivInst(cursor.getInt(cursor.getColumnIndex("id_niv_inst")));
             personas.setIdParJh(cursor.getInt(cursor.getColumnIndex("id_par_jh")));
             personas.setIdPersona(cursor.getInt(cursor.getColumnIndex("_id")));
-            personas.setIdPue(cursor.getInt(cursor.getColumnIndex("id_pue")));
+            idPue=cursor.getInt(cursor.getColumnIndex("id_pue"));
+            if(idPue>0) {
+                personas.setIdPue(cursor.getInt(cursor.getColumnIndex("id_pue")));
+            }
             personas.setIdSegPub(cursor.getInt(cursor.getColumnIndex("id_seg_pub")));
             personas.setSexo(cursor.getInt(cursor.getColumnIndex("sexo")));
 
@@ -711,11 +717,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     }
 
-    public boolean insertFormularios(Formulario formulario) {
-        boolean insertado = false;
-        //TODO implemnetae insercion de formulario, creado para descarga de formularios desde el servidor by token
-        return insertado;
-    }
 
     public Formulario exportData(String formularioId) {
         Formulario formulario = getFormuarioByID(formularioId);
@@ -842,12 +843,14 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             mortalidad = new Mortalidad();
             mortalidad.setNombres(cursor.getString(cursor.getColumnIndex("nombres")));
             mortalidad.setApellidos(cursor.getString(cursor.getColumnIndex("apellidos")));
-            mortalidad.setCausa(cursor.getString(cursor.getColumnIndex("cedula")));
+            mortalidad.setCausa(cursor.getString(cursor.getColumnIndex("causa")));
+            mortalidad.setNumCedula(cursor.getString(cursor.getColumnIndex("cedula")));
             mortalidad.setEdad(cursor.getInt(cursor.getColumnIndex("edad")));
             mortalidad.setFechaMuerte(cursor.getString(cursor.getColumnIndex("fecha_muerte")));
             mortalidad.setIdParJh(cursor.getInt(cursor.getColumnIndex("id_par_jh")));
             mortalidad.setSexo(cursor.getInt(cursor.getColumnIndex("sexo")));
             mortalidad.setIdFormulario(cursor.getInt(cursor.getColumnIndex("id_formulario")));
+
 
         }
         closeCursor(cursor);
@@ -875,5 +878,122 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         deleteMortalidadByFormId(formularioId);
         return deleteByKey(TABLES.FORMULARIO, CLS_DISCR.ID, formularioId);
     }
+public  int insertFormularioByWs(Formulario formulario){
+String idFormulario=insertFormularios(formulario);
+    for(Personas persona:formulario.getPersonas()){
+        persona.setIdFormulario(Integer.parseInt(idFormulario));
+        insertPersona(persona);
+    }
+    for(Mortalidad mortalidad:formulario.getMortalidads()){
+        mortalidad.setIdFormulario(Integer.parseInt(idFormulario));
+        insertMortalidad(mortalidad);
+    }
+    return 0;
+};
+    public String insertFormularios(Formulario formulario) {
+        ContentValues values = new ContentValues();
+        values.put("codigo", formulario.getCodigo());
+        values.put("id_mat_pis", formulario.getIdMatPis());
+        values.put("id_mat_par", formulario.getIdMatPar());
+        values.put("id_pro_agudd", formulario.getIdProAgudd());
+        values.put("id_est_tech", formulario.getIdEstTech());
+        values.put("id_rec_agu", formulario.getIdRecAgu());
+        values.put("id_cond_ocup", formulario.getIdCondOcup());
+        values.put("id_tra_agu", formulario.getIdTraAgu());
+        values.put("id_via_acc", formulario.getIdViaAcc());
+        values.put("id_comb_coc", formulario.getIdCombCoc());
+        values.put("id_tip_trans", formulario.getIdTipTrans());
+        values.put("id_est_pis", formulario.getIdEstPis());
+        values.put("id_eli_bas", formulario.getIdEliBas());
+        values.put("id_eli_agu", formulario.getIdEliAgu());
+        values.put("id_tip_viv", formulario.getIdTipViv());
+        values.put("id_ubi_let", formulario.getIdUbiLet());
+        values.put("id_unid_oper", formulario.getIdUnidOper());
+        values.put("id_mat_tec", formulario.getIdMatTec());
+        values.put("fecha_visita", Utilitarios.dateToString(formulario.getFechaVisita()));
+        values.put("tiem_viv_meses", formulario.getTiemVivMeses());
+        values.put("tiemp_viv_anios", formulario.getTiempVivAnios());
+        values.put("entr_telf", formulario.getEntrTelf());
+        values.put("entr_cell", formulario.getEntrCell());
+        values.put("pers_ref_telf", formulario.getPersRefTelf());
+        values.put("pers_ref_cell", formulario.getPersRefCell());
+        values.put("num_cuar", formulario.getNumCuar());
+        values.put("num_dorm", formulario.getNumDorm());
+        values.put("contamina_suel_desc", formulario.getContaminaSuelDesc());
+        values.put("contamina_air_desc", formulario.getContaminaAirDesc());
+        values.put("viol_fami", formulario.getViolFami());
+        values.put("dest_fami", formulario.getDestFami());
+        values.put("prob_gra_fam", formulario.getProbGraFam());
+        values.put("psico_soc", formulario.getPsicoSoc());
+        values.put("aisla", formulario.getAisla());
+        values.put("sin_escol", formulario.getSinEscol());
+        values.put("nin_noescola", formulario.getNinNoescola());
+        values.put("alcoh", formulario.getAlcoh());
+        values.put("droga", formulario.getDroga());
+        values.put("contamina_agu_desc", formulario.getContaminaAguDesc());
+        values.put("intradomi", formulario.getIntradomi());
+        values.put("vec_trans", formulario.getVecTrans());
+        values.put("anim_viv", formulario.getAnimViv());
+        values.put("coc_inhog", formulario.getCocInhog());
+        values.put("sedazo", formulario.getSedazo());
+        values.put("mosquit", formulario.getMosquit());
+        values.put("plaguicida", formulario.getPlaguicida());
+        values.put("aepi", formulario.getAepi());
+        values.put("abandono", formulario.getAbandono());
+        values.put("ir_uni_sal", formulario.getIrUniSal());
+        values.put("calle1", formulario.getCalle1());
+        values.put("calle2", formulario.getCalle2());
+        values.put("telefono", formulario.getTelefono());
+        values.put("celular", formulario.getCelular());
+        values.put("Edificio", formulario.getEdificio());
+        values.put("Manzana", formulario.getManzana());
+        values.put("coordenadas", formulario.getCoordenadas());
+        values.put("responsable", formulario.getResponsable());
+        values.put("localidad", formulario.getLocalidad());
+        values.put("institucion", formulario.getInstitucion());
+        values.put("tiempo_transporte", formulario.getTiempoTransporte());
+        values=Utilitarios.decodeContentValues(values);
 
+        return insertWithParam(TABLES.FORMULARIO,values);
+    }
+    public String insertPersona(Personas persona){
+        ContentValues values=new ContentValues();
+        values.put(CLS_DISCR.FORMULARIO_ID.getColsName(),persona.getIdFormulario());
+        values.put("cedula",persona.getNumCedula());
+        values.put("apellidos",persona.getApellidos());
+        values.put("nombres",persona.getNombres());
+        values.put("id_par_jh",persona.getIdParJh());
+        values.put("fecha_nac", Utilitarios.dateToString(persona.getFechaNac()));
+        values.put("sexo",persona.getSexo());
+        values.put("id_est_civ",persona.getIdEstCiv());
+        values.put("id_act_trab",persona.getIdActTrab());
+        values.put("id_niv_inst",persona.getIdNivInst());
+        values.put("id_etn",persona.getIdEtn());
+        values.put("id_nacs",persona.getIdNacs());
+        values.put("id_pue",persona.getIdPue());
+        values.put("id_nac",persona.getIdNac());
+        values.put("id_seg_pub",persona.getSeguroPriv());
+        values.put("id_claf_diag",persona.getIdClafDiag());
+        final Calendar c = Calendar.getInstance();
+        String fechaVisiata=c.get(Calendar.DAY_OF_MONTH)+"/"+c.get(Calendar.MONTH)+"/"+c.get(Calendar.YEAR);
+        values.put("fecha_diag",fechaVisiata);//si
+        values.put("seguro_priv",persona.getSeguroPriv());//si
+        values.put("det_seg_privado",persona.getDetSegPrivado());
+        values=Utilitarios.decodeContentValues(values);
+        return insertWithParam(TABLES.PERSONAS,values);
+    }
+    public String insertMortalidad(Mortalidad mortalidad){
+        ContentValues values=new ContentValues();
+        values.put(CLS_DISCR.FORMULARIO_ID.getColsName(),mortalidad.getIdFormulario());
+        values.put("sexo",mortalidad.getSexo());
+        values.put("apellidos",mortalidad.getApellidos());
+        values.put("nombres",mortalidad.getNombres());
+        values.put("cedula",mortalidad.getCedula());
+        values.put("edad",mortalidad.getEdad());
+        values.put("causa",mortalidad.getCausa());
+        values.put("id_par_jh",mortalidad.getIdParJh());
+        values.put("fecha_muerte",Utilitarios.dateToString(mortalidad.getFechaMuerte()));
+        values=Utilitarios.decodeContentValues(values);
+        return insertWithParam(TABLES.PERSONAS,values);
+    }
 }
