@@ -703,8 +703,11 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         SQLiteDatabase database = this.getWritableDatabase();
         int delete;
         for (TABLES tables : TABLES.values()) {
-            delete = database.delete(tables.getTablaName(), null, null);
-            System.out.println("Eliminado datos de " + tables + ": " + delete);
+            if(tables!=TABLES.CONFIG_SERVER) {
+                delete = database.delete(tables.getTablaName(), null, null);
+                System.out.println("Eliminado datos de " + tables + ": " + delete);
+            }
+
         }
 
     }
@@ -734,62 +737,64 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         if (cursor.moveToNext()) {
             formulario = new Formulario();
             formulario.setCodigo(cursor.getInt(cursor.getColumnIndex("codigo")));
-            //TODO: CAMBIO OBLIGARIO
-            formulario.setResponsable(cursor.getString(cursor.getColumnIndex("responsable")));
-            formulario.setCalle1(cursor.getString(cursor.getColumnIndex("calle1")));
-            formulario.setCalle2(cursor.getString(cursor.getColumnIndex("calle2")));
-            formulario.setCelular(cursor.getString(cursor.getColumnIndex("celular")));
+            formulario.setIdMatPis(cursor.getInt(cursor.getColumnIndex("id_mat_pis")));
+            formulario.setIdMatPar(cursor.getInt(cursor.getColumnIndex("id_mat_par")));
+            formulario.setIdProAgudd(cursor.getInt(cursor.getColumnIndex("id_pro_agudd")));
+            formulario.setIdEstTech(cursor.getInt(cursor.getColumnIndex("id_est_tech")));
+            formulario.setIdRecAgu(cursor.getInt(cursor.getColumnIndex("id_rec_agu")));
+            formulario.setIdCondOcup(cursor.getInt(cursor.getColumnIndex("id_cond_ocup")));
+            formulario.setIdTraAgu(cursor.getInt(cursor.getColumnIndex("id_tra_agu")));
+            formulario.setIdViaAcc(cursor.getInt(cursor.getColumnIndex("id_via_acc")));
+            formulario.setIdCombCoc(cursor.getInt(cursor.getColumnIndex("id_comb_coc")));
+            formulario.setIdTipTrans(cursor.getInt(cursor.getColumnIndex("id_tip_trans")));
+            formulario.setIdEstPis(cursor.getInt(cursor.getColumnIndex("id_est_pis")));
+            formulario.setIdEliBas(cursor.getInt(cursor.getColumnIndex("id_eli_bas")));
+            formulario.setIdEliAgu(cursor.getInt(cursor.getColumnIndex("id_eli_agu")));
+            formulario.setIdTipViv(cursor.getInt(cursor.getColumnIndex("id_tip_viv")));
+            formulario.setIdUbiLet(cursor.getInt(cursor.getColumnIndex("id_ubi_let")));
+            formulario.setIdUnidOper(cursor.getInt(cursor.getColumnIndex("id_unid_oper")));
+            formulario.setIdMatTec(cursor.getInt(cursor.getColumnIndex("id_mat_tec")));
+            formulario.setFechaVisita(cursor.getString(cursor.getColumnIndex("fecha_visita")));
+            formulario.setTiemVivMeses(cursor.getInt(cursor.getColumnIndex("tiem_viv_meses")));
+            formulario.setTiempVivAnios(cursor.getInt(cursor.getColumnIndex("tiemp_viv_anios")));
+            formulario.setEntrCell(cursor.getString(cursor.getColumnIndex("entr_cell")));
+            formulario.setEntrTelf(cursor.getString(cursor.getColumnIndex("entr_telf")));
+            formulario.setPersRefCell(cursor.getString(cursor.getColumnIndex("pers_ref_cell")));
+            formulario.setPersRefTelf(cursor.getString(cursor.getColumnIndex("pers_ref_telf")));
+            formulario.setViolFami(cursor.getInt(cursor.getColumnIndex("viol_fami")));
+            formulario.setDestFami(cursor.getInt(cursor.getColumnIndex("dest_fami")));
+            formulario.setProbGraFam(cursor.getInt(cursor.getColumnIndex("prob_gra_fam")));
+            formulario.setPsicoSoc(cursor.getInt(cursor.getColumnIndex("psico_soc")));
+            formulario.setAisla(cursor.getInt(cursor.getColumnIndex("aisla")));
+            formulario.setSinEscol(cursor.getInt(cursor.getColumnIndex("sin_escol")));
+            formulario.setNinNoescola(cursor.getInt(cursor.getColumnIndex("nin_noescola")));
+            formulario.setAlcoh(cursor.getInt(cursor.getColumnIndex("alcoh")));
+            formulario.setDroga(cursor.getInt(cursor.getColumnIndex("droga")));
             formulario.setContaminaAguDesc(cursor.getString(cursor.getColumnIndex("contamina_agu_desc")));
             formulario.setContaminaAirDesc(cursor.getString(cursor.getColumnIndex("contamina_air_desc")));
             formulario.setContaminaSuelDesc(cursor.getString(cursor.getColumnIndex("contamina_suel_desc")));
-            formulario.setEntrCell(cursor.getString(cursor.getColumnIndex("entr_cell")));
-            formulario.setEntrTelf(cursor.getString(cursor.getColumnIndex("entr_telf")));
-            formulario.setFechaVisita(cursor.getString(cursor.getColumnIndex("fecha_visita")));
-            formulario.setIdCombCoc(cursor.getInt(cursor.getColumnIndex("id_comb_coc")));
-            formulario.setIdCondOcup(cursor.getInt(cursor.getColumnIndex("id_cond_ocup")));
-            formulario.setIdEliBas(cursor.getInt(cursor.getColumnIndex("id_eli_bas")));
-            //formulario.setIdEstPar(cursor.getInt(cursor.getColumnIndex("id_est_par")));
-            formulario.setIdEstPis(cursor.getInt(cursor.getColumnIndex("id_est_pis")));
-            formulario.setIdEstTech(cursor.getInt(cursor.getColumnIndex("id_est_tech")));
-            formulario.setIdMatPar(cursor.getInt(cursor.getColumnIndex("id_mat_par")));
-            formulario.setIdMatPis(cursor.getInt(cursor.getColumnIndex("id_mat_pis")));
-            formulario.setIdMatTec(cursor.getInt(cursor.getColumnIndex("id_mat_tec")));
-            formulario.setIdProAgudd(cursor.getInt(cursor.getColumnIndex("id_pro_agudd")));
-            formulario.setIdRecAgu(cursor.getInt(cursor.getColumnIndex("id_rec_agu")));
-            formulario.setIdTipTrans(cursor.getInt(cursor.getColumnIndex("id_tip_trans")));
-            formulario.setIdTraAgu(cursor.getInt(cursor.getColumnIndex("id_tra_agu")));
-            //formulario.setIdUbiLet(cursor.getInt(cursor.getColumnIndex("id_ubi_let")));
-            formulario.setIdUnidOper(cursor.getInt(cursor.getColumnIndex("id_unid_oper")));
-            formulario.setIdViaAcc(cursor.getInt(cursor.getColumnIndex("id_via_acc")));
-            formulario.setNumCuar(cursor.getString(cursor.getColumnIndex("num_cuar")));
-            formulario.setNumDorm(cursor.getString(cursor.getColumnIndex("num_dorm")));
-            formulario.setPersRefCell(cursor.getString(cursor.getColumnIndex("pers_ref_cell")));
-            formulario.setPersRefTelf(cursor.getString(cursor.getColumnIndex("pers_ref_telf")));
+            formulario.setIntradomi(cursor.getInt(cursor.getColumnIndex("intradomi")));
+            formulario.setVecTrans(cursor.getInt(cursor.getColumnIndex("vec_trans")));
 
-            //formulario.setRiesgoIncend(cursor.getInt(cursor.getColumnIndex("riesgo_incend")));
-            formulario.setAisla(cursor.getInt(cursor.getColumnIndex("aisla")));
-            formulario.setDestFami(cursor.getInt(cursor.getColumnIndex("dest_fami")));
-            formulario.setAlcoh(cursor.getInt(cursor.getColumnIndex("alcoh")));
-            formulario.setDroga(cursor.getInt(cursor.getColumnIndex("droga")));
-            formulario.setNinNoescola(cursor.getInt(cursor.getColumnIndex("nin_noescola")));
-            formulario.setSinEscol(cursor.getInt(cursor.getColumnIndex("sin_escol")));
-            formulario.setProbGraFam(cursor.getInt(cursor.getColumnIndex("prob_gra_fam")));
-            formulario.setPsicoSoc(cursor.getInt(cursor.getColumnIndex("psico_soc")));
-            formulario.setViolFami(cursor.getInt(cursor.getColumnIndex("viol_fami")));
-            formulario.setAepi(cursor.getInt(cursor.getColumnIndex("aepi")));
-            //formulario.setRsanCocInhog(cursor.getInt(cursor.getColumnIndex("rsan_coc_inhog")));
+            formulario.setAnimViv(cursor.getInt(cursor.getColumnIndex("anim_viv")));
+            formulario.setCocInhog(cursor.getInt(cursor.getColumnIndex("coc_inhog")));
+            formulario.setSedazo(cursor.getInt(cursor.getColumnIndex("sedazo")));
             formulario.setMosquit(cursor.getInt(cursor.getColumnIndex("mosquit")));
             formulario.setPlaguicida(cursor.getInt(cursor.getColumnIndex("plaguicida")));
-            //formulario.setRsanRechUniSal(cursor.getInt(cursor.getColumnIndex("rsan_rech_uni_sal")));
-            formulario.setSedazo(cursor.getInt(cursor.getColumnIndex("sedazo")));
+            formulario.setAepi(cursor.getInt(cursor.getColumnIndex("aepi")));
             formulario.setAbandono(cursor.getInt(cursor.getColumnIndex("abandono")));
-
+            formulario.setIdTipTrans(cursor.getInt(cursor.getColumnIndex("ir_uni_sal")));
+            formulario.setCalle1(cursor.getString(cursor.getColumnIndex("calle1")));
+            formulario.setCalle2(cursor.getString(cursor.getColumnIndex("calle2")));
             formulario.setTelefono(cursor.getString(cursor.getColumnIndex("telefono")));
-            formulario.setTiemVivMeses(cursor.getInt(cursor.getColumnIndex("tiem_viv_meses")));
-            formulario.setTiempVivAnios(cursor.getInt(cursor.getColumnIndex("tiemp_viv_anios")));
+            formulario.setCelular(cursor.getString(cursor.getColumnIndex("celular")));
+            formulario.setEdificio(cursor.getString(cursor.getColumnIndex("Edificio")));
+            formulario.setManzana(cursor.getInt(cursor.getColumnIndex("Manzana")));
+            formulario.setCoordenadas(cursor.getString(cursor.getColumnIndex("coordenadas")));
+            formulario.setResponsable(cursor.getString(cursor.getColumnIndex("responsable")));
+            formulario.setLocalidad(cursor.getString(cursor.getColumnIndex("localidad")));
+            formulario.setNumCuar(cursor.getString(cursor.getColumnIndex("num_cuar")));
             formulario.setTiempoTransporte(cursor.getInt(cursor.getColumnIndex("tiempo_transporte")));
-            //formulario.setUbiZonInun(cursor.getInt(cursor.getColumnIndex("ubi_zon_inun")));
-
 
         }
         closeCursor(cursor);

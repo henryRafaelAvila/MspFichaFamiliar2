@@ -27,6 +27,7 @@ import z9.msp.gob.mspfichafamiliar.R;
 import z9.msp.gob.persistencia.DatabaseHandler;
 import z9.msp.gob.persistencia.entity.Formulario;
 import z9.msp.gob.persistencia.enums.TABLES;
+import z9.msp.gob.persistencia.utils.Utilitarios;
 
 public class NuevoFormularioActivity extends AppCompatActivity {
     public  static final String FORMULARIO_ID="FORMULARIO_ID";
@@ -1037,6 +1038,34 @@ private void initBotones(){
         //TODO llenar campos del formualarios
         Formulario formulario=db.getFormuarioByID(id_formulario);
         responsabletxt.setText(formulario.getResponsable());
+        calle1txt.setText(formulario.getCalle1());
+        calle2txt.setText(formulario.getCalle2());
+        manzanatxt.setText(formulario.getManzana()+"");
+        localidadtxt.setText(formulario.getLocalidad());
+        edificiotxt.setText(formulario.getEdificio());
+        telefonotxt.setText(formulario.getTelefono());
+        celulartxt.setText(formulario.getCelular());
+        contaminacion_aguatxt.setText(formulario.getContaminaAguDesc());
+        contaminacion_airetxt.setText(formulario.getContaminaAirDesc());
+        contaminacion_suelotxt.setText(formulario.getContaminaSuelDesc());
+        spinnerEstadoPiso.setSelection(Utilitarios.getPosition(spinnerEstadoPiso,formulario.getIdEstPis()));
+         spinnerUnidaOperativa.setSelection(Utilitarios.getPosition(spinnerUnidaOperativa,formulario.getIdUnidOper()));
+        spinnerTipoVivienda.setSelection(Utilitarios.getPosition(spinnerTipoVivienda,formulario.getIdTipViv()));
+        spinnerAccesoVivienda.setSelection(Utilitarios.getPosition(spinnerAccesoVivienda,formulario.getIdViaAcc()));
+        spinnerTipoTransporte.setSelection(Utilitarios.getPosition(spinnerTipoTransporte,formulario.getIdTipTrans()));
+        spinnerMaterialTecho.setSelection(Utilitarios.getPosition(spinnerMaterialTecho,formulario.getIdMatTec()));
+        spinnerMaterialPiso.setSelection(Utilitarios.getPosition(spinnerMaterialPiso,formulario.getIdMatPis()));
+        spinnerMaterialPared.setSelection(Utilitarios.getPosition(spinnerMaterialPared,formulario.getIdMatPar()));
+        spinnerEstadoTecho.setSelection(Utilitarios.getPosition(spinnerEstadoTecho,formulario.getIdEstTech()));
+        spinnerEstadoPiso.setSelection(Utilitarios.getPosition(spinnerEstadoPiso,formulario.getIdEstPis()));
+        spinnerCombustibleCocina.setSelection(Utilitarios.getPosition(spinnerCombustibleCocina,formulario.getIdCombCoc()));
+        spinnerOcupacion.setSelection(Utilitarios.getPosition(spinnerOcupacion,formulario.getIdCondOcup()));
+        spinnerProvieneAgua.setSelection(Utilitarios.getPosition(spinnerProvieneAgua,formulario.getIdProAgudd()));
+        spinnerRecibeAgua.setSelection(Utilitarios.getPosition(spinnerRecibeAgua,formulario.getIdRecAgu()));
+        spinnerTratamientoAgua.setSelection(Utilitarios.getPosition(spinnerTratamientoAgua,formulario.getIdUnidOper()));
+        spinnerEliminarAgua.setSelection(Utilitarios.getPosition(spinnerEliminarAgua,formulario.getIdEliAgu()));
+        spinnerUbicacionRetrete.setSelection(Utilitarios.getPosition(spinnerUbicacionRetrete,formulario.getIdUbiLet()));
+        spinnerBasura.setSelection(Utilitarios.getPosition(spinnerBasura,formulario.getIdEliBas()));
 
     }
     public void DatosParroquia(String parr){

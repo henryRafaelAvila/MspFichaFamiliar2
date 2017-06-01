@@ -282,16 +282,16 @@ private void initEditText(View rootView){
     private void populatedSpinner(Personas mItema) {
         populatedSpinner();
         setValuesTextEdit(mItem);
-       /* spinnerNacionalidad.setSelection(mItem.getIdNac());
-        spinnerEtnia.setSelection(mItem.getIdEtn());
-        spinnerSeguroPublico.setSelection(mItem.getIdSegPub());
-        spinnerParentescoJefeHogar.setSelection(mItem.getIdParJh());
-        spinnerEstadoCivil.setSelection(mItem.getIdEstCiv());
-        spinnerNivelInstruccion.setSelection(mItem.getIdNivInst());
-        spinnerActSemPasada.setSelection(mItem.getIdActTrab());
-        spinnerNacionalidades.setSelection(mItem.getIdNacs());
-        spinnerPueblos.setSelection(mItem.getIdPue());
-        spinnerClasificacionDiagnost.setSelection(mItem.getIdClafDiag());*/
+       spinnerNacionalidad.setSelection(Utilitarios.getPosition(spinnerNacionalidad,mItem.getIdNac()+""));
+        spinnerEtnia.setSelection(Utilitarios.getPosition(spinnerEtnia,mItem.getIdEtn()));
+        spinnerSeguroPublico.setSelection(Utilitarios.getPosition(spinnerSeguroPublico,mItem.getIdSegPub()));
+        spinnerParentescoJefeHogar.setSelection(Utilitarios.getPosition(spinnerParentescoJefeHogar,mItem.getIdParJh()));
+        spinnerEstadoCivil.setSelection(Utilitarios.getPosition(spinnerEstadoCivil,mItem.getIdEstCiv()));
+        spinnerNivelInstruccion.setSelection(Utilitarios.getPosition(spinnerNivelInstruccion,mItem.getIdNivInst()));
+        spinnerActSemPasada.setSelection(Utilitarios.getPosition(spinnerActSemPasada,mItem.getIdActTrab()));
+        spinnerNacionalidades.setSelection(Utilitarios.getPosition(spinnerNacionalidades,mItem.getIdNacs()));
+        spinnerPueblos.setSelection(Utilitarios.getPosition(spinnerPueblos,mItem.getIdPue()));
+        spinnerClasificacionDiagnost.setSelection(Utilitarios.getPosition(spinnerClasificacionDiagnost,mItem.getIdClafDiag()));
 
     }
     private void populatedSpinner() {

@@ -2,6 +2,7 @@ package z9.msp.gob.persistencia.utils;
 
 import android.content.ContentValues;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteCursor;
 import android.widget.Spinner;
 
 import java.text.DateFormat;
@@ -54,13 +55,22 @@ public class Utilitarios {
         }
         return  value;
     }
+    public static int getPosition(Spinner spinner,Integer value) {
+        return  getPosition(spinner,value+"");
+    }
     public static int getPosition(Spinner spinner,String value) {
-        int pos=-1;
+        int pos=0;
+
         if(spinner!=null){
             int tot=spinner.getCount();
-            Cursor cursor=null;
+            SQLiteCursor cursor=null;
             for (int i=0;i<tot;i++){
-                cursor=(Cursor)spinner.getItemAtPosition(i);
+                cursor=(SQLiteCursor)spinner.getItemAtPosition(i);
+                String content=cursor.getString(cursor.getColumnIndex("_id"));
+                if(content!=null&&content.equals(value)){
+                    pos=i;
+                    break;
+                }
 
             }
         }

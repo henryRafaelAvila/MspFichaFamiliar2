@@ -17,6 +17,7 @@ import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Calendar;
 
@@ -90,24 +91,34 @@ public class PersonaDetailActivity extends AppCompatActivity {
         formularioId=session.getFormulariosId();
         ContentValues contentValues=valueViewPersonDetails();
         String msj=null;
-    String personaId=getTexViewValue(R.id.id_persona);
-        boolean resultInsert=false;
-        if(personaId!=null&&personaId.equals("-1")) {
-            resultInsert= db.executeCreateQuery(contentValues, TABLES.PERSONAS);
-            msj=contentValues.get("nombres").toString()+" "+S.insertDato;
-        }else{
-            int rows=db.updateById(TABLES.PERSONAS,personaId,contentValues);
-            if(rows>0){
-            resultInsert=true;
-                msj=contentValues.get("nombres").toString()+" "+S.updateDato +" :Tot: "+rows;
+        String requiered[]=new String[]{"cedula","apellidos","nombres","fecha_nac"};
+        for (String keyRequered:requiered){
+            String valu=contentValues.get(keyRequered).toString();
+            if(valu==null||valu.equals("")){
+                msj= "Campo "+ keyRequered +" es obligatorio";
+                break;
             }
         }
-        if(resultInsert){
+        if(msj==null) {
+            String personaId = getTexViewValue(R.id.id_persona);
+            boolean resultInsert = false;
+            if (personaId != null && personaId.equals("-1")) {
+                resultInsert = db.executeCreateQuery(contentValues, TABLES.PERSONAS);
+                msj = contentValues.get("nombres").toString() + " " + S.insertDato;
+            } else {
+                int rows = db.updateById(TABLES.PERSONAS, personaId, contentValues);
+                if (rows > 0) {
+                    resultInsert = true;
+                    msj = contentValues.get("nombres").toString() + " " + S.updateDato + " :Tot: " + rows;
+                }
+            }
+            if (resultInsert) {
 
-            Context context = this;
-            Intent intent = new Intent(context, PersonaListActivity.class);
-            intent.putExtra(PersonaListActivity.FORM_ID, formularioId);
-            context.startActivity(intent);
+                Context context = this;
+                Intent intent = new Intent(context, PersonaListActivity.class);
+                intent.putExtra(PersonaListActivity.FORM_ID, formularioId);
+                context.startActivity(intent);
+            }
         }
         return msj;
     }
@@ -160,6 +171,7 @@ public class PersonaDetailActivity extends AppCompatActivity {
         }else{
             values.put("seguro_priv",2);//no
         }
+
         return values;
 
     }
