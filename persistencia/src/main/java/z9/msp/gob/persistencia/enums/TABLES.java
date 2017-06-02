@@ -3,6 +3,7 @@ package z9.msp.gob.persistencia.enums;
 import z9.msp.gob.persistencia.entity.ActividadTrab;
 import z9.msp.gob.persistencia.entity.AdministracionZonal;
 import z9.msp.gob.persistencia.entity.Canton;
+import z9.msp.gob.persistencia.entity.CausaMortalidad;
 import z9.msp.gob.persistencia.entity.ClasifDiagnostico;
 import z9.msp.gob.persistencia.entity.CombustibleCocinar;
 import z9.msp.gob.persistencia.entity.CondicionOcupacion;
@@ -69,7 +70,8 @@ public enum TABLES {
     ETNIA("etnia",Etnia.class,"CREATE TABLE etnia (_id INTEGER PRIMARY KEY  NOT NULL , cod_etn VARCHAR NOT NULL , descripcion VARCHAR NOT NULL )"),
     SEGPUBLICO("seguro_publico",SeguroPublico.class,"CREATE TABLE seguro_publico (_id INTEGER PRIMARY KEY  NOT NULL , cod_seg_pub VARCHAR NOT NULL , descripcion VARCHAR NOT NULL )"),
     PARENT_JE_HO("parentesco_jefe_hogar",ParentescoJefeHogar.class,"CREATE TABLE parentesco_jefe_hogar (_id INTEGER PRIMARY KEY  NOT NULL , cod_par_jh VARCHAR NOT NULL , descripcion VARCHAR NOT NULL )"),
-    ESTADO_CIVIL("estado_civil",EstadoCivil.class,"CREATE TABLE estado_civil (_id INTEGER PRIMARY KEY  NOT NULL , cod_est_civ VARCHAR NOT NULL , descripcion VARCHAR NOT NULL )"),
+    ESTADO_CIVIL("estado_civil",EstadoCivil.class,"CREATE TABLE causa_mortalidad (_id INTEGER PRIMARY KEY  NOT NULL , cod_cau_mor VARCHAR NOT NULL , descripcion VARCHAR NOT NULL )"),
+    CAUSA_MOTALIDAD("causa_mortalidad",CausaMortalidad.class,"CREATE TABLE estado_civil (_id INTEGER PRIMARY KEY  NOT NULL , cod_est_civ VARCHAR NOT NULL , descripcion VARCHAR NOT NULL )"),
     NIVEL_INSTRS("nivel_instruccion",NivelInstruccion.class,"CREATE TABLE nivel_instruccion (_id INTEGER PRIMARY KEY  NOT NULL , cod_niv_inst VARCHAR NOT NULL , descripcion VARCHAR NOT NULL )"),
     ACTIVIADAD_TRABAJO("actividad_trab",ActividadTrab.class,"CREATE TABLE actividad_trab (_id INTEGER PRIMARY KEY  NOT NULL , cod_act_trab VARCHAR NOT NULL , descripcion VARCHAR NOT NULL )"),
     PUEBLOS("pueblos",Pueblo.class,"CREATE TABLE pueblos (_id INTEGER PRIMARY KEY  NOT NULL , cod_pue VARCHAR NOT NULL , descripcion VARCHAR NOT NULL )"),

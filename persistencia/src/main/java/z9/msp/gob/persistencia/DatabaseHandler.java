@@ -27,6 +27,7 @@ import java.util.List;
 import z9.msp.gob.persistencia.entity.ActividadTrab;
 import z9.msp.gob.persistencia.entity.AdministracionZonal;
 import z9.msp.gob.persistencia.entity.Canton;
+import z9.msp.gob.persistencia.entity.CausaMortalidad;
 import z9.msp.gob.persistencia.entity.ClasifDiagnostico;
 import z9.msp.gob.persistencia.entity.CombustibleCocinar;
 import z9.msp.gob.persistencia.entity.CondicionOcupacion;
@@ -398,6 +399,9 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             case ADMISNISTRACION_ZONAL:
                 insertAdministracionZonal(table, (AdministracionZonal) o);
                 break;
+            case CAUSA_MOTALIDAD:
+                insertCausaMortalidad(table,(CausaMortalidad)o);
+                break;
 
         }
     }
@@ -673,6 +677,14 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         values.put("descripcion", pueblo.getDescripcion());
         executeCreateQuery(values, table);
     }
+    private void insertCausaMortalidad(TABLES table, CausaMortalidad causaMortalidad) {
+        ContentValues values = new ContentValues();
+        values.put("_id", causaMortalidad.getIdCauMor());
+        values.put("cod_cau_mor", causaMortalidad.getCodCauMor());
+        values.put("descripcion", causaMortalidad.getDescripcion());
+        executeCreateQuery(values, table);
+    }
+
 
     public boolean executeCreateQuery(ContentValues values, TABLES table) {
         boolean createSuccessful;

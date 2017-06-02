@@ -2,6 +2,7 @@ package z9.msp.gob.mspfichafamiliar.activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
@@ -14,13 +15,19 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import z9.msp.gob.mspfichafamiliar.R;
+import z9.msp.gob.mspfichafamiliar.Session;
 import z9.msp.gob.mspfichafamiliar.activity.dummy.DummyContent;
 import z9.msp.gob.mspfichafamiliar.activity.dummy.DummyContentMortalidad;
+import z9.msp.gob.persistencia.DatabaseHandler;
 import z9.msp.gob.persistencia.entity.Mortalidad;
+import z9.msp.gob.persistencia.entity.Parameters;
 import z9.msp.gob.persistencia.entity.Personas;
+import z9.msp.gob.persistencia.enums.CLS_DISCR;
+import z9.msp.gob.persistencia.enums.TABLES;
 
 /**
  * An activity representing a list of Personas. This activity
@@ -38,12 +45,17 @@ public class MortalidadListActivity extends AppCompatActivity {
      */
     private boolean mTwoPane;
     public static final String FORM_ID="";
+    Session session;
+    public String formularioId="";
+    List<Mortalidad> mortalidadListList;
+    DatabaseHandler db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mortalidad_list);
-
+        session=new Session(this);
+        db = new DatabaseHandler(this);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         toolbar.setTitle(getTitle());
@@ -69,9 +81,26 @@ public class MortalidadListActivity extends AppCompatActivity {
     }
 
     private void setupRecyclerView(@NonNull RecyclerView recyclerView) {
-        recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(DummyContentMortalidad.ITEMS));
+        mortalidadListList=getMortalidadList();
+        recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(mortalidadListList));
     }
-
+    private List<Mortalidad>  getMortalidadList(){
+        formularioId=session.getFormulariosId();
+        Cursor cursor=db.getAllDiscrimiator( new Parameters(TABLES.MORTALIDAD, CLS_DISCR.FORMULARIO_ID,formularioId));
+        List<Mortalidad> mortalidadList=new ArrayList<>();
+        String nombres,numCedula,fechaNac;
+        int id=0;
+        if(cursor.moveToNext()){
+            do{
+                nombres=cursor.getString(cursor.getColumnIndex("nombres"));
+                numCedula=cursor.getString(cursor.getColumnIndex("cedula"));
+                fechaNac=cursor.getString(cursor.getColumnIndex("fecha_muerte"));
+                id=cursor.getInt(cursor.getColumnIndex("_id"));
+                mortalidadList.add(new Mortalidad(nombres,numCedula,fechaNac,id));
+            }while (cursor.moveToNext());
+        }
+        return  mortalidadList;
+    }
     public class SimpleItemRecyclerViewAdapter
             extends RecyclerView.Adapter<SimpleItemRecyclerViewAdapter.ViewHolder> {
 

@@ -27,6 +27,7 @@ import z9.msp.gob.mspfichafamiliar.activity.dummy.DummyContentMortalidad;
 import z9.msp.gob.persistencia.DatabaseHandler;
 import z9.msp.gob.persistencia.entity.Mortalidad;
 import z9.msp.gob.persistencia.enums.TABLES;
+import z9.msp.gob.persistencia.utils.Utilitarios;
 
 
 /**
@@ -48,11 +49,16 @@ public class MortalidadDetailFragment extends Fragment {
 
     Spinner spinnerCausaMortalidad;
     Spinner spinnerParentescoJefeHogar;
+    EditText  editTextCedula;
     EditText editTextApellidos;
     EditText editTextnombres;
     EditText editTextEdad;
+    EditText  editTextCausa;
     private TextView tv_fechaNac;
     RadioGroup radioGroupsexo;
+    private TextView tvMortalidadId;
+    private Button selectFechaNacimiento;
+    DatePickerDialog datePickerDialog;
 
 
     public static final String ARG_ITEM_ID = "item_id";
@@ -94,9 +100,22 @@ public class MortalidadDetailFragment extends Fragment {
 
 
 private void initEditText(View rootView){
-    //editTextCedula=(EditText) rootView.findViewById(R.id.editTextCedula);
+    editTextCedula=(EditText) rootView.findViewById(R.id.editTextCedula);
+    editTextApellidos=(EditText) rootView.findViewById(R.id.editTextApellidos);
+    editTextnombres=(EditText) rootView.findViewById(R.id.editTextnombres);
+    editTextEdad=(EditText) rootView.findViewById(R.id.editTextEdad);
+    editTextCausa=(EditText) rootView.findViewById(R.id.editTextCausa);
+    tvMortalidadId=(TextView) rootView.findViewById(R.id.id_mortalidad);
 
 }
+    private  void setValuesTextEdit(Mortalidad mItem){
+        editTextCedula.setText(mItem.getNumCedula());
+        editTextApellidos.setText(mItem.getApellidos());
+        editTextnombres.setText(mItem.getNombres());
+        editTextCausa.setText(mItem.getCausa());
+        tv_fechaNac.setText(Utilitarios.dateToString(mItem.getFechaMuerte()));
+        tvMortalidadId.setText(mItem.getIdMortalida()+"");
+    }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -104,7 +123,44 @@ private void initEditText(View rootView){
         //mostrarFechas(rootView);
         inicializarSpinner(rootView);
         initEditText(rootView);
+        selectFechaNacimiento=(Button) rootView.findViewById(R.id.selectFechaNacimiento);
+        selectFechaNacimiento.setOnClickListener(new View.OnClickListener() {
 
+            @Override
+            public void onClick(View v) {
+                final Calendar c = Calendar.getInstance();
+                final int mYear,mMonth,mDay;
+                if(tv_fechaNac.getText().equals("")){
+                    mYear = c.get(Calendar.YEAR); // current year
+                    mMonth = c.get(Calendar.MONTH); // current month
+                    mDay = c.get(Calendar.DAY_OF_MONTH); // current day
+                }else{
+                    String date[]=tv_fechaNac.getText().toString().split("/");
+                    mYear = Integer.parseInt(date[2]);
+                    mMonth = Integer.parseInt(date[1])-1;
+                    mDay = Integer.parseInt(date[0]);
+                }
+
+                // date picker dialog
+                datePickerDialog = new DatePickerDialog(getContext(),
+                        new DatePickerDialog.OnDateSetListener() {
+
+                            @Override
+                            public void onDateSet(DatePicker view, int year,
+                                                  int monthOfYear, int dayOfMonth) {
+                                // set day of month , month and year value in the edit text
+                                tv_fechaNac.setText(dayOfMonth + "/"
+                                        + (monthOfYear + 1) + "/" + year);
+                                String text=(c.get(Calendar.YEAR)-year)+ " años "+Math.abs(c.get(Calendar.MONTH)-(monthOfYear-1))+" meses";
+                                editTextEdad.setText(text);
+
+                            }
+                        }, mYear, mMonth, mDay);
+                datePickerDialog.show();
+
+            }
+
+        });
 
         if (mItem != null) {
             populatedSpinner(mItem);
@@ -124,12 +180,15 @@ private void initEditText(View rootView){
         //((TextView) rootView.findViewById(R.id.persona_detail)).setText(mItem.details);
         //llenada de combos
         populatedSpinner();
+        setValuesTextEdit(mItem);
+        spinnerParentescoJefeHogar.setSelection(Utilitarios.getPosition(spinnerParentescoJefeHogar,mItem.getIdParJh()));
+        spinnerCausaMortalidad.setSelection(Utilitarios.getPosition(spinnerCausaMortalidad,mItem.getIdCauMor()));
 
     }
     private void populatedSpinner() {
         //llenada de combos
-        pupulatedSpinner(adapterCausaMortalidad,db.getAllGeneric(TABLES.NACIONALIDAD.getTablaName()),spinnerCausaMortalidad);
-        pupulatedSpinner(adapterParentescoJefeHogar,db.getAllGeneric(TABLES.NACIONALIDAD.getTablaName()),spinnerParentescoJefeHogar);
+        pupulatedSpinner(adapterCausaMortalidad,db.getAllGeneric(TABLES.CAUSA_MOTALIDAD.getTablaName()),spinnerCausaMortalidad);
+        pupulatedSpinner(adapterParentescoJefeHogar,db.getAllGeneric(TABLES.PARENT_JE_HO.getTablaName()),spinnerParentescoJefeHogar);
     }
     private void pupulatedSpinner(SimpleCursorAdapter adapter, Cursor cursor,Spinner spinner){
         adapter = new SimpleCursorAdapter(getContext(),

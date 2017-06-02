@@ -37,6 +37,8 @@ public class Mortalidad implements Serializable {
     @SerializedName("id_par_jh")
     private Integer idParJh;
 
+    private Integer idCauMor;
+
     private String nombres;
 
     private Integer sexo;
@@ -155,6 +157,14 @@ public class Mortalidad implements Serializable {
 
     public void setIdFormulario(Integer idFormulario) {
         this.idFormulario = idFormulario;
+    }
+
+    public Integer getIdCauMor() {
+        return idCauMor;
+    }
+
+    public void setIdCauMor(Integer idCauMor) {
+        this.idCauMor = idCauMor;
     }
 }
 

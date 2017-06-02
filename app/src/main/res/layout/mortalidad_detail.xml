@@ -12,7 +12,22 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="z9.msp.gob.mspfichafamiliar.activity.MortalidadDetailFragment"
     android:weightSum="1">
-
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="1.- ¿Ingrese su número de cédula?"
+        android:textColor="@android:color/black"
+        android:background="@android:color/darker_gray"
+        android:gravity="left"
+        android:paddingRight="5dp" />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/cedula"
+        android:ems="10"
+        android:id="@+id/editTextCedula"
+        android:layout_weight="0.05"
+        android:inputType="number" />
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -57,12 +72,13 @@
         android:layout_marginTop="10dp"
         android:gravity="left"
         android:paddingRight="5dp" />
+
     <Spinner
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/spinnerParentescoJefeHogar"
         android:layout_alignParentTop="true"
-        android:layout_weight="0.39"
+        android:layout_weight="0.08"
         android:layout_centerHorizontal="true"
         android:spinnerMode="dialog" />
 
@@ -78,9 +94,8 @@
 
     <include
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        layout="@layout/fecha_nac"
-        android:layout_weight="0.05" />
+        android:layout_height="49dp"
+        layout="@layout/fecha_nac" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -134,7 +149,31 @@
         android:id="@+id/spinnerCausaMortalidad"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_weight="0.39"
+        android:layout_weight="0.10"
         android:spinnerMode="dialog" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="8.- Detalle la causa de Muerte"
+        android:textColor="@android:color/black"
+        android:background="@android:color/darker_gray"
+        android:gravity="left"
+        android:paddingRight="5dp" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/editTextCausa"
+        android:layout_weight="0.05"
+        android:hint="@string/apellidos"/>
+
+    <TextView
+        android:id="@+id/id_mortalidad"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="-1"
+        android:visibility="invisible" />
 
 </LinearLayout>

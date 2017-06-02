@@ -1,6 +1,7 @@
 package z9.msp.gob.mspfichafamiliar.activity;
 
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.Intent;
 import android.database.sqlite.SQLiteCursor;
 import android.os.Bundle;
@@ -21,6 +22,7 @@ import java.util.Calendar;
 
 import z9.msp.gob.mspfichafamiliar.R;
 import z9.msp.gob.mspfichafamiliar.S;
+import z9.msp.gob.mspfichafamiliar.Session;
 import z9.msp.gob.persistencia.DatabaseHandler;
 import z9.msp.gob.persistencia.enums.TABLES;
 import z9.msp.gob.persistencia.enums.WS;
@@ -33,6 +35,8 @@ import z9.msp.gob.persistencia.enums.WS;
  */
 public class MortalidadDetailActivity extends AppCompatActivity {
     DatabaseHandler db;
+    String formularioId;
+    Session session;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,7 +44,7 @@ public class MortalidadDetailActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.detail_toolbar);
         setSupportActionBar(toolbar);
         db = new DatabaseHandler(this);
-
+        session=new Session(this);
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -79,22 +83,73 @@ public class MortalidadDetailActivity extends AppCompatActivity {
                     .add(R.id.mortalidad_detail_container, fragment)
                     .commit();
         }
+        if (savedInstanceState == null) {
+            Bundle extras = getIntent().getExtras();
+            if(extras == null) {
+                formularioId= null;
+            } else {
+                formularioId= extras.getString(MortalidadListActivity.FORM_ID);
+            }
+        } else {
+            formularioId= (String) savedInstanceState.getSerializable(MortalidadListActivity.FORM_ID);
+        }
     }
     public String saveOrUpdate(){
+        formularioId=session.getFormulariosId();
         ContentValues contentValues=valueViewPersonDetails();
         String msj=null;
 //todo cambiar tipo de tabla a mortalidad
-              boolean resultInsert= db.executeCreateQuery(contentValues, TABLES.MATERIAL_PARED);
-        if(resultInsert){
-            msj=contentValues.get("nombres").toString()+" "+S.insertDato;
+        String requiered[]=new String[]{"cedula","apellidos","nombres","fecha_muerte","causa"};
+        for (String keyRequered:requiered){
+            String valu=contentValues.get(keyRequered).toString();
+            if(valu==null||valu.equals("")){
+                msj= "Campo "+ keyRequered +" es obligatorio";
+                break;
+            }
+        }
+        if(msj==null) {
+            String mortaldadId = getTexViewValue(R.id.id_mortalidad);
+            boolean resultInsert = false;
+            if (mortaldadId != null && mortaldadId.equals("-1")) {
+                resultInsert = db.executeCreateQuery(contentValues, TABLES.MORTALIDAD);
+                msj = contentValues.get("nombres").toString() + " " + S.insertDato;
+            } else {
+                int rows = db.updateById(TABLES.MORTALIDAD, mortaldadId, contentValues);
+                if (rows > 0) {
+                    resultInsert = true;
+                    msj = contentValues.get("nombres").toString() + " " + S.updateDato + " :Tot: " + rows;
+                }
+            }
+            if (resultInsert) {
+
+                Context context = this;
+                Intent intent = new Intent(context, PersonaListActivity.class);
+                intent.putExtra(PersonaListActivity.FORM_ID, formularioId);
+                context.startActivity(intent);
+            }
         }
         return msj;
     }
+    private String getTexViewValue(int editText){
+        TextView obj=(TextView) findViewById(editText);
+        if(obj!=null)
+            return obj.getText().toString();
+        else return null;
+    }
     public ContentValues valueViewPersonDetails(){
         ContentValues values=new ContentValues();
-       // values.put("cedula",getTextEditText(R.id.editTextCedula));
-       // values.put("apellidos",getTextEditText(R.id.editTextApellidos));
-
+       values.put("cedula",getTextEditText(R.id.editTextCedula));
+       values.put("apellidos",getTextEditText(R.id.editTextApellidos));
+        values.put("id_par_jh",getValueSpinnerSelected(R.id.spinnerParentescoJefeHogar));
+        String fechaMortalidad=((TextView)findViewById(R.id.tv_fechaNac)).getText().toString();
+        values.put("fecha_muerte",fechaMortalidad);
+        int radioButtonID = ((RadioGroup)findViewById(R.id.opciones_sexo)).getCheckedRadioButtonId();
+        if(radioButtonID ==R.id.radioSexoHombre){
+            values.put("sexo",1);
+        }else{
+            values.put("sexo",2);
+        }
+        values.put("causa",getTextEditText(R.id.editTextCausa));
         return values;
 
     }
