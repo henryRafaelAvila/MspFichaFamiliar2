@@ -73,7 +73,7 @@ import z9.msp.gob.persistencia.utils.Utilitarios;
 public class DatabaseHandler extends SQLiteOpenHelper {
     // All Static variables
     // Database Version
-    private static final int DATABASE_VERSION = 13;
+    private static final int DATABASE_VERSION = 14;
     private static final String DATABASE_NAME = "ficha_familiar_msp";
     private Context context;
 
@@ -187,6 +187,22 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             String selectQuery = "SELECT * FROM " + tabla + " WHERE _id=?";
             cursor = db.rawQuery(selectQuery, new String[]{id});
              return cursor;
+    }
+
+    public String existeObjectByCedulaAndFormID(String cedula,String formulaId,TABLES tables) {
+        String id=null;
+        Cursor cursor = null;
+        SQLiteDatabase db = null;
+        db = this.getReadableDatabase();
+        String selectQuery = "SELECT * FROM " + tables.getTablaName() + " WHERE cedula=? and id_formulario=?";
+        cursor = db.rawQuery(selectQuery, new String[]{cedula,formulaId});
+        if(cursor.moveToNext()){
+            id=cursor.getString(cursor.getColumnIndex("_id"));
+        }
+        if(cursor!=null){
+            closeCursor(cursor);
+        }
+        return id;
     }
 
     public Cursor getAllDiscrimiator(Parameters parameters) {
@@ -858,6 +874,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         Mortalidad mortalidad = null;
         if (cursor.moveToNext()) {
             mortalidad = new Mortalidad();
+            mortalidad.setIdMortalida(cursor.getInt(cursor.getColumnIndex("_id")));
+            mortalidad.setIdCauMor(cursor.getInt(cursor.getColumnIndex("id_cau_mor")));
             mortalidad.setNombres(cursor.getString(cursor.getColumnIndex("nombres")));
             mortalidad.setApellidos(cursor.getString(cursor.getColumnIndex("apellidos")));
             mortalidad.setCausa(cursor.getString(cursor.getColumnIndex("causa")));
@@ -1010,6 +1028,7 @@ String idFormulario=insertFormularios(formulario);
         values.put("causa",mortalidad.getCausa());
         values.put("id_par_jh",mortalidad.getIdParJh());
         values.put("fecha_muerte",Utilitarios.dateToString(mortalidad.getFechaMuerte()));
+
         values=Utilitarios.decodeContentValues(values);
         return insertWithParam(TABLES.PERSONAS,values);
     }

@@ -82,33 +82,69 @@ public class MasterPageActivity extends AppCompatActivity{
     }
 
 
+private void actualizaCatalgos(){
+    AlertDialog.Builder builder = new AlertDialog.Builder(MasterPageActivity.this);
+    builder.setMessage("Al actualizar los datos, perdera los existentes ¿Desea Continuar?");
 
-    public void onClickButton(View v) {
-        switch (v.getId()) {
-            case R.id.btn_actualizar_datos:
+    builder.setPositiveButton("SI", new DialogInterface.OnClickListener() {
+        public void onClick(DialogInterface dialog, int id) {
+            //do things
+            progress.setMessage(S.establecerConeccion);
+            progress.show();
+            final String url=db.getWs(WS.CATALOGO);
+            try {
+                URL urlCat=new URL(url);
+                System.out.println("Iniciando");
 
-                    progress.setMessage(S.establecerConeccion);
-                progress.show();
-                final String url=db.getWs(WS.CATALOGO);
-                try {
-                    URL urlCat=new URL(url);
-                    System.out.println("Iniciando");
+                progress.setCancelable(false);
+                new GetCommentsTask(progress,MasterPageActivity.this,urlCat).execute();
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            }
+        }
+    });
 
-                    progress.setCancelable(false);
-                   new GetCommentsTask(progress,this,urlCat).execute();
-                } catch (MalformedURLException e) {
-                    e.printStackTrace();
-                }
-                break;
-            case R.id.btn_subir_formualario:
+    builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+        public void onClick(DialogInterface dialog, int id) {
+            //do things
+        }
+    });
+
+    AlertDialog alert = builder.create();
+    alert.show();
+}
+    private void subirFormularios(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(MasterPageActivity.this);
+        builder.setMessage("Los formularios existen serán exportados al servidor y eliminados del dispositivo ¿Desea Continuar?");
+
+        builder.setPositiveButton("SI", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                //do things
                 progress.setMessage(S.establecerConeccion);
                 progress.show();
                 final String urlUp=db.getWs(WS.CARGA_FORMULARIOS);
-                   progress.setCancelable(false);
-                    new GetFormulariosTask(progress,this,urlUp).execute();
+                progress.setCancelable(false);
+                new GetFormulariosTask(progress,MasterPageActivity.this,urlUp).execute();
+            }
+        });
 
+        builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                //do things
+            }
+        });
 
+        AlertDialog alert = builder.create();
+        alert.show();
+    }
+    public void onClickButton(View v) {
+        switch (v.getId()) {
+            case R.id.btn_actualizar_datos:
+                actualizaCatalgos();
                 break;
+            case R.id.btn_subir_formualario:
+                subirFormularios();
+               break;
             case R.id.btn_config_formulario:
                 startActivityLocal(ConfigurationDataBase.class);
                 break;
@@ -151,7 +187,7 @@ public class MasterPageActivity extends AppCompatActivity{
             Cursor cursor=db.getAllGeneric(TABLES.FORMULARIO.getTablaName());
             final Gson gson = new Gson();
             final JsonObject jo = new JsonObject();
-
+int cont=0;
             RestClient client = new RestClient(url);
             if(cursor.moveToNext()){
                 do{
@@ -177,10 +213,11 @@ public class MasterPageActivity extends AppCompatActivity{
                         comments.add(S.errorServer+ ":"+e.getMessage());
                         e.printStackTrace();
                     }
+                    cont++;
                 }while (cursor.moveToNext());
 
             }
-            comments.add(S.successServer);
+            comments.add(S.successServer+" \n" + cont+" Formularios exportados.");
 
             return comments;
 

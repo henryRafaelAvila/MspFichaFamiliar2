@@ -97,13 +97,6 @@
         android:layout_height="49dp"
         layout="@layout/fecha_nac" />
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="number"
-        android:ems="10"
-        android:id="@+id/editTextEdad"
-        android:enabled="true" />
 
     <TextView
         android:layout_width="match_parent"
@@ -167,7 +160,7 @@
         android:ems="10"
         android:id="@+id/editTextCausa"
         android:layout_weight="0.05"
-        android:hint="@string/apellidos"/>
+        android:hint="Detalle la causa de muerte"/>
 
     <TextView
         android:id="@+id/id_mortalidad"

@@ -1,9 +1,11 @@
 package z9.msp.gob.mspfichafamiliar.fragment;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,7 +13,9 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import z9.msp.gob.mspfichafamiliar.MasterPageActivity;
 import z9.msp.gob.mspfichafamiliar.R;
+import z9.msp.gob.mspfichafamiliar.S;
 import z9.msp.gob.mspfichafamiliar.activity.FormularioDetalleActivity;
 import z9.msp.gob.mspfichafamiliar.activity.NuevoFormularioActivity;
 import z9.msp.gob.mspfichafamiliar.adapter.ListFormAdapter;
@@ -75,7 +79,45 @@ public class ListFormFragment extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
+    private void startActivityLocal(Class activity){
+        Intent myIntent = new Intent(this.getContext(),activity);
 
+        this.getContext().startActivity(myIntent);
+    }
+    private void eliminarFormularios(final Formulario currentFormulario){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this.getContext());
+        builder.setMessage("¿Desea eliminar el formulario?");
+        builder.setPositiveButton("SI", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+
+                int i=db.deleteFormularioById(currentFormulario.getIdFormulario()+"");
+                if(i>0){
+
+                    AlertDialog.Builder goLogin = new AlertDialog.Builder(getContext());
+                    goLogin.setMessage("Eliminacion correcta");
+                    goLogin.setCancelable(false);
+                    goLogin.setPositiveButton(S.aceptar, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            startActivityLocal(MasterPageActivity.class);
+                            dialog.cancel();
+                        }
+                    });
+                    AlertDialog alertLogin = goLogin.create();
+                    alertLogin.show();
+                }
+
+            }
+        });
+
+        builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                //do things
+            }
+        });
+
+        AlertDialog alert = builder.create();
+        alert.show();
+    }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -102,7 +144,14 @@ public class ListFormFragment extends Fragment {
                 startActivity(i);
             }
         });
-
+mListForm.setOnItemLongClickListener((new AdapterView.OnItemLongClickListener() {
+    @Override
+    public boolean onItemLongClick (AdapterView<?> adapterView, View view, int position, long l) {
+        Formulario currentFormulario = mListFormAdapter.getItem(position);
+        eliminarFormularios(currentFormulario);
+        return true;
+    }
+}));
         setHasOptionsMenu(true);
         return root;
     }

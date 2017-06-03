@@ -49,7 +49,7 @@ public class Mortalidad implements Serializable {
     public Mortalidad() {
     }
 
-    public Mortalidad(String nombres, String numCedula, String fechaMuerte, int image) {
+    public Mortalidad(String nombres, String numCedula, String fechaMuerte, int id) {
         DateFormat format = new SimpleDateFormat("dd/mm/yyy");
         Date date = null;
         try {
@@ -60,7 +60,7 @@ public class Mortalidad implements Serializable {
         this.nombres = nombres;
         this.cedula = numCedula;
         this.fechaMuerte = date;
-        this.image = image;
+        this.idMortalida = id;
     }
 
     public String getNumCedula() {

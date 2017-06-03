@@ -30,7 +30,9 @@
                 android:gravity="center" />
 
             <TextView
-                android:text="Aquí puede descargar formularios desde el servidor para realizar una nueva visita. Usted puede filtrar por fechas o por número de formulario, los filtros no se combinan"
+                android:text="Aquí puede descargar formularios desde el servidor para realizar una nueva visita.
+                \n Descargar rangos: 1-10
+                \n Descargar por número: 1,2,3,7,8"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/textView5" />
@@ -53,39 +55,6 @@
                 android:ems="10"
                 android:id="@+id/et_num_formularios"
                 android:hint="1,2,3,4,5" />
-
-            <TextView
-                android:text="Fecha desde"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/textVie5"
-                android:paddingTop="10dp"
-                android:textStyle="bold"
-                android:textColor="@android:color/background_dark" />
-
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:id="@+id/et_puerto"
-                android:hint="12/02/2016" />
-
-            <TextView
-                android:text="Fecha Hasta"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/ttextVie5"
-                android:paddingTop="10dp"
-                android:textStyle="bold"
-                android:textColor="@android:color/background_dark"/>
-
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:id="@+id/et_usuario"
-                android:hint="usuario"
-                android:text="12/02/2016" />
 
             <LinearLayout
                 android:orientation="horizontal"

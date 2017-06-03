@@ -52,7 +52,6 @@ public class MortalidadDetailFragment extends Fragment {
     EditText  editTextCedula;
     EditText editTextApellidos;
     EditText editTextnombres;
-    EditText editTextEdad;
     EditText  editTextCausa;
     private TextView tv_fechaNac;
     RadioGroup radioGroupsexo;
@@ -103,7 +102,6 @@ private void initEditText(View rootView){
     editTextCedula=(EditText) rootView.findViewById(R.id.editTextCedula);
     editTextApellidos=(EditText) rootView.findViewById(R.id.editTextApellidos);
     editTextnombres=(EditText) rootView.findViewById(R.id.editTextnombres);
-    editTextEdad=(EditText) rootView.findViewById(R.id.editTextEdad);
     editTextCausa=(EditText) rootView.findViewById(R.id.editTextCausa);
     tvMortalidadId=(TextView) rootView.findViewById(R.id.id_mortalidad);
 
@@ -123,6 +121,7 @@ private void initEditText(View rootView){
         //mostrarFechas(rootView);
         inicializarSpinner(rootView);
         initEditText(rootView);
+        tv_fechaNac=(TextView) rootView.findViewById(R.id.tv_fechaNac);
         selectFechaNacimiento=(Button) rootView.findViewById(R.id.selectFechaNacimiento);
         selectFechaNacimiento.setOnClickListener(new View.OnClickListener() {
 
@@ -151,8 +150,6 @@ private void initEditText(View rootView){
                                 // set day of month , month and year value in the edit text
                                 tv_fechaNac.setText(dayOfMonth + "/"
                                         + (monthOfYear + 1) + "/" + year);
-                                String text=(c.get(Calendar.YEAR)-year)+ " años "+Math.abs(c.get(Calendar.MONTH)-(monthOfYear-1))+" meses";
-                                editTextEdad.setText(text);
 
                             }
                         }, mYear, mMonth, mDay);

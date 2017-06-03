@@ -1,12 +1,14 @@
 package z9.msp.gob.mspfichafamiliar.activity;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -20,6 +22,7 @@ import android.widget.TextView;
 
 import z9.msp.gob.mspfichafamiliar.R;
 
+import z9.msp.gob.mspfichafamiliar.S;
 import z9.msp.gob.mspfichafamiliar.Session;
 import z9.msp.gob.mspfichafamiliar.activity.dummy.DummyContent;
 import z9.msp.gob.persistencia.DatabaseHandler;
@@ -74,7 +77,8 @@ public class PersonaListActivity extends AppCompatActivity {
        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         toolbar.setTitle(getTitle());
-
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -135,7 +139,7 @@ public class PersonaListActivity extends AppCompatActivity {
         }
 
         @Override
-        public void onBindViewHolder(final ViewHolder holder, int position) {
+        public void onBindViewHolder(final ViewHolder holder, final int position) {
             holder.mItem = mValues.get(position);
             holder.cedula.setText(mValues.get(position).getNumCedula());
             holder.nombres.setText(mValues.get(position).getNombres());
@@ -162,8 +166,53 @@ public class PersonaListActivity extends AppCompatActivity {
                     }
                 }
             });
-        }
+            holder.mView.setOnLongClickListener(new View.OnLongClickListener(){
 
+                @Override
+                public boolean onLongClick(View v) {
+                    String id=holder.mItem.getIdPersona()+"";
+                    eliminarItem(id,v.getContext(),position);
+
+
+                    return false;
+                }
+            });
+        }
+        private void eliminarItem(final String personaIds,final Context context,final int position){
+            AlertDialog.Builder builder = new AlertDialog.Builder(context);
+            builder.setMessage("¿Desea eliminar el elemento seleccionado?");
+            builder.setPositiveButton("SI", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+
+                    int i=db.deleteByKey(TABLES.PERSONAS,CLS_DISCR.ID,personaIds);
+                    if(i>0){
+
+                        AlertDialog.Builder goLogin = new AlertDialog.Builder(context);
+                        goLogin.setMessage("Eliminacion correcta");
+                        goLogin.setCancelable(false);
+                        goLogin.setPositiveButton(S.aceptar, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                mValues.remove(position);
+                                notifyItemRemoved(position);
+                                dialog.cancel();
+                            }
+                        });
+                        AlertDialog alertLogin = goLogin.create();
+                        alertLogin.show();
+                    }
+
+                }
+            });
+
+            builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    //do things
+                }
+            });
+
+            AlertDialog alert = builder.create();
+            alert.show();
+        }
         @Override
         public int getItemCount() {
             return mValues.size();

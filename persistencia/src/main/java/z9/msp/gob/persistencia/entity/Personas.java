@@ -19,8 +19,6 @@ public class Personas {
 
     private String apellidos;
 
-    private String cedula;
-
     @SerializedName("det_seg_privado")
     private String detSegPrivado;
 

@@ -28,6 +28,7 @@ import z9.msp.gob.persistencia.DatabaseHandler;
 import z9.msp.gob.persistencia.enums.CLS_DISCR;
 import z9.msp.gob.persistencia.enums.TABLES;
 import z9.msp.gob.persistencia.enums.WS;
+import z9.msp.gob.persistencia.utils.Utilitarios;
 
 /**
  * An activity representing a single Persona detail screen. This
@@ -99,7 +100,10 @@ public class PersonaDetailActivity extends AppCompatActivity {
                 break;
             }
         }
+        msj= Utilitarios.validarCedula(contentValues.get(S.keyCedula).toString());
         if(msj==null) {
+            String existeDato=db.existeObjectByCedulaAndFormID(contentValues.get(S.keyCedula).toString(),formularioId,TABLES.PERSONAS);
+           /* if(existeDato==false){*/
             String personaId = getTexViewValue(R.id.id_persona);
             boolean resultInsert = false;
             if (personaId != null && personaId.equals("-1")) {
@@ -119,6 +123,9 @@ public class PersonaDetailActivity extends AppCompatActivity {
                 intent.putExtra(PersonaListActivity.FORM_ID, formularioId);
                 context.startActivity(intent);
             }
+           /* }else{
+                msj="El "+S.numCed+" ya existe";
+            }*/
         }
         return msj;
     }
