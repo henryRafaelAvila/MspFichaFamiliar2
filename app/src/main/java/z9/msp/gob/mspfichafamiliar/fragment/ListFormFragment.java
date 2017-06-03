@@ -16,10 +16,8 @@ import android.widget.Toast;
 import z9.msp.gob.mspfichafamiliar.MasterPageActivity;
 import z9.msp.gob.mspfichafamiliar.R;
 import z9.msp.gob.mspfichafamiliar.S;
-import z9.msp.gob.mspfichafamiliar.activity.FormularioDetalleActivity;
 import z9.msp.gob.mspfichafamiliar.activity.NuevoFormularioActivity;
 import z9.msp.gob.mspfichafamiliar.adapter.ListFormAdapter;
-import z9.msp.gob.mspfichafamiliar.bdd.FormularioRepositorio;
 import z9.msp.gob.persistencia.DatabaseHandler;
 import z9.msp.gob.persistencia.entity.Formulario;
 

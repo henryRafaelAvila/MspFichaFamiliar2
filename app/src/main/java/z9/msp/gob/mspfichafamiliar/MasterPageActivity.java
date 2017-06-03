@@ -204,7 +204,7 @@ int cont=0;
                         client.Execute(RestClient.RequestMethod.GET);
 
                         response = client.getResponse();
-                        if(response.equals("OK")){
+                        if(response.toUpperCase().contains("OK")){
                             db.deleteFormularioById(fomularoId);
                         }else{
                             comments.add(response);
@@ -217,7 +217,7 @@ int cont=0;
                 }while (cursor.moveToNext());
 
             }
-            comments.add(S.successServer+" \n" + cont+" Formularios exportados.");
+            comments.add(S.successServer+" \n" + cont+" Formulario exportados.");
 
             return comments;
 

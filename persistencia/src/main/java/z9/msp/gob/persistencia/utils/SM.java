@@ -7,6 +7,7 @@ package z9.msp.gob.persistencia.utils;
 public final class SM {
     public static final String errorCedula = "N\u00famero de c\u00e9dua incorrecto";
     public static final String errorApp = "Error : ";
+    public static final String codigo ="C\u00f3digo: ";
 
 
 }

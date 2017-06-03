@@ -3,6 +3,7 @@ package z9.msp.gob.mspfichafamiliar.activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
@@ -23,12 +24,16 @@ import java.net.HttpURLConnection;
 import java.util.ArrayList;
 import java.util.List;
 
+import z9.msp.gob.mspfichafamiliar.MainActivity;
+import z9.msp.gob.mspfichafamiliar.MasterPageActivity;
 import z9.msp.gob.mspfichafamiliar.R;
 import z9.msp.gob.mspfichafamiliar.S;
 import z9.msp.gob.mspfichafamiliar.utilsApp.RestClient;
 import z9.msp.gob.persistencia.DatabaseHandler;
 import z9.msp.gob.persistencia.entity.Formulario;
 import z9.msp.gob.persistencia.enums.WS;
+
+import static android.R.attr.value;
 
 public class DescargarFormularios extends AppCompatActivity {
     ProgressDialog progress;
@@ -66,7 +71,7 @@ public class DescargarFormularios extends AppCompatActivity {
 
                 }else{
                     String list[] = idsFormulario.split(",");
-                    for (int i = 0; i <= list.length; i++) {
+                    for (int i = 0; i <list.length; i++) {
                         Integer.parseInt(list[i]);
                     }
                 }
@@ -156,6 +161,7 @@ lista de comentarios alojada en el servidor.
             goLogin.setCancelable(false);
             goLogin.setPositiveButton(S.aceptar, new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int id) {
+                    startActivityLocal(MainActivity.class);
                     dialog.cancel();
                 }
             });
@@ -164,5 +170,11 @@ lista de comentarios alojada en el servidor.
 
 
         }
+        private void startActivityLocal(Class activity){
+            Intent myIntent = new Intent(DescargarFormularios.this,activity);
+            myIntent.putExtra("key", value); //Optional parameters
+            DescargarFormularios.this.startActivity(myIntent);
+        }
     }
+
 }

@@ -186,7 +186,7 @@ public class RestClient {
         String line = null;
         try {
             while ((line = reader.readLine()) != null) {
-                sb.append(line + "\n");
+                sb.append(line);
             }
         } catch (IOException e) {
             e.printStackTrace();

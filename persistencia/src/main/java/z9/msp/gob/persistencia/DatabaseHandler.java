@@ -64,6 +64,7 @@ import z9.msp.gob.persistencia.entity.ViasAcceso;
 import z9.msp.gob.persistencia.enums.CLS_DISCR;
 import z9.msp.gob.persistencia.enums.TABLES;
 import z9.msp.gob.persistencia.enums.WS;
+import z9.msp.gob.persistencia.utils.SM;
 import z9.msp.gob.persistencia.utils.Utilitarios;
 
 /**
@@ -227,10 +228,16 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         String nombre, descripcion, zona;
         int cont = 1;
         int id = 1;
+        int codigo=-1;
         if (cursor.moveToNext()) {
             do {
                 nombre = "Formulario " + cont;
-                descripcion = "cod Provin";
+                codigo=cursor.getInt(cursor.getColumnIndex("codigo"));
+                if(codigo>0){
+                descripcion = SM.codigo+codigo;
+                }else{
+                    descripcion = SM.codigo+id;
+                }
                 zona = "Zona 9";
                 id = cursor.getInt(cursor.getColumnIndex("_id"));
                 formularioList.add(new Formulario(nombre, descripcion, zona, id));
@@ -762,26 +769,79 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public Formulario getFormuarioByID(String formularioId) {
         Cursor cursor = getAllById(TABLES.FORMULARIO, formularioId);
         Formulario formulario = null;
+        int id_fk=0;
         if (cursor.moveToNext()) {
             formulario = new Formulario();
             formulario.setCodigo(cursor.getInt(cursor.getColumnIndex("codigo")));
-            formulario.setIdMatPis(cursor.getInt(cursor.getColumnIndex("id_mat_pis")));
-            formulario.setIdMatPar(cursor.getInt(cursor.getColumnIndex("id_mat_par")));
-            formulario.setIdProAgudd(cursor.getInt(cursor.getColumnIndex("id_pro_agudd")));
-            formulario.setIdEstTech(cursor.getInt(cursor.getColumnIndex("id_est_tech")));
-            formulario.setIdRecAgu(cursor.getInt(cursor.getColumnIndex("id_rec_agu")));
-            formulario.setIdCondOcup(cursor.getInt(cursor.getColumnIndex("id_cond_ocup")));
-            formulario.setIdTraAgu(cursor.getInt(cursor.getColumnIndex("id_tra_agu")));
-            formulario.setIdViaAcc(cursor.getInt(cursor.getColumnIndex("id_via_acc")));
-            formulario.setIdCombCoc(cursor.getInt(cursor.getColumnIndex("id_comb_coc")));
-            formulario.setIdTipTrans(cursor.getInt(cursor.getColumnIndex("id_tip_trans")));
-            formulario.setIdEstPis(cursor.getInt(cursor.getColumnIndex("id_est_pis")));
-            formulario.setIdEliBas(cursor.getInt(cursor.getColumnIndex("id_eli_bas")));
-            formulario.setIdEliAgu(cursor.getInt(cursor.getColumnIndex("id_eli_agu")));
-            formulario.setIdTipViv(cursor.getInt(cursor.getColumnIndex("id_tip_viv")));
-            formulario.setIdUbiLet(cursor.getInt(cursor.getColumnIndex("id_ubi_let")));
-            formulario.setIdUnidOper(cursor.getInt(cursor.getColumnIndex("id_unid_oper")));
-            formulario.setIdMatTec(cursor.getInt(cursor.getColumnIndex("id_mat_tec")));
+            id_fk=cursor.getInt(cursor.getColumnIndex("id_mat_pis"));
+
+            if(id_fk>0)
+            formulario.setIdMatPis(id_fk);
+
+            id_fk=cursor.getInt(cursor.getColumnIndex("id_mat_par"));
+            if(id_fk>0)
+            formulario.setIdMatPar(id_fk);
+
+            id_fk=cursor.getInt(cursor.getColumnIndex("id_pro_agudd"));
+            if(id_fk>0)
+            formulario.setIdProAgudd(id_fk);
+
+            id_fk=cursor.getInt(cursor.getColumnIndex("id_est_tech"));
+            if(id_fk>0)
+            formulario.setIdEstTech(id_fk);
+
+            id_fk=cursor.getInt(cursor.getColumnIndex("id_rec_agu"));
+            if(id_fk>0)
+            formulario.setIdRecAgu(id_fk);
+
+            id_fk=cursor.getInt(cursor.getColumnIndex("id_cond_ocup"));
+            if(id_fk>0)
+            formulario.setIdCondOcup(id_fk);
+
+            id_fk=cursor.getInt(cursor.getColumnIndex("id_tra_agu"));
+            if(id_fk>0)
+            formulario.setIdTraAgu(id_fk);
+
+            id_fk=cursor.getInt(cursor.getColumnIndex("id_via_acc"));
+            if(id_fk>0)
+            formulario.setIdViaAcc(id_fk);
+
+            id_fk=cursor.getInt(cursor.getColumnIndex("id_comb_coc"));
+            if(id_fk>0)
+            formulario.setIdCombCoc(id_fk);
+
+            id_fk=cursor.getInt(cursor.getColumnIndex("id_tip_trans"));
+            if(id_fk>0)
+            formulario.setIdTipTrans(id_fk);
+
+            id_fk=cursor.getInt(cursor.getColumnIndex("id_est_pis"));
+            if(id_fk>0)
+            formulario.setIdEstPis(id_fk);
+
+            id_fk=cursor.getInt(cursor.getColumnIndex("id_eli_bas"));
+            if(id_fk>0)
+            formulario.setIdEliBas(id_fk);
+
+            id_fk=cursor.getInt(cursor.getColumnIndex("id_eli_agu"));
+            if(id_fk>0)
+            formulario.setIdEliAgu(id_fk);
+
+            id_fk=cursor.getInt(cursor.getColumnIndex("id_tip_viv"));
+            if(id_fk>0)
+            formulario.setIdTipViv(id_fk);
+
+            id_fk=cursor.getInt(cursor.getColumnIndex("id_ubi_let"));
+            if(id_fk>0)
+            formulario.setIdUbiLet(id_fk);
+
+            id_fk=cursor.getInt(cursor.getColumnIndex("id_unid_oper"));
+            if(id_fk>0)
+            formulario.setIdUnidOper(id_fk);
+
+            id_fk=cursor.getInt(cursor.getColumnIndex("id_mat_tec"));
+            if(id_fk>0)
+            formulario.setIdMatTec(id_fk);
+
             formulario.setFechaVisita(cursor.getString(cursor.getColumnIndex("fecha_visita")));
             formulario.setTiemVivMeses(cursor.getInt(cursor.getColumnIndex("tiem_viv_meses")));
             formulario.setTiempVivAnios(cursor.getInt(cursor.getColumnIndex("tiemp_viv_anios")));
@@ -789,29 +849,83 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             formulario.setEntrTelf(cursor.getString(cursor.getColumnIndex("entr_telf")));
             formulario.setPersRefCell(cursor.getString(cursor.getColumnIndex("pers_ref_cell")));
             formulario.setPersRefTelf(cursor.getString(cursor.getColumnIndex("pers_ref_telf")));
-            formulario.setViolFami(cursor.getInt(cursor.getColumnIndex("viol_fami")));
-            formulario.setDestFami(cursor.getInt(cursor.getColumnIndex("dest_fami")));
-            formulario.setProbGraFam(cursor.getInt(cursor.getColumnIndex("prob_gra_fam")));
-            formulario.setPsicoSoc(cursor.getInt(cursor.getColumnIndex("psico_soc")));
-            formulario.setAisla(cursor.getInt(cursor.getColumnIndex("aisla")));
-            formulario.setSinEscol(cursor.getInt(cursor.getColumnIndex("sin_escol")));
-            formulario.setNinNoescola(cursor.getInt(cursor.getColumnIndex("nin_noescola")));
-            formulario.setAlcoh(cursor.getInt(cursor.getColumnIndex("alcoh")));
-            formulario.setDroga(cursor.getInt(cursor.getColumnIndex("droga")));
+
+            id_fk=cursor.getInt(cursor.getColumnIndex("viol_fami"));
+            if(id_fk>0)
+            formulario.setViolFami(id_fk);
+
+            id_fk=cursor.getInt(cursor.getColumnIndex("dest_fami"));
+            if(id_fk>0)
+            formulario.setDestFami(id_fk);
+
+            id_fk=cursor.getInt(cursor.getColumnIndex("prob_gra_fam"));
+            if(id_fk>0)
+            formulario.setProbGraFam(id_fk);
+
+            id_fk=cursor.getInt(cursor.getColumnIndex("psico_soc"));
+            if(id_fk>0)
+            formulario.setPsicoSoc(id_fk);
+
+            id_fk=cursor.getInt(cursor.getColumnIndex("aisla"));
+            if(id_fk>0)
+            formulario.setAisla(id_fk);
+
+            id_fk=cursor.getInt(cursor.getColumnIndex("sin_escol"));
+            if(id_fk>0)
+            formulario.setSinEscol(id_fk);
+
+            id_fk=cursor.getInt(cursor.getColumnIndex("nin_noescola"));
+            if(id_fk>0)
+            formulario.setNinNoescola(id_fk);
+
+            id_fk=cursor.getInt(cursor.getColumnIndex("alcoh"));
+            if(id_fk>0)
+            formulario.setAlcoh(id_fk);
+
+            id_fk=cursor.getInt(cursor.getColumnIndex("droga"));
+            if(id_fk>0)
+            formulario.setDroga(id_fk);
             formulario.setContaminaAguDesc(cursor.getString(cursor.getColumnIndex("contamina_agu_desc")));
             formulario.setContaminaAirDesc(cursor.getString(cursor.getColumnIndex("contamina_air_desc")));
             formulario.setContaminaSuelDesc(cursor.getString(cursor.getColumnIndex("contamina_suel_desc")));
-            formulario.setIntradomi(cursor.getInt(cursor.getColumnIndex("intradomi")));
-            formulario.setVecTrans(cursor.getInt(cursor.getColumnIndex("vec_trans")));
 
-            formulario.setAnimViv(cursor.getInt(cursor.getColumnIndex("anim_viv")));
-            formulario.setCocInhog(cursor.getInt(cursor.getColumnIndex("coc_inhog")));
-            formulario.setSedazo(cursor.getInt(cursor.getColumnIndex("sedazo")));
-            formulario.setMosquit(cursor.getInt(cursor.getColumnIndex("mosquit")));
-            formulario.setPlaguicida(cursor.getInt(cursor.getColumnIndex("plaguicida")));
-            formulario.setAepi(cursor.getInt(cursor.getColumnIndex("aepi")));
-            formulario.setAbandono(cursor.getInt(cursor.getColumnIndex("abandono")));
-            formulario.setIdTipTrans(cursor.getInt(cursor.getColumnIndex("ir_uni_sal")));
+            id_fk=cursor.getInt(cursor.getColumnIndex("intradomi"));
+            if(id_fk>0)
+            formulario.setIntradomi(id_fk);
+
+            id_fk=cursor.getInt(cursor.getColumnIndex("vec_trans"));
+            if(id_fk>0)
+            formulario.setVecTrans(id_fk);
+
+            id_fk=cursor.getInt(cursor.getColumnIndex("anim_viv"));
+            if(id_fk>0)
+            formulario.setAnimViv(id_fk);
+
+            id_fk=cursor.getInt(cursor.getColumnIndex("coc_inhog"));
+            if(id_fk>0)
+            formulario.setCocInhog(id_fk);
+
+            id_fk=cursor.getInt(cursor.getColumnIndex("sedazo"));
+            if(id_fk>0)
+            formulario.setSedazo(id_fk);
+
+            id_fk=cursor.getInt(cursor.getColumnIndex("mosquit"));
+            if(id_fk>0)
+            formulario.setMosquit(id_fk);
+
+            id_fk=cursor.getInt(cursor.getColumnIndex("plaguicida"));
+            if(id_fk>0)
+            formulario.setPlaguicida(id_fk);
+
+            id_fk=cursor.getInt(cursor.getColumnIndex("aepi"));
+            if(id_fk>0)
+            formulario.setAepi(id_fk);
+
+            id_fk=cursor.getInt(cursor.getColumnIndex("abandono"));
+            if(id_fk>0)
+            formulario.setAbandono(id_fk);
+
+            formulario.setIrUniSal(cursor.getInt(cursor.getColumnIndex("ir_uni_sal")));
             formulario.setCalle1(cursor.getString(cursor.getColumnIndex("calle1")));
             formulario.setCalle2(cursor.getString(cursor.getColumnIndex("calle2")));
             formulario.setTelefono(cursor.getString(cursor.getColumnIndex("telefono")));

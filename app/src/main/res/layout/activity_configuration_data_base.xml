@@ -113,7 +113,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:id="@+id/et_catalogos"
-            android:text="/msp.ficha/api/integracion/catalogos" />
+            android:hint="/msp.ficha/api/integracion/catalogos" />
 
         <TextView
             android:text="WS carga de formulario"
@@ -129,7 +129,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:id="@+id/et_uploadForm"
-            android:text="/msp.ficha/api/integracion/catalogos" />
+            android:hint="/msp.ficha/api/integracion/upload" />
 
         <TextView
             android:text="WS descargar de formulario"
@@ -145,8 +145,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:id="@+id/et_downloadForm"
-            android:hint="/msp/integration/downloadForm"
-            android:text="/msp.ficha/api/integracion/catalogos" />
+            android:hint="/msp.ficha/api/integracion/dowload" />
 
         <LinearLayout
             android:orientation="horizontal"
