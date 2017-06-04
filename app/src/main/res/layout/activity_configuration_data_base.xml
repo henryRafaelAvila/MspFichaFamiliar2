@@ -115,7 +115,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:id="@+id/et_app_name"
-            android:hint="/msp.ficha/api/integracion/catalogos"
+            android:hint="msp.ficha"
             android:text="msp.ficha" />
 
         <LinearLayout
@@ -133,7 +133,6 @@
         </LinearLayout>
         </LinearLayout>
     </ScrollView>
-
 
 
 </LinearLayout>

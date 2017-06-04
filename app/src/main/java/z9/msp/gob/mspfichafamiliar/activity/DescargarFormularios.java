@@ -161,7 +161,6 @@ lista de comentarios alojada en el servidor.
             goLogin.setCancelable(false);
             goLogin.setPositiveButton(S.aceptar, new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int id) {
-                    startActivityLocal(MainActivity.class);
                     dialog.cancel();
                 }
             });
@@ -169,11 +168,6 @@ lista de comentarios alojada en el servidor.
             alertLogin.show();
 
 
-        }
-        private void startActivityLocal(Class activity){
-            Intent myIntent = new Intent(DescargarFormularios.this,activity);
-            myIntent.putExtra("key", value); //Optional parameters
-            DescargarFormularios.this.startActivity(myIntent);
         }
     }
 

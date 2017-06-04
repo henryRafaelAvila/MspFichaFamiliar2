@@ -102,7 +102,7 @@ public class MortalidadDetailActivity extends AppCompatActivity {
         ContentValues contentValues = valueViewPersonDetails();
         String msj = null;
 //todo cambiar tipo de tabla a mortalidad
-        String requiered[] = new String[]{"cedula", "apellidos", "nombres", "fecha_muerte", "causa"};
+        String requiered[] = new String[]{"cedula", "apellidos", "nombres", "fecha_muerte", "causa","edad"};
         for (String keyRequered : requiered) {
             Object valu = contentValues.get(keyRequered);
             if (valu == null || valu.equals("")) {
@@ -161,6 +161,7 @@ public class MortalidadDetailActivity extends AppCompatActivity {
         values.put("cedula", getTextEditText(R.id.editTextCedula));
         values.put("apellidos", getTextEditText(R.id.editTextApellidos));
         values.put("nombres", getTextEditText(R.id.editTextnombres));
+        values.put("edad", getTextEditText(R.id.editTextEdad));
         values.put("id_par_jh", getValueSpinnerSelected(R.id.spinnerParentescoJefeHogar));
         values.put("id_cau_mor", getValueSpinnerSelected(R.id.spinnerCausaMortalidad));
         String fechaMortalidad = ((TextView) findViewById(R.id.tv_fechaNac)).getText().toString();

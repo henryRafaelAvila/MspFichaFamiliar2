@@ -53,6 +53,7 @@ public class MortalidadDetailFragment extends Fragment {
     EditText editTextApellidos;
     EditText editTextnombres;
     EditText  editTextCausa;
+    EditText  editTextEdad;
     private TextView tv_fechaNac;
     RadioGroup radioGroupsexo;
     private TextView tvMortalidadId;
@@ -103,6 +104,7 @@ private void initEditText(View rootView){
     editTextApellidos=(EditText) rootView.findViewById(R.id.editTextApellidos);
     editTextnombres=(EditText) rootView.findViewById(R.id.editTextnombres);
     editTextCausa=(EditText) rootView.findViewById(R.id.editTextCausa);
+    editTextEdad=(EditText) rootView.findViewById(R.id.editTextEdad);
     tvMortalidadId=(TextView) rootView.findViewById(R.id.id_mortalidad);
 
 }
@@ -111,6 +113,7 @@ private void initEditText(View rootView){
         editTextApellidos.setText(mItem.getApellidos());
         editTextnombres.setText(mItem.getNombres());
         editTextCausa.setText(mItem.getCausa());
+        editTextEdad.setText(mItem.getEdad()+"");
         tv_fechaNac.setText(Utilitarios.dateToString(mItem.getFechaMuerte()));
         tvMortalidadId.setText(mItem.getIdMortalida()+"");
     }
