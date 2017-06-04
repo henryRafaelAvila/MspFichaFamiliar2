@@ -74,8 +74,7 @@ public class ConfigurationDataBase extends AppCompatActivity {
                 break;
         }
             showMessage("Datos guardados correctamente. !");
-            Intent myIntent = new Intent(ConfigurationDataBase.this, MasterPageActivity.class);
-            ConfigurationDataBase.this.startActivity(myIntent);
+
         }
     }
     private void initComponets(){
