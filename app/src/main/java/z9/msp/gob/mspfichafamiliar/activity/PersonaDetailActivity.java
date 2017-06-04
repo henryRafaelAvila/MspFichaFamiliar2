@@ -21,6 +21,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.Calendar;
+import java.util.Date;
 
 import z9.msp.gob.mspfichafamiliar.R;
 import z9.msp.gob.mspfichafamiliar.S;
@@ -149,7 +150,8 @@ public class PersonaDetailActivity extends AppCompatActivity {
 
         // todo sexo radiobutton groud
         String fechaNac=((TextView)findViewById(R.id.tv_fechaNac)).getText().toString();
-        values.put("fecha_nac",fechaNac);
+        Date fecha=Utilitarios.stringToDate(fechaNac);
+        values.put("fecha_nac",fecha.toString());
         boolean sexoHombre=((RadioButton)findViewById(R.id.radioSexoHombre)).isChecked();
         if(sexoHombre){
             values.put("sexo",1);
@@ -177,9 +179,8 @@ public class PersonaDetailActivity extends AppCompatActivity {
         values.put("id_nac",getValueSpinnerSelected(R.id.spinnerNacionalidad));
         values.put("id_seg_pub",getValueSpinnerSelected(R.id.spinnerSeguroPublico));
         values.put("id_claf_diag",getValueSpinnerSelected(R.id.spinnerClasificacionDiagnost));
-        final Calendar c = Calendar.getInstance();
-        String fechaVisiata=c.get(Calendar.DAY_OF_MONTH)+"/"+c.get(Calendar.MONTH)+"/"+c.get(Calendar.YEAR);
-        values.put("fecha_diag",fechaVisiata);//si
+        Date fechaVisiatas=new Date();
+        values.put("fecha_diag",Utilitarios.dateToString(fechaVisiatas));//si
 
         tieneSeguroPrivado=((Switch)findViewById(R.id.switchSeguroPrivado)).isChecked();
         if(tieneSeguroPrivado){

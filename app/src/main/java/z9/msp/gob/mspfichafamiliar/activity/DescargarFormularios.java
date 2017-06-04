@@ -18,6 +18,7 @@ import com.google.gson.Gson;
 
 import java.lang.reflect.Type;
 
+import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
 import java.net.HttpURLConnection;
@@ -133,7 +134,10 @@ lista de comentarios alojada en el servidor.
                 if (response != null && !response.equals("")) {
                     Type listType = new TypeToken<List<Formulario>>() {
                     }.getType();
-                    List<Formulario> lista = new Gson().fromJson(response, listType);
+                    List<Formulario> lista = new GsonBuilder()
+                            .setDateFormat("dd/MM/yyyy")
+                            .create()
+                            .fromJson(response, listType);
                     for (Formulario formulario : lista) {
                         db.insertFormularioByWs(formulario);
                     }

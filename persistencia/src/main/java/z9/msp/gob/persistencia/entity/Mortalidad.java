@@ -123,8 +123,8 @@ public class Mortalidad implements Serializable {
         return fechaMuerte;
     }
 
-    public void setFechaMuerte(String fechaMuerte) {
-        this.fechaMuerte = new Utilitarios().stringToDate(fechaMuerte);
+    public void setFechaMuerte(Date fechaMuerte) {
+        this.fechaMuerte =fechaMuerte;
     }
 
     public Integer getIdParJh() {

@@ -21,6 +21,7 @@ import java.util.Set;
  */
 
 public final class Utilitarios {
+    public  static final String formateDate_ddMMyyyy="dd/MM/yyyy";
     public static boolean decodeBoolean(String op){
         boolean status=false;
         if(op!=null&&!op.equals("")){
@@ -41,21 +42,33 @@ public final class Utilitarios {
             return status;
         }
     }
+    public static Date stringToDateLongFormat(String fechaVisita) {
+
+        Date date = null;
+        if(fechaVisita!=null){
+            DateFormat format = new SimpleDateFormat("MMM d, yyyy hh:mm:ss a");
+            try {
+                date=format.parse(fechaVisita);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+        }
+        return date;
+    }
     public static Date stringToDate(String fechaVisita) {
 
         Date date = null;
         if(fechaVisita!=null){
-            int sizeDateToFormat=fechaVisita.length();
-            String fomatDate;
-            if(sizeDateToFormat<11){
-                DateFormat format = new SimpleDateFormat("dd/mm/yyyy");
+
+            if(fechaVisita.contains("/")){
+                DateFormat format = new SimpleDateFormat(formateDate_ddMMyyyy);
             try {
                     date=format.parse(fechaVisita);
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
             }else{
-               date =new Date(fechaVisita);
+               date =stringToDateLongFormat(fechaVisita);
             }
 
 
@@ -66,7 +79,7 @@ public final class Utilitarios {
     public static String dateToString(Date fechaVisita) {
         String reportDate = "";
         if(fechaVisita!=null) {
-            DateFormat format = new SimpleDateFormat("dd/mm/yyyy");
+            DateFormat format = new SimpleDateFormat(formateDate_ddMMyyyy);
 
             reportDate = format.format(fechaVisita);
         }

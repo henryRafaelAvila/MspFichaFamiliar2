@@ -20,6 +20,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
@@ -258,8 +259,10 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             personas.setApellidos(cursor.getString(cursor.getColumnIndex("apellidos")));
             personas.setNumCedula(cursor.getString(cursor.getColumnIndex("cedula")));
             personas.setDetSegPrivado(cursor.getString(cursor.getColumnIndex("det_seg_privado")));
-            personas.setFechaDiag(cursor.getString(cursor.getColumnIndex("fecha_diag")));
-            personas.setFechaNac(cursor.getString(cursor.getColumnIndex("fecha_nac")));
+            Date fechaDiadnostic=Utilitarios.stringToDate(cursor.getString(cursor.getColumnIndex("fecha_diag")));
+            personas.setFechaDiag(fechaDiadnostic);
+            Date fechaNac=Utilitarios.stringToDate(cursor.getString(cursor.getColumnIndex("fecha_nac")));
+            personas.setFechaNac(fechaNac);
             personas.setIdActTrab(cursor.getInt(cursor.getColumnIndex("id_act_trab")));
             personas.setIdClafDiag(cursor.getInt(cursor.getColumnIndex("id_claf_diag")));
             personas.setIdEstCiv(cursor.getInt(cursor.getColumnIndex("id_est_civ")));
@@ -843,8 +846,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             id_fk=cursor.getInt(cursor.getColumnIndex("id_mat_tec"));
             if(id_fk>0)
             formulario.setIdMatTec(id_fk);
-
-            formulario.setFechaVisita(cursor.getString(cursor.getColumnIndex("fecha_visita")));
+            Date fechaVisita=Utilitarios.stringToDate(cursor.getString(cursor.getColumnIndex("fecha_visita")));
+            formulario.setFechaVisita(fechaVisita);
             formulario.setTiemVivMeses(cursor.getInt(cursor.getColumnIndex("tiem_viv_meses")));
             formulario.setTiempVivAnios(cursor.getInt(cursor.getColumnIndex("tiemp_viv_anios")));
             formulario.setEntrCell(cursor.getString(cursor.getColumnIndex("entr_cell")));
@@ -997,7 +1000,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             mortalidad.setCausa(cursor.getString(cursor.getColumnIndex("causa")));
             mortalidad.setNumCedula(cursor.getString(cursor.getColumnIndex("cedula")));
             mortalidad.setEdad(cursor.getInt(cursor.getColumnIndex("edad")));
-            mortalidad.setFechaMuerte(cursor.getString(cursor.getColumnIndex("fecha_muerte")));
+            Date fechaMuerte=Utilitarios.stringToDate(cursor.getString(cursor.getColumnIndex("fecha_muerte")));
+            mortalidad.setFechaMuerte(fechaMuerte);
             mortalidad.setIdParJh(cursor.getInt(cursor.getColumnIndex("id_par_jh")));
             mortalidad.setSexo(cursor.getInt(cursor.getColumnIndex("sexo")));
             mortalidad.setIdFormulario(cursor.getInt(cursor.getColumnIndex("id_formulario")));
@@ -1114,7 +1118,7 @@ String idFormulario=insertFormularios(formulario);
         values.put("apellidos",persona.getApellidos());
         values.put("nombres",persona.getNombres());
         values.put("id_par_jh",persona.getIdParJh());
-        values.put("fecha_nac", Utilitarios.dateToString(persona.getFechaNac()));
+        values.put("fecha_nac",Utilitarios.dateToString(persona.getFechaNac()));
         values.put("sexo",persona.getSexo());
         values.put("id_est_civ",persona.getIdEstCiv());
         values.put("id_act_trab",persona.getIdActTrab());

@@ -98,8 +98,8 @@ public class Personas {
         return fechaNac;
     }
 
-    public void setFechaNac(String fechaNac) {
-        this.fechaNac = Utilitarios.stringToDate(fechaNac);
+    public void setFechaNac(Date fechaNac) {
+        this.fechaNac =fechaNac;
     }
 
     public int getImage() {
@@ -138,8 +138,8 @@ public class Personas {
         return fechaDiag;
     }
 
-    public void setFechaDiag(String fechaDiag) {
-        this.fechaDiag = Utilitarios.stringToDate(fechaDiag);
+    public void setFechaDiag(Date fechaDiag) {
+        this.fechaDiag = fechaDiag;
     }
 
     public Integer getIdActTrab() {

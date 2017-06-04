@@ -320,9 +320,8 @@ public class Formulario implements Serializable {
         return this.fechaVisita;
     }
 
-    public void setFechaVisita(String fechaVisita) {
-        Date date= Utilitarios.stringToDate(fechaVisita);
-        this.fechaVisita = date;
+    public void setFechaVisita(Date fechaVisita) {
+        this.fechaVisita = fechaVisita;
     }
 
     public Integer getIdCombCoc() {
