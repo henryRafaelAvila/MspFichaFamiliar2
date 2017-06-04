@@ -51,7 +51,7 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textPersonName"
+                android:inputType="phone"
                 android:ems="10"
                 android:id="@+id/et_num_formularios"
                 android:hint="1,2,3,4,5" />

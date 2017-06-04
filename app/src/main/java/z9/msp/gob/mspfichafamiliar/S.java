@@ -14,6 +14,7 @@ public static final String establecerConeccion="Por favor espere, esto puede tar
     public static final String fin="Proceso finalizado";
     public static final String aceptar="Aceptar";
     public static final String nuevaPersona="Nueva Persona";
+    public static final String nuevaPersonaFallecida="Nueva Persona Fallecida";
     /*parametros de servicio download*/
     public static final String dw_idsFormularios="id";
     public static final String numCed = "N\u00famero de c\u00e9dua";

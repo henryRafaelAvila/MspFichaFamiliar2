@@ -89,7 +89,8 @@ public class PersonaDetailFragment extends Fragment {
     private Button selectFechaNacimiento;
     DatePickerDialog datePickerDialog;
 
-
+    RadioButton radioButtonsexoHombre;
+    RadioButton radioButtonsexoMujer;
     public static final String ARG_ITEM_ID = "item_id";
 
     /**
@@ -134,6 +135,8 @@ private void initEditText(View rootView){
     editTextEdad=(EditText) rootView.findViewById(R.id.editTextEdad);
     editTextSeguroPrivado=(EditText) rootView.findViewById(R.id.editTextSeguroPrivado);
     tvPersonaId=(TextView) rootView.findViewById(R.id.id_persona);
+    radioButtonsexoHombre=(RadioButton)rootView.findViewById(R.id.radioSexoHombre);
+    radioButtonsexoMujer=(RadioButton)rootView.findViewById(R.id.radioSexoMujer);
 
 }
     private  void setValuesTextEdit(Personas mItem){
@@ -143,6 +146,14 @@ private void initEditText(View rootView){
         editTextSeguroPrivado.setText(mItem.getDetSegPrivado());
         tv_fechaNac.setText(Utilitarios.dateToString(mItem.getFechaNac()));
         tvPersonaId.setText(mItem.getIdPersona()+"");
+        boolean sexoHombre=Utilitarios.decodeBoolean(mItem.getSexo());
+        if(sexoHombre){
+            radioButtonsexoMujer.setChecked(false);
+            radioButtonsexoHombre.setChecked(true);
+        }else{
+            radioButtonsexoMujer.setChecked(true);
+            radioButtonsexoHombre.setChecked(false);
+        }
     }
 
     @Override

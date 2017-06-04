@@ -14,6 +14,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.SimpleCursorAdapter;
 import android.widget.Spinner;
@@ -55,7 +56,8 @@ public class MortalidadDetailFragment extends Fragment {
     EditText  editTextCausa;
     EditText  editTextEdad;
     private TextView tv_fechaNac;
-    RadioGroup radioGroupsexo;
+    RadioButton radioButtonsexoHombre;
+    RadioButton radioButtonsexoMujer;
     private TextView tvMortalidadId;
     private Button selectFechaNacimiento;
     DatePickerDialog datePickerDialog;
@@ -91,7 +93,7 @@ public class MortalidadDetailFragment extends Fragment {
                 if(mItem!=null&&mItem.getNombres()!=null) {
                     appBarLayout.setTitle(mItem.getNombres());
                 }else{
-                    appBarLayout.setTitle(S.nuevaPersona);
+                    appBarLayout.setTitle(S.nuevaPersonaFallecida);
                 }
             }
         }
@@ -104,8 +106,10 @@ private void initEditText(View rootView){
     editTextApellidos=(EditText) rootView.findViewById(R.id.editTextApellidos);
     editTextnombres=(EditText) rootView.findViewById(R.id.editTextnombres);
     editTextCausa=(EditText) rootView.findViewById(R.id.editTextCausa);
-    editTextEdad=(EditText) rootView.findViewById(R.id.editTextEdad);
+    editTextEdad=(EditText) rootView.findViewById(R.id.editEdad);
     tvMortalidadId=(TextView) rootView.findViewById(R.id.id_mortalidad);
+    radioButtonsexoHombre=(RadioButton)rootView.findViewById(R.id.radioSexoHombre);
+    radioButtonsexoMujer=(RadioButton)rootView.findViewById(R.id.radioSexoMujer);
 
 }
     private  void setValuesTextEdit(Mortalidad mItem){
@@ -116,6 +120,14 @@ private void initEditText(View rootView){
         editTextEdad.setText(mItem.getEdad()+"");
         tv_fechaNac.setText(Utilitarios.dateToString(mItem.getFechaMuerte()));
         tvMortalidadId.setText(mItem.getIdMortalida()+"");
+        boolean sexoHombre=Utilitarios.decodeBoolean(mItem.getSexo());
+        if(sexoHombre){
+            radioButtonsexoMujer.setChecked(false);
+            radioButtonsexoHombre.setChecked(true);
+        }else{
+            radioButtonsexoMujer.setChecked(true);
+            radioButtonsexoHombre.setChecked(false);
+        }
     }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

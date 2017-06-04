@@ -13,6 +13,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.ActionBar;
 import android.view.MenuItem;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Switch;
@@ -55,7 +56,7 @@ public class PersonaDetailActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String msj=saveOrUpdate();
-                Utilitarios.showMessage(msj,PersonaDetailActivity.this);
+              Utilitarios.showMessage(msj,PersonaDetailActivity.this);
             }
         });
 
@@ -119,19 +120,19 @@ public class PersonaDetailActivity extends AppCompatActivity {
                 int rows = db.updateById(TABLES.PERSONAS, personaId, contentValues);
                 if (rows > 0) {
                     resultInsert = true;
-                    msj = contentValues.get("nombres").toString() + " " + S.updateDato + " :Tot: " + rows;
+                    msj = contentValues.get("nombres").toString() + " " + S.updateDato;
                 }
                 } else {
                     msj = "El " + S.numCed + " ya existe";
                 }
             }
-            if (resultInsert) {
+           /* if (resultInsert) {
 
                 Context context = this;
                 Intent intent = new Intent(context, PersonaListActivity.class);
                 intent.putExtra(PersonaListActivity.FORM_ID, formularioId);
                 context.startActivity(intent);
-            }
+            }*/
            /* }else{
                 msj="El "+S.numCed+" ya existe";
             }*/
@@ -149,8 +150,8 @@ public class PersonaDetailActivity extends AppCompatActivity {
         // todo sexo radiobutton groud
         String fechaNac=((TextView)findViewById(R.id.tv_fechaNac)).getText().toString();
         values.put("fecha_nac",fechaNac);
-        int radioButtonID = ((RadioGroup)findViewById(R.id.opciones_sexo)).getCheckedRadioButtonId();
-        if(radioButtonID ==R.id.radioSexoHombre){
+        boolean sexoHombre=((RadioButton)findViewById(R.id.radioSexoHombre)).isChecked();
+        if(sexoHombre){
             values.put("sexo",1);
         }else{
             values.put("sexo",2);

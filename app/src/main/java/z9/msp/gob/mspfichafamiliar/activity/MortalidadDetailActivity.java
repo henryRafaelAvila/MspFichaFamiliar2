@@ -13,6 +13,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Switch;
@@ -52,7 +53,6 @@ public class MortalidadDetailActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String url = db.getWs(WS.CATALOGO);
                 String msj = saveOrUpdate();
                 Utilitarios.showMessage(msj,MortalidadDetailActivity.this);
             }
@@ -129,20 +129,20 @@ public class MortalidadDetailActivity extends AppCompatActivity {
                     int rows = db.updateById(TABLES.MORTALIDAD, mortaldadId, contentValues);
                     if (rows > 0) {
                         resultInsert = true;
-                        msj = contentValues.get("nombres").toString() + " " + S.updateDato + " :Tot: " + rows;
+                        msj = contentValues.get("nombres").toString() + " " + S.updateDato;
                     }
                 } else {
                     msj = "El " + S.numCed + " ya existe";
                 }
 
             }
-            if (resultInsert) {
+          /*  if (resultInsert) {
 
                 Context context = this;
                 Intent intent = new Intent(context, MortalidadListActivity.class);
                 intent.putExtra(MortalidadListActivity.FORM_ID, formularioId);
                 context.startActivity(intent);
-            }
+            }*/
 
         }
         return msj;
@@ -161,13 +161,13 @@ public class MortalidadDetailActivity extends AppCompatActivity {
         values.put("cedula", getTextEditText(R.id.editTextCedula));
         values.put("apellidos", getTextEditText(R.id.editTextApellidos));
         values.put("nombres", getTextEditText(R.id.editTextnombres));
-        values.put("edad", getTextEditText(R.id.editTextEdad));
+        values.put("edad", getTextEditText(R.id.editEdad));
         values.put("id_par_jh", getValueSpinnerSelected(R.id.spinnerParentescoJefeHogar));
         values.put("id_cau_mor", getValueSpinnerSelected(R.id.spinnerCausaMortalidad));
         String fechaMortalidad = ((TextView) findViewById(R.id.tv_fechaNac)).getText().toString();
         values.put("fecha_muerte", fechaMortalidad);
-        int radioButtonID = ((RadioGroup) findViewById(R.id.opciones_sexo)).getCheckedRadioButtonId();
-        if (radioButtonID == R.id.radioSexoHombre) {
+        boolean sexoHombre=((RadioButton)findViewById(R.id.radioSexoHombre)).isChecked();
+        if (sexoHombre) {
             values.put("sexo", 1);
         } else {
             values.put("sexo", 2);
