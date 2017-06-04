@@ -217,7 +217,7 @@ int cont=0;
                 }while (cursor.moveToNext());
 
             }
-            comments.add(S.successServer+" \n" + cont+" Formulario exportados.");
+            comments.add(S.successServer+" \n" + cont+" Formularios exportados.");
 
             return comments;
 
