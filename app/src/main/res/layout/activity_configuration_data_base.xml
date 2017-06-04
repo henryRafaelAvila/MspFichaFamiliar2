@@ -44,11 +44,11 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textPersonName"
             android:ems="10"
             android:id="@+id/et_direccionIp"
             android:hint="127.0.0.1"
-            android:text="192.168.0.101" />
+            android:text="192.168.0.101"
+            android:inputType="number" />
         <TextView
             android:text="Puerto"
             android:layout_width="match_parent"
@@ -64,7 +64,8 @@
                 android:ems="10"
                 android:id="@+id/et_puerto"
                 android:hint="8080"
-                android:text="8090" />
+                android:text="8090"
+                android:inputType="number" />
 
             <TextView
             android:text="Usuario"
@@ -98,7 +99,8 @@
             android:ems="10"
             android:id="@+id/et_clave"
             android:hint="Clave"
-            android:text="dasd" />
+            android:text="xxxxxx"
+            android:inputType="textPassword" />
         <TextView
             android:text="WS de integración Catálogos"
             android:layout_width="match_parent"
