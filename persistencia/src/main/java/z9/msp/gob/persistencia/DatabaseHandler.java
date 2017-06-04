@@ -293,12 +293,14 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return cursor;
     }
 
-    public String getWs(WS columnName) {
+    public String getWs(WS wsService) {
         String url = null;
         Cursor cursor = getAllGeneric(TABLES.CONFIG_SERVER.getTablaName());
         if (cursor.moveToNext()) {
-            int colIndex = cursor.getColumnIndex(columnName.getColumnName());
-            url = "http://" + cursor.getString(1) + ":" + cursor.getInt(2) + "/" + cursor.getString(colIndex);
+            String ip=cursor.getString(cursor.getColumnIndex("ip"));
+            String puerto=cursor.getString(cursor.getColumnIndex("puerto"));
+            String appName=cursor.getString(cursor.getColumnIndex("servicio_cat"));//nombre podria causar confusion, hace referencia al nombre de la aplcacion del servidor
+            url = "http://" + ip + ":" + puerto+"/"+appName +wsService.getUrlPath();
         }
         return url;
     }
@@ -1140,6 +1142,7 @@ String idFormulario=insertFormularios(formulario);
         values.put("cedula",mortalidad.getCedula());
         values.put("edad",mortalidad.getEdad());
         values.put("causa",mortalidad.getCausa());
+        values.put("id_cau_mor",mortalidad.getIdCauMor());
         values.put("id_par_jh",mortalidad.getIdParJh());
         values.put("fecha_muerte",Utilitarios.dateToString(mortalidad.getFechaMuerte()));
 

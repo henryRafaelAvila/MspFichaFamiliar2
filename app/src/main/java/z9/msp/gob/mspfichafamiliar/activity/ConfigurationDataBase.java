@@ -17,9 +17,7 @@ import z9.msp.gob.persistencia.enums.TABLES;
 public class ConfigurationDataBase extends AppCompatActivity {
     EditText et_direccionIp;
     EditText et_puerto;
-    EditText et_catalogos;
-    EditText et_uploadForm;
-    EditText et_downloadForm;
+    EditText et_app_name;
     EditText et_usuario;
     EditText et_clave;
     DatabaseHandler db;
@@ -35,9 +33,7 @@ public class ConfigurationDataBase extends AppCompatActivity {
         if (cursor.moveToNext()) {
             et_direccionIp.setText(cursor.getString(1));
             et_puerto.setText(cursor.getInt(2)+"");
-            et_catalogos.setText(cursor.getString(3));
-            et_uploadForm.setText(cursor.getString(4));
-            et_downloadForm.setText(cursor.getString(5));
+            et_app_name.setText(cursor.getString(3));
             et_usuario.setText(cursor.getString(6));
             et_clave.setText(cursor.getString(7));
         }
@@ -46,9 +42,7 @@ public class ConfigurationDataBase extends AppCompatActivity {
     private boolean hasError(){
         if(validateEditText(et_direccionIp,"Dirección IP")) return true;
         if(validateEditText(et_puerto,"Puerto")) return true;
-        if(validateEditText(et_catalogos,"Ws Catálogos")) return true;
-        if(validateEditText(et_uploadForm,"Ws subida")) return true;
-        if(validateEditText(et_uploadForm,"Ws descargar")) return true;
+        if(validateEditText(et_app_name,"Nombre de la aplicaci\u00f3n")) return true;
         if(validateEditText(et_usuario,"Usuario")) return true;
         if(validateEditText(et_clave,"Clave")) return true;
         return  false;
@@ -73,9 +67,7 @@ public class ConfigurationDataBase extends AppCompatActivity {
                 ContentValues values = new ContentValues();
                 values.put("ip", et_direccionIp.getText().toString());
                 values.put("puerto", Integer.parseInt(et_puerto.getText().toString()));
-                values.put("servicio_cat",et_catalogos.getText().toString());
-                values.put("servicio_up",et_uploadForm.getText().toString());
-                values.put("servicio_down",et_downloadForm.getText().toString());
+                values.put("servicio_cat",et_app_name.getText().toString());
                 values.put("usuario",et_usuario.getText().toString());
                 values.put("clave",et_clave.getText().toString());
                 db.executeCreateQuery(values,table);
@@ -89,9 +81,7 @@ public class ConfigurationDataBase extends AppCompatActivity {
     private void initComponets(){
          et_direccionIp=(EditText)findViewById(R.id.et_direccionIp);
          et_puerto=(EditText)findViewById(R.id.et_puerto);
-         et_catalogos=(EditText)findViewById(R.id.et_catalogos);
-         et_uploadForm=(EditText)findViewById(R.id.et_uploadForm);
-         et_downloadForm=(EditText)findViewById(R.id.et_downloadForm);
+         et_app_name=(EditText)findViewById(R.id.et_app_name);
         et_usuario=(EditText)findViewById(R.id.et_usuario);
         et_clave=(EditText)findViewById(R.id.et_clave);
     }

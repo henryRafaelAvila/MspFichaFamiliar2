@@ -846,6 +846,8 @@ public class NuevoFormularioActivity extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton buttonView,boolean isChecked) {
                 if(isChecked){
                     sedazo="1";
+                }else {
+                    sedazo="2";
                 }
             }
         });
@@ -1034,6 +1036,7 @@ private void initBotones(){
         pupulateFormulario();
     }
 }
+
     private void pupulateFormulario(){
         //TODO llenar campos del formualarios
         Formulario formulario=db.getFormuarioByID(id_formulario);
@@ -1075,8 +1078,29 @@ private void initBotones(){
         spinnerEliminarAgua.setSelection(Utilitarios.getPosition(spinnerEliminarAgua,formulario.getIdEliAgu()));
         spinnerUbicacionRetrete.setSelection(Utilitarios.getPosition(spinnerUbicacionRetrete,formulario.getIdUbiLet()));
         spinnerBasura.setSelection(Utilitarios.getPosition(spinnerBasura,formulario.getIdEliBas()));
-
-
+        pupulateSwitcher(formulario);
+    }
+    private void pupulateSwitcher(Formulario formulario){
+        if(formulario!=null){
+            //animales_sueltosw.setChecked(formulario.getAn);
+            aislamientosw.setChecked(Utilitarios.decodeBoolean(formulario.getAisla()));
+            intradomiciliariosw.setChecked(Utilitarios.decodeBoolean(formulario.getIntradomi()));
+            vectoresw.setChecked(Utilitarios.decodeBoolean(formulario.getVecTrans()));
+            animales_sueltosw.setChecked(Utilitarios.decodeBoolean(formulario.getAnimViv()));
+            violenciaintrasw.setChecked(Utilitarios.decodeBoolean(formulario.getViolFami()));
+            problemafamisw.setChecked(Utilitarios.decodeBoolean(formulario.getProbGraFam()));
+            problemasocialesw.setChecked(Utilitarios.decodeBoolean(formulario.getPsicoSoc()));
+            insertadosw.setChecked(Utilitarios.decodeBoolean(formulario.getNinNoescola()));
+            alcoholismosw.setChecked(Utilitarios.decodeBoolean(formulario.getAlcoh()));
+            drogasw.setChecked(Utilitarios.decodeBoolean(formulario.getDroga()));
+            cocinadormitoriosw.setChecked(Utilitarios.decodeBoolean(formulario.getCocInhog()));
+            sedazosw.setChecked(Utilitarios.decodeBoolean(formulario.getSedazo()));
+            mosquiterosw.setChecked(Utilitarios.decodeBoolean(formulario.getMosquit()));
+            plaguicidasw.setChecked(Utilitarios.decodeBoolean(formulario.getPlaguicida()));
+            aepisw.setChecked(Utilitarios.decodeBoolean(formulario.getAepi()));
+            abandonosw.setChecked(Utilitarios.decodeBoolean(formulario.getAbandono()));
+            ircssw.setChecked(Utilitarios.decodeBoolean(formulario.getIrUniSal()));
+        }
     }
     public void DatosParroquia(String parr){
         Cursor cursor=db.getUnidadDatos("parroquia",parr);

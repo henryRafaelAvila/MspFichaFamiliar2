@@ -5,20 +5,20 @@ package z9.msp.gob.persistencia.enums;
  */
 
 public enum WS {
-    CATALOGO("servicio_cat"),
-    CARGA_FORMULARIOS("servicio_up"),
-    DESCARGA_FORMULARIOS("servicio_down");
-    String columnName;
+    CATALOGO("/api/integracion/catalogos/"),
+    CARGA_FORMULARIOS("/api/integracion/upload/"),
+    DESCARGA_FORMULARIOS("/api/integracion/download/");
+    String urlPath;
 
-    WS(String columnName) {
-        this.columnName = columnName;
+    WS(String urlPath) {
+        this.urlPath = urlPath;
     }
 
-    public String getColumnName() {
-        return columnName;
+    public String getUrlPath() {
+        return urlPath;
     }
 
-    public void setColumnName(String columnName) {
-        this.columnName = columnName;
+    public void setUrlPath(String urlPath) {
+        this.urlPath = urlPath;
     }
 }

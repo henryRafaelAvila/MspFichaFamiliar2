@@ -20,8 +20,27 @@ import java.util.Set;
  * Created by henry on 5/22/2017.
  */
 
-public class Utilitarios {
-
+public final class Utilitarios {
+    public static boolean decodeBoolean(String op){
+        boolean status=false;
+        if(op!=null&&!op.equals("")){
+            if(op.equals("1")){
+                status=true;
+            }
+        }
+        return status;
+    }
+    public static boolean decodeBoolean(Integer op){
+        boolean status=false;
+        try{
+            String valor=String.valueOf(op);
+            status=decodeBoolean(valor);
+        }catch (Exception e){
+            status=false;
+        }finally {
+            return status;
+        }
+    }
     public static Date stringToDate(String fechaVisita) {
 
         Date date = null;

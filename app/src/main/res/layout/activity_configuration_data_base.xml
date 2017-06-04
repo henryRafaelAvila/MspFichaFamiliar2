@@ -102,7 +102,7 @@
             android:text="xxxxxx"
             android:inputType="textPassword" />
         <TextView
-            android:text="WS de integración Catálogos"
+            android:text="Nombre de la aplicación"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/textVie6"
@@ -114,43 +114,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:id="@+id/et_catalogos"
+            android:id="@+id/et_app_name"
             android:hint="/msp.ficha/api/integracion/catalogos"
-            android:text="/msp.ficha/api/integracion/catalogos" />
-
-        <TextView
-            android:text="WS carga de formulario"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/textVie7"
-            android:paddingTop="10dp"
-            android:textStyle="bold"
-            android:textColor="@android:color/background_dark"/>
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:id="@+id/et_uploadForm"
-            android:hint="/msp.ficha/api/integracion/upload"
-            android:text="/msp.ficha/api/integracion/upload" />
-
-        <TextView
-            android:text="WS descargar de formulario"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/textVie8"
-            android:paddingTop="10dp"
-            android:textStyle="bold"
-            android:textColor="@android:color/background_dark"/>
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:id="@+id/et_downloadForm"
-            android:hint="/msp.ficha/api/integracion/dowload"
-            android:text="/msp.ficha/api/integracion/dowload" />
+            android:text="msp.ficha" />
 
         <LinearLayout
             android:orientation="horizontal"
