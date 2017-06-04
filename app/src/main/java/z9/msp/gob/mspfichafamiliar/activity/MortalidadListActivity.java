@@ -59,6 +59,17 @@ public class MortalidadListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_mortalidad_list);
         session=new Session(this);
         db = new DatabaseHandler(this);
+        if (savedInstanceState == null) {
+            Bundle extras = getIntent().getExtras();
+            if(extras == null) {
+                formularioId=session.getFormulariosId();
+            } else {
+                formularioId= extras.getString(FORM_ID);
+                session.setFormulariosId(formularioId);
+            }
+        } else {
+            formularioId= (String) savedInstanceState.getSerializable(FORM_ID);
+        }
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         toolbar.setTitle(getTitle());

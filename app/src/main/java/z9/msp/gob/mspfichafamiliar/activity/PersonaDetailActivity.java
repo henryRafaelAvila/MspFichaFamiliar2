@@ -55,8 +55,7 @@ public class PersonaDetailActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String msj=saveOrUpdate();
-                Snackbar.make(view, msj, Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Utilitarios.showMessage(msj,PersonaDetailActivity.this);
             }
         });
 
@@ -94,26 +93,36 @@ public class PersonaDetailActivity extends AppCompatActivity {
         String msj=null;
         String requiered[]=new String[]{"cedula","apellidos","nombres","fecha_nac"};
         for (String keyRequered:requiered){
-            String valu=contentValues.get(keyRequered).toString();
+            Object valu=contentValues.get(keyRequered);
             if(valu==null||valu.equals("")){
                 msj= "Campo "+ keyRequered +" es obligatorio";
                 break;
             }
         }
-        msj= Utilitarios.validarCedula(contentValues.get(S.keyCedula).toString());
         if(msj==null) {
-            String existeDato=db.existeObjectByCedulaAndFormID(contentValues.get(S.keyCedula).toString(),formularioId,TABLES.PERSONAS);
-           /* if(existeDato==false){*/
+            msj = Utilitarios.validarCedula(contentValues.get(S.keyCedula).toString());
+        }
+        if(msj==null) {
+            String id=db.existeObjectByCedulaAndFormID(contentValues.get(S.keyCedula).toString(),formularioId,TABLES.PERSONAS);
+
             String personaId = getTexViewValue(R.id.id_persona);
             boolean resultInsert = false;
             if (personaId != null && personaId.equals("-1")) {
+                if (id == null) {
                 resultInsert = db.executeCreateQuery(contentValues, TABLES.PERSONAS);
                 msj = contentValues.get("nombres").toString() + " " + S.insertDato;
+                } else {
+                    msj = "El " + S.numCed + " ya existe";
+                }
             } else {
+                if (id.equals(personaId)) {
                 int rows = db.updateById(TABLES.PERSONAS, personaId, contentValues);
                 if (rows > 0) {
                     resultInsert = true;
                     msj = contentValues.get("nombres").toString() + " " + S.updateDato + " :Tot: " + rows;
+                }
+                } else {
+                    msj = "El " + S.numCed + " ya existe";
                 }
             }
             if (resultInsert) {

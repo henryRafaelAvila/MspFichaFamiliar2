@@ -944,7 +944,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
 
     private List<Personas> getPersonas(String formularioId) {
-        Cursor cursor = getAllById(TABLES.PERSONAS, formularioId);
+        Cursor cursor =getAllDiscrimiator(new Parameters(TABLES.PERSONAS,CLS_DISCR.FORMULARIO_ID,formularioId));
         List<Personas> personasList = null;
         if (cursor.moveToNext()) {
             personasList = new ArrayList<Personas>();
@@ -967,7 +967,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
 
     private List<Mortalidad> getListMortalidad(String formularioId) {
-        Cursor cursor = getAllById(TABLES.MORTALIDAD, formularioId);
+        Cursor cursor =getAllDiscrimiator(new Parameters(TABLES.MORTALIDAD,CLS_DISCR.FORMULARIO_ID,formularioId));
         List<Mortalidad> mortalidadList = null;
         if (cursor.moveToNext()) {
             mortalidadList = new ArrayList<Mortalidad>();
@@ -1144,6 +1144,6 @@ String idFormulario=insertFormularios(formulario);
         values.put("fecha_muerte",Utilitarios.dateToString(mortalidad.getFechaMuerte()));
 
         values=Utilitarios.decodeContentValues(values);
-        return insertWithParam(TABLES.PERSONAS,values);
+        return insertWithParam(TABLES.MORTALIDAD,values);
     }
 }

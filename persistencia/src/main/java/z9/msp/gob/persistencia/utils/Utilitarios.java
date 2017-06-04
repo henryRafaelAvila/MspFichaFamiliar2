@@ -1,8 +1,11 @@
 package z9.msp.gob.persistencia.utils;
 
 import android.content.ContentValues;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteCursor;
+import android.support.v7.app.AlertDialog;
 import android.widget.Spinner;
 
 import java.text.DateFormat;
@@ -42,11 +45,26 @@ public class Utilitarios {
         return date;
     }
     public static String dateToString(Date fechaVisita) {
-        DateFormat format = new SimpleDateFormat("dd/mm/yyyy");
-        String reportDate="";
-       reportDate = format.format(fechaVisita);
+        String reportDate = "";
+        if(fechaVisita!=null) {
+            DateFormat format = new SimpleDateFormat("dd/mm/yyyy");
 
+            reportDate = format.format(fechaVisita);
+        }
         return  reportDate;
+    }
+    public static void showMessage(String msj, Context context) {
+        AlertDialog.Builder goLogin = new AlertDialog.Builder(context);
+        goLogin.setMessage(msj);
+        goLogin.setCancelable(false);
+        goLogin.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+
+                dialog.cancel();
+            }
+        });
+        AlertDialog alertLogin = goLogin.create();
+        alertLogin.show();
     }
     public static String decodeNull(String value) {
         String resp=null;

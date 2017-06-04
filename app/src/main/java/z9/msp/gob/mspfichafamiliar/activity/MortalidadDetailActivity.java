@@ -54,8 +54,7 @@ public class MortalidadDetailActivity extends AppCompatActivity {
             public void onClick(View view) {
                 String url = db.getWs(WS.CATALOGO);
                 String msj = saveOrUpdate();
-                Snackbar.make(view, msj, Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Utilitarios.showMessage(msj,MortalidadDetailActivity.this);
             }
         });
 
@@ -111,7 +110,9 @@ public class MortalidadDetailActivity extends AppCompatActivity {
                 break;
             }
         }
-        msj = Utilitarios.validarCedula(contentValues.get(S.keyCedula).toString());
+        if(msj==null) {
+            msj = Utilitarios.validarCedula(contentValues.get(S.keyCedula).toString());
+        }
         if (msj == null) {
             String id = db.existeObjectByCedulaAndFormID(contentValues.get(S.keyCedula).toString(), formularioId, TABLES.MORTALIDAD);
             String mortaldadId = getTexViewValue(R.id.id_mortalidad);
@@ -161,6 +162,7 @@ public class MortalidadDetailActivity extends AppCompatActivity {
         values.put("apellidos", getTextEditText(R.id.editTextApellidos));
         values.put("nombres", getTextEditText(R.id.editTextnombres));
         values.put("id_par_jh", getValueSpinnerSelected(R.id.spinnerParentescoJefeHogar));
+        values.put("id_cau_mor", getValueSpinnerSelected(R.id.spinnerCausaMortalidad));
         String fechaMortalidad = ((TextView) findViewById(R.id.tv_fechaNac)).getText().toString();
         values.put("fecha_muerte", fechaMortalidad);
         int radioButtonID = ((RadioGroup) findViewById(R.id.opciones_sexo)).getCheckedRadioButtonId();

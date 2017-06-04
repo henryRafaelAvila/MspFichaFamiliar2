@@ -924,14 +924,24 @@ public class NuevoFormularioActivity extends AppCompatActivity {
                 if ( !hasFocus || hasFocus ) {
                     String valor = (responsabletxt.getText().toString() );
                     if ( valor.isEmpty()) {
-                        responsabletxt.setError( "Ingrese losa datos solicitados");
+                        responsabletxt.setError( "Ingrese los datos solicitados");
 
                     }
                 }
             }
         });
 
-
+        if (savedInstanceState == null) {
+            Bundle extras = getIntent().getExtras();
+            if(extras == null) {
+                id_formulario= null;
+            } else {
+                id_formulario= extras.getString(FORMULARIO_ID);
+                initBotones();
+            }
+        } else {
+            id_formulario= (String) savedInstanceState.getSerializable(FORMULARIO_ID);
+        }
         mortalidad=(Button)findViewById(R.id.mortalidad);
         mortalidad.setOnClickListener(new View.OnClickListener() {
 
@@ -944,17 +954,7 @@ public class NuevoFormularioActivity extends AppCompatActivity {
             }
 
         });
-        if (savedInstanceState == null) {
-            Bundle extras = getIntent().getExtras();
-            if(extras == null) {
-                id_formulario= null;
-            } else {
-                id_formulario= extras.getString(FORMULARIO_ID);
-                initBotones();
-            }
-        } else {
-            id_formulario= (String) savedInstanceState.getSerializable(FORMULARIO_ID);
-        }
+
         guardar=(Button)findViewById(R.id.btnguardar);
         guardar.setOnClickListener(new View.OnClickListener() {
 
@@ -1045,6 +1045,15 @@ private void initBotones(){
         edificiotxt.setText(formulario.getEdificio());
         telefonotxt.setText(formulario.getTelefono());
         celulartxt.setText(formulario.getCelular());
+        mesestxt.setText(formulario.getTiemVivMeses()+"");
+        aniostxt.setText(formulario.getTiempVivAnios()+"");
+        celularentrevistadotxt.setText(formulario.getEntrCell());
+        telefonoentrevistadotxt.setText(formulario.getEntrTelf());
+        telefonoreferenciatxt.setText(formulario.getPersRefTelf());
+        celularreferenciatxt.setText(formulario.getPersRefCell());
+        tiempotxt.setText(formulario.getTiempoTransporte()+"");
+        n_cuartostxt.setText(formulario.getNumCuar()+"");
+        ncuartos_dormirtxt.setText(formulario.getNumDorm());
         contaminacion_aguatxt.setText(formulario.getContaminaAguDesc());
         contaminacion_airetxt.setText(formulario.getContaminaAirDesc());
         contaminacion_suelotxt.setText(formulario.getContaminaSuelDesc());
@@ -1066,6 +1075,7 @@ private void initBotones(){
         spinnerEliminarAgua.setSelection(Utilitarios.getPosition(spinnerEliminarAgua,formulario.getIdEliAgu()));
         spinnerUbicacionRetrete.setSelection(Utilitarios.getPosition(spinnerUbicacionRetrete,formulario.getIdUbiLet()));
         spinnerBasura.setSelection(Utilitarios.getPosition(spinnerBasura,formulario.getIdEliBas()));
+
 
     }
     public void DatosParroquia(String parr){

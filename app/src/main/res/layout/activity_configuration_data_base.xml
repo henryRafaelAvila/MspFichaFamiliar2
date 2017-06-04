@@ -48,7 +48,7 @@
             android:id="@+id/et_direccionIp"
             android:hint="127.0.0.1"
             android:text="192.168.0.101"
-            android:inputType="number" />
+            android:inputType="numberSigned" />
         <TextView
             android:text="Puerto"
             android:layout_width="match_parent"
@@ -115,7 +115,8 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:id="@+id/et_catalogos"
-            android:hint="/msp.ficha/api/integracion/catalogos" />
+            android:hint="/msp.ficha/api/integracion/catalogos"
+            android:text="/msp.ficha/api/integracion/catalogos" />
 
         <TextView
             android:text="WS carga de formulario"
@@ -131,7 +132,8 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:id="@+id/et_uploadForm"
-            android:hint="/msp.ficha/api/integracion/upload" />
+            android:hint="/msp.ficha/api/integracion/upload"
+            android:text="/msp.ficha/api/integracion/upload" />
 
         <TextView
             android:text="WS descargar de formulario"
@@ -147,7 +149,8 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:id="@+id/et_downloadForm"
-            android:hint="/msp.ficha/api/integracion/dowload" />
+            android:hint="/msp.ficha/api/integracion/dowload"
+            android:text="/msp.ficha/api/integracion/dowload" />
 
         <LinearLayout
             android:orientation="horizontal"
