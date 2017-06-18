@@ -54,7 +54,6 @@ public class PersonaDetailFragment extends Fragment {
     EditText  editTextCedula;
     EditText editTextApellidos;
     EditText editTextnombres;
-    EditText editTextEdad;
     EditText editTextSeguroPrivado;
     
 //TODO: FALTA ITEM PAR RECIBIR EL SEXO
@@ -88,6 +87,7 @@ public class PersonaDetailFragment extends Fragment {
     private TextView tvPersonaId;
     private Button selectFechaNacimiento;
     DatePickerDialog datePickerDialog;
+    Switch switchTieneSeguroPrivado;
 
     RadioButton radioButtonsexoHombre;
     RadioButton radioButtonsexoMujer;
@@ -132,11 +132,11 @@ private void initEditText(View rootView){
     editTextCedula=(EditText) rootView.findViewById(R.id.editTextCedula);
     editTextApellidos=(EditText) rootView.findViewById(R.id.editTextApellidos);
     editTextnombres=(EditText) rootView.findViewById(R.id.editTextnombres);
-    editTextEdad=(EditText) rootView.findViewById(R.id.editTextEdad);
     editTextSeguroPrivado=(EditText) rootView.findViewById(R.id.editTextSeguroPrivado);
     tvPersonaId=(TextView) rootView.findViewById(R.id.id_persona);
     radioButtonsexoHombre=(RadioButton)rootView.findViewById(R.id.radioSexoHombre);
     radioButtonsexoMujer=(RadioButton)rootView.findViewById(R.id.radioSexoMujer);
+    switchTieneSeguroPrivado=(Switch)rootView.findViewById(R.id.switchSeguroPrivado);
 
 }
     private  void setValuesTextEdit(Personas mItem){
@@ -154,6 +154,7 @@ private void initEditText(View rootView){
             radioButtonsexoMujer.setChecked(true);
             radioButtonsexoHombre.setChecked(false);
         }
+        switchTieneSeguroPrivado.setChecked(Utilitarios.decodeBoolean(mItem.getSeguroPriv()));
     }
 
     @Override
@@ -195,8 +196,6 @@ private void initEditText(View rootView){
                                 // set day of month , month and year value in the edit text
                                 tv_fechaNac.setText(dayOfMonth + "/"
                                         + (monthOfYear + 1) + "/" + year);
-                                String text=(c.get(Calendar.YEAR)-year)+ " años "+Math.abs(c.get(Calendar.MONTH)-(monthOfYear-1))+" meses";
-                                editTextEdad.setText(text);
 
                             }
                         }, mYear, mMonth, mDay);
@@ -303,6 +302,7 @@ private void initEditText(View rootView){
         spinnerNacionalidades.setSelection(Utilitarios.getPosition(spinnerNacionalidades,mItem.getIdNacs()));
         spinnerPueblos.setSelection(Utilitarios.getPosition(spinnerPueblos,mItem.getIdPue()));
         spinnerClasificacionDiagnost.setSelection(Utilitarios.getPosition(spinnerClasificacionDiagnost,mItem.getIdClafDiag()));
+
 
     }
     private void populatedSpinner() {

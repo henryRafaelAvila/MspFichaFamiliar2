@@ -263,6 +263,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             personas.setFechaDiag(fechaDiadnostic);
             Date fechaNac=Utilitarios.stringToDate(cursor.getString(cursor.getColumnIndex("fecha_nac")));
             personas.setFechaNac(fechaNac);
+
+            personas.setSeguroPriv(cursor.getInt(cursor.getColumnIndex("seguro_priv")));
             personas.setIdActTrab(cursor.getInt(cursor.getColumnIndex("id_act_trab")));
             personas.setIdClafDiag(cursor.getInt(cursor.getColumnIndex("id_claf_diag")));
             personas.setIdEstCiv(cursor.getInt(cursor.getColumnIndex("id_est_civ")));

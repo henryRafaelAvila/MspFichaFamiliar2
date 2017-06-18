@@ -150,8 +150,7 @@ public class PersonaDetailActivity extends AppCompatActivity {
 
         // todo sexo radiobutton groud
         String fechaNac=((TextView)findViewById(R.id.tv_fechaNac)).getText().toString();
-        Date fecha=Utilitarios.stringToDate(fechaNac);
-        values.put("fecha_nac",fecha.toString());
+        values.put("fecha_nac",fechaNac);
         boolean sexoHombre=((RadioButton)findViewById(R.id.radioSexoHombre)).isChecked();
         if(sexoHombre){
             values.put("sexo",1);

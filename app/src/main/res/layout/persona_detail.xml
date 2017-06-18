@@ -101,15 +101,6 @@
         layout="@layout/fecha_nac"
         android:layout_weight="0.05" />
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="number"
-        android:ems="10"
-        android:id="@+id/editTextEdad"
-        android:enabled="true"
-        android:editable="true" />
-
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
