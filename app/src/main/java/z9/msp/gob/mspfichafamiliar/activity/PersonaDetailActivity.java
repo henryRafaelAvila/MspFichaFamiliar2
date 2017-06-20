@@ -117,7 +117,7 @@ public class PersonaDetailActivity extends AppCompatActivity {
                     msj = "El " + S.numCed + " ya existe";
                 }
             } else {
-                if (id.equals(personaId)) {
+                if (id==null||id.equals(personaId)) {
                 int rows = db.updateById(TABLES.PERSONAS, personaId, contentValues);
                 if (rows > 0) {
                     resultInsert = true;

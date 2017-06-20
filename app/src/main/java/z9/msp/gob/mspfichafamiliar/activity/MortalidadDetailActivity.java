@@ -126,7 +126,7 @@ public class MortalidadDetailActivity extends AppCompatActivity {
                     msj = "El " + S.numCed + " ya existe";
                 }
             } else {
-                if (id.equals(mortaldadId)) {
+                if (id==null||id.equals(mortaldadId)) {
                     int rows = db.updateById(TABLES.MORTALIDAD, mortaldadId, contentValues);
                     if (rows > 0) {
                         resultInsert = true;
