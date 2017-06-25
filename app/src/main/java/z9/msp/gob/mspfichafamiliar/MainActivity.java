@@ -43,8 +43,6 @@ import java.util.List;
 import z9.msp.gob.mspfichafamiliar.activity.NuevoFormularioActivity;
 import z9.msp.gob.mspfichafamiliar.fragment.ListFormFragment;
 import z9.msp.gob.persistencia.DatabaseHandler;
-import z9.msp.gob.persistencia.enums.TABLES;
-import z9.msp.gob.persistencia.integration.ClientRest;
 
 import static android.R.attr.value;
 

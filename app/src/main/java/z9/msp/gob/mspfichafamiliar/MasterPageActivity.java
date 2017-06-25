@@ -243,7 +243,7 @@ int cont=0;
     /*
 La clase GetCommentsTask representa una tarea asincrona que realizará
 las operaciones de red necesarias en segundo plano para obtener toda la
-lista de comentarios alojada en el servidor.
+lista de catalogos alojada en el servidor.
  */
     public class GetCommentsTask extends AsyncTask<URL, Void, List<String>> {
         ProgressDialog progress;
@@ -275,11 +275,6 @@ lista de comentarios alojada en el servidor.
 
                     }
                     else{
-
-                    /*
-                    Parsear el flujo con formato JSON a una lista de Strings
-                    que permitan crean un adaptador
-                     */
                         String output;
                         StringBuilder out=new StringBuilder();
                         BufferedReader br = new BufferedReader(new InputStreamReader(
@@ -297,8 +292,6 @@ lista de comentarios alojada en el servidor.
                             try {
                                 JSONArray listObject=response.getJSONArray(tableName);
                                 for(int i=0;i<listObject.length();i++){
-                                    JSONObject object =listObject.optJSONObject(i);
-                                    //db.insertMassive(tableName,object);
                                     TABLES table=TABLES.findByTableName(tableName);
                                     if(table!=null) {
                                         Gson gson = new Gson();
