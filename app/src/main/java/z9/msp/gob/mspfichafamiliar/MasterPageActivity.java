@@ -198,8 +198,8 @@ int cont=0;
                     String representacionJSON = jo.toString();
                     String response="Error";
                     client.AddParam("formulario", representacionJSON);
-                    client.AddParam("usuario", db.getWsUser());
-                    client.AddParam("clave", db.getWsPassword());
+                    client.AddParam("usuario", "");//db.getWsUser()
+                    client.AddParam("clave", "");//db.getWsPassword()
                     try {
                         client.Execute(RestClient.RequestMethod.GET);
 

@@ -1055,6 +1055,7 @@ private void initBotones(){
         telefonoreferenciatxt.setText(formulario.getPersRefTelf());
         celularreferenciatxt.setText(formulario.getPersRefCell());
         tiempotxt.setText(formulario.getTiempoTransporte()+"");
+        croquistxt.setText(formulario.getCoordenadas());
         n_cuartostxt.setText(formulario.getNumCuar()+"");
         ncuartos_dormirtxt.setText(formulario.getNumDorm());
         contaminacion_aguatxt.setText(formulario.getContaminaAguDesc());

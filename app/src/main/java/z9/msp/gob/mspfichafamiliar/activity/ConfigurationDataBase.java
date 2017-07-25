@@ -18,8 +18,6 @@ public class ConfigurationDataBase extends AppCompatActivity {
     EditText et_direccionIp;
     EditText et_puerto;
     EditText et_app_name;
-    EditText et_usuario;
-    EditText et_clave;
     DatabaseHandler db;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,8 +32,6 @@ public class ConfigurationDataBase extends AppCompatActivity {
             et_direccionIp.setText(cursor.getString(1));
             et_puerto.setText(cursor.getInt(2)+"");
             et_app_name.setText(cursor.getString(3));
-            et_usuario.setText(cursor.getString(6));
-            et_clave.setText(cursor.getString(7));
         }
         db.closeCursor(cursor);
     }
@@ -43,8 +39,6 @@ public class ConfigurationDataBase extends AppCompatActivity {
         if(validateEditText(et_direccionIp,"Dirección IP")) return true;
         if(validateEditText(et_puerto,"Puerto")) return true;
         if(validateEditText(et_app_name,"Nombre de la aplicaci\u00f3n")) return true;
-        if(validateEditText(et_usuario,"Usuario")) return true;
-        if(validateEditText(et_clave,"Clave")) return true;
         return  false;
     }
     private boolean validateEditText(EditText editText,String nameItem){
@@ -68,8 +62,6 @@ public class ConfigurationDataBase extends AppCompatActivity {
                 values.put("ip", et_direccionIp.getText().toString());
                 values.put("puerto", Integer.parseInt(et_puerto.getText().toString()));
                 values.put("servicio_cat",et_app_name.getText().toString());
-                values.put("usuario",et_usuario.getText().toString());
-                values.put("clave",et_clave.getText().toString());
                 db.executeCreateQuery(values,table);
                 break;
         }
@@ -81,7 +73,5 @@ public class ConfigurationDataBase extends AppCompatActivity {
          et_direccionIp=(EditText)findViewById(R.id.et_direccionIp);
          et_puerto=(EditText)findViewById(R.id.et_puerto);
          et_app_name=(EditText)findViewById(R.id.et_app_name);
-        et_usuario=(EditText)findViewById(R.id.et_usuario);
-        et_clave=(EditText)findViewById(R.id.et_clave);
     }
 }

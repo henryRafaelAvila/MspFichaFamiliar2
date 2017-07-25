@@ -271,7 +271,9 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             personas.setIdEtn(cursor.getInt(cursor.getColumnIndex("id_etn")));
             personas.setIdFormulario(cursor.getInt(cursor.getColumnIndex("id_formulario")));
             personas.setIdNac(cursor.getInt(cursor.getColumnIndex("id_nac")));
-            personas.setIdNacs(cursor.getInt(cursor.getColumnIndex("id_nacs")));
+            if(cursor.getInt(cursor.getColumnIndex("id_nacs"))>0) {
+                personas.setIdNacs(cursor.getInt(cursor.getColumnIndex("id_nacs")));
+            }
             personas.setIdNivInst(cursor.getInt(cursor.getColumnIndex("id_niv_inst")));
             personas.setIdParJh(cursor.getInt(cursor.getColumnIndex("id_par_jh")));
             personas.setIdPersona(cursor.getInt(cursor.getColumnIndex("_id")));
