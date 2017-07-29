@@ -82,7 +82,7 @@
                     android:layout_column="0"
                     android:layout_row="2"
                     android:layout_height="wrap_content"
-                    android:text="Intitucion del sistema:"
+                    android:text="Instituci\u00f3n del sistema:"
                     android:textColor="@android:color/black"
                     android:paddingRight="5dp" />
 
@@ -143,7 +143,7 @@
                 android:id="@+id/txtCroquis"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Croquis de Ubicacion de la Vivienda"
+                android:text="Croquis de Ubicaci\u00f3n de la Vivienda"
                 android:background="@android:color/darker_gray"
                 android:textColor="@android:color/black"
                 android:gravity="center_horizontal"
@@ -187,7 +187,7 @@
                 android:id="@+id/txtGeografia"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="a. Identificacion Geografica de la Unidad de Salud"
+                android:text="a. Identificaci\u00f3n Geogr\u00e1fica de la Unidad de Salud"
                 android:textColor="@android:color/black"
                 android:background="@android:color/darker_gray"
                 android:gravity="center_horizontal"
@@ -242,7 +242,7 @@
                 android:id="@+id/txtGeografiaVivienda"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="b. Identificacion Geografica de la Vivienda"
+                android:text="b. Identificaci\u00f3n Geogr\u00e1fica de la Vivienda"
                 android:background="@android:color/darker_gray"
                 android:textColor="@android:color/black"
                 android:gravity="center_horizontal"
@@ -273,7 +273,7 @@
                 android:id="@+id/txtCanton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="4. Canton"
+                android:text="4. Cant\u00f3n"
                 android:gravity="center_horizontal"
                 android:textColor="@android:color/black"
                 android:paddingRight="5dp" />
@@ -413,7 +413,7 @@
                 android:id="@+id/txtfono"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="11. Telefono:"
+                android:text="11. Tel\u00e9fono:"
                 android:textColor="@android:color/black"
                 android:maxLength="9"
                 android:paddingRight="5dp" />
@@ -524,7 +524,7 @@
                 android:id="@+id/txtAnios"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="17. Anios"
+                android:text="17. A\u00f1os"
                 android:gravity="center_horizontal"
                 android:textColor="@android:color/black"
                 android:paddingRight="5dp" />
@@ -582,7 +582,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Telefono Fijo"
+                android:text="Tel\u00e9fono Fijo"
                 android:gravity="center_horizontal"
                 android:textColor="@android:color/black"
                 android:paddingRight="5dp" />
@@ -625,7 +625,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Telefono Fijo"
+                android:text="Tel\u00e9fono Fijo"
                 android:gravity="center_horizontal"
                 android:textColor="@android:color/black"
                 android:paddingRight="5dp" />
@@ -982,7 +982,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="f. Cual es el principal combustible o energia que utiliza este hogar para cocinar"
+                android:text="f. ¿Cu\u00e1l es el principal combustible o energia que utiliza este hogar para cocinar?"
                 android:textColor="@android:color/black"
                 android:background="@android:color/white"
                 android:gravity="center_horizontal"
@@ -1059,7 +1059,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="2. De estos cuartos ¿ Cuantos utiliza este hogar en forma exclusiva para dormir?"
+                android:text="2. De estos cuartos ¿Cu\u00e1ntos utiliza este hogar en forma exclusiva para dormir?"
                 android:textColor="@android:color/black"
                 android:background="@android:color/darker_gray"
                 android:gravity="center_horizontal"
@@ -1090,7 +1090,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="3. De donde proviene prncipalmente el agua que recibe este hogar"
+                android:text="3. De donde proviene principalmente el agua que recibe este hogar"
                 android:textColor="@android:color/black"
                 android:background="@android:color/darker_gray"
                 android:gravity="center_horizontal"
@@ -1157,7 +1157,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="5. Principalmente, ¿el tratamiento que le dan al agua que obtiene de (Pr. 4) antes de beberla es:"
+                android:text="5. Principalmente, ¿El tratamiento que le dan al agua que obtiene de (Pr. 4) antes de beberla es:"
                 android:textColor="@android:color/black"
                 android:background="@android:color/darker_gray"
                 android:gravity="center_horizontal"
@@ -1190,7 +1190,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="6. El tipo de eliminacion de aguas servidas con que cuenta el hogar es:"
+                android:text="6. El tipo de eliminaci\u00f3n de aguas servidas con que cuenta el hogar es:"
                 android:textColor="@android:color/black"
                 android:background="@android:color/darker_gray"
                 android:gravity="center_horizontal"
@@ -1223,7 +1223,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="7. El servicio higienico con que cuenta el hogar esta ubicado:"
+                android:text="7. ¿El servicio higienico con que cuenta el hogar esta ubicado?"
                 android:textColor="@android:color/black"
                 android:background="@android:color/darker_gray"
                 android:gravity="center_horizontal"
@@ -1256,7 +1256,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="8. Como eliminana en este hogar la mayor parte de la basura de la vivienda "
+                android:text="8. ¿Como eliminana en este hogar la mayor parte de la basura de la vivienda?"
                 android:textColor="@android:color/black"
                 android:background="@android:color/darker_gray"
                 android:gravity="center_horizontal"
@@ -1318,7 +1318,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="1. Contaminacion"
+                android:text="1. Contaminaci\u00f3n"
                 android:textColor="@android:color/black"
                 android:background="@android:color/darker_gray"
                 android:paddingRight="5dp" />
@@ -1333,7 +1333,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Contaminacion del Suelo"
+                android:text="Contaminaci\u00f3n del Suelo: Si en este hogar se contamina el suelo, describa de que forma lo hacen."
                 android:textColor="@android:color/black"
                 android:background="@android:color/white"
                 android:paddingRight="5dp" />
@@ -1356,7 +1356,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Contaminacion del Aire"
+                android:text="Contaminaci\u00f3n del Aire: Si en este hogar se contamina el aire, describa de que forma lo hacen."
                 android:textColor="@android:color/black"
                 android:background="@android:color/white"
                 android:paddingRight="5dp" />
@@ -1378,7 +1378,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Contaminacion del Agua"
+                android:text="Contaminaci\u00f3n del Agua: Si en este hogar se contamina el agua, describa de que forma lo hacen"
                 android:textColor="@android:color/black"
                 android:background="@android:color/white"
                 android:paddingRight="5dp" />
@@ -1456,7 +1456,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Riesgos Sociodemograficos"
+                android:text="Riesgos Sociodemogr\u00e1ficos"
                 android:textColor="@android:color/black"
                 android:background="@android:color/white"
                 android:paddingRight="5dp" />
@@ -1483,7 +1483,7 @@
                     android:layout_height="10dp"
                     android:background="@drawable/red_bg" />
             <Switch
-                android:text="Desestructuracion Familiar"
+                android:text="Desestructuraci\u00f3n Familiar"
                 android:textOn="Si"
                 android:textOff="No"
                 android:layout_width="match_parent"
@@ -1519,7 +1519,7 @@
                     android:layout_height="10dp"
                     android:background="@drawable/red_bg" />
             <Switch
-                android:text=" Familia con riesgo de auto-atencion o aislamiento"
+                android:text=" Familia con riesgo de auto-atenci\u00f3n o aislamiento"
                 android:textOn="Si"
                 android:textOff="No"
                 android:layout_width="match_parent"
@@ -1532,7 +1532,7 @@
                     android:background="@drawable/red_bg" />
 
             <Switch
-                android:text=" Numero de miembros de la familia sin escolarizacion"
+                android:text=" N\u00famero de miembros de la familia sin escolarizacion"
                 android:textOn="Si"
                 android:textOff="No"
                 android:layout_width="match_parent"
@@ -1544,7 +1544,7 @@
                     android:layout_height="10dp"
                     android:background="@drawable/red_bg" />
             <Switch
-                android:text=" Numero de niños en edad escolar no inceratados"
+                android:text=" N\u00famero de ni\u00f1os en edad escolar no inceratados"
                 android:textOn="Si"
                 android:textOff="No"
                 android:layout_width="match_parent"
@@ -1556,7 +1556,7 @@
                     android:layout_height="10dp"
                     android:background="@drawable/red_bg" />
             <Switch
-                android:text="Numero de miembros con alcoholismo"
+                android:text="N\u00famero de miembros con alcoholismo"
                 android:textOn="Si"
                 android:textOff="No"
                 android:layout_width="match_parent"
@@ -1569,7 +1569,7 @@
                     android:background="@drawable/red_bg" />
 
             <Switch
-                android:text="Numero de miembros con drogodependencia"
+                android:text="N\u00famero de miembros con drogodependencia"
                 android:textOn="Si"
                 android:textOff="No"
                 android:layout_width="match_parent"

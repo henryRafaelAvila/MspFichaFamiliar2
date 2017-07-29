@@ -138,8 +138,16 @@ lista de comentarios alojada en el servidor.
                             .setDateFormat("dd/MM/yyyy")
                             .create()
                             .fromJson(response, listType);
+                    String urlConfirm = db.getWs(WS.CONFIRM_DOWNLOAD);
+                    RestClient clientConfirm = new RestClient(urlConfirm);
+                    int n=-1;
                     for (Formulario formulario : lista) {
-                        db.insertFormularioByWs(formulario);
+                        n=db.insertFormularioByWs(formulario);
+                        if(n>0) {
+                            clientConfirm.AddParam(S.dw_idsFormulariosConfirm, formulario.getIdFormulario()+"");
+                            clientConfirm.Execute(RestClient.RequestMethod.GET);
+                        }
+
                     }
                 } else {
                     comments.add(S.dw_NotData);

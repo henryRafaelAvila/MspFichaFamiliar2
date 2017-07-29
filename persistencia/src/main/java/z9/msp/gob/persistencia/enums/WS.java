@@ -7,7 +7,8 @@ package z9.msp.gob.persistencia.enums;
 public enum WS {
     CATALOGO("/api/integracion/catalogos/"),
     CARGA_FORMULARIOS("/api/integracion/upload/"),
-    DESCARGA_FORMULARIOS("/api/integracion/download/");
+    DESCARGA_FORMULARIOS("/api/integracion/download/"),
+    CONFIRM_DOWNLOAD("/api/integracion/confirmDownload/");
     String urlPath;
 
     WS(String urlPath) {

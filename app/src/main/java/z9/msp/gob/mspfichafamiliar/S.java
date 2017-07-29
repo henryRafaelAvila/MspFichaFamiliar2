@@ -17,8 +17,9 @@ public static final String establecerConeccion="Por favor espere, esto puede tar
     public static final String nuevaPersonaFallecida="Nueva Persona Fallecida";
     /*parametros de servicio download*/
     public static final String dw_idsFormularios="id";
+    public static final String dw_idsFormulariosConfirm="formularioId";
     public static final String numCed = "N\u00famero de c\u00e9dua";
-    public static final String dw_NotData="Servidor no retorno datos";
+    public static final String dw_NotData="Servidor no retorno datos: Posibles causas\n1.- Formulario ya fue descargado\n 2.-Formulario no existe ";
     public static final String keyCedula="cedula";
 
 

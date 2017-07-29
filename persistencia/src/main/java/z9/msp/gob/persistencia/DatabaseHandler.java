@@ -934,7 +934,10 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             if(id_fk>0)
             formulario.setAbandono(id_fk);
 
-            formulario.setIrUniSal(cursor.getInt(cursor.getColumnIndex("ir_uni_sal")));
+            id_fk=cursor.getInt(cursor.getColumnIndex("ir_uni_sal"));
+            if(id_fk>0)
+                formulario.setIrUniSal(id_fk);
+
             formulario.setCalle1(cursor.getString(cursor.getColumnIndex("calle1")));
             formulario.setCalle2(cursor.getString(cursor.getColumnIndex("calle2")));
             formulario.setTelefono(cursor.getString(cursor.getColumnIndex("telefono")));
@@ -1047,8 +1050,18 @@ String idFormulario=insertFormularios(formulario);
         mortalidad.setIdFormulario(Integer.parseInt(idFormulario));
         insertMortalidad(mortalidad);
     }
-    return 0;
+    return tryParseInt(idFormulario);
 };
+    private int tryParseInt(String n){
+        int value=-1;
+        try{
+            value=Integer.parseInt(n);
+        }catch (Exception e){
+
+        }finally {
+            return value;
+        }
+    }
     public String insertFormularios(Formulario formulario) {
         ContentValues values = new ContentValues();
         values.put("codigo", formulario.getCodigo());
